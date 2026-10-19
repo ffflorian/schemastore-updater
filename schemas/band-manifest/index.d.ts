@@ -85,7 +85,7 @@ export interface JSONSchemaForMicrosoftBandManifests {
    * All PNG icons used by the tile within its pages must be provided here.
    */
   icons?: {
-    [k: string]: Icon;
+    [k: string]: Icon | undefined;
   };
   /**
    * Each tile consists of one or more pages, as described by the objects in this array. Each page object specifies the layout and content of the page.

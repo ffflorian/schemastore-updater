@@ -9,8 +9,7 @@ export type Rule =
       {
         [k: string]: unknown | undefined;
       }
-    ]
-  | undefined;
+    ];
 
 export interface HttpsJsonSchemastoreOrgCommitlintrcJson {
   /**

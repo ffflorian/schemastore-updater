@@ -45,13 +45,7 @@ export type Jobs = unknown[];
 export type Queue = string;
 export type DefaultBranch = string;
 export type MergeMode =
-  | 'merge'
-  | 'merge-resolve'
-  | 'merge-recursive'
-  | 'merge-ort'
-  | 'cherry-pick'
-  | 'squash-merge'
-  | 'rebase';
+  'merge' | 'merge-resolve' | 'merge-recursive' | 'merge-ort' | 'cherry-pick' | 'squash-merge' | 'rebase';
 export type Templates = string[];
 export type ZuulConfigSchema = (JobEntry | NodesetEntry | ProjectEntry | ProjectTemplateEntry | SecretEntry)[];
 
@@ -168,15 +162,12 @@ export interface ProjectModel {
   release?: PipelineModel;
   templates?: Templates;
   'third-party-check'?: PipelineModel;
-  vars?: Vars1;
+  vars?: Vars;
 }
 export interface PipelineModel {
   'fail-fast'?: FailFast;
   jobs?: Jobs;
   queue?: Queue;
-}
-export interface Vars1 {
-  [k: string]: unknown | undefined;
 }
 export interface ProjectTemplateEntry {
   'project-template': ProjectTemplateModel;
@@ -193,10 +184,7 @@ export interface ProjectTemplateModel {
   queue?: Queue;
   release?: PipelineModel;
   'third-party-check'?: PipelineModel;
-  vars?: Vars2;
-}
-export interface Vars2 {
-  [k: string]: unknown | undefined;
+  vars?: Vars;
 }
 export interface SecretEntry {
   secret: SecretModel;

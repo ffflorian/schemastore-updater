@@ -21,12 +21,14 @@ export interface ConfigurationForTheEdgeAgentModule {
            * This interface was referenced by `undefined`'s JSON-Schema definition
            * via the `patternProperty` "^.+$".
            */
-          [k: string]: {
-            username: string;
-            password: string;
-            address: string;
-            [k: string]: unknown | undefined;
-          };
+          [k: string]:
+            | {
+                username: string;
+                password: string;
+                address: string;
+                [k: string]: unknown | undefined;
+              }
+            | undefined;
         };
         [k: string]: unknown | undefined;
       };
@@ -46,15 +48,17 @@ export interface ConfigurationForTheEdgeAgentModule {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
        */
-      [k: string]: {
-        version?: string;
-        type: ModuleType;
-        status: Status;
-        restartPolicy: RestartPolicy;
-        env?: Env;
-        settings: ModuleSettings;
-        [k: string]: unknown | undefined;
-      };
+      [k: string]:
+        | {
+            version?: string;
+            type: ModuleType;
+            status: Status;
+            restartPolicy: RestartPolicy;
+            env?: Env;
+            settings: ModuleSettings;
+            [k: string]: unknown | undefined;
+          }
+        | undefined;
     };
     [k: string]: unknown | undefined;
   };
@@ -70,10 +74,12 @@ export interface Env {
    * This interface was referenced by `Env`'s JSON-Schema definition
    * via the `patternProperty` "^[^\+#$\s\.]+$".
    */
-  [k: string]: {
-    value: number | string | boolean;
-    [k: string]: unknown | undefined;
-  };
+  [k: string]:
+    | {
+        value: number | string | boolean;
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
 }
 export interface TheEdgehubSchema {
   type: ModuleType;

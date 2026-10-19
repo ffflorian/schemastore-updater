@@ -129,7 +129,7 @@ export interface ElgatoStreamDeckManifest {
   /**
    * Specifies an array of actions. A plugin can indeed have one or multiple actions. For example, the “Game Capture” plugin has six actions: Scene, Record, Screenshot, Flashback Recording, Stream, Live Commentary.
    */
-  Actions: (
+  Actions: ((
     | {
         /**
          * The relative path to a PNG image without the .png extension. This image is displayed in the actions list. The PNG image should be a 20pt x 20pt image. You should provide @1x and @2x versions of the image. The Stream Deck application takes care of loading the appropriate version of the image. This icon is not required for actions not visible in the actions list (`VisibleInActionsList` set to false).
@@ -144,6 +144,158 @@ export interface ElgatoStreamDeckManifest {
         VisibleInActionsList: false;
         [k: string]: unknown | undefined;
       }
-  )[];
+  ) & {
+    /**
+     * The unique identifier of the action. It must be a uniform type identifier (UTI) that contains only lowercase alphanumeric characters (a-z, 0-9), hyphen (-), and period (.). The string must be in reverse-DNS format. For example, if your domain is `elgato.com` and you create a plugin named `Hello` with the action `My Action`, you could assign the string `com.elgato.hello.myaction` as your action's Unique Identifier.
+     */
+    UUID: string;
+    /**
+     * The name of the action. This string is visible to the user in the actions list.
+     */
+    Name: string;
+    /**
+     * The relative path to a PNG image without the .png extension. This image is displayed in the actions list. The PNG image should be a 20pt x 20pt image. You should provide @1x and @2x versions of the image. The Stream Deck application takes care of loading the appropriate version of the image. This icon is not required for actions not visible in the actions list (`VisibleInActionsList` set to false).
+     */
+    Icon?: string;
+    States: {
+      /**
+       * The default image for the state. When a user sets a custom image on the primary state, Stream Deck will automatically set the secondary state to a darker version of the same icon.
+       */
+      Image: string;
+      /**
+       * This can be used if you want to provide a different image for the state when the action is displayed in a Multi-Action.
+       */
+      MultiActionImage?: string;
+      /**
+       * Displayed in the dropdown menu in the Multi-action. For example, the Game Capture Record action has Start and Stop. If the name is not provided, the state will not appear in the Multi-Action.
+       */
+      Name?: string;
+      /**
+       * Default title.
+       */
+      Title?: string;
+      /**
+       * Boolean to show or hide the title
+       */
+      ShowTitle?: string;
+      /**
+       * Default title color.
+       */
+      TitleColor?: string;
+      /**
+       * Default font family for the title.
+       */
+      FontFamily?:
+        | 'Arial'
+        | 'Arial Black'
+        | 'Comic Sans MS'
+        | 'Courier'
+        | 'Courier New'
+        | 'Georgia'
+        | 'Impact'
+        | 'Microsoft Sans Serif'
+        | 'Symbol'
+        | 'Tahoma'
+        | 'Times New Roman'
+        | 'Trebuchet MS'
+        | 'Verdana'
+        | 'Webdings'
+        | 'Wingdings';
+      /**
+       * Default title vertical alignment.
+       */
+      TitleAlignment?: 'top' | 'bottom' | 'middle';
+      /**
+       * Default font style for the title. Note that some fonts might not support all values.
+       */
+      FontStyle?: 'Regular' | 'Bold' | 'Italic' | 'Bold Italic';
+      /**
+       * Default font size for the title.
+       */
+      FontSize?: string;
+      /**
+       * Boolean to have an underline under the title.
+       */
+      FontUnderline?: boolean;
+      [k: string]: unknown | undefined;
+    }[];
+    /**
+     * This can override PropertyInspectorPath member from the plugin if you wish to have a different PropertyInspectorPath based on the action. The relative path to the Property Inspector HTML file if your plugin wants to display some custom settings in the Property Inspector.
+     */
+    PropertyInspectorPath?: string;
+    /**
+     * Boolean to prevent the action from being used in a Multi Action.
+     */
+    SupportedInMultiActions?: boolean;
+    /**
+     * The string is displayed as a tooltip when the user leaves the mouse over your action in the actions list.
+     */
+    Tooltip?: string;
+    /**
+     * Boolean to disable image caching.
+     */
+    DisableCaching?: boolean;
+    /**
+     * Determines whether the state of the action should automatically toggle when the user presses the action; only applies to actions that have two states defined.
+     */
+    DisableAutomaticStates?: boolean;
+    /**
+     * Boolean to hide the action in the actions list. This can be used for a plugin that only works with a specific profile.
+     */
+    VisibleInActionsList?: boolean;
+    /**
+     * Boolean to disable the title field for users in the property inspector.
+     */
+    UserTitleEnabled?: boolean;
+    /**
+     * Specifies an array of controllers.
+     */
+    Controllers?: ('Keypad' | 'Encoder')[];
+    /**
+     * Used to describe and configure the dial and display segment on Stream Deck +.
+     */
+    Encoder?: {
+      /**
+       * The default background image for the encoders touch display slot.
+       */
+      background?: string;
+      /**
+       * The default icon found in the property inspector, dial stack image, and the layout. If no icon is set Stream Deck will use the action list icon.
+       */
+      Icon?: string;
+      /**
+       * A string containing the name of a built-in layout or the partial path to a JSON file with a custom layout definition. You can dynamically change the layout with with setFeedbackLayout event. The default layout is the Icon Layout ($X1).
+       */
+      layout?: string;
+      /**
+       * The color that will be used in the dial stack as background color.
+       */
+      StackColor?: string;
+      /**
+       * Used to describe encoder actions in the property inspector.
+       */
+      TriggerDescription?: {
+        /**
+         * Describe the rotation.
+         */
+        Rotate?: string;
+        /**
+         * Describe the encoder push.
+         */
+        Push?: string;
+        /**
+         * Describe the touch.
+         */
+        Touch?: string;
+        /**
+         * Describe the long touch.
+         */
+        LongTouch?: string;
+        [k: string]: unknown | undefined;
+      };
+      [k: string]: unknown | undefined;
+    };
+    [k: string]: unknown | undefined;
+  })[];
   [k: string]: unknown | undefined;
 }

@@ -17,27 +17,14 @@ export type MatchPattern = string;
 export type Scripts = string[];
 export type GlobPattern = string;
 export type MatchPatternStrict = string;
-export type Icon = {
-  /**
-   * This interface was referenced by `undefined`'s JSON-Schema definition
-   * via the `patternProperty` "^[1-9]\d+$".
-   *
-   * This interface was referenced by `undefined`'s JSON-Schema definition
-   * via the `patternProperty` "^[1-9]\d+$".
-   */
-  [k: string]: string;
-} & Icon1;
-export type Icon1 =
+export type Icon =
   | string
   | {
       /**
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[1-9]\d+$".
-       *
-       * This interface was referenced by `undefined`'s JSON-Schema definition
-       * via the `patternProperty` "^[1-9]\d+$".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
 
 /**
@@ -99,7 +86,7 @@ export interface JSONSchemaForWebExtensionsManifestFiles {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[1-9]\d*$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Use the incognito key to control how the extension works with private browsing windows.<br><br>Note: By default, extensions do not run in private browsing windows. Whether an extension can access private browsing windows is under user control. For details, see Extensions in Private Browsing. Your extension can check whether it can access private browsing windows using extension.isAllowedIncognitoAccess.<br><br>This is a string that can take any of these values:<br>"spanning" (the default): the extension will see events from private and non-private windows and tabs. Windows and tabs will get an incognito property in the `Window` or `Tab` that represents them. This property indicates whether or not the object is private<br>"split": the extension will be split between private and non-private windows. There are effectively two copies of the extension running: one sees only non-private windows, the other sees only private windows. Each copy has isolated access to Web APIs (so, for example, localStorage is not shared). However, the WebExtension API storage.local is shared. (Note: this setting is not supported by Firefox.)<br>"not_allowed": private tabs and windows are invisible to the extension.<br><br>https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/incognito
@@ -530,77 +517,14 @@ export interface CustomSpecialPages {
  */
 export interface KeyboardShortcuts {
   _execute_browser_action?: Command;
-  _execute_page_action?: Command1;
-  _execute_sidebar_action?: Command2;
-  [k: string]: Command3 | undefined;
+  _execute_page_action?: Command;
+  _execute_sidebar_action?: Command;
+  [k: string]: Command | Command | Command | Command | undefined;
 }
 /**
  * Works like a click on a toolbar button created with browserAction or specified in the browser_action key in the manifest.json key.
  */
 export interface Command {
-  /**
-   * A description of the shortcut; i.e. what it does
-   */
-  description?: string;
-  /**
-   * The value of each property is the keyboard shortcut for the command on that platform, as a string containing keys separated by "+". The value for "default" is used on all platforms that are not explicitly listed.
-   */
-  suggested_key?: {
-    default?: CommandShortcut;
-    mac?: CommandShortcut;
-    linux?: CommandShortcut;
-    windows?: CommandShortcut;
-    chromeos?: CommandShortcut;
-    android?: CommandShortcut;
-    ios?: CommandShortcut;
-  };
-}
-/**
- * Works like a click on an address bar button created with pageAction or specified in the page_action key in the manifest.json key.
- */
-export interface Command1 {
-  /**
-   * A description of the shortcut; i.e. what it does
-   */
-  description?: string;
-  /**
-   * The value of each property is the keyboard shortcut for the command on that platform, as a string containing keys separated by "+". The value for "default" is used on all platforms that are not explicitly listed.
-   */
-  suggested_key?: {
-    default?: CommandShortcut;
-    mac?: CommandShortcut;
-    linux?: CommandShortcut;
-    windows?: CommandShortcut;
-    chromeos?: CommandShortcut;
-    android?: CommandShortcut;
-    ios?: CommandShortcut;
-  };
-}
-/**
- * Opens the extension's sidebar specified in the sidebar_action manifest.json key.
- */
-export interface Command2 {
-  /**
-   * A description of the shortcut; i.e. what it does
-   */
-  description?: string;
-  /**
-   * The value of each property is the keyboard shortcut for the command on that platform, as a string containing keys separated by "+". The value for "default" is used on all platforms that are not explicitly listed.
-   */
-  suggested_key?: {
-    default?: CommandShortcut;
-    mac?: CommandShortcut;
-    linux?: CommandShortcut;
-    windows?: CommandShortcut;
-    chromeos?: CommandShortcut;
-    android?: CommandShortcut;
-    ios?: CommandShortcut;
-  };
-}
-/**
- * A custom command
- */
-export interface Command3 {
   /**
    * A description of the shortcut; i.e. what it does
    */
@@ -902,6 +826,8 @@ export interface Images {
   theme_frame?: string;
   /**
    * An array of URLs for additional background images to be added to the header area and displayed behind the "theme_frame": image. These images layer the first image in the array on top, the last image in the array at the bottom.
+   *
+   * Items: URL for an additional background image
    */
   additional_backgrounds?: string[];
 }

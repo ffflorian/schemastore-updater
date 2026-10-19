@@ -5,7 +5,7 @@
  */
 export interface LsdIconsYaml {
   name?: IconMap;
-  extension?: IconMap1;
+  extension?: IconMap;
   /**
    * Icon overrides keyed by filesystem entry type.
    */
@@ -26,11 +26,5 @@ export interface LsdIconsYaml {
  * Icon overrides keyed by file or directory name.
  */
 export interface IconMap {
-  [k: string]: string | undefined;
-}
-/**
- * Icon overrides keyed by file extension.
- */
-export interface IconMap1 {
   [k: string]: string | undefined;
 }

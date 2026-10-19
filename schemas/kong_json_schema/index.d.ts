@@ -34,7 +34,7 @@ export type FRoute = FRoute1 & {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   hosts?: string[];
   https_redirect_status_code?: number;
@@ -108,9 +108,11 @@ export interface HttpsJsonSchemastoreOrgKongJsonSchemaJson {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: {
-      [k: string]: unknown | undefined;
-    };
+    [k: string]:
+      | {
+          [k: string]: unknown | undefined;
+        }
+      | undefined;
   };
   _transform?: boolean;
   _workspace?: string;
@@ -145,7 +147,7 @@ export interface Route {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   hosts?: string[];
   https_redirect_status_code?: number;
@@ -406,14 +408,14 @@ export interface PluginOrdering {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   before?: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` ".*".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
 }
 export interface FRBACRole {

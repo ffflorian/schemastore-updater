@@ -5,7 +5,7 @@
  */
 export interface InsurancesRepository {
   insurances?: {
-    [k: string]: Insurance;
+    [k: string]: Insurance | undefined;
   };
   [k: string]: unknown | undefined;
 }
@@ -26,21 +26,13 @@ export interface Insurance {
   vsdServiceProvider?: {
     name: string;
     TU: Fachdienste;
-    RU: Fachdienste1;
+    RU: Fachdienste;
   };
 }
 /**
  * A list of TI service locations
  */
 export interface Fachdienste {
-  ufs: string;
-  cms: string;
-  vsdd: string;
-}
-/**
- * A list of TI service locations
- */
-export interface Fachdienste1 {
   ufs: string;
   cms: string;
   vsdd: string;

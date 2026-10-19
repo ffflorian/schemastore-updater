@@ -17,6 +17,9 @@ export interface HttpsJsonSchemastoreOrgBackportrcJson {
   /**
    * Target branches for the current project
    * https://github.com/sqren/backport/blob/main/docs/config-file-options.md#targetbranchchoices-required
+   *
+   * Items: A target branch for the current project
+   * https://github.com/sqren/backport/blob/main/docs/config-file-options.md#targetbranchchoices-required
    */
   targetBranchChoices: (string | TargetBranch)[];
   /**

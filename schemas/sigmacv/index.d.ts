@@ -1265,12 +1265,7 @@ export interface SigmaCVCanonicalCV {
           itemId: string;
           tier?: 'exact' | 'related' | 'strong' | 'weak';
           relationship?:
-            | 'same-work'
-            | 'preprint-of'
-            | 'published-version-of'
-            | 'version-of'
-            | 'translation-of'
-            | 'erratum-of';
+            'same-work' | 'preprint-of' | 'published-version-of' | 'version-of' | 'translation-of' | 'erratum-of';
           groupId: string;
         };
       };

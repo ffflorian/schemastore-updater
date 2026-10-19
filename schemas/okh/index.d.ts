@@ -4,8 +4,6 @@
  * This is a JSON-Schema which can validate an 'okh.toml' file, which holds an Open Source Hardware (OSH) projects Open Know-How (OKH) meta-data.
  */
 export type Manifest = {
-  [k: string]: unknown | undefined;
-} & {
   /**
    * Link to OKH JSON-Schema
    */
@@ -134,12 +132,7 @@ export type Manifest = {
    * OTRL-ID representing the development stage of the OSH module; get it from: <https://w3id.org/oseg/ont/otrl>
    */
   'technology-readiness-level'?:
-    | Ideation
-    | Conception
-    | Development
-    | PrototypingAndTesting
-    | ManufacturingDevelopment
-    | ProductQualification;
+    Ideation | Conception | Development | PrototypingAndTesting | ManufacturingDevelopment | ProductQualification;
   /**
    * identifier of the applying Technology-specific Documentation Criteria (TsDC) according to DIN SPEC 3105-1 - get it from: <https://w3id.org/oseg/ont/tsdc/core> - multiple inputs possible (with one entry each)
    */

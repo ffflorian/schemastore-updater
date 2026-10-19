@@ -54,9 +54,30 @@ export type StepsVolumes = {
   path: NonEmptyString;
   [k: string]: unknown | undefined;
 }[];
-export type Volumes = {
+export type Volumes = ({
   [k: string]: unknown | undefined;
-}[];
+} & {
+  name?: NonEmptyString;
+  host?: {
+    path?: NonEmptyString;
+    [k: string]: unknown | undefined;
+  };
+  temp?: {
+    medium?: 'memory';
+  };
+  claim?: {
+    name?: NonEmptyString;
+    read_only?: boolean;
+    [k: string]: unknown | undefined;
+  };
+  config_map?: {
+    name?: NonEmptyString;
+    default_mode?: number;
+    optional?: boolean;
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+})[];
 export type Services = {
   name: NonEmptyString;
   image: NonEmptyString;
@@ -73,7 +94,7 @@ export type StepKubernetes = Step & {
   image: NonEmptyString;
   privileged?: boolean;
   pull?: 'always' | 'never' | 'if-not-exists';
-  resources?: IoK8SApiCoreV16;
+  resources?: IoK8SApiCoreV1ResourceRequirements;
   volumes?: StepsVolumes;
   settings?: {
     [k: string]: unknown | undefined;
@@ -215,7 +236,7 @@ export interface PipelineDocker {
   depends_on?: unknown;
 }
 export interface Environment {
-  [k: string]: (string | number | boolean | Secret) | undefined;
+  [k: string]: string | number | boolean | Secret | undefined;
 }
 export interface Secret {
   from_secret: string;
@@ -236,21 +257,21 @@ export interface Node {
 }
 export interface PipelineKubernetes {
   type?: 'kubernetes';
-  metadata?: IoK8SApimachineryPkgApisMetaV1;
+  metadata?: IoK8SApimachineryPkgApisMetaV1ObjectMeta;
   node?: Node;
   /**
    * If specified, the pod's tolerations.
    */
-  tolerations?: IoK8SApiCoreV1[];
-  dns_config?: IoK8SApiCoreV11;
+  tolerations?: IoK8SApiCoreV1Toleration[];
+  dns_config?: IoK8SApiCoreV1PodDNSConfig;
   /**
    * HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.
    */
-  host_aliases?: IoK8SApiCoreV13[];
+  host_aliases?: IoK8SApiCoreV1HostAlias[];
   /**
    * A list of node selector terms.
    */
-  node_selector?: IoK8SApiCoreV14[];
+  node_selector?: IoK8SApiCoreV1NodeSelectorTerm[];
   steps?: StepKubernetes[];
   volumes?: Volumes;
   services?: Services;
@@ -271,7 +292,7 @@ export interface PipelineKubernetes {
 /**
  * ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.
  */
-export interface IoK8SApimachineryPkgApisMetaV1 {
+export interface IoK8SApimachineryPkgApisMetaV1ObjectMeta {
   /**
    * Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
    */
@@ -323,7 +344,7 @@ export interface IoK8SApimachineryPkgApisMetaV1 {
   /**
    * ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like "ci-cd". The set of fields is always in the version that the workflow used when modifying the object.
    */
-  managedFields?: IoK8SApimachineryPkgApisMetaV11[];
+  managedFields?: IoK8SApimachineryPkgApisMetaV1ManagedFieldsEntry[];
   /**
    * Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names
    */
@@ -337,7 +358,7 @@ export interface IoK8SApimachineryPkgApisMetaV1 {
   /**
    * List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.
    */
-  ownerReferences?: IoK8SApimachineryPkgApisMetaV13[];
+  ownerReferences?: IoK8SApimachineryPkgApisMetaV1OwnerReference[];
   /**
    * An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.
    *
@@ -361,7 +382,7 @@ export interface IoK8SApimachineryPkgApisMetaV1 {
 /**
  * ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.
  */
-export interface IoK8SApimachineryPkgApisMetaV11 {
+export interface IoK8SApimachineryPkgApisMetaV1ManagedFieldsEntry {
   /**
    * APIVersion defines the version of this resource that this field set applies to. The format is "group/version" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.
    */
@@ -370,7 +391,7 @@ export interface IoK8SApimachineryPkgApisMetaV11 {
    * FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: "FieldsV1"
    */
   fieldsType?: string;
-  fieldsV1?: IoK8SApimachineryPkgApisMetaV12;
+  fieldsV1?: IoK8SApimachineryPkgApisMetaV1FieldsV1;
   /**
    * Manager is an identifier of the workflow managing these fields.
    */
@@ -388,13 +409,13 @@ export interface IoK8SApimachineryPkgApisMetaV11 {
 /**
  * FieldsV1 holds the first JSON version format as described in the "FieldsV1" type.
  */
-export interface IoK8SApimachineryPkgApisMetaV12 {
+export interface IoK8SApimachineryPkgApisMetaV1FieldsV1 {
   [k: string]: unknown | undefined;
 }
 /**
  * OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.
  */
-export interface IoK8SApimachineryPkgApisMetaV13 {
+export interface IoK8SApimachineryPkgApisMetaV1OwnerReference {
   /**
    * API version of the referent.
    */
@@ -424,7 +445,7 @@ export interface IoK8SApimachineryPkgApisMetaV13 {
 /**
  * The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
  */
-export interface IoK8SApiCoreV1 {
+export interface IoK8SApiCoreV1Toleration {
   /**
    * Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
    */
@@ -450,7 +471,7 @@ export interface IoK8SApiCoreV1 {
 /**
  * Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.
  */
-export interface IoK8SApiCoreV11 {
+export interface IoK8SApiCoreV1PodDNSConfig {
   /**
    * A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.
    */
@@ -458,7 +479,7 @@ export interface IoK8SApiCoreV11 {
   /**
    * A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.
    */
-  options?: IoK8SApiCoreV12[];
+  options?: IoK8SApiCoreV1PodDNSConfigOption[];
   /**
    * A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
    */
@@ -468,7 +489,7 @@ export interface IoK8SApiCoreV11 {
 /**
  * PodDNSConfigOption defines DNS resolver options of a pod.
  */
-export interface IoK8SApiCoreV12 {
+export interface IoK8SApiCoreV1PodDNSConfigOption {
   /**
    * Required.
    */
@@ -479,7 +500,7 @@ export interface IoK8SApiCoreV12 {
 /**
  * HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
  */
-export interface IoK8SApiCoreV13 {
+export interface IoK8SApiCoreV1HostAlias {
   /**
    * Hostnames for the above IP address.
    */
@@ -493,21 +514,21 @@ export interface IoK8SApiCoreV13 {
 /**
  * A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.
  */
-export interface IoK8SApiCoreV14 {
+export interface IoK8SApiCoreV1NodeSelectorTerm {
   /**
    * A list of node selector requirements by node's labels.
    */
-  matchExpressions?: IoK8SApiCoreV15[];
+  matchExpressions?: IoK8SApiCoreV1NodeSelectorRequirement[];
   /**
    * A list of node selector requirements by node's fields.
    */
-  matchFields?: IoK8SApiCoreV15[];
+  matchFields?: IoK8SApiCoreV1NodeSelectorRequirement[];
   [k: string]: unknown | undefined;
 }
 /**
  * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
  */
-export interface IoK8SApiCoreV15 {
+export interface IoK8SApiCoreV1NodeSelectorRequirement {
   /**
    * The label key that the selector applies to.
    */
@@ -525,18 +546,18 @@ export interface IoK8SApiCoreV15 {
 /**
  * ResourceRequirements describes the compute resource requirements.
  */
-export interface IoK8SApiCoreV16 {
+export interface IoK8SApiCoreV1ResourceRequirements {
   /**
    * Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
    */
   limits?: {
-    [k: string]: (string | number) | undefined;
+    [k: string]: string | number | undefined;
   };
   /**
    * Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
    */
   requests?: {
-    [k: string]: (string | number) | undefined;
+    [k: string]: string | number | undefined;
   };
   [k: string]: unknown | undefined;
 }

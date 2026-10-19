@@ -3634,6 +3634,9 @@ export interface Flake8TidyImportsOptions {
   'ban-relative-imports'?: Strictness | null;
   /**
    * Specific modules or module members that may not be imported or accessed.
+   * These can be extended by the
+   * [`extend-banned-api`](#lint_flake8-tidy-imports_extend-banned-api) option.
+   *
    * Note that this rule is only meant to flag accidental uses,
    * and can be circumvented via `eval` or `importlib`.
    */
@@ -3647,6 +3650,15 @@ export interface Flake8TidyImportsOptions {
    * if `banned-module-level-imports` is enabled.
    */
   'banned-module-level-imports'?: string[] | null;
+  /**
+   * Additional modules or module members that may not be imported or accessed.
+   * These entries will be added to the
+   * [`banned-api`](#lint_flake8-tidy-imports_banned-api) mapping and will override
+   * any existing entries if the two settings overlap.
+   */
+  'extend-banned-api'?: {
+    [k: string]: ApiBan | undefined;
+  } | null;
   /**
    * Specific modules that must be imported lazily in contexts where `lazy import` is legal, or
    * `"all"` to require every lazily-convertible import to use the `lazy` keyword. Ruff ignores

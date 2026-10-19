@@ -15,8 +15,7 @@ export type TimeAggregateType = 'Annual' | 'Quarterly' | 'Monthly';
 /**
  * How to display the quantities for this metric
  */
-export type ShowQuantitiesAs = (('Units' | 'Lots' | 'Monetary') | null) &
-  (((('Units' | 'Lots' | 'Monetary') | null) & string) | (null & (('Units' | 'Lots' | 'Monetary') | null)));
+export type ShowQuantitiesAs = (string | null) & (('Units' | 'Lots' | 'Monetary') | null);
 /**
  * The ID of the comparison plan to use for this metric or null if no comparison plan is used
  */
@@ -583,7 +582,7 @@ export interface Enrollment {
  * Configuration of kits with containers and items, keyed by kit ID.
  */
 export interface KitConfiguration {
-  [k: string]: Kit;
+  [k: string]: Kit | undefined;
 }
 /**
  * A kit containing items and containers. The kit ID is the key in the kitConfiguration map.
@@ -599,7 +598,7 @@ export interface Kit {
  * Items and containers within this kit, keyed by node ID.
  */
 export interface Items {
-  [k: string]: KitNode;
+  [k: string]: KitNode | undefined;
 }
 /**
  * A structural container (bottle, blister pack) that holds other nodes. The container ID is the key in the parent items/children map.
@@ -615,7 +614,7 @@ export interface KitContainer {
  * Items contained within this container, keyed by node ID.
  */
 export interface Children {
-  [k: string]: KitNode;
+  [k: string]: KitNode | undefined;
 }
 /**
  * An actual pharmaceutical item (tablet, capsule, vial) with dosage. The item ID is the key in the parent items/children map.
@@ -633,7 +632,7 @@ export interface KitItem {
  * Available dosing regimens for the study, keyed by ID.
  */
 export interface DosingRegimens {
-  [k: string]: DosingRegimen;
+  [k: string]: DosingRegimen | undefined;
 }
 /**
  * Dosing regimen configuration with nested dosingRegimenDefinition discriminated union.
@@ -691,7 +690,7 @@ export interface KitItemQuantities {
    * This interface was referenced by `KitItemQuantities`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Configuration for dose escalation levels.
@@ -703,25 +702,15 @@ export interface DoseEscalationConfiguration1 {
  * Map of level IDs to dose escalation levels. Use ordering property to maintain display order.
  */
 export interface EscalationLevels {
-  [k: string]: DoseEscalationLevel;
+  [k: string]: DoseEscalationLevel | undefined;
 }
 /**
  * Base properties shared by all dose escalation level variants.
  */
 export interface DoseEscalationLevelBase {
-  kitItemQuantities: KitItemQuantities1;
+  kitItemQuantities: KitItemQuantities;
   ordering: Ordering;
   [k: string]: unknown | undefined;
-}
-/**
- * Mapping of kit item IDs to quantities consumed per dose at this escalation level.
- */
-export interface KitItemQuantities1 {
-  /**
-   * This interface was referenced by `KitItemQuantities1`'s JSON-Schema definition
-   * via the `patternProperty` ".*".
-   */
-  [k: string]: number;
 }
 /**
  * Configuration for weight-based dosing.
@@ -734,7 +723,7 @@ export interface WeightBasedConfiguration1 {
  * Map of range IDs to weight ranges for kit assignment. Use ordering property to maintain display order.
  */
 export interface WeightRanges {
-  [k: string]: WeightRange;
+  [k: string]: WeightRange | undefined;
 }
 /**
  * Weight range configuration for dosing.
@@ -743,21 +732,11 @@ export interface WeightRanges {
  * via the `patternProperty` ".*".
  */
 export interface WeightRange {
-  kitItemQuantities: KitItemQuantities2;
+  kitItemQuantities: KitItemQuantities;
   fromWeight: FromWeight;
   toWeight: ToWeight;
   expectedPercentage: ExpectedPercentage;
   ordering: Ordering;
-}
-/**
- * Mapping of kit item IDs to quantities consumed per dose for subjects in THIS weight range. Each value represents the number of units (e.g., tablets) of that item required for a single dose. Different weight ranges can specify different quantities for the same item.
- */
-export interface KitItemQuantities2 {
-  /**
-   * This interface was referenced by `KitItemQuantities2`'s JSON-Schema definition
-   * via the `patternProperty` ".*".
-   */
-  [k: string]: number;
 }
 /**
  * Configuration for age-based dosing.
@@ -770,7 +749,7 @@ export interface AgeBasedConfiguration1 {
  * Map of range IDs to age ranges for kit assignment. Use ordering property to maintain display order.
  */
 export interface AgeRanges {
-  [k: string]: AgeRange;
+  [k: string]: AgeRange | undefined;
 }
 /**
  * Age range configuration for dosing.
@@ -779,21 +758,11 @@ export interface AgeRanges {
  * via the `patternProperty` ".*".
  */
 export interface AgeRange {
-  kitItemQuantities: KitItemQuantities3;
+  kitItemQuantities: KitItemQuantities;
   fromAge: FromAge;
   toAge: ToAge;
   expectedPercentage: ExpectedPercentage;
   ordering: Ordering;
-}
-/**
- * Mapping of kit item IDs to quantities consumed per dose for subjects in THIS age range. Each value represents the number of units (e.g., tablets) of that item required for a single dose. Different age ranges can specify different quantities for the same item.
- */
-export interface KitItemQuantities3 {
-  /**
-   * This interface was referenced by `KitItemQuantities3`'s JSON-Schema definition
-   * via the `patternProperty` ".*".
-   */
-  [k: string]: number;
 }
 /**
  * Definition for a placebo regimen that references an active regimen.
@@ -806,7 +775,7 @@ export interface PlaceboRegimenDefinition {
  * Treatment arms in the clinical trial, keyed by ID.
  */
 export interface TreatmentArms {
-  [k: string]: TreatmentArm;
+  [k: string]: TreatmentArm | undefined;
 }
 /**
  * Treatment arm configuration from wizard step 5.
@@ -823,7 +792,7 @@ export interface TreatmentArm {
  * Sequence of treatment and washout periods for this treatment arm.
  */
 export interface DosingRegimenSequence {
-  [k: string]: SequencePeriod;
+  [k: string]: SequencePeriod | undefined;
 }
 /**
  * Treatment period in a dosing regimen sequence.
@@ -852,7 +821,7 @@ export interface SubjectFlow {
  * Region-specific site configuration, keyed by ID.
  */
 export interface Countries {
-  [k: string]: RegionConfig;
+  [k: string]: RegionConfig | undefined;
 }
 /**
  * Container node for grouping regions. Has subregions but no sites.
@@ -872,7 +841,7 @@ export interface RegionContainer {
  * Child regions within this container.
  */
 export interface Subregions {
-  [k: string]: RegionConfig;
+  [k: string]: RegionConfig | undefined;
 }
 /**
  * Leaf node representing an operational region with sites.
@@ -905,16 +874,20 @@ export interface EnrollmentActuals {
    * This interface was referenced by `EnrollmentActuals`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]: {
-      total: TotalEnrolled;
-      byArm: EnrollmentByArm;
-    };
-  };
+  [k: string]:
+    | {
+        /**
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` ".*".
+         */
+        [k: string]:
+          | {
+              total: TotalEnrolled;
+              byArm: EnrollmentByArm;
+            }
+          | undefined;
+      }
+    | undefined;
 }
 /**
  * Enrollment count per treatment arm.
@@ -924,7 +897,7 @@ export interface EnrollmentByArm {
    * This interface was referenced by `EnrollmentByArm`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Actual site counts by region and month.
@@ -934,13 +907,15 @@ export interface SitesActuals {
    * This interface was referenced by `SitesActuals`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]: number;
-  };
+  [k: string]:
+    | {
+        /**
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` ".*".
+         */
+        [k: string]: number | undefined;
+      }
+    | undefined;
 }
 /**
  * Explanatory notes for enrollment actuals by region and month.
@@ -950,13 +925,15 @@ export interface ActualsNotes {
    * This interface was referenced by `ActualsNotes`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]: string;
-  };
+  [k: string]:
+    | {
+        /**
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` ".*".
+         */
+        [k: string]: string | undefined;
+      }
+    | undefined;
 }
 /**
  * Explanatory notes for site activation actuals by region and month.
@@ -966,13 +943,15 @@ export interface SiteActualsNotes {
    * This interface was referenced by `SiteActualsNotes`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]: string;
-  };
+  [k: string]:
+    | {
+        /**
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` ".*".
+         */
+        [k: string]: string | undefined;
+      }
+    | undefined;
 }
 /**
  * Calculated demand forecast with atomic monthly data per-region, per-arm.
@@ -1018,13 +997,13 @@ export interface Sites {
    * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    *
-   * This interface was referenced by `PositiveDateMap1`'s JSON-Schema definition
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    *
-   * This interface was referenced by `PositiveDateMap2`'s JSON-Schema definition
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Monthly count of subjects screened this month.
@@ -1043,13 +1022,13 @@ export interface SubjectsScreened {
    * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    *
-   * This interface was referenced by `PositiveDateMap1`'s JSON-Schema definition
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    *
-   * This interface was referenced by `PositiveDateMap2`'s JSON-Schema definition
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Monthly count of subjects who failed screening this month.
@@ -1068,19 +1047,19 @@ export interface SubjectsScreenedOut {
    * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    *
-   * This interface was referenced by `PositiveDateMap1`'s JSON-Schema definition
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    *
-   * This interface was referenced by `PositiveDateMap2`'s JSON-Schema definition
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Monthly subjects enrolled, broken down by treatment arm.
  */
 export interface SubjectsEnrolled {
-  [k: string]: PositiveDateMap;
+  [k: string]: PositiveDateMap | undefined;
 }
 /**
  * Mapping of dates to positive numerical values.
@@ -1114,31 +1093,31 @@ export interface PositiveDateMap {
    * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    *
-   * This interface was referenced by `PositiveDateMap1`'s JSON-Schema definition
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    *
-   * This interface was referenced by `PositiveDateMap2`'s JSON-Schema definition
+   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
    * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
    */
-  [k: string]: number;
+  [k: string]: number | undefined;
 }
 /**
  * Monthly change in active subjects (new active this month), broken down by treatment arm.
  */
 export interface SubjectsActive {
-  [k: string]: PositiveDateMap;
+  [k: string]: PositiveDateMap | undefined;
 }
 /**
  * Monthly subjects who completed treatment, broken down by treatment arm.
  */
 export interface SubjectsCompleted {
-  [k: string]: PositiveDateMap;
+  [k: string]: PositiveDateMap | undefined;
 }
 /**
  * Monthly subjects who dropped out, broken down by treatment arm.
  */
 export interface SubjectsDroppedOut {
-  [k: string]: PositiveDateMap;
+  [k: string]: PositiveDateMap | undefined;
 }
 /**
  * Monthly kit demand (whole kits rounded up), broken down by treatment arm and kit ID. Use this for supply planning - it accounts for buffer/waste in partially-used bottles.
@@ -1150,17 +1129,21 @@ export interface KitDemand {
    * This interface was referenced by `KitDemand`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: {
-    /**
-     * Mapping of kit IDs to KitDemandEntry for this sequence period.
-     *
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]: {
-      [k: string]: KitDemandEntry;
-    };
-  };
+  [k: string]:
+    | {
+        /**
+         * Mapping of kit IDs to KitDemandEntry for this sequence period.
+         *
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` ".*".
+         */
+        [k: string]:
+          | {
+              [k: string]: KitDemandEntry | undefined;
+            }
+          | undefined;
+      }
+    | undefined;
 }
 /**
  * Kit demand with placeboOf tagging for active/placebo separation.
@@ -1169,36 +1152,11 @@ export interface KitDemand {
  * via the `patternProperty` ".*".
  */
 export interface KitDemandEntry {
-  demand: PositiveDateMap1;
+  demand: PositiveDateMap;
   /**
    * Regimen ID this is placebo of, or null if active.
    */
   placeboOf: string | null;
-}
-/**
- * Mapping of dates to positive numerical values.
- */
-export interface PositiveDateMap1 {
-  /**
-   * This interface was referenced by `Sites`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `SubjectsScreened`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `SubjectsScreenedOut`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `PositiveDateMap1`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `PositiveDateMap2`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   */
-  [k: string]: number;
 }
 /**
  * Monthly kit item consumption (what patients actually receive), broken down by treatment arm and item ID. Displayed as 'Dosing' in the UI. Note: This is consumption, not supply demand - it does not include buffer/waste from partially-used bottles. For supply planning, use kitDemand.
@@ -1210,17 +1168,21 @@ export interface KitItemDemand {
    * This interface was referenced by `KitItemDemand`'s JSON-Schema definition
    * via the `patternProperty` ".*".
    */
-  [k: string]: {
-    /**
-     * Mapping of item IDs to KitItemDemandEntry for this sequence period.
-     *
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` ".*".
-     */
-    [k: string]: {
-      [k: string]: KitItemDemandEntry;
-    };
-  };
+  [k: string]:
+    | {
+        /**
+         * Mapping of item IDs to KitItemDemandEntry for this sequence period.
+         *
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` ".*".
+         */
+        [k: string]:
+          | {
+              [k: string]: KitItemDemandEntry | undefined;
+            }
+          | undefined;
+      }
+    | undefined;
 }
 /**
  * Kit item consumption entry with placeboOf tagging for active/placebo separation. Represents what patients actually receive, not supply demand.
@@ -1229,40 +1191,15 @@ export interface KitItemDemand {
  * via the `patternProperty` ".*".
  */
 export interface KitItemDemandEntry {
-  demand: PositiveDateMap2;
+  demand: PositiveDateMap;
   /**
    * Regimen ID this is placebo of, or null if active.
    */
   placeboOf: string | null;
 }
 /**
- * Mapping of dates to positive numerical values.
- */
-export interface PositiveDateMap2 {
-  /**
-   * This interface was referenced by `Sites`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `SubjectsScreened`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `SubjectsScreenedOut`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `PositiveDateMap`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `PositiveDateMap1`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   *
-   * This interface was referenced by `PositiveDateMap2`'s JSON-Schema definition
-   * via the `patternProperty` "^\d{4}-(0[1-9]|1[0-2])-01$".
-   */
-  [k: string]: number;
-}
-/**
  * Site seeding kit demand - kits shipped when sites activate (not treatment-driven). Keyed by kit ID.
  */
 export interface SiteSeedingKitDemand {
-  [k: string]: PositiveDateMap;
+  [k: string]: PositiveDateMap | undefined;
 }

@@ -4,117 +4,105 @@
  * The Services are responsible for configuring how to reach the actual services that will eventually handle the incoming requests.
  */
 export type HttpService =
-  | (
-      | {
-          loadBalancer?: HttpLoadBalancerService;
-        }
-      | {
-          weighted?: HttpWeightedService;
-        }
-      | {
-          mirroring?: HttpMirroringService;
-        }
-      | {
-          failover?: HttpFailoverService;
-        }
-    )
-  | undefined;
+  | {
+      loadBalancer?: HttpLoadBalancerService;
+    }
+  | {
+      weighted?: HttpWeightedService;
+    }
+  | {
+      mirroring?: HttpMirroringService;
+    }
+  | {
+      failover?: HttpFailoverService;
+    };
 export type HttpMiddleware =
-  | (
-      | {
-          addPrefix?: AddPrefixMiddleware;
-        }
-      | {
-          basicAuth?: BasicAuthMiddleware;
-        }
-      | {
-          buffering?: BufferingMiddleware;
-        }
-      | {
-          chain?: ChainMiddleware;
-        }
-      | {
-          circuitBreaker?: CircuitBreakerMiddleware;
-        }
-      | {
-          compress?: CompressMiddleware;
-        }
-      | {
-          contentType?: ContentTypeMiddleware;
-        }
-      | {
-          digestAuth?: DigestAuthMiddleware;
-        }
-      | {
-          errors?: ErrorsMiddleware;
-        }
-      | {
-          forwardAuth?: ForwardAuthMiddleware;
-        }
-      | {
-          headers?: HeadersMiddleware;
-        }
-      | {
-          ipWhiteList?: IpWhiteListMiddleware;
-        }
-      | {
-          ipAllowList?: IpAllowListMiddleware;
-        }
-      | {
-          inFlightReq?: InFlightReqMiddleware;
-        }
-      | {
-          passTLSClientCert?: PassTLSClientCertMiddleware;
-        }
-      | {
-          plugin?: PluginMiddleware;
-        }
-      | {
-          rateLimit?: RateLimitMiddleware;
-        }
-      | {
-          redirectRegex?: RedirectRegexMiddleware;
-        }
-      | {
-          redirectScheme?: RedirectSchemeMiddleware;
-        }
-      | {
-          replacePath?: ReplacePathMiddleware;
-        }
-      | {
-          replacePathRegex?: ReplacePathRegexMiddleware;
-        }
-      | {
-          retry?: RetryMiddleware;
-        }
-      | {
-          stripPrefix?: StripPrefixMiddleware;
-        }
-      | {
-          stripPrefixRegex?: StripPrefixRegexMiddleware;
-        }
-    )
-  | undefined;
+  | {
+      addPrefix?: AddPrefixMiddleware;
+    }
+  | {
+      basicAuth?: BasicAuthMiddleware;
+    }
+  | {
+      buffering?: BufferingMiddleware;
+    }
+  | {
+      chain?: ChainMiddleware;
+    }
+  | {
+      circuitBreaker?: CircuitBreakerMiddleware;
+    }
+  | {
+      compress?: CompressMiddleware;
+    }
+  | {
+      contentType?: ContentTypeMiddleware;
+    }
+  | {
+      digestAuth?: DigestAuthMiddleware;
+    }
+  | {
+      errors?: ErrorsMiddleware;
+    }
+  | {
+      forwardAuth?: ForwardAuthMiddleware;
+    }
+  | {
+      headers?: HeadersMiddleware;
+    }
+  | {
+      ipWhiteList?: IpWhiteListMiddleware;
+    }
+  | {
+      ipAllowList?: IpAllowListMiddleware;
+    }
+  | {
+      inFlightReq?: InFlightReqMiddleware;
+    }
+  | {
+      passTLSClientCert?: PassTLSClientCertMiddleware;
+    }
+  | {
+      plugin?: PluginMiddleware;
+    }
+  | {
+      rateLimit?: RateLimitMiddleware;
+    }
+  | {
+      redirectRegex?: RedirectRegexMiddleware;
+    }
+  | {
+      redirectScheme?: RedirectSchemeMiddleware;
+    }
+  | {
+      replacePath?: ReplacePathMiddleware;
+    }
+  | {
+      replacePathRegex?: ReplacePathRegexMiddleware;
+    }
+  | {
+      retry?: RetryMiddleware;
+    }
+  | {
+      stripPrefix?: StripPrefixMiddleware;
+    }
+  | {
+      stripPrefixRegex?: StripPrefixRegexMiddleware;
+    };
 export type TcpService =
-  | (
-      | {
-          loadBalancer?: TcpLoadBalancerService;
-        }
-      | {
-          weighted?: TcpWeightedService;
-        }
-    )
-  | undefined;
+  | {
+      loadBalancer?: TcpLoadBalancerService;
+    }
+  | {
+      weighted?: TcpWeightedService;
+    };
 export type UdpService =
-  | (
-      | {
-          loadBalancer?: UdpLoadBalancerService;
-        }
-      | {
-          weighted?: UdpWeightedService;
-        }
-    )
-  | undefined;
+  | {
+      loadBalancer?: UdpLoadBalancerService;
+    }
+  | {
+      weighted?: UdpWeightedService;
+    };
 
 /**
  * Traefik v2 Dynamic Configuration File Provider
@@ -186,46 +174,48 @@ export interface HttpsJsonSchemastoreOrgTraefikV2FileProviderJson {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "[a-zA-Z0-9-_]+".
        */
-      [k: string]: {
-        /**
-         * Minimum TLS Version
-         */
-        minVersion?: string;
-        /**
-         * Maximum TLS Version. It is discouraged to use of this setting to disable TLS1.3. The recommended approach is to update the clients to support TLS1.3.
-         */
-        maxVersion?: string;
-        /**
-         * Cipher suites defined for TLS 1.2 and below cannot be used in TLS 1.3, and vice versa. With TLS 1.3, the cipher suites are not configurable (all supported cipher suites are safe in this case).
-         */
-        cipherSuites?: string[];
-        /**
-         * This option allows to set the preferred elliptic curves in a specific order.
-         *
-         * The names of the curves defined by crypto (e.g. CurveP521) and the RFC defined names (e.g. secp521r1) can be used.
-         */
-        curvePreferences?: string[];
-        /**
-         * With strict SNI checking enabled, Traefik won't allow connections from clients that do not specify a server_name extension or don't match any certificate configured on the tlsOption.
-         */
-        sniStrict?: boolean;
-        /**
-         * This option allows the server to choose its most preferred cipher suite instead of the client's. Please note that this is enabled automatically when minVersion or maxVersion are set.
-         */
-        preferServerCipherSuites?: boolean;
-        /**
-         * Traefik supports mutual authentication, through the clientAuth section.
-         */
-        clientAuth?: {
-          /**
-           * For authentication policies that require verification of the client certificate, the certificate authority for the certificate should be set here.
-           */
-          caFiles?: string[];
-          clientAuthType?: string;
-          [k: string]: unknown | undefined;
-        };
-        [k: string]: unknown | undefined;
-      };
+      [k: string]:
+        | {
+            /**
+             * Minimum TLS Version
+             */
+            minVersion?: string;
+            /**
+             * Maximum TLS Version. It is discouraged to use of this setting to disable TLS1.3. The recommended approach is to update the clients to support TLS1.3.
+             */
+            maxVersion?: string;
+            /**
+             * Cipher suites defined for TLS 1.2 and below cannot be used in TLS 1.3, and vice versa. With TLS 1.3, the cipher suites are not configurable (all supported cipher suites are safe in this case).
+             */
+            cipherSuites?: string[];
+            /**
+             * This option allows to set the preferred elliptic curves in a specific order.
+             *
+             * The names of the curves defined by crypto (e.g. CurveP521) and the RFC defined names (e.g. secp521r1) can be used.
+             */
+            curvePreferences?: string[];
+            /**
+             * With strict SNI checking enabled, Traefik won't allow connections from clients that do not specify a server_name extension or don't match any certificate configured on the tlsOption.
+             */
+            sniStrict?: boolean;
+            /**
+             * This option allows the server to choose its most preferred cipher suite instead of the client's. Please note that this is enabled automatically when minVersion or maxVersion are set.
+             */
+            preferServerCipherSuites?: boolean;
+            /**
+             * Traefik supports mutual authentication, through the clientAuth section.
+             */
+            clientAuth?: {
+              /**
+               * For authentication policies that require verification of the client certificate, the certificate authority for the certificate should be set here.
+               */
+              caFiles?: string[];
+              clientAuthType?: string;
+              [k: string]: unknown | undefined;
+            };
+            [k: string]: unknown | undefined;
+          }
+        | undefined;
     };
     /**
      * Any store definition other than the default one (named default) will be ignored, and there is therefore only one globally available TLS store.
@@ -235,38 +225,40 @@ export interface HttpsJsonSchemastoreOrgTraefikV2FileProviderJson {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "[a-zA-Z0-9-_]+".
        */
-      [k: string]: {
-        /**
-         * Traefik can use a default certificate for connections without a SNI, or without a matching domain. If no default certificate is provided, Traefik generates and uses a self-signed certificate.
-         */
-        defaultCertificate?: {
-          certFile?: string;
-          keyFile?: string;
-        };
-        /**
-         * GeneratedCert defines the default generated certificate configuration.
-         */
-        defaultGeneratedCert?: {
-          /**
-           * Resolver is the name of the resolver that will be used to issue the DefaultCertificate.
-           */
-          resolver?: string;
-          /**
-           * Domain is the domain definition for the DefaultCertificate.
-           */
-          domain?: {
+      [k: string]:
+        | {
             /**
-             * Main defines the main domain name.
+             * Traefik can use a default certificate for connections without a SNI, or without a matching domain. If no default certificate is provided, Traefik generates and uses a self-signed certificate.
              */
-            main?: string;
+            defaultCertificate?: {
+              certFile?: string;
+              keyFile?: string;
+            };
             /**
-             * SANs defines the subject alternative domain names.
+             * GeneratedCert defines the default generated certificate configuration.
              */
-            sans?: string[];
-            [k: string]: unknown | undefined;
-          };
-        };
-      };
+            defaultGeneratedCert?: {
+              /**
+               * Resolver is the name of the resolver that will be used to issue the DefaultCertificate.
+               */
+              resolver?: string;
+              /**
+               * Domain is the domain definition for the DefaultCertificate.
+               */
+              domain?: {
+                /**
+                 * Main defines the main domain name.
+                 */
+                main?: string;
+                /**
+                 * SANs defines the subject alternative domain names.
+                 */
+                sans?: string[];
+                [k: string]: unknown | undefined;
+              };
+            };
+          }
+        | undefined;
     };
   };
 }

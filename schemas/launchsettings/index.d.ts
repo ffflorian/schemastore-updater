@@ -143,27 +143,13 @@ export interface IisSettingContent {
    */
   anonymousAuthentication?: boolean;
   iisExpress?: IisBindingContent;
-  iis?: IisBindingContent1;
+  iis?: IisBindingContent;
   [k: string]: unknown | undefined;
 }
 /**
  * Site settings to use with IISExpress profiles.
  */
 export interface IisBindingContent {
-  /**
-   * The URL of the web site.
-   */
-  applicationUrl?: string;
-  /**
-   * The SSL port to use for the web site.
-   */
-  sslPort?: number;
-  [k: string]: unknown | undefined;
-}
-/**
- * Site settings to use with IIS profiles.
- */
-export interface IisBindingContent1 {
   /**
    * The URL of the web site.
    */

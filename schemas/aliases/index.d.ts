@@ -36,7 +36,7 @@ export type Quiet = boolean;
  * https://github.com/sebglazebrook/aliases#usage
  */
 export interface Alias {
-  [k: string]: Alias1;
+  [k: string]: Alias1 | undefined;
 }
 /**
  * An alias of the current directory

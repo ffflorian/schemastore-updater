@@ -45,7 +45,7 @@ export type Content = string;
  * https://github.com/ChrisTitusTech/winutil/blob/main/config/applications.json
  */
 export interface Applications {
-  [k: string]: Application;
+  [k: string]: Application | undefined;
 }
 /**
  * An application

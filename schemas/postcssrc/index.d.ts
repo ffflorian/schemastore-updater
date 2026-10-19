@@ -34,6 +34,6 @@ export interface HttpsJsonSchemastoreOrgPostcssrcJson {
   plugins?:
     | ConfigPlugin[]
     | {
-        [k: string]: ConfigPlugin;
+        [k: string]: ConfigPlugin | undefined;
       };
 }

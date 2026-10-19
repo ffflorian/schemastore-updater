@@ -35,7 +35,7 @@ export type EnvironmentPermissions = {
    * This interface was referenced by `undefined`'s JSON-Schema definition
    * via the `patternProperty` "[a-zA-Z0-9\s+_-]".
    */
-  [k: string]: Permission[];
+  [k: string]: Permission[] | undefined;
 }[];
 export type Events =
   | 'plan-failed'
@@ -141,16 +141,39 @@ export type TaskItem =
        * UNDOCUMENTED. Other task types supported by Bamboo Specs.
        */
       [k: string]:
-        | (
-            | string
-            | {
-                [k: string]: unknown | undefined;
-              }
-            | unknown[]
-            | number
-            | boolean
-            | null
-          )
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
+        | unknown[]
+        | number
+        | boolean
+        | null
+        | Task
+        | Maven
+        | {
+            file?: string;
+            scope?: string;
+            namespace?: string;
+            /**
+             * UNDOCUMENTED. Task execution conditions.
+             */
+            conditions?: {
+              [k: string]: unknown | undefined;
+            }[];
+          }
+        | AnyTask
+        | VCSBranch
+        | VCSTag
+        | VCSCommit
+        | TestParser
+        | {
+            type: TestParser;
+            'ignore-time'?: boolean;
+            'test-results'?: string[];
+            [k: string]: unknown | undefined;
+          }
+        | Checkout
         | undefined;
     }
   | Script
@@ -209,40 +232,42 @@ export interface BambooCISpecification {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` "[a-zA-Z0-9_]".
          */
-        [k: string]: {
-          scope?: 'project' | 'global';
-          type?: string;
-          slug?: string;
-          url?: string;
-          branch?: string;
-          viewer?: string;
-          'ssh-key'?: string;
-          'ssh-key-passphrase'?: string;
-          username?: string;
-          password?: string;
-          'shared-credentials'?:
-            | string
-            | {
-                name?: string;
-                scope?: 'project' | 'global';
+        [k: string]:
+          | {
+              scope?: 'project' | 'global';
+              type?: string;
+              slug?: string;
+              url?: string;
+              branch?: string;
+              viewer?: string;
+              'ssh-key'?: string;
+              'ssh-key-passphrase'?: string;
+              username?: string;
+              password?: string;
+              'shared-credentials'?:
+                | string
+                | {
+                    name?: string;
+                    scope?: 'project' | 'global';
+                    [k: string]: unknown | undefined;
+                  };
+              lfs?: boolean;
+              'use-shallow-clones'?: boolean;
+              submodules?: boolean;
+              'change-detection'?: {
+                'quiet-period'?: {
+                  'quiet-period-seconds'?: number;
+                  'max-retries'?: number;
+                  [k: string]: unknown | undefined;
+                };
+                'exclude-changeset-pattern'?: string;
+                'file-filter-type'?: string;
+                'file-filter-pattern'?: string;
                 [k: string]: unknown | undefined;
               };
-          lfs?: boolean;
-          'use-shallow-clones'?: boolean;
-          submodules?: boolean;
-          'change-detection'?: {
-            'quiet-period'?: {
-              'quiet-period-seconds'?: number;
-              'max-retries'?: number;
               [k: string]: unknown | undefined;
-            };
-            'exclude-changeset-pattern'?: string;
-            'file-filter-type'?: string;
-            'file-filter-pattern'?: string;
-            [k: string]: unknown | undefined;
-          };
-          [k: string]: unknown | undefined;
-        };
+            }
+          | undefined;
       }
   )[];
   /**
@@ -253,7 +278,7 @@ export interface BambooCISpecification {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "[a-zA-Z0-9\s+_-]".
      */
-    [k: string]: string[] | Stage;
+    [k: string]: string[] | Stage | undefined;
   }[];
   triggers?: Triggers;
   variables?: KeyValue;
@@ -262,14 +287,106 @@ export interface BambooCISpecification {
    * Overrides for specific branches in the plan
    */
   'branch-overrides'?: {
-    [k: string]: BambooCISpecification;
+    [k: string]: BambooCISpecification | undefined;
   }[];
   other?: {
     [k: string]: unknown | undefined;
   };
   branches?: Branches;
   dependencies?: Dependencies;
-  [k: string]: Job | undefined;
+  [k: string]:
+    | Job
+    | ServerName
+    | DefaultEnvironmentPermissions
+    | Deployment
+    | DeploymentPermissions
+    | Docker
+    | EnvironmentPermissions
+    | string[]
+    | {
+        recipients?: (
+          | string
+          | {
+              users?: string[];
+              emails?: string[];
+              [k: string]: unknown | undefined;
+            }
+        )[];
+        events?: (
+          | Events
+          | {
+              [k: string]: unknown | undefined;
+            }
+        )[];
+        [k: string]: unknown | undefined;
+      }[]
+    | Plan
+    | PlanPermissions
+    | ReleaseNaming
+    | (
+        | string
+        | {
+            /**
+             * This interface was referenced by `undefined`'s JSON-Schema definition
+             * via the `patternProperty` "[a-zA-Z0-9_]".
+             */
+            [k: string]:
+              | {
+                  scope?: 'project' | 'global';
+                  type?: string;
+                  slug?: string;
+                  url?: string;
+                  branch?: string;
+                  viewer?: string;
+                  'ssh-key'?: string;
+                  'ssh-key-passphrase'?: string;
+                  username?: string;
+                  password?: string;
+                  'shared-credentials'?:
+                    | string
+                    | {
+                        name?: string;
+                        scope?: 'project' | 'global';
+                        [k: string]: unknown | undefined;
+                      };
+                  lfs?: boolean;
+                  'use-shallow-clones'?: boolean;
+                  submodules?: boolean;
+                  'change-detection'?: {
+                    'quiet-period'?: {
+                      'quiet-period-seconds'?: number;
+                      'max-retries'?: number;
+                      [k: string]: unknown | undefined;
+                    };
+                    'exclude-changeset-pattern'?: string;
+                    'file-filter-type'?: string;
+                    'file-filter-pattern'?: string;
+                    [k: string]: unknown | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                }
+              | undefined;
+          }
+      )[]
+    | {
+        /**
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "[a-zA-Z0-9\s+_-]".
+         */
+        [k: string]: string[] | Stage | undefined;
+      }[]
+    | Triggers
+    | KeyValue
+    | number
+    | {
+        [k: string]: BambooCISpecification | undefined;
+      }[]
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | Branches
+    | Dependencies
+    | undefined;
 }
 /**
  * Plan permissions allow a user to control access to the functions of the build plan.
@@ -347,7 +464,8 @@ export interface Polling {
             | string[]
             | {
                 [k: string]: boolean | undefined;
-              };
+              }
+            | undefined;
         }[];
       };
 }
@@ -391,6 +509,9 @@ export interface Tag {
      * Only run Build if other Plans are currently passing.
      */
     conditions?: {
+      /**
+       * Items: Plan Keys
+       */
       'green-plan'?: string[];
       [k: string]: unknown | undefined;
     }[];
@@ -405,7 +526,7 @@ export interface KeyValue {
    * This interface was referenced by `KeyValue`'s JSON-Schema definition
    * via the `patternProperty` "[a-zA-Z0-9_]".
    */
-  [k: string]: string | number | boolean;
+  [k: string]: string | number | boolean | undefined;
 }
 /**
  * A job is a single build unit within a plan and is made up of one or more tasks.
@@ -425,7 +546,7 @@ export interface Job {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` ".".
          */
-        [k: string]: string;
+        [k: string]: string | undefined;
       }
   )[];
   tasks?: TaskItem[];

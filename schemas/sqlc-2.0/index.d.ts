@@ -217,7 +217,7 @@ export interface HttpsJsonSchemastoreOrgSqlc20Json {
              * This interface was referenced by `undefined`'s JSON-Schema definition
              * via the `patternProperty` ".*".
              */
-            [k: string]: string;
+            [k: string]: string | undefined;
           };
           /**
            * Either pgx/v4, pgx/v5 or database/sql. Defaults to database/sql.
@@ -460,7 +460,7 @@ export interface HttpsJsonSchemastoreOrgSqlc20Json {
              * This interface was referenced by `undefined`'s JSON-Schema definition
              * via the `patternProperty` ".*".
              */
-            [k: string]: string;
+            [k: string]: string | undefined;
           };
           /**
            * Either pgx/v4, pgx/v5 or database/sql. Defaults to database/sql.
@@ -534,7 +534,7 @@ export interface HttpsJsonSchemastoreOrgSqlc20Json {
          * This interface was referenced by `undefined`'s JSON-Schema definition
          * via the `patternProperty` ".*".
          */
-        [k: string]: string;
+        [k: string]: string | undefined;
       };
       [k: string]: unknown | undefined;
     };

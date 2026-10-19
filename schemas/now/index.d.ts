@@ -24,7 +24,7 @@ export interface HttpsJsonSchemastoreOrgNowJson {
   scope?: string;
   env?: Env;
   build?: {
-    env?: Env1;
+    env?: Env;
     [k: string]: unknown | undefined;
   };
   /**
@@ -129,11 +129,5 @@ export interface HttpsJsonSchemastoreOrgNowJson {
  * environment variables passed to the invoked Serverless Functions
  */
 export interface Env {
-  [k: string]: string | undefined;
-}
-/**
- * environment variables passed to the Build processes
- */
-export interface Env1 {
   [k: string]: string | undefined;
 }

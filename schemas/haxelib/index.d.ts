@@ -64,7 +64,7 @@ export interface HaxelibProjectConfiguration {
    * Project's dependencies
    */
   dependencies?: {
-    [k: string]: DependencyVersion;
+    [k: string]: DependencyVersion | undefined;
   };
   /**
    * Project's documentation resources

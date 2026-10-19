@@ -55,15 +55,24 @@ export interface JekyllConfigSchema {
   /**
    * Excluded directories and files from the conversion for the current site
    * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   *
+   * Items: An excluded directory or file from the conversion for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
    */
   exclude?: string[];
   /**
    * Included directories and files in the conversion for the current site
    * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   *
+   * Items: An included directory or file in the conversion for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
    */
   include?: string[];
   /**
    * Keeped files when clobbering for the current site
+   * https://jekyllrb.com/docs/configuration/options/#global-configuration
+   *
+   * Items: A keeped file when clobbering for the current site
    * https://jekyllrb.com/docs/configuration/options/#global-configuration
    */
   keep_files?: string[];
@@ -869,6 +878,9 @@ export interface JekyllConfigSchema {
   /**
    * File glob patterns for LiveReload to ignore for the current site
    * https://jekyllrb.com/docs/configuration/options/#serve-command-options
+   *
+   * Items: A file glob pattern for LiveReload to ignore for the current site
+   * https://jekyllrb.com/docs/configuration/options/#serve-command-options
    */
   livereload_ignore?: string[];
   /**
@@ -929,10 +941,16 @@ export interface JekyllConfigSchema {
   /**
    * Whitelisted plugins for the current site
    * https://jekyllrb.com/docs/configuration/default/
+   *
+   * Items: A whitelisted plugin for the current site
+   * https://jekyllrb.com/docs/configuration/default/
    */
   whitelist?: string[];
   /**
    * Enabled plugins for the current site
+   * https://jekyllrb.com/docs/configuration/default/
+   *
+   * Items: An enabled plugin for the current site
    * https://jekyllrb.com/docs/configuration/default/
    */
   plugins?: string[];
@@ -1024,7 +1042,7 @@ export interface Value {
   [k: string]: unknown | undefined;
 }
 export interface Collection {
-  [k: string]: Collection1;
+  [k: string]: Collection1 | undefined;
 }
 /**
  * The collection
@@ -1226,7 +1244,7 @@ export interface LinkOptions {
    * This interface was referenced by `LinkOptions`'s JSON-Schema definition
    * via the `patternProperty` ".".
    */
-  [k: string]: [GlobalPermalink, string];
+  [k: string]: [GlobalPermalink, string] | undefined;
 }
 /**
  * The math engine options
@@ -1364,7 +1382,7 @@ export interface HeaderOptions {
    * This interface was referenced by `HeaderOptions`'s JSON-Schema definition
    * via the `patternProperty` ".".
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
 /**
  * RDiscount options

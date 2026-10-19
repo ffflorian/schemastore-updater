@@ -27,7 +27,7 @@ export type Context =
 /**
  * Action to trigger, command to invoke, or null to unbind a default shortcut
  */
-export type BindingValue = (BuiltinAction | CommandBinding | null) | undefined;
+export type BindingValue = BuiltinAction | CommandBinding | null;
 /**
  * Built-in action identifier.
  * https://code.claude.com/docs/en/keybindings

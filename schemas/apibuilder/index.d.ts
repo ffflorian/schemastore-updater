@@ -153,7 +153,7 @@ export interface JsonObject1 {
  * JSON object defining all of the enums in this API. The key of each object is the enum name.
  */
 export interface Enumeration {
-  [k: string]: Name;
+  [k: string]: Name | undefined;
 }
 /**
  * The name of the enum. Names must be alphanumeric and must start with a letter. Valid characters are a-z, A-Z, 0-9 and _ characters. The name must be unique in the set of names assigned to enums, interfaces, models, or unions types.
@@ -200,7 +200,7 @@ export interface Evaluates {
   deprecation?: JsonObject1;
 }
 export interface Interface {
-  [k: string]: Name1;
+  [k: string]: Name1 | undefined;
 }
 /**
  * Name specifies the name of the interface. Names must be alphanumeric and start with a letter. Valid characters are a-z, A-Z, 0-9 and _ characters. The name must be unique in the set of names assigned to enums, interfaces, or models. Note you may define an interface and a union of the same name.
@@ -276,7 +276,7 @@ export interface Field {
  * JSON object defining all of the models in this API. The key of each object is the model name.
  */
 export interface Model {
-  [k: string]: Model1;
+  [k: string]: Model1 | undefined;
 }
 /**
  * This interface was referenced by `Model`'s JSON-Schema definition
@@ -307,33 +307,35 @@ export interface Union {
    * This interface was referenced by `Union`'s JSON-Schema definition
    * via the `patternProperty` "^[a-zA-Z][a-zA-Z0-9_]*$".
    */
-  [k: string]: {
-    /**
-     * Specifies the optional, plural form of the name. By default, we will pluralize the name using a basic set of english heuristics. The plural is used as a default in cases where it is more natural to specify web services. For example, the default path for a resource will be the plural.
-     */
-    plural?: string;
-    /**
-     * Specifies an optional, but recommended, name for a type discriminator field which can then be used in serialization / deserialization to identify the type of object. For example, if not specified, a code generator may serialize the union type into a JSON structure of { "type" => object }. If a discriminator is provided, the same code generator can flatten the JSON representation to, for example: { "discriminator" => "xxx", "field1" => "yyy" }. If provided, the name of the discriminator field must be unique across all of the fields across all of the types of this union.
-     */
-    discriminator?: string;
-    /**
-     * Optional description for what this union provides. Supports GFM.
-     */
-    description?: string;
-    /**
-     * JSON Array of type string where each value indicates the name of a declared interface
-     */
-    interfaces?: string[];
-    /**
-     * Specifies the individual types that are part of this union type.
-     */
-    types: UnionType[];
-    /**
-     * JSON Array defining additional meta data about this union for use by generators.
-     */
-    attributes?: Attribute[];
-    deprecation?: JsonObject1;
-  };
+  [k: string]:
+    | {
+        /**
+         * Specifies the optional, plural form of the name. By default, we will pluralize the name using a basic set of english heuristics. The plural is used as a default in cases where it is more natural to specify web services. For example, the default path for a resource will be the plural.
+         */
+        plural?: string;
+        /**
+         * Specifies an optional, but recommended, name for a type discriminator field which can then be used in serialization / deserialization to identify the type of object. For example, if not specified, a code generator may serialize the union type into a JSON structure of { "type" => object }. If a discriminator is provided, the same code generator can flatten the JSON representation to, for example: { "discriminator" => "xxx", "field1" => "yyy" }. If provided, the name of the discriminator field must be unique across all of the fields across all of the types of this union.
+         */
+        discriminator?: string;
+        /**
+         * Optional description for what this union provides. Supports GFM.
+         */
+        description?: string;
+        /**
+         * JSON Array of type string where each value indicates the name of a declared interface
+         */
+        interfaces?: string[];
+        /**
+         * Specifies the individual types that are part of this union type.
+         */
+        types: UnionType[];
+        /**
+         * JSON Array defining additional meta data about this union for use by generators.
+         */
+        attributes?: Attribute[];
+        deprecation?: JsonObject1;
+      }
+    | undefined;
 }
 export interface UnionType {
   /**
@@ -360,7 +362,7 @@ export interface UnionType {
  * JSON object defining all of the resources in this API. The key of each object is the name of a type that this resource represents. The type must be the name of a model or an enum.
  */
 export interface Resource {
-  [k: string]: Name2;
+  [k: string]: Name2 | undefined;
 }
 /**
  * The name of the model or enum that this resource represents
@@ -479,7 +481,7 @@ export interface Parameter {
  * Optional JSON Object of HTTP Response Code to Response. If not provided, an HTTP NoContent response is assumed. Only responses for HTTP status codes that are interesting should be documented.
  */
 export interface Response {
-  [k: string]: HTTPStatus;
+  [k: string]: HTTPStatus | undefined;
 }
 /**
  * A valid HTTP status code for this response (e.g. 200). Only status codes that have interesting return types should be documented. You can also specify an HTTP status code of 'default' to map to all other non documented types. This is useful to capture a generic error type that would be returned for non documented response codes.
@@ -511,7 +513,7 @@ export interface HTTPStatus {
  * JSON object defining all of the annotations in this API. The key of each object is the annotation name.
  */
 export interface Annotation {
-  [k: string]: Annotation1;
+  [k: string]: Annotation1 | undefined;
 }
 /**
  * An annotation is just a short key that can be used to tag any field in any model of this API.

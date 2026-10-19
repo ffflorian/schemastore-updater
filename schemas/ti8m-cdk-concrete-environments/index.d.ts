@@ -209,7 +209,7 @@ export interface ConcreteEnvironmentsLists {
    * definitions for one specific environment
    */
   [k: string]:
-    | ConcreteEnvironmentSpec1
+    | ConcreteEnvironmentSpec
     | {
         $ref?: string | string[];
         [k: string]: unknown | undefined;
@@ -278,7 +278,7 @@ export interface ConcreteEnvironmentSpec {
     [k: string]: ServiceConfiguration | undefined;
   };
   [k: string]:
-    | ServiceConfiguration1
+    | ServiceConfiguration
     | string
     | string[]
     | TemplateParameter[]
@@ -313,27 +313,13 @@ export interface TemplateParameter {
  */
 export interface ResourceSpec {
   limits?: Resources;
-  requests?: Resources1;
+  requests?: Resources;
   [k: string]: unknown | undefined;
 }
 /**
  * Upper limits of resources available to a container instance
  */
 export interface Resources {
-  /**
-   * The number of cores, can be specified as integer cores, or in milli-cores (eg: '100m')
-   */
-  cpu: string;
-  /**
-   * The amount of main memory in either of M,G (base 10) or Mi, Gi (base 2). (eg: '3Gi')
-   */
-  memory: string;
-  [k: string]: unknown | undefined;
-}
-/**
- * Amount of resources necessary to run a container instance. Must be less than limits.
- */
-export interface Resources1 {
   /**
    * The number of cores, can be specified as integer cores, or in milli-cores (eg: '100m')
    */
@@ -375,7 +361,7 @@ export interface ServiceConfiguration {
   entrypoint?: string;
   additionalLabels?: {
     deployment?: Labels;
-    service?: Labels1;
+    service?: Labels;
   };
   liveness?: Probe;
   startup?: Probe;
@@ -431,8 +417,8 @@ export interface ServiceConfiguration {
    * Number of desired instances.
    */
   replicas?: number | string;
-  resources?: ResourceSpec1;
-  deploymentResources?: ResourceSpec2;
+  resources?: ResourceSpec;
+  deploymentResources?: ResourceSpec;
   nodeSelector?: NodeSelector;
   /**
    * Tolerations section for Openshift
@@ -483,39 +469,10 @@ export interface Labels {
    * This interface was referenced by `Labels`'s JSON-Schema definition
    * via the `patternProperty` "^.*$".
    *
-   * This interface was referenced by `Labels1`'s JSON-Schema definition
-   * via the `patternProperty` "^.*$".
-   */
-  [k: string]: string | undefined;
-}
-/**
- * List of labels for services
- */
-export interface Labels1 {
-  /**
    * This interface was referenced by `Labels`'s JSON-Schema definition
    * via the `patternProperty` "^.*$".
-   *
-   * This interface was referenced by `Labels1`'s JSON-Schema definition
-   * via the `patternProperty` "^.*$".
    */
   [k: string]: string | undefined;
-}
-/**
- * Specifies resource usage of a container instance
- */
-export interface ResourceSpec1 {
-  limits?: Resources;
-  requests?: Resources1;
-  [k: string]: unknown | undefined;
-}
-/**
- * Specifies resource usage of a deployment container instance
- */
-export interface ResourceSpec2 {
-  limits?: Resources;
-  requests?: Resources1;
-  [k: string]: unknown | undefined;
 }
 export interface Toleration {
   /**
@@ -556,354 +513,5 @@ export interface Exposure {
    * TLS termination on OpenShift
    */
   'tls-termination'?: 'edge' | 'passthrough' | 'reencrypt';
-  [k: string]: unknown | undefined;
-}
-/**
- * per-service overrides
- */
-export interface ServiceConfiguration1 {
-  /**
-   * List of environment variables set in the Container/Pod
-   */
-  environment?: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` "^.*$".
-     */
-    [k: string]:
-      | {
-          /**
-           * the name of the secret to reference
-           */
-          keyRefName?: string;
-          /**
-           * the (entry) key of the referenced secret
-           */
-          key?: string;
-        }
-      | string
-      | number
-      | boolean
-      | undefined;
-  };
-  /**
-   * The entrypoint that is used to start the image (Only works with docker-compose and OpenShift
-   */
-  entrypoint?: string;
-  additionalLabels?: {
-    deployment?: Labels;
-    service?: Labels1;
-  };
-  liveness?: Probe;
-  startup?: Probe;
-  readiness?: Probe;
-  /**
-   * How to roll out changed versions of the service (Recreate or Rolling)
-   */
-  deploymentStrategy?: {
-    type?: 'Rolling' | 'Recreate';
-    params?: {
-      /**
-       * Number of seconds to wait between pod updates
-       */
-      updatePeriodSeconds?: number;
-      /**
-       * Number of seconds to wait between evaluations of the deployment status
-       */
-      intervalSeconds?: number;
-      /**
-       * Time to wait for a successful scale-up before rolling back to the previous deployment
-       */
-      timeoutSeconds?: number | string;
-      /**
-       * Maximum temporary excess number of pods above the desired number of replicas
-       */
-      maxSurge?: number | string;
-      /**
-       * Maximum temporarily lacking pods compared to the desired number of replicas
-       */
-      maxUnavailable?: number | string;
-      [k: string]: unknown | undefined;
-    };
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * true, if this service needs a database schema to persist information.
-   */
-  needsDbSchema?: boolean;
-  /**
-   * Image pull policy for openshift. Default: IfNotPresent
-   */
-  'pull-policy'?: 'IfNotPresent' | 'Always';
-  /**
-   * The service account to use for Openshift.
-   */
-  'service-account'?: string;
-  /**
-   * The name of the service account to use for Openshift.
-   */
-  'service-account-name'?: string;
-  'host-aliases'?: HostAliases;
-  /**
-   * Number of desired instances.
-   */
-  replicas?: number | string;
-  resources?: ResourceSpec1;
-  deploymentResources?: ResourceSpec2;
-  nodeSelector?: NodeSelector;
-  /**
-   * Tolerations section for Openshift
-   */
-  tolerations?: Toleration[];
-  podAntiAffinity?: PodAntiAffinity;
-  'port-override'?: PortOverride;
-  /**
-   * marks this service as 'network load-balanced'. On AWS this is a simple alternative to setting up a router and ingresses, which is the preferred method.
-   */
-  nlb?: boolean;
-  'config-files'?: ConfigFiles;
-  'secret-files'?: SecretFiles;
-  volumes?:
-    | Volumes
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Custom data object which will be passed as is into the render context
-   */
-  customData?: {
-    [k: string]: unknown | undefined;
-  };
-  expose?: Exposure | Exposure[];
-  'template-parameters'?: TemplateParameter[];
-  'external-port'?: number;
-  'external-ip'?: string;
-  /**
-   * (K8s/OpenShift only) Indicates whether a service account token should be mounted
-   */
-  disableAutomountServiceAccountToken?: boolean;
-  /**
-   * (K8s/OpenShift only) Indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links
-   */
-  disableServiceLinks?: boolean;
-  /**
-   * (K8s/OpenShift only) The number of old ReplicationControllers to retain to allow for rollbacks
-   */
-  revisionHistoryLimit?: number;
-  [k: string]: unknown | undefined;
-}
-export interface ConcreteEnvironmentSpec1 {
-  /**
-   * the secret credentials type to authenticate against a private Docker registry, NOT the credentials itself
-   */
-  'image-pull-secret'?: string;
-  server?: string;
-  includes?: string[];
-  'global-template-parameters'?: TemplateParameter[];
-  'template-parameters'?: TemplateParameter[];
-  /**
-   * DNS name by which this concrete environment can be reached
-   */
-  hostname?: string;
-  /**
-   * type of the target environment
-   */
-  target?: 'docker-compose' | 'openshift' | 'kubernetes';
-  /**
-   * the name of the project/namespace in a cloud manager like kubernetes. Defaults to the name of the environment.
-   */
-  'remote-project'?: string;
-  'resource-quota'?: ResourceSpec;
-  /**
-   * The mode of the route for openshift. If it is not set the normal routing is used.
-   */
-  'route-mode'?: 'service-mesh';
-  /**
-   * the tags for the images referenced in the environment definition
-   */
-  tags?: {
-    /**
-     * tag value
-     */
-    [k: string]: string | undefined;
-  };
-  /**
-   * Defines if it's a critical environment to deploy on. If so a prompt is shown.
-   */
-  critical?: boolean;
-  /**
-   * List of service names or aliases, which should be instantiated in this specific environment. If set no other services from environment-definition will be loaded
-   */
-  include?: string[];
-  /**
-   * List of service names or aliases, which should *not* be instantiated in this specific environment
-   */
-  exclusions?: string[];
-  /**
-   * environment-specific additions and overrides for configuration sets
-   */
-  'config-set'?: {
-    /**
-     * per-config-set overrides
-     */
-    [k: string]: ServiceConfiguration | undefined;
-  };
-  [k: string]:
-    | ServiceConfiguration2
-    | string
-    | string[]
-    | TemplateParameter[]
-    | 'docker-compose'
-    | 'openshift'
-    | 'kubernetes'
-    | ResourceSpec
-    | 'service-mesh'
-    | {
-        /**
-         * tag value
-         */
-        [k: string]: string | undefined;
-      }
-    | boolean
-    | {
-        /**
-         * per-config-set overrides
-         */
-        [k: string]: ServiceConfiguration | undefined;
-      }
-    | undefined;
-}
-/**
- * per-service overrides
- */
-export interface ServiceConfiguration2 {
-  /**
-   * List of environment variables set in the Container/Pod
-   */
-  environment?: {
-    /**
-     * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` "^.*$".
-     */
-    [k: string]:
-      | {
-          /**
-           * the name of the secret to reference
-           */
-          keyRefName?: string;
-          /**
-           * the (entry) key of the referenced secret
-           */
-          key?: string;
-        }
-      | string
-      | number
-      | boolean
-      | undefined;
-  };
-  /**
-   * The entrypoint that is used to start the image (Only works with docker-compose and OpenShift
-   */
-  entrypoint?: string;
-  additionalLabels?: {
-    deployment?: Labels;
-    service?: Labels1;
-  };
-  liveness?: Probe;
-  startup?: Probe;
-  readiness?: Probe;
-  /**
-   * How to roll out changed versions of the service (Recreate or Rolling)
-   */
-  deploymentStrategy?: {
-    type?: 'Rolling' | 'Recreate';
-    params?: {
-      /**
-       * Number of seconds to wait between pod updates
-       */
-      updatePeriodSeconds?: number;
-      /**
-       * Number of seconds to wait between evaluations of the deployment status
-       */
-      intervalSeconds?: number;
-      /**
-       * Time to wait for a successful scale-up before rolling back to the previous deployment
-       */
-      timeoutSeconds?: number | string;
-      /**
-       * Maximum temporary excess number of pods above the desired number of replicas
-       */
-      maxSurge?: number | string;
-      /**
-       * Maximum temporarily lacking pods compared to the desired number of replicas
-       */
-      maxUnavailable?: number | string;
-      [k: string]: unknown | undefined;
-    };
-    [k: string]: unknown | undefined;
-  };
-  /**
-   * true, if this service needs a database schema to persist information.
-   */
-  needsDbSchema?: boolean;
-  /**
-   * Image pull policy for openshift. Default: IfNotPresent
-   */
-  'pull-policy'?: 'IfNotPresent' | 'Always';
-  /**
-   * The service account to use for Openshift.
-   */
-  'service-account'?: string;
-  /**
-   * The name of the service account to use for Openshift.
-   */
-  'service-account-name'?: string;
-  'host-aliases'?: HostAliases;
-  /**
-   * Number of desired instances.
-   */
-  replicas?: number | string;
-  resources?: ResourceSpec1;
-  deploymentResources?: ResourceSpec2;
-  nodeSelector?: NodeSelector;
-  /**
-   * Tolerations section for Openshift
-   */
-  tolerations?: Toleration[];
-  podAntiAffinity?: PodAntiAffinity;
-  'port-override'?: PortOverride;
-  /**
-   * marks this service as 'network load-balanced'. On AWS this is a simple alternative to setting up a router and ingresses, which is the preferred method.
-   */
-  nlb?: boolean;
-  'config-files'?: ConfigFiles;
-  'secret-files'?: SecretFiles;
-  volumes?:
-    | Volumes
-    | {
-        [k: string]: unknown | undefined;
-      };
-  /**
-   * Custom data object which will be passed as is into the render context
-   */
-  customData?: {
-    [k: string]: unknown | undefined;
-  };
-  expose?: Exposure | Exposure[];
-  'template-parameters'?: TemplateParameter[];
-  'external-port'?: number;
-  'external-ip'?: string;
-  /**
-   * (K8s/OpenShift only) Indicates whether a service account token should be mounted
-   */
-  disableAutomountServiceAccountToken?: boolean;
-  /**
-   * (K8s/OpenShift only) Indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links
-   */
-  disableServiceLinks?: boolean;
-  /**
-   * (K8s/OpenShift only) The number of old ReplicationControllers to retain to allow for rollbacks
-   */
-  revisionHistoryLimit?: number;
   [k: string]: unknown | undefined;
 }

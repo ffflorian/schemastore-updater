@@ -621,7 +621,7 @@ export type SymbolMappings = SystemVariables[];
 /**
  * A list of system variable files. Entries can be deactivated with when.
  */
-export type SystemVariables1 = SystemVariables2[];
+export type SystemVariables1 = SystemVariables[];
 /**
  * List of user files. Entries can be deactivated with when.
  */
@@ -1879,30 +1879,6 @@ export interface Full12 {
  * Describes a symbol mapping file (.vmap). Please ensure that the mappings are valid for the environment. No symbol validation will be performed.
  */
 export interface SystemVariables {
-  /**
-   * Node is added to the environment only if the specified condition is true.
-   */
-  when?: string | boolean;
-  'file-path':
-    | ((
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | string
-      ) &
-        string)
-    | ((
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | string
-      ) &
-        string)[];
-}
-/**
- * Describes a system variable file (.vsysvar/.xml).
- */
-export interface SystemVariables2 {
   /**
    * Node is added to the environment only if the specified condition is true.
    */

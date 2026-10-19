@@ -163,11 +163,7 @@ export interface HelmChartYaml {
      * Use this annotation to indicate the capabilities of the operator your chart provides. It must be one of the following options: Basic Install, Seamless Upgrades, Full Lifecycle, Deep Insights or Auto Pilot. For more information please see the capability level diagram.
      */
     'artifacthub.io/operatorCapabilities'?:
-      | 'Basic Install'
-      | 'Seamless Upgrades'
-      | 'Full Lifecycle'
-      | 'Deep Insights'
-      | 'Auto Pilot';
+      'Basic Install' | 'Seamless Upgrades' | 'Full Lifecycle' | 'Deep Insights' | 'Auto Pilot';
     /**
      * Use this annotation to indicate that this chart version is a pre-release. This status will be displayed in the UI's package view, as well as in new releases notifications emails.
      */
@@ -180,6 +176,15 @@ export interface HelmChartYaml {
      * This annotation can be used to provide some information about the key used to sign a given chart version. This information will be displayed on the Artifact Hub UI, making it easier for users to get the information they need to verify the integrity and origin of your chart. The url field indicates where users can find the public key and it is mandatory when a sign key entry is provided.
      */
     'artifacthub.io/signKey'?: string;
-    [k: string]: string | undefined;
+    [k: string]:
+      | string
+      | 'true'
+      | 'false'
+      | 'Basic Install'
+      | 'Seamless Upgrades'
+      | 'Full Lifecycle'
+      | 'Deep Insights'
+      | 'Auto Pilot'
+      | undefined;
   };
 }

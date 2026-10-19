@@ -51,7 +51,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * Mapping from package names to lists of glob patterns. Usually this option is not needed when using ``include-package-data = true`` For more information on how to include data files, check ``setuptools`` `docs <https://setuptools.pypa.io/en/latest/userguide/datafiles.html>`_.
@@ -61,7 +61,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   /**
    * Automatically include any data files inside the package directories that are specified by ``MANIFEST.in`` For more information on how to include data files, check ``setuptools`` `docs <https://setuptools.pypa.io/en/latest/userguide/datafiles.html>`_.
@@ -75,7 +75,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   /**
    * **DEPRECATED**: use implicit namespaces instead (:pep:`420`).
@@ -97,7 +97,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string[];
+    [k: string]: string[] | undefined;
   };
   /**
    * Mapping of distutils-style command names to ``setuptools.Command`` subclasses which in turn should be represented by strings with a qualified class name (i.e., "dotted" form with module), e.g.::
@@ -111,7 +111,7 @@ export interface ToolSetuptoolsTable {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^.*$".
      */
-    [k: string]: string;
+    [k: string]: string | undefined;
   };
   /**
    * **PROVISIONAL**: list of glob patterns for all license files being distributed. (likely to become standard with :pep:`639`). By default: ``['LICEN[CS]E*', 'COPYING*', 'NOTICE*', 'AUTHORS*']``
@@ -130,7 +130,7 @@ export interface ToolSetuptoolsTable {
     'entry-points'?: FileDirective;
     dependencies?: FileDirectiveForDependencies;
     'optional-dependencies'?: {
-      [k: string]: FileDirectiveForDependencies;
+      [k: string]: FileDirectiveForDependencies | undefined;
     };
     readme?:
       | FileDirective

@@ -48,7 +48,7 @@ export type Style = LintLevel | DetailedLint;
  * Code that is most likely wrong or useless.
  */
 export type Suspicious = LintLevel | DetailedLint;
-export type Lint = (LintLevel | DetailedLint) | undefined;
+export type Lint = LintLevel | DetailedLint;
 
 /**
  * Lint settings for Cargo individual lints and lint groups.
@@ -65,7 +65,20 @@ export interface CargoLints {
   restriction?: Restriction;
   style?: Style;
   suspicious?: Suspicious;
-  [k: string]: Lint | undefined;
+  [k: string]:
+    | Lint
+    | BlanketHintMostlyUnused
+    | ImplicitMinimumVersionReq
+    | UnknownLints
+    | Complexity
+    | Correctness
+    | Nursery
+    | Pedantic
+    | Perf
+    | Restriction
+    | Style
+    | Suspicious
+    | undefined;
 }
 export interface DetailedLint {
   level?: LintLevel;

@@ -12,6 +12,8 @@ export interface HttpsJsonSchemastoreOrgDocsMcpManifestJson {
   };
   /**
    * Per-file-pattern overrides for chunking strategy and metadata. Evaluated top-to-bottom; last match wins.
+   *
+   * Items: Overrides the default chunking strategy and/or metadata for files matching a glob pattern. Within the overrides array, later matches take precedence.
    */
   overrides?: {
     /**

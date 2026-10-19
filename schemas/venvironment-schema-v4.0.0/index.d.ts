@@ -726,7 +726,7 @@ export type SymbolMappings = SystemVariables[];
 /**
  * A list of system variable files. Entries can be deactivated with when.
  */
-export type SystemVariables1 = SystemVariables2[];
+export type SystemVariables1 = SystemVariables[];
 /**
  * List of user files. Entries can be deactivated with when.
  */
@@ -1186,7 +1186,7 @@ export interface EthernetNetwork {
     [k: string]: unknown | undefined;
   } & string;
   'global-tcp-ip-stack-adapter'?: Full2;
-  'test-tcp-ip-stack-adapter'?: Full6;
+  'test-tcp-ip-stack-adapter'?: Full2;
   /**
    * Defines the mapping of the network to an underlying layer.
    * Connects the network either to simulated network ("internal-simulator"), hardware ("external-hardware") or to SIL Kit ("external-sil-kit").
@@ -1347,80 +1347,6 @@ export interface VlanSettings {
          */
         'address-configuration': 'static' | string;
       };
-}
-/**
- * Address configuration for the test TCP/IP stack. This setting is relevant if global-settings/ethernet/test-tcp-ip-stack/selected-stack is set to "individual".
- */
-export interface Full6 {
-  /**
-   * MAC address of the current TCP/IP stack (cannot be a multicast address).
-   */
-  'mac-address'?: (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | string
-  ) &
-    string;
-  /**
-   * Maximum Transmission Unit.
-   */
-  mtu?: number | string;
-  /**
-   * Configurations for IPv4.
-   */
-  'ipv4-settings'?:
-    | {
-        /**
-         * A unique name that can be used to reference this IPv4 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property, "dhcp" for automatic configuration or "link-local" to provide a link-local address according to RFC3927.
-         */
-        'address-configuration': ('dhcp' | 'link-local') | string;
-      }
-    | {
-        addresses: Full3;
-        /**
-         * A unique name that can be used to reference this IPv4 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property, "dhcp" for automatic configuration or "link-local" to provide a link-local address according to RFC3927.
-         */
-        'address-configuration': 'static' | string;
-      };
-  /**
-   * Configurations for IPv6.
-   */
-  'ipv6-settings'?:
-    | {
-        /**
-         * A unique name that can be used to reference this IPv6 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property or use "dhcp" for automatic configuration.
-         */
-        'address-configuration': 'dhcp' | string;
-      }
-    | {
-        addresses: Full4;
-        /**
-         * A unique name that can be used to reference this IPv6 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property or use "dhcp" for automatic configuration.
-         */
-        'address-configuration': 'static' | string;
-      };
-  vlans?: Full5;
 }
 /**
  * A replay block for the Ethernet protocol.
@@ -2196,110 +2122,12 @@ export interface Full14 {
   network: {
     [k: string]: unknown | undefined;
   } & string;
-  'tcp-ip-stack-adapter'?: Full15;
-}
-/**
- * Address configuration for the associated tcp-ip-stack. Is overwritten by a configuration from a linked database.
- */
-export interface Full15 {
-  /**
-   * MAC address of the current TCP/IP stack (cannot be a multicast address).
-   */
-  'mac-address'?: (
-    | {
-        [k: string]: unknown | undefined;
-      }
-    | string
-  ) &
-    string;
-  /**
-   * Maximum Transmission Unit.
-   */
-  mtu?: number | string;
-  /**
-   * Configurations for IPv4.
-   */
-  'ipv4-settings'?:
-    | {
-        /**
-         * A unique name that can be used to reference this IPv4 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property, "dhcp" for automatic configuration or "link-local" to provide a link-local address according to RFC3927.
-         */
-        'address-configuration': ('dhcp' | 'link-local') | string;
-      }
-    | {
-        addresses: Full3;
-        /**
-         * A unique name that can be used to reference this IPv4 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property, "dhcp" for automatic configuration or "link-local" to provide a link-local address according to RFC3927.
-         */
-        'address-configuration': 'static' | string;
-      };
-  /**
-   * Configurations for IPv6.
-   */
-  'ipv6-settings'?:
-    | {
-        /**
-         * A unique name that can be used to reference this IPv6 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property or use "dhcp" for automatic configuration.
-         */
-        'address-configuration': 'dhcp' | string;
-      }
-    | {
-        addresses: Full4;
-        /**
-         * A unique name that can be used to reference this IPv6 setting in the configuration file.
-         * Must be a C-identifier (case sensitive).
-         */
-        name?: string;
-        /**
-         * Defines how the addresses are configured. Use "static" to configure them manually with the "addresses" property or use "dhcp" for automatic configuration.
-         */
-        'address-configuration': 'static' | string;
-      };
-  vlans?: Full5;
+  'tcp-ip-stack-adapter'?: Full2;
 }
 /**
  * Describes a symbol mapping file (.vmap). Please ensure that the mappings are valid for the environment. No symbol validation will be performed.
  */
 export interface SystemVariables {
-  /**
-   * Node is added to the environment only if the specified condition is true.
-   */
-  when?: string | boolean;
-  'file-path':
-    | ((
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | string
-      ) &
-        string)
-    | ((
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | string
-      ) &
-        string)[];
-}
-/**
- * Describes a system variable file (.vsysvar/.xml).
- */
-export interface SystemVariables2 {
   /**
    * Node is added to the environment only if the specified condition is true.
    */

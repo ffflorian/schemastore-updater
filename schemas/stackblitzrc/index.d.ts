@@ -18,5 +18,5 @@ export interface WebContainerProjectConfiguration {
   env?: ExposeEnvironmentVariablesToTheTerminal;
 }
 export interface ExposeEnvironmentVariablesToTheTerminal {
-  [k: string]: (boolean | string | number) | undefined;
+  [k: string]: boolean | string | number | undefined;
 }

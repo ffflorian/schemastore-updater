@@ -27,11 +27,15 @@ export interface TheConfigurationForAllTheModules {
    * This interface was referenced by `TheConfigurationForAllTheModules`'s JSON-Schema definition
    * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
    */
-  [k: string]: {
-    'properties.desired': {
-      [k: string]: unknown | undefined;
-    };
-  };
+  [k: string]:
+    | {
+        'properties.desired': {
+          [k: string]: unknown | undefined;
+        };
+      }
+    | ConfigurationForTheEdgeAgentModule
+    | ConfigurationForTheEdgeHubModule
+    | undefined;
 }
 export interface ConfigurationForTheEdgeAgentModule {
   'properties.desired': {
@@ -46,11 +50,13 @@ export interface ConfigurationForTheEdgeAgentModule {
            * This interface was referenced by `undefined`'s JSON-Schema definition
            * via the `patternProperty` "^[^.# ]+$".
            */
-          [k: string]: {
-            username: string;
-            password: string;
-            address: string;
-          };
+          [k: string]:
+            | {
+                username: string;
+                password: string;
+                address: string;
+              }
+            | undefined;
         };
       };
     };
@@ -68,31 +74,35 @@ export interface ConfigurationForTheEdgeAgentModule {
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
        */
-      [k: string]: {
-        version?: string;
-        type: ModuleType;
-        status: Status;
-        restartPolicy: RestartPolicy;
-        env?: Env;
-        settings: ModuleSettings;
-        imagePullPolicy?: ImagePullPolicy;
-        startupOrder?: StartupOrder;
-      };
+      [k: string]:
+        | {
+            version?: string;
+            type: ModuleType;
+            status: Status;
+            restartPolicy: RestartPolicy;
+            env?: Env;
+            settings: ModuleSettings;
+            imagePullPolicy?: ImagePullPolicy;
+            startupOrder?: StartupOrder;
+          }
+        | undefined;
     };
   };
 }
 export interface ModuleSettings {
   image: string;
-  [k: string]: CreateOptions;
+  [k: string]: CreateOptions | string | undefined;
 }
 export interface Env {
   /**
    * This interface was referenced by `Env`'s JSON-Schema definition
    * via the `patternProperty` "^[^\+#$\s\.]+$".
    */
-  [k: string]: {
-    value: number | string | boolean;
-  };
+  [k: string]:
+    | {
+        value: number | string | boolean;
+      }
+    | undefined;
 }
 export interface TheEdgehubSchema {
   type: ModuleType;
@@ -117,7 +127,8 @@ export interface ConfigurationForTheEdgeHubModule {
             priority?: number;
             timeToLiveSecs?: number;
           }
-        | string;
+        | string
+        | undefined;
     };
     storeAndForwardConfiguration?: {
       timeToLiveSecs: number;

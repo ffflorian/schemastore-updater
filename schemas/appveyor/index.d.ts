@@ -57,7 +57,7 @@ export type Command =
   | {
       sh?: string;
     };
-export type PossiblySecretString = (string | number | SecretString) | undefined;
+export type PossiblySecretString = string | number | SecretString;
 export type Platform = 'x86' | 'x64' | 'ARM' | 'ARM64' | 'Win32' | 'Any CPU';
 export type Configuration = string;
 
@@ -76,7 +76,7 @@ export interface Job {
    */
   skip_non_tags?: boolean;
   skip_commits?: CommitFilter;
-  only_commits?: CommitFilter1;
+  only_commits?: CommitFilter;
   /**
    * Do not build feature branch with open Pull Requests
    */
@@ -107,7 +107,7 @@ export interface Job {
   /**
    * Environment variables
    */
-  environment?: EnvironmentOptions | EnvironmentVariableHash1;
+  environment?: EnvironmentOptions | EnvironmentVariableHash;
   matrix?: MatrixOptions;
   /**
    * Build cache to preserve files/folders between builds
@@ -243,23 +243,6 @@ export interface CommitFilter {
    */
   files?: string[];
 }
-/**
- * Including commits with particular message or from specific user
- */
-export interface CommitFilter1 {
-  /**
-   * Regex for matching commit message
-   */
-  message?: string;
-  /**
-   * Commit author's username, name, email or regexp matching one of these.
-   */
-  author?: string;
-  /**
-   * Only specific files (glob patterns)
-   */
-  files?: string[];
-}
 export interface Notification {
   [k: string]: unknown | undefined;
 }
@@ -268,13 +251,9 @@ export interface Notification {
  */
 export interface HostOptions {
   [k: string]:
-    | (
-        | {
-            [k: string]: unknown | undefined;
-          }
-        | (undefined & string)
-        | undefined
-      )
+    | ({
+        [k: string]: unknown | undefined;
+      } & string)
     | undefined;
 }
 export interface EnvironmentOptions {
@@ -282,7 +261,7 @@ export interface EnvironmentOptions {
   /**
    * an array of environment variables, each member of which is one dimension in the build matrix calculation
    */
-  matrix?: EnvironmentVariableHash1[];
+  matrix?: EnvironmentVariableHash[];
   [k: string]: unknown | undefined;
 }
 /**
@@ -296,9 +275,6 @@ export interface SecretString {
    * This should have been encrypted by the same user account to which the project belongs
    */
   secure?: string;
-}
-export interface EnvironmentVariableHash1 {
-  [k: string]: PossiblySecretString | undefined;
 }
 export interface MatrixOptions {
   /**

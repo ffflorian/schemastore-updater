@@ -2,8 +2,6 @@
 
 export type JSONSchemaForClientSideLibraryConfigFiles = (SpecifiedProvider | DefaultProvider) &
   (SpecifiedDestination | DefaultDestination) & {
-    [k: string]: unknown | undefined;
-  } & {
     /**
      * A list of library references.
      */

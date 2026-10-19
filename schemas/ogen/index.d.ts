@@ -78,6 +78,7 @@ export interface OgenConfigurationSchema {
         | 'ogen/otel'
         | 'ogen/unimplemented'
         | 'debug/example_tests'
+        | 'naming/camel_initialisms'
       )[];
       /**
        * Features to disable. Applied before enable list, so entries in enable list take priority.
@@ -96,6 +97,7 @@ export interface OgenConfigurationSchema {
         | 'ogen/otel'
         | 'ogen/unimplemented'
         | 'debug/example_tests'
+        | 'naming/camel_initialisms'
       )[];
       /**
        * Start from an empty feature set instead of default features before applying disable and enable lists.
@@ -139,6 +141,11 @@ export interface OgenConfigurationSchema {
      *
      */
     wildcard_content_type_default?: string;
+    /**
+     * Customizes the initialism rules applied when generating Go identifiers (e.g. id -> ID, url -> URL). Mirrors staticcheck's "initialisms" option: omit to use the built-in set; include the special value "inherit" to splice in the built-in set and add more on top; list without "inherit" to replace the built-in set entirely; an explicit empty list disables all initialisms.
+     *
+     */
+    initialisms?: string[];
   };
   /**
    * Path to write the expanded OpenAPI spec file. If empty, the expanded spec is not written.

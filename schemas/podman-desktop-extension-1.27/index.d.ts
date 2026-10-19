@@ -1,0 +1,16631 @@
+/* eslint-disable */
+
+/**
+ * Schema for Podman Desktop extension package.json files
+ */
+export type PodmanDesktopExtensionManifest = JSONSchemaForNPMPackageJsonFiles & {
+  name: string;
+  displayName: string;
+  version: string;
+  publisher: string;
+  description: string;
+  main?: string;
+  icon?:
+    | string
+    | {
+        light: string;
+        dark: string;
+      };
+  extensionDependencies?: string[];
+  extensionPack?: string[];
+  engines?: {
+    'podman-desktop'?: string;
+  };
+  contributes?: {
+    configuration?: {
+      type?: string | string[];
+      title: string;
+      description?: string;
+      properties?: {
+        [k: string]:
+          | {
+              id?: string;
+              type?:
+                | ('markdown' | 'string' | 'number' | 'integer' | 'boolean' | 'null' | 'array' | 'object')
+                | ('markdown' | 'string' | 'number' | 'integer' | 'boolean' | 'null' | 'array' | 'object')[];
+              default?: unknown;
+              group?: string;
+              description?: string;
+              placeholder?: string;
+              markdownDescription?: string;
+              minimum?: number;
+              maximum?: number | string;
+              format?: string;
+              step?: number;
+              scope?:
+                | (
+                    | 'DEFAULT'
+                    | 'ContainerConnection'
+                    | 'KubernetesConnection'
+                    | 'VmConnection'
+                    | 'ContainerProviderConnectionFactory'
+                    | 'KubernetesProviderConnectionFactory'
+                    | 'VmProviderConnectionFactory'
+                    | 'DockerCompatibility'
+                    | 'Onboarding'
+                  )
+                | (
+                    | 'DEFAULT'
+                    | 'ContainerConnection'
+                    | 'KubernetesConnection'
+                    | 'VmConnection'
+                    | 'ContainerProviderConnectionFactory'
+                    | 'KubernetesProviderConnectionFactory'
+                    | 'VmProviderConnectionFactory'
+                    | 'DockerCompatibility'
+                    | 'Onboarding'
+                  )[];
+              readonly?: boolean;
+              hidden?: boolean;
+              enum?: string[];
+              when?: string;
+              experimental?: {
+                githubDiscussionLink?: string;
+                image?: string;
+              };
+            }
+          | undefined;
+      };
+      scope?:
+        | 'DEFAULT'
+        | 'ContainerConnection'
+        | 'KubernetesConnection'
+        | 'VmConnection'
+        | 'ContainerProviderConnectionFactory'
+        | 'KubernetesProviderConnectionFactory'
+        | 'VmProviderConnectionFactory'
+        | 'DockerCompatibility'
+        | 'Onboarding';
+      extension?: {
+        id: string;
+      };
+    };
+    commands?: {
+      command?: string;
+      title?: string;
+      category?: string;
+      description?: string;
+      icon?:
+        | string
+        | {
+            light: string;
+            dark: string;
+          };
+      keybinding?: string;
+      enablement?: string;
+    }[];
+    menus?: {
+      [k: string]:
+        | {
+            command: string;
+            title: string;
+            when?: string;
+            disabled?: string;
+            icon?: string;
+          }[]
+        | undefined;
+    };
+    icons?: {
+      [k: string]:
+        | {
+            description?: string;
+            default?: {
+              fontPath?: string;
+              fontCharacter: string;
+            };
+          }
+        | undefined;
+    };
+    themes?: {
+      id: string;
+      name: string;
+      parent: string;
+      colors: {
+        [k: string]: string | undefined;
+      };
+    }[];
+    views?: {
+      [k: string]:
+        | (
+            | {
+                when?: string;
+                icon: string;
+              }
+            | {
+                when?: string;
+                badge: {
+                  label: string;
+                  color?:
+                    | string
+                    | {
+                        light: string;
+                        dark: string;
+                      };
+                };
+              }
+          )[]
+        | undefined;
+    };
+    onboarding?: {
+      title: string;
+      priority?: number;
+      description?: string;
+      media?: {
+        path: string;
+        altText: string;
+      };
+      steps: {
+        id: string;
+        title: string;
+        description?: string;
+        media?: {
+          path: string;
+          altText: string;
+        };
+        command?: string;
+        completionEvents?: string[];
+        content?: {
+          value: string;
+          highlight?: boolean;
+          when?: string;
+        }[][];
+        component?: 'createContainerProviderConnection' | 'createKubernetesProviderConnection';
+        when?: string;
+        status?: 'completed' | 'failed' | 'skipped';
+        state?: 'completed' | 'failed';
+      }[];
+      enablement: string;
+    };
+    features?: string[];
+  };
+  [k: string]: unknown | undefined;
+};
+/**
+ * A person who has been involved in creating or maintaining this package.
+ */
+export type Person =
+  | {
+      name: string;
+      url?: string;
+      email?: string;
+      [k: string]: unknown | undefined;
+    }
+  | string;
+/**
+ * Used to allow fallbacks in case this environment doesn't support the preceding entries.
+ */
+export type PackageExportsFallback = ((string | null) | PackageExportsEntryObject)[];
+/**
+ * Used to allow fallbacks in case this environment doesn't support the preceding entries.
+ */
+export type PackageImportsFallback = ((string | null) | PackageImportsEntryObject)[];
+/**
+ * ESLint supports the use of third-party plugins. Before using the plugin, you have to install it using npm.
+ */
+export type Plugins = string[];
+/**
+ * ESLint comes with a large number of rules. You can modify which rules your project uses either using configuration comments or configuration files.
+ */
+export type Rules = PossibleErrors &
+  BestPractices &
+  StrictMode &
+  Variables &
+  NodeAndCommonJs &
+  StylisticIssues &
+  EcmaScript6 &
+  Legacy &
+  HttpsJsonSchemastoreOrgPartialEslintPluginsJson;
+/**
+ * Allows to override configuration for files and folders, specified by glob patterns
+ */
+export type Overrides = {
+  /**
+   * Glob pattern for files to apply 'overrides' configuration, relative to the directory of the config file
+   */
+  files: string | [string, ...string[]];
+  /**
+   * If you want to extend a specific configuration file, you can use the extends property and specify the path to the file. The path can be either relative or absolute.
+   */
+  extends?: string | string[];
+  /**
+   * If a file matches any of the 'excludedFiles' glob patterns, the 'overrides' configuration won't apply
+   */
+  excludedFiles?: string | string[];
+  ecmaFeatures?: EcmaFeatures;
+  env?: Env;
+  globals?: Globals;
+  parser?: string;
+  parserOptions?: ParserOptions;
+  plugins?: Plugins;
+  /**
+   * To specify a processor, specify the plugin name and processor name joined by a forward slash
+   */
+  processor?: string;
+  rules?: Rules;
+  settings?: Settings;
+  overrides?: Overrides;
+}[];
+export type SchemaForPrettierrc = (OptionsDefinition & OverridesDefinition) | string;
+/**
+ * Your configuration can extend an existing configuration(s) (whether your own or a third-party config)
+ */
+export type SimpleStringOrArrayStringRule = (string | SimpleArrayStringRule) &
+  (string | unknown[]);
+/**
+ * This interface was referenced by `undefined`'s JSON-Schema definition
+ * via the `patternProperty` "(em|ex|ch|vw|vh|cm|mm|in|pt|pc|px|rem|vmin|vmax|%)".
+ */
+export type SimpleArrayStringRule = string[];
+export type AllRules = AtRule &
+  Block &
+  Color &
+  Comment &
+  CustomMedia &
+  CustomProperty &
+  Declaration &
+  DeclarationBlock &
+  Font &
+  Function &
+  GeneralSheet &
+  KeyframeDeclaration &
+  Length &
+  Lightness &
+  MediaFeature &
+  MediaQuery &
+  MediaQueryList &
+  Number &
+  Property &
+  RootRule &
+  Rule &
+  Selector &
+  SelectorList &
+  ShorthandProperty &
+  String &
+  StylelintDisableComment &
+  Time &
+  Unit &
+  Value &
+  ValueList;
+/**
+ * Specify a blacklist of disallowed at-rules
+ */
+export type ArrayStringRule = (
+  | (null | string)
+  | [
+      (([] | {}) | SimpleArrayStringRule | CoreRule) & (
+          | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
+          | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
+          | (([] | {}) | SimpleArrayStringRule | CoreRule)
+        ),
+      ...((([] | {}) | SimpleArrayStringRule | CoreRule) & (
+          | ((([] | {}) | SimpleArrayStringRule | CoreRule) & string)
+          | ((([] | {}) | SimpleArrayStringRule | CoreRule) & unknown[])
+          | (([] | {}) | SimpleArrayStringRule | CoreRule)
+        ))[]
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Specify lowercase or uppercase for at-rules names
+ */
+export type LowerUpperRule = (
+  | null
+  | ('lower' | 'upper' | [])
+  | [
+      (('lower' | 'upper' | {}) | CoreRule) & (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule)),
+      (('lower' | 'upper' | {}) | CoreRule) & (((('lower' | 'upper' | {}) | CoreRule) & string) | (('lower' | 'upper' | {}) | CoreRule))
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Require a newline after at-rule names
+ */
+export type AlwaysMultiLineRule = (
+  | null
+  | ('always' | 'always-multi-line' | [])
+  | [
+      (('always' | 'always-multi-line' | {}) | CoreRule) & (
+          | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
+          | (('always' | 'always-multi-line' | {}) | CoreRule)
+        ),
+      (('always' | 'always-multi-line' | {}) | CoreRule) & (
+          | ((('always' | 'always-multi-line' | {}) | CoreRule) & string)
+          | (('always' | 'always-multi-line' | {}) | CoreRule)
+        )
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Disallow vendor prefixes for at-rules
+ */
+export type BooleanRule = (
+  | null
+  | boolean
+  | [
+      (boolean | CoreRule) & (((boolean | CoreRule) & boolean) | (boolean | CoreRule)),
+      (boolean | CoreRule) & (((boolean | CoreRule) & boolean) | (boolean | CoreRule))
+    ]
+) &
+  (
+    null | boolean | unknown[]
+  );
+/**
+ * Require a newline or disallow whitespace after the closing brace of blocks
+ */
+export type NewlineSpaceWithIgnoreRule = (
+  | null
+  | ('always' | 'never' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | [])
+  | [
+      (
+        | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
+        | (CoreRule & {
+            ignoreAtRules?: SimpleStringOrArrayStringRule;
+            [k: string]: unknown | undefined;
+          })
+      ) & (
+          | ((
+              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
+              | (CoreRule & {
+                  ignoreAtRules?: SimpleStringOrArrayStringRule;
+                  [k: string]: unknown | undefined;
+                })
+            ) &
+              string)
+          | (
+              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
+              | (CoreRule & {
+                  ignoreAtRules?: SimpleStringOrArrayStringRule;
+                  [k: string]: unknown | undefined;
+                })
+            )
+        ),
+      (
+        | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
+        | (CoreRule & {
+            ignoreAtRules?: SimpleStringOrArrayStringRule;
+            [k: string]: unknown | undefined;
+          })
+      ) & (
+          | ((
+              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
+              | (CoreRule & {
+                  ignoreAtRules?: SimpleStringOrArrayStringRule;
+                  [k: string]: unknown | undefined;
+                })
+            ) &
+              string)
+          | (
+              | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
+              | (CoreRule & {
+                  ignoreAtRules?: SimpleStringOrArrayStringRule;
+                  [k: string]: unknown | undefined;
+                })
+            )
+        )
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Require a newline or disallow whitespace before the closing brace of blocks
+ */
+export type NewlineRule = (
+  | null
+  | ('always' | 'always-multi-line' | 'never-multi-line' | [])
+  | [
+      (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & (
+          | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
+          | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
+        ),
+      (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & (
+          | ((('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule) & string)
+          | (('always' | 'always-multi-line' | 'never-multi-line' | {}) | CoreRule)
+        )
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Require a single space or disallow whitespace after the closing brace of blocks
+ */
+export type NewlineSpaceRule = (
+  | null
+  | ('always' | 'never' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | [])
+  | [
+      (
+        | (
+            | 'always'
+            | 'never'
+            | 'always-single-line'
+            | 'never-single-line'
+            | 'always-multi-line'
+            | 'never-multi-line'
+            | {}
+          )
+        | CoreRule
+      ) & (
+          | ((
+              | (
+                  | 'always'
+                  | 'never'
+                  | 'always-single-line'
+                  | 'never-single-line'
+                  | 'always-multi-line'
+                  | 'never-multi-line'
+                  | {}
+                )
+              | CoreRule
+            ) &
+              string)
+          | (
+              | (
+                  | 'always'
+                  | 'never'
+                  | 'always-single-line'
+                  | 'never-single-line'
+                  | 'always-multi-line'
+                  | 'never-multi-line'
+                  | {}
+                )
+              | CoreRule
+            )
+        ),
+      (
+        | (
+            | 'always'
+            | 'never'
+            | 'always-single-line'
+            | 'never-single-line'
+            | 'always-multi-line'
+            | 'never-multi-line'
+            | {}
+          )
+        | CoreRule
+      ) & (
+          | ((
+              | (
+                  | 'always'
+                  | 'never'
+                  | 'always-single-line'
+                  | 'never-single-line'
+                  | 'always-multi-line'
+                  | 'never-multi-line'
+                  | {}
+                )
+              | CoreRule
+            ) &
+              string)
+          | (
+              | (
+                  | 'always'
+                  | 'never'
+                  | 'always-single-line'
+                  | 'never-single-line'
+                  | 'always-multi-line'
+                  | 'never-multi-line'
+                  | {}
+                )
+              | CoreRule
+            )
+        )
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Require or disallow whitespace on the inside of comment markers
+ */
+export type AlwaysNeverRule = (
+  | null
+  | ('always' | 'never' | [])
+  | [
+      (('always' | 'never' | {}) | CoreRule) & (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule)),
+      (('always' | 'never' | {}) | CoreRule) & (((('always' | 'never' | {}) | CoreRule) & string) | (('always' | 'never' | {}) | CoreRule))
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Specify a pattern for custom media query names
+ */
+export type StringRule = (
+  | (null | string)
+  | [
+      (string | CoreRule) & (((string | CoreRule) & string) | (string | CoreRule)),
+      (string | CoreRule) & (((string | CoreRule) & string) | (string | CoreRule))
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Require a single space or disallow whitespace after the semicolons of declaration blocks
+ */
+export type SpaceRule = (
+  | null
+  | ('always' | 'never' | 'always-single-line' | 'never-single-line' | [])
+  | [
+      (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & (
+          | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
+          | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
+        ),
+      (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & (
+          | ((('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule) & string)
+          | (('always' | 'never' | 'always-single-line' | 'never-single-line' | {}) | CoreRule)
+        )
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Limit the number of declaration within a single line declaration block
+ */
+export type IntegerRule = (
+  | (null | number)
+  | [
+      ({} | CoreRule) & ((({} | CoreRule) & number) | ({} | CoreRule)),
+      ({} | CoreRule) & ((({} | CoreRule) & number) | ({} | CoreRule))
+    ]
+) &
+  (
+    null | number | unknown[]
+  );
+/**
+ * Specify single or double colon notation for applicable pseudo-elements
+ */
+export type SingleDoubleRule = (
+  | null
+  | ('single' | 'double' | [])
+  | [
+      (('single' | 'double' | {}) | CoreRule) & (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule)),
+      (('single' | 'double' | {}) | CoreRule) & (((('single' | 'double' | {}) | CoreRule) & string) | (('single' | 'double' | {}) | CoreRule))
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * Specify a blacklist of disallowed units
+ */
+export type UnitRule = (
+  | null
+  | (
+      | 'em'
+      | 'ex'
+      | 'px'
+      | '%'
+      | 'rem'
+      | 'vw'
+      | 'vh'
+      | 'vm'
+      | 'vmin'
+      | 'vmax'
+      | 'ch'
+      | 'in'
+      | 'cm'
+      | 'mm'
+      | 'q'
+      | 'pt'
+      | 'pc'
+      | 'deg'
+      | 'grad'
+      | 'rad'
+      | 'turn'
+      | 'ms'
+      | 's'
+      | 'Hz'
+      | 'kHz'
+      | 'dpi'
+      | 'dpcm'
+      | 'dppx'
+      | 'fr'
+      | []
+    )
+  | [
+      (
+        | (
+            | 'em'
+            | 'ex'
+            | 'px'
+            | '%'
+            | 'rem'
+            | 'vw'
+            | 'vh'
+            | 'vm'
+            | 'vmin'
+            | 'vmax'
+            | 'ch'
+            | 'in'
+            | 'cm'
+            | 'mm'
+            | 'q'
+            | 'pt'
+            | 'pc'
+            | 'deg'
+            | 'grad'
+            | 'rad'
+            | 'turn'
+            | 'ms'
+            | 's'
+            | 'Hz'
+            | 'kHz'
+            | 'dpi'
+            | 'dpcm'
+            | 'dppx'
+            | 'fr'
+            | []
+            | {}
+          )
+        | [
+            (
+              | 'em'
+              | 'ex'
+              | 'px'
+              | '%'
+              | 'rem'
+              | 'vw'
+              | 'vh'
+              | 'vm'
+              | 'vmin'
+              | 'vmax'
+              | 'ch'
+              | 'in'
+              | 'cm'
+              | 'mm'
+              | 'q'
+              | 'pt'
+              | 'pc'
+              | 'deg'
+              | 'grad'
+              | 'rad'
+              | 'turn'
+              | 'ms'
+              | 's'
+              | 'Hz'
+              | 'kHz'
+              | 'dpi'
+              | 'dpcm'
+              | 'dppx'
+              | 'fr'
+            ),
+            ...(
+              | 'em'
+              | 'ex'
+              | 'px'
+              | '%'
+              | 'rem'
+              | 'vw'
+              | 'vh'
+              | 'vm'
+              | 'vmin'
+              | 'vmax'
+              | 'ch'
+              | 'in'
+              | 'cm'
+              | 'mm'
+              | 'q'
+              | 'pt'
+              | 'pc'
+              | 'deg'
+              | 'grad'
+              | 'rad'
+              | 'turn'
+              | 'ms'
+              | 's'
+              | 'Hz'
+              | 'kHz'
+              | 'dpi'
+              | 'dpcm'
+              | 'dppx'
+              | 'fr'
+            )[]
+          ]
+        | (CoreRule & {
+            /**
+             * Ignore units in the values of declarations with the specified properties
+             */
+            ignoreProperties?: {
+              [k: string]: SimpleArrayStringRule | undefined;
+            };
+            [k: string]: unknown | undefined;
+          })
+      ) & (
+          | ((
+              | (
+                  | 'em'
+                  | 'ex'
+                  | 'px'
+                  | '%'
+                  | 'rem'
+                  | 'vw'
+                  | 'vh'
+                  | 'vm'
+                  | 'vmin'
+                  | 'vmax'
+                  | 'ch'
+                  | 'in'
+                  | 'cm'
+                  | 'mm'
+                  | 'q'
+                  | 'pt'
+                  | 'pc'
+                  | 'deg'
+                  | 'grad'
+                  | 'rad'
+                  | 'turn'
+                  | 'ms'
+                  | 's'
+                  | 'Hz'
+                  | 'kHz'
+                  | 'dpi'
+                  | 'dpcm'
+                  | 'dppx'
+                  | 'fr'
+                  | []
+                  | {}
+                )
+              | [
+                  (
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  ),
+                  ...(
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  )[]
+                ]
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
+            ) &
+              string)
+          | ((
+              | (
+                  | 'em'
+                  | 'ex'
+                  | 'px'
+                  | '%'
+                  | 'rem'
+                  | 'vw'
+                  | 'vh'
+                  | 'vm'
+                  | 'vmin'
+                  | 'vmax'
+                  | 'ch'
+                  | 'in'
+                  | 'cm'
+                  | 'mm'
+                  | 'q'
+                  | 'pt'
+                  | 'pc'
+                  | 'deg'
+                  | 'grad'
+                  | 'rad'
+                  | 'turn'
+                  | 'ms'
+                  | 's'
+                  | 'Hz'
+                  | 'kHz'
+                  | 'dpi'
+                  | 'dpcm'
+                  | 'dppx'
+                  | 'fr'
+                  | []
+                  | {}
+                )
+              | [
+                  (
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  ),
+                  ...(
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  )[]
+                ]
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
+            ) &
+              unknown[])
+          | (
+              | (
+                  | 'em'
+                  | 'ex'
+                  | 'px'
+                  | '%'
+                  | 'rem'
+                  | 'vw'
+                  | 'vh'
+                  | 'vm'
+                  | 'vmin'
+                  | 'vmax'
+                  | 'ch'
+                  | 'in'
+                  | 'cm'
+                  | 'mm'
+                  | 'q'
+                  | 'pt'
+                  | 'pc'
+                  | 'deg'
+                  | 'grad'
+                  | 'rad'
+                  | 'turn'
+                  | 'ms'
+                  | 's'
+                  | 'Hz'
+                  | 'kHz'
+                  | 'dpi'
+                  | 'dpcm'
+                  | 'dppx'
+                  | 'fr'
+                  | []
+                  | {}
+                )
+              | [
+                  (
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  ),
+                  ...(
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  )[]
+                ]
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
+            )
+        ),
+      ...((
+        | (
+            | 'em'
+            | 'ex'
+            | 'px'
+            | '%'
+            | 'rem'
+            | 'vw'
+            | 'vh'
+            | 'vm'
+            | 'vmin'
+            | 'vmax'
+            | 'ch'
+            | 'in'
+            | 'cm'
+            | 'mm'
+            | 'q'
+            | 'pt'
+            | 'pc'
+            | 'deg'
+            | 'grad'
+            | 'rad'
+            | 'turn'
+            | 'ms'
+            | 's'
+            | 'Hz'
+            | 'kHz'
+            | 'dpi'
+            | 'dpcm'
+            | 'dppx'
+            | 'fr'
+            | []
+            | {}
+          )
+        | [
+            (
+              | 'em'
+              | 'ex'
+              | 'px'
+              | '%'
+              | 'rem'
+              | 'vw'
+              | 'vh'
+              | 'vm'
+              | 'vmin'
+              | 'vmax'
+              | 'ch'
+              | 'in'
+              | 'cm'
+              | 'mm'
+              | 'q'
+              | 'pt'
+              | 'pc'
+              | 'deg'
+              | 'grad'
+              | 'rad'
+              | 'turn'
+              | 'ms'
+              | 's'
+              | 'Hz'
+              | 'kHz'
+              | 'dpi'
+              | 'dpcm'
+              | 'dppx'
+              | 'fr'
+            ),
+            ...(
+              | 'em'
+              | 'ex'
+              | 'px'
+              | '%'
+              | 'rem'
+              | 'vw'
+              | 'vh'
+              | 'vm'
+              | 'vmin'
+              | 'vmax'
+              | 'ch'
+              | 'in'
+              | 'cm'
+              | 'mm'
+              | 'q'
+              | 'pt'
+              | 'pc'
+              | 'deg'
+              | 'grad'
+              | 'rad'
+              | 'turn'
+              | 'ms'
+              | 's'
+              | 'Hz'
+              | 'kHz'
+              | 'dpi'
+              | 'dpcm'
+              | 'dppx'
+              | 'fr'
+            )[]
+          ]
+        | (CoreRule & {
+            /**
+             * Ignore units in the values of declarations with the specified properties
+             */
+            ignoreProperties?: {
+              [k: string]: SimpleArrayStringRule | undefined;
+            };
+            [k: string]: unknown | undefined;
+          })
+      ) & (
+          | ((
+              | (
+                  | 'em'
+                  | 'ex'
+                  | 'px'
+                  | '%'
+                  | 'rem'
+                  | 'vw'
+                  | 'vh'
+                  | 'vm'
+                  | 'vmin'
+                  | 'vmax'
+                  | 'ch'
+                  | 'in'
+                  | 'cm'
+                  | 'mm'
+                  | 'q'
+                  | 'pt'
+                  | 'pc'
+                  | 'deg'
+                  | 'grad'
+                  | 'rad'
+                  | 'turn'
+                  | 'ms'
+                  | 's'
+                  | 'Hz'
+                  | 'kHz'
+                  | 'dpi'
+                  | 'dpcm'
+                  | 'dppx'
+                  | 'fr'
+                  | []
+                  | {}
+                )
+              | [
+                  (
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  ),
+                  ...(
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  )[]
+                ]
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
+            ) &
+              string)
+          | ((
+              | (
+                  | 'em'
+                  | 'ex'
+                  | 'px'
+                  | '%'
+                  | 'rem'
+                  | 'vw'
+                  | 'vh'
+                  | 'vm'
+                  | 'vmin'
+                  | 'vmax'
+                  | 'ch'
+                  | 'in'
+                  | 'cm'
+                  | 'mm'
+                  | 'q'
+                  | 'pt'
+                  | 'pc'
+                  | 'deg'
+                  | 'grad'
+                  | 'rad'
+                  | 'turn'
+                  | 'ms'
+                  | 's'
+                  | 'Hz'
+                  | 'kHz'
+                  | 'dpi'
+                  | 'dpcm'
+                  | 'dppx'
+                  | 'fr'
+                  | []
+                  | {}
+                )
+              | [
+                  (
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  ),
+                  ...(
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  )[]
+                ]
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
+            ) &
+              unknown[])
+          | (
+              | (
+                  | 'em'
+                  | 'ex'
+                  | 'px'
+                  | '%'
+                  | 'rem'
+                  | 'vw'
+                  | 'vh'
+                  | 'vm'
+                  | 'vmin'
+                  | 'vmax'
+                  | 'ch'
+                  | 'in'
+                  | 'cm'
+                  | 'mm'
+                  | 'q'
+                  | 'pt'
+                  | 'pc'
+                  | 'deg'
+                  | 'grad'
+                  | 'rad'
+                  | 'turn'
+                  | 'ms'
+                  | 's'
+                  | 'Hz'
+                  | 'kHz'
+                  | 'dpi'
+                  | 'dpcm'
+                  | 'dppx'
+                  | 'fr'
+                  | []
+                  | {}
+                )
+              | [
+                  (
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  ),
+                  ...(
+                    | 'em'
+                    | 'ex'
+                    | 'px'
+                    | '%'
+                    | 'rem'
+                    | 'vw'
+                    | 'vh'
+                    | 'vm'
+                    | 'vmin'
+                    | 'vmax'
+                    | 'ch'
+                    | 'in'
+                    | 'cm'
+                    | 'mm'
+                    | 'q'
+                    | 'pt'
+                    | 'pc'
+                    | 'deg'
+                    | 'grad'
+                    | 'rad'
+                    | 'turn'
+                    | 'ms'
+                    | 's'
+                    | 'Hz'
+                    | 'kHz'
+                    | 'dpi'
+                    | 'dpcm'
+                    | 'dppx'
+                    | 'fr'
+                  )[]
+                ]
+              | (CoreRule & {
+                  /**
+                   * Ignore units in the values of declarations with the specified properties
+                   */
+                  ignoreProperties?: {
+                    [k: string]: SimpleArrayStringRule | undefined;
+                  };
+                  [k: string]: unknown | undefined;
+                })
+            )
+        ))[]
+    ]
+) &
+  (
+    null | string | unknown[]
+  );
+/**
+ * An array of glob patterns to select test files. Files with an underscore prefix are ignored. By default only selects files with `cjs`, `mjs` & `js` extensions, even if the pattern matches other files. Specify `extensions` to allow other file extensions
+ */
+export type ArrayOfPaths = string[];
+export type ArrayOfStrings = string[];
+/**
+ * Command string, fallback array, or platform-specific object
+ */
+export type CommandValue = (string | CompileRun) | CommandValue[] | ShellFamilySpecific;
+
+export interface JSONSchemaForNPMPackageJsonFiles {
+  /**
+   * The name of the package.
+   */
+  name?: string;
+  /**
+   * Version must be parsable by node-semver, which is bundled with npm as a dependency.
+   */
+  version?: string;
+  /**
+   * This helps people discover your package, as it's listed in 'npm search'.
+   */
+  description?: string;
+  /**
+   * This helps people discover your package as it's listed in 'npm search'.
+   */
+  keywords?: string[];
+  /**
+   * The url to the project homepage.
+   */
+  homepage?: string;
+  /**
+   * The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.
+   */
+  bugs?:
+    | {
+        /**
+         * The url to your project's issue tracker.
+         */
+        url?: string;
+        /**
+         * The email address to which issues should be reported.
+         */
+        email?: string;
+        [k: string]: unknown | undefined;
+      }
+    | string;
+  /**
+   * You should specify a license for your package so that people know how they are permitted to use it, and any restrictions you're placing on it.
+   */
+  license?:
+    | string
+    | (
+        | 'AGPL-3.0-only'
+        | 'Apache-2.0'
+        | 'BSD-2-Clause'
+        | 'BSD-3-Clause'
+        | 'BSL-1.0'
+        | 'CC0-1.0'
+        | 'CDDL-1.0'
+        | 'CDDL-1.1'
+        | 'EPL-1.0'
+        | 'EPL-2.0'
+        | 'GPL-2.0-only'
+        | 'GPL-3.0-only'
+        | 'ISC'
+        | 'LGPL-2.0-only'
+        | 'LGPL-2.1-only'
+        | 'LGPL-2.1-or-later'
+        | 'LGPL-3.0-only'
+        | 'LGPL-3.0-or-later'
+        | 'MIT'
+        | 'MPL-2.0'
+        | 'MS-PL'
+        | 'UNLICENSED'
+      );
+  /**
+   * DEPRECATED: Instead, use SPDX expressions, like this: { "license": "ISC" } or { "license": "(MIT OR Apache-2.0)" } see: 'https://docs.npmjs.com/files/package.json#license'.
+   */
+  licenses?: {
+    type?:
+      | string
+      | (
+          | 'AGPL-3.0-only'
+          | 'Apache-2.0'
+          | 'BSD-2-Clause'
+          | 'BSD-3-Clause'
+          | 'BSL-1.0'
+          | 'CC0-1.0'
+          | 'CDDL-1.0'
+          | 'CDDL-1.1'
+          | 'EPL-1.0'
+          | 'EPL-2.0'
+          | 'GPL-2.0-only'
+          | 'GPL-3.0-only'
+          | 'ISC'
+          | 'LGPL-2.0-only'
+          | 'LGPL-2.1-only'
+          | 'LGPL-2.1-or-later'
+          | 'LGPL-3.0-only'
+          | 'LGPL-3.0-or-later'
+          | 'MIT'
+          | 'MPL-2.0'
+          | 'MS-PL'
+          | 'UNLICENSED'
+        );
+    url?: string;
+    [k: string]: unknown | undefined;
+  }[];
+  author?: Person;
+  /**
+   * A list of people who contributed to this package.
+   */
+  contributors?: Person[];
+  /**
+   * A list of people who maintains this package.
+   */
+  maintainers?: Person[];
+  /**
+   * The 'files' field is an array of files to include in your project. If you name a folder in the array, then it will also include the files inside that folder.
+   */
+  files?: string[];
+  /**
+   * The main field is a module ID that is the primary entry point to your program.
+   */
+  main?: string;
+  /**
+   * The "exports" field is used to restrict external access to non-exported module files, also enables a module to import itself using "name".
+   */
+  exports?:
+    | (string | null)
+    | {
+        /**
+         * The module path that is resolved when the module specifier matches "name", shadows the "main" field.
+         */
+        '.'?: ((string | null) | PackageExportsEntryObject) | PackageExportsFallback;
+        /**
+         * The module path prefix that is resolved when the module specifier starts with "name/", set to "./*" to allow external modules to import any subpath.
+         *
+         * This interface was referenced by `undefined`'s JSON-Schema definition
+         * via the `patternProperty` "^\./.+".
+         */
+        [k: string]: string | null | PackageExportsEntryObject | PackageExportsFallback | undefined;
+      }
+    | PackageExportsEntryObject
+    | PackageExportsFallback;
+  /**
+   * The "imports" field is used to create private mappings that only apply to import specifiers from within the package itself.
+   */
+  imports?: {
+    /**
+     * The module path that is resolved when this environment matches the property name.
+     *
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^#.+$".
+     */
+    [k: string]: string | null | PackageImportsEntryObject | PackageImportsFallback | undefined;
+  };
+  bin?:
+    | string
+    | {
+        [k: string]: string | undefined;
+      };
+  /**
+   * When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.
+   */
+  type?: 'commonjs' | 'module';
+  /**
+   * Set the types property to point to your bundled declaration file.
+   */
+  types?: string;
+  /**
+   * Note that the "typings" field is synonymous with "types", and could be used as well.
+   */
+  typings?: string;
+  /**
+   * The "typesVersions" field is used since TypeScript 3.1 to support features that were only made available in newer TypeScript versions.
+   */
+  typesVersions?: {
+    /**
+     * Contains overrides for the TypeScript version that matches the version range matching the property key.
+     */
+    [k: string]:
+      | {
+          /**
+           * Maps all file paths to the file paths specified in the array.
+           */
+          '*'?: string[];
+          /**
+           * Maps the file path matching the property key to the file paths specified in the array.
+           *
+           * This interface was referenced by `undefined`'s JSON-Schema definition
+           * via the `patternProperty` "^[^*]+$".
+           *
+           * Maps file paths matching the pattern specified in property key to file paths specified in the array.
+           *
+           * This interface was referenced by `undefined`'s JSON-Schema definition
+           * via the `patternProperty` "^[^*]*\*[^*]*$".
+           */
+          [k: string]: string[] | undefined;
+        }
+      | undefined;
+  };
+  /**
+   * Specify either a single file or an array of filenames to put in place for the man program to find.
+   */
+  man?: string[] | string;
+  directories?: {
+    /**
+     * If you specify a 'bin' directory, then all the files in that folder will be used as the 'bin' hash.
+     */
+    bin?: string;
+    /**
+     * Put markdown files in here. Eventually, these will be displayed nicely, maybe, someday.
+     */
+    doc?: string;
+    /**
+     * Put example scripts in here. Someday, it might be exposed in some clever way.
+     */
+    example?: string;
+    /**
+     * Tell people where the bulk of your library is. Nothing special is done with the lib folder in any way, but it's useful meta info.
+     */
+    lib?: string;
+    /**
+     * A folder that is full of man pages. Sugar to generate a 'man' array by walking the folder.
+     */
+    man?: string;
+    test?: string;
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Specify the place where your code lives. This is helpful for people who want to contribute.
+   */
+  repository?:
+    | {
+        type?: string;
+        url?: string;
+        directory?: string;
+        [k: string]: unknown | undefined;
+      }
+    | string;
+  funding?: string | FundingWay | [string | FundingWay, ...(string | FundingWay)[]];
+  /**
+   * The 'scripts' member is an object hash of script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point.
+   */
+  scripts?: {
+    /**
+     * Run code quality tools, e.g. ESLint, TSLint, etc.
+     */
+    lint?: string;
+    /**
+     * Run BEFORE the package is published (Also run on local npm install without any arguments).
+     */
+    prepublish?: string;
+    /**
+     * Runs BEFORE the package is packed, i.e. during "npm publish" and "npm pack", and on local "npm install" without any arguments. This is run AFTER "prepublish", but BEFORE "prepublishOnly".
+     */
+    prepare?: string;
+    /**
+     * Run BEFORE the package is prepared and packed, ONLY on npm publish.
+     */
+    prepublishOnly?: string;
+    /**
+     * run BEFORE a tarball is packed (on npm pack, npm publish, and when installing git dependencies).
+     */
+    prepack?: string;
+    /**
+     * Run AFTER the tarball has been generated and moved to its final destination.
+     */
+    postpack?: string;
+    /**
+     * Publishes a package to the registry so that it can be installed by name. See https://docs.npmjs.com/cli/v8/commands/npm-publish
+     */
+    publish?: string;
+    /**
+     * Run AFTER the package is published.
+     */
+    postpublish?: string;
+    /**
+     * Run BEFORE the package is installed.
+     */
+    preinstall?: string;
+    /**
+     * Run AFTER the package is installed.
+     */
+    install?: string;
+    /**
+     * Run AFTER the package is installed.
+     */
+    postinstall?: string;
+    /**
+     * Run BEFORE the package is uninstalled.
+     */
+    preuninstall?: string;
+    /**
+     * Run BEFORE the package is uninstalled.
+     */
+    uninstall?: string;
+    /**
+     * Run AFTER the package is uninstalled.
+     */
+    postuninstall?: string;
+    /**
+     * Run BEFORE bump the package version.
+     */
+    preversion?: string;
+    /**
+     * Run BEFORE bump the package version.
+     */
+    version?: string;
+    /**
+     * Run AFTER bump the package version.
+     */
+    postversion?: string;
+    /**
+     * Run by the 'npm test' command.
+     */
+    pretest?: string;
+    /**
+     * Run by the 'npm test' command.
+     */
+    test?: string;
+    /**
+     * Run by the 'npm test' command.
+     */
+    posttest?: string;
+    /**
+     * Run by the 'npm stop' command.
+     */
+    prestop?: string;
+    /**
+     * Run by the 'npm stop' command.
+     */
+    stop?: string;
+    /**
+     * Run by the 'npm stop' command.
+     */
+    poststop?: string;
+    /**
+     * Run by the 'npm start' command.
+     */
+    prestart?: string;
+    /**
+     * Run by the 'npm start' command.
+     */
+    start?: string;
+    /**
+     * Run by the 'npm start' command.
+     */
+    poststart?: string;
+    /**
+     * Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided.
+     */
+    prerestart?: string;
+    /**
+     * Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided.
+     */
+    restart?: string;
+    /**
+     * Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided.
+     */
+    postrestart?: string;
+    /**
+     * Start dev server to serve application files
+     */
+    serve?: string;
+    [k: string]: string | undefined;
+  };
+  /**
+   * A 'config' hash can be used to set configuration parameters used in package scripts that persist across upgrades.
+   */
+  config?: {
+    [k: string]: unknown | undefined;
+  };
+  dependencies?: Dependency;
+  devDependencies?: DevDependency;
+  optionalDependencies?: OptionalDependency;
+  peerDependencies?: PeerDependency;
+  peerDependenciesMeta?: PeerDependencyMeta;
+  /**
+   * Array of package names that will be bundled when publishing the package.
+   */
+  bundleDependencies?: string[] | boolean;
+  /**
+   * DEPRECATED: This field is honored, but "bundleDependencies" is the correct field name. Ignored if "bundleDependencies" is also present.
+   */
+  bundledDependencies?: string[] | boolean;
+  /**
+   * Resolutions is used to support selective version resolutions using yarn, which lets you define custom package versions or ranges inside your dependencies. For npm, use overrides instead. See: https://yarnpkg.com/configuration/manifest#resolutions
+   */
+  resolutions?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Overrides is used to support selective version overrides using npm, which lets you define custom package versions or ranges inside your dependencies. For yarn, use resolutions instead. See: https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides
+   */
+  overrides?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Defines which package manager is expected to be used when working on the current project. This field is currently experimental and needs to be opted-in; see https://nodejs.org/api/corepack.html
+   */
+  packageManager?: (
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | 'bun'
+  ) &
+    string;
+  engines?: {
+    node?: string;
+    /**
+     * Specifies which JavaScript runtimes (like Node.js, Deno, Bun) are supported. Values should use WinterCG Runtime Keys (see https://runtime-keys.proposal.wintercg.org/).
+     */
+    runtime?: RuntimeEngineDependency | RuntimeEngineDependency[];
+    [k: string]: string | RuntimeEngineDependency | RuntimeEngineDependency[] | undefined;
+  };
+  /**
+   * Defines which tools and versions are expected to be used when Volta is installed.
+   */
+  volta?: {
+    /**
+     * The value of that entry should be a path to another JSON file which also has a "volta" section
+     */
+    extends?: string;
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "(node|npm|pnpm|yarn)".
+     */
+    [k: string]: string | undefined;
+  };
+  engineStrict?: boolean;
+  /**
+   * Specify which operating systems your module will run on.
+   */
+  os?: string[];
+  /**
+   * Specify that your code only runs on certain cpu architectures.
+   */
+  cpu?: string[];
+  /**
+   * Define the runtime and package manager for developing the current project.
+   */
+  devEngines?: {
+    /**
+     * Specifies which operating systems are supported for development
+     */
+    os?: DevEngineDependency | DevEngineDependency[];
+    /**
+     * Specifies which CPU architectures are supported for development
+     */
+    cpu?: DevEngineDependency | DevEngineDependency[];
+    /**
+     * Specifies which C standard libraries are supported for development
+     */
+    libc?: DevEngineDependency | DevEngineDependency[];
+    /**
+     * Specifies which JavaScript runtimes (like Node.js, Deno, Bun) are supported for development. Values should use WinterCG Runtime Keys (see https://runtime-keys.proposal.wintercg.org/)
+     */
+    runtime?: DevEngineDependency | DevEngineDependency[];
+    /**
+     * Specifies which package managers are supported for development
+     */
+    packageManager?: DevEngineDependency | DevEngineDependency[];
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * DEPRECATED: This option used to trigger an npm warning, but it will no longer warn. It is purely there for informational purposes. It is now recommended that you install any binaries as local devDependencies wherever possible.
+   */
+  preferGlobal?: boolean;
+  /**
+   * If set to true, then npm will refuse to publish it.
+   */
+  private?: boolean | ('false' | 'true');
+  /**
+   * Values applied at publish time. npm: publish-time config values (tag, registry, access, provenance), see https://docs.npmjs.com/cli/v12/configuring-npm/package-json#publishconfig. pnpm: also overrides manifest fields (main, exports, types, etc.) before packing, plus pnpm-specific fields (directory, linkDirectory, executableFiles), see https://pnpm.io/package_json#publishconfig.
+   */
+  publishConfig?: {
+    /**
+     * Access level for scoped packages at publish time (defaults to "restricted"). Supported by npm, honored by pnpm.
+     */
+    access?: 'public' | 'restricted';
+    /**
+     * Distribution tag to publish under (defaults to "latest"). Supported by npm, honored by pnpm.
+     */
+    tag?: string;
+    /**
+     * Registry to publish the package to. Supported by npm, honored by pnpm.
+     */
+    registry?: string;
+    /**
+     * npm only: generate and publish a provenance attestation (requires a supported CI provider).
+     */
+    provenance?: boolean;
+    /**
+     * pnpm only: subdirectory (relative to this package.json) to publish from; it must contain its own package.json.
+     */
+    directory?: string;
+    /**
+     * pnpm only: symlink the project from publishConfig.directory during local development (default: true).
+     */
+    linkDirectory?: boolean;
+    /**
+     * pnpm only: additional files to mark executable (+x) in the package archive.
+     */
+    executableFiles?: string[];
+    [k: string]: unknown | undefined;
+  };
+  dist?: {
+    shasum?: string;
+    tarball?: string;
+    [k: string]: unknown | undefined;
+  };
+  readme?: string;
+  /**
+   * An ECMAScript module ID that is the primary entry point to your program.
+   */
+  module?: string;
+  /**
+   * A module ID with untranspiled code that is the primary entry point to your program.
+   */
+  esnext?:
+    | string
+    | {
+        main?: string;
+        browser?: string;
+        [k: string]: string | undefined;
+      };
+  /**
+   * Allows packages within a directory to depend on one another using direct linking of local files. Additionally, dependencies within a workspace are hoisted to the workspace root when possible to reduce duplication. Note: It's also a good idea to set "private" to true when using this feature.
+   */
+  workspaces?:
+    | string[]
+    | {
+        /**
+         * Workspace package paths. Glob patterns are supported.
+         */
+        packages?: string[];
+        /**
+         * Packages to block from hoisting to the workspace root. Currently only supported in Yarn only.
+         */
+        nohoist?: string[];
+        [k: string]: unknown | undefined;
+      };
+  jspm?: JSONSchemaForNPMPackageJsonFiles;
+  eslintConfig?: JSONSchemaForESLintConfigurationFiles;
+  prettier?: SchemaForPrettierrc;
+  stylelint?: JSONSchemaForTheStylelintConfigurationFiles;
+  ava?: AVAConfigSchema;
+  release?: SemanticReleaseSchema;
+  jscpd?: HttpsJsonSchemastoreOrgJscpdJson;
+  madge?: MadgeConfiguration;
+  nodemonConfig?: JSONSchemaForNodemonConfig;
+  quikrun?: Quikrun;
+  /**
+   * Defines pnpm specific configuration.
+   */
+  pnpm?: {
+    /**
+     * Used to override any dependency in the dependency graph.
+     */
+    overrides?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * Used to extend the existing package definitions with additional information.
+     */
+    packageExtensions?: {
+      /**
+       * This interface was referenced by `undefined`'s JSON-Schema definition
+       * via the `patternProperty` "^.+$".
+       */
+      [k: string]:
+        | {
+            dependencies?: Dependency;
+            optionalDependencies?: OptionalDependency;
+            peerDependencies?: PeerDependency;
+            peerDependenciesMeta?: PeerDependencyMeta;
+          }
+        | undefined;
+    };
+    peerDependencyRules?: {
+      /**
+       * pnpm will not print warnings about missing peer dependencies from this list.
+       */
+      ignoreMissing?: string[];
+      /**
+       * Unmet peer dependency warnings will not be printed for peer dependencies of the specified range.
+       */
+      allowedVersions?: {
+        [k: string]: unknown | undefined;
+      };
+      /**
+       * Any peer dependency matching the pattern will be resolved from any version, regardless of the range specified in "peerDependencies".
+       */
+      allowAny?: string[];
+    };
+    /**
+     * A list of dependencies to run builds for.
+     */
+    neverBuiltDependencies?: string[];
+    /**
+     * A list of package names that are allowed to be executed during installation.
+     */
+    onlyBuiltDependencies?: string[];
+    /**
+     * Specifies a JSON file that lists the only packages permitted to run installation scripts during the pnpm install process.
+     */
+    onlyBuiltDependenciesFile?: string;
+    /**
+     * A list of package names that should not be built during installation.
+     */
+    ignoredBuiltDependencies?: string[];
+    /**
+     * A list of deprecated versions that the warnings are suppressed.
+     */
+    allowedDeprecatedVersions?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * A list of dependencies that are patched.
+     */
+    patchedDependencies?: {
+      [k: string]: unknown | undefined;
+    };
+    /**
+     * When true, installation won't fail if some of the patches from the "patchedDependencies" field were not applied.
+     */
+    allowNonAppliedPatches?: boolean;
+    /**
+     * When true, installation won't fail if some of the patches from the "patchedDependencies" field were not applied.
+     */
+    allowUnusedPatches?: boolean;
+    updateConfig?: {
+      /**
+       * A list of packages that should be ignored when running "pnpm outdated" or "pnpm update --latest".
+       */
+      ignoreDependencies?: string[];
+    };
+    /**
+     * Configurational dependencies are installed before all the other types of dependencies (before 'dependencies', 'devDependencies', 'optionalDependencies').
+     */
+    configDependencies?: {
+      [k: string]: unknown | undefined;
+    };
+    auditConfig?: {
+      /**
+       * A list of CVE IDs that will be ignored by "pnpm audit".
+       */
+      ignoreCves?: string[];
+      /**
+       * A list of GHSA Codes that will be ignored by "pnpm audit".
+       */
+      ignoreGhsas?: string[];
+    };
+    /**
+     * A list of scripts that must exist in each project.
+     */
+    requiredScripts?: string[];
+    /**
+     * Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install.
+     */
+    supportedArchitectures?: {
+      os?: string[];
+      cpu?: string[];
+      libc?: string[];
+    };
+    /**
+     * A list of optional dependencies that the install should be skipped.
+     */
+    ignoredOptionalDependencies?: string[];
+    executionEnv?: {
+      /**
+       * Specifies which exact Node.js version should be used for the project's runtime.
+       */
+      nodeVersion?: string;
+    };
+  };
+  /**
+   * Defines the StackBlitz configuration for the project.
+   */
+  stackblitz?: {
+    /**
+     * StackBlitz automatically installs npm dependencies when opening a project.
+     */
+    installDependencies?: boolean;
+    /**
+     * A terminal command to be executed when opening the project, after installing npm dependencies.
+     */
+    startCommand?: string | boolean;
+    /**
+     * The compileTrigger option controls how file changes in the editor are written to the WebContainers in-memory filesystem.
+     */
+    compileTrigger?: 'auto' | 'keystroke' | 'save';
+    /**
+     * A map of default environment variables that will be set in each top-level shell process.
+     */
+    env?: {
+      [k: string]: unknown | undefined;
+    };
+  };
+  /**
+   * Records which dependencies are permitted to run install scripts (preinstall, install, postinstall, and prepare for non-registry sources). Maintained via the "npm approve-scripts" command, which enforces a default-deny policy: install scripts for any dependency without a matching entry are silently skipped. Keys are package identifiers — either name-only (e.g. "pkg") or pinned with a version (e.g. "pkg@1.2.3"); by default entries are pinned so approval is version-specific. A value of true allows the dependency's install scripts to run, while false explicitly denies them (existing false entries are never silently overridden).
+   */
+  allowScripts?: {
+    [k: string]: boolean | undefined;
+  };
+  /**
+   * Provides hints to the Webpack compiler, denoting which files in your project are "pure" and therefore safe to prune if unused.
+   */
+  sideEffects?: boolean | string[];
+  /**
+   * Any property starting with _ is valid.
+   *
+   * This interface was referenced by `JSONSchemaForNPMPackageJsonFiles`'s JSON-Schema definition
+   * via the `patternProperty` "^_".
+   */
+  [k: string]: any | undefined;
+}
+/**
+ * Used to specify conditional exports, note that Conditional exports are unsupported in older environments, so it's recommended to use the fallback array option if support for those environments is a concern.
+ */
+export interface PackageExportsEntryObject {
+  /**
+   * The module path that is resolved when this specifier is imported as a CommonJS module using the `require(...)` function.
+   */
+  require?: ((string | null) | PackageExportsEntryObject) | PackageExportsFallback;
+  /**
+   * The module path that is resolved when this specifier is imported as an ECMAScript module using an `import` declaration or the dynamic `import(...)` function.
+   */
+  import?: ((string | null) | PackageExportsEntryObject) | PackageExportsFallback;
+  /**
+   * The same as `import`, but can be used with require(esm) in Node 20+. This requires the files to not use any top-level awaits.
+   */
+  'module-sync'?: ((string | null) | PackageExportsEntryObject) | PackageExportsFallback;
+  /**
+   * The module path that is resolved when this environment is Node.js.
+   */
+  node?: ((string | null) | PackageExportsEntryObject) | PackageExportsFallback;
+  /**
+   * The module path that is resolved when no other export type matches.
+   */
+  default?: ((string | null) | PackageExportsEntryObject) | PackageExportsFallback;
+  /**
+   * The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned "types" condition in the form "types@{selector}" are supported.
+   */
+  types?: ((string | null) | PackageExportsEntryObject) | PackageExportsFallback;
+  /**
+   * The module path that is resolved when this environment matches the property name.
+   *
+   * This interface was referenced by `PackageExportsEntryObject`'s JSON-Schema definition
+   * via the `patternProperty` "^[^.0-9]+$".
+   *
+   * The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned "types" condition in the form "types@{selector}" are supported.
+   *
+   * This interface was referenced by `PackageExportsEntryObject`'s JSON-Schema definition
+   * via the `patternProperty` "^types@.+$".
+   */
+  [k: string]: string | null | PackageExportsEntryObject | PackageExportsFallback | undefined;
+}
+/**
+ * Used to specify conditional exports, note that Conditional exports are unsupported in older environments, so it's recommended to use the fallback array option if support for those environments is a concern.
+ */
+export interface PackageImportsEntryObject {
+  /**
+   * The module path that is resolved when this specifier is imported as a CommonJS module using the `require(...)` function.
+   */
+  require?: ((string | null) | PackageImportsEntryObject) | PackageImportsFallback;
+  /**
+   * The module path that is resolved when this specifier is imported as an ECMAScript module using an `import` declaration or the dynamic `import(...)` function.
+   */
+  import?: ((string | null) | PackageImportsEntryObject) | PackageImportsFallback;
+  /**
+   * The module path that is resolved when this environment is Node.js.
+   */
+  node?: ((string | null) | PackageImportsEntryObject) | PackageImportsFallback;
+  /**
+   * The module path that is resolved when no other export type matches.
+   */
+  default?: ((string | null) | PackageImportsEntryObject) | PackageImportsFallback;
+  /**
+   * The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned "types" condition in the form "types@{selector}" are supported.
+   */
+  types?: ((string | null) | PackageImportsEntryObject) | PackageImportsFallback;
+  /**
+   * The module path that is resolved when this environment matches the property name.
+   *
+   * This interface was referenced by `PackageImportsEntryObject`'s JSON-Schema definition
+   * via the `patternProperty` "^[^.0-9]+$".
+   *
+   * The module path that is resolved for TypeScript types when this specifier is imported. Should be listed before other conditions. Additionally, versioned "types" condition in the form "types@{selector}" are supported.
+   *
+   * This interface was referenced by `PackageImportsEntryObject`'s JSON-Schema definition
+   * via the `patternProperty` "^types@.+$".
+   */
+  [k: string]: string | null | PackageImportsEntryObject | PackageImportsFallback | undefined;
+}
+/**
+ * Used to inform about ways to help fund development of the package.
+ */
+export interface FundingWay {
+  /**
+   * URL to a website with details about how to fund the package.
+   */
+  url: string;
+  /**
+   * The type of funding or the platform through which funding can be provided, e.g. patreon, opencollective, tidelift or github.
+   */
+  type?: string;
+}
+/**
+ * Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.
+ */
+export interface Dependency {
+  [k: string]: string | undefined;
+}
+/**
+ * Specifies dependencies that are required for the development and testing of the project. These dependencies are not needed in the production environment.
+ */
+export interface DevDependency {
+  [k: string]: string | undefined;
+}
+/**
+ * Specifies dependencies that are optional for your project. These dependencies are attempted to be installed during the npm install process, but if they fail to install, the installation process will not fail.
+ */
+export interface OptionalDependency {
+  [k: string]: string | undefined;
+}
+/**
+ * Specifies dependencies that are required by the package but are expected to be provided by the consumer of the package.
+ */
+export interface PeerDependency {
+  [k: string]: string | undefined;
+}
+/**
+ * When a user installs your package, warnings are emitted if packages specified in "peerDependencies" are not already installed. The "peerDependenciesMeta" field serves to provide more information on how your peer dependencies are utilized. Most commonly, it allows peer dependencies to be marked as optional. Metadata for this field is specified with a simple hash of the package name to a metadata object.
+ */
+export interface PeerDependencyMeta {
+  [k: string]:
+    | {
+        /**
+         * Specifies that this peer dependency is optional and should not be installed automatically.
+         */
+        optional?: boolean;
+        [k: string]: unknown | undefined;
+      }
+    | undefined;
+}
+/**
+ * Specifies a supported JavaScript runtime.
+ */
+export interface RuntimeEngineDependency {
+  /**
+   * The runtime name
+   */
+  name: string;
+  /**
+   * The version range for the runtime
+   */
+  version?: string;
+  /**
+   * What action to take if runtime validation fails
+   */
+  onFail?: 'ignore' | 'warn' | 'error' | 'download';
+  [k: string]: unknown | undefined;
+}
+/**
+ * Specifies requirements for development environment components such as operating systems, runtimes, or package managers. Used to ensure consistent development environments across the team.
+ */
+export interface DevEngineDependency {
+  /**
+   * The name of the dependency, with allowed values depending on the parent field
+   */
+  name: string;
+  /**
+   * The version range for the dependency
+   */
+  version?: string;
+  /**
+   * What action to take if validation fails
+   */
+  onFail?: 'ignore' | 'warn' | 'error' | 'download';
+  [k: string]: unknown | undefined;
+}
+export interface JSONSchemaForESLintConfigurationFiles {
+  ecmaFeatures?: EcmaFeatures;
+  env?: Env;
+  /**
+   * If you want to extend a specific configuration file, you can use the extends property and specify the path to the file. The path can be either relative or absolute.
+   */
+  extends?: string | string[];
+  globals?: Globals;
+  /**
+   * Prevent comments from changing config or rules
+   */
+  noInlineConfig?: boolean;
+  /**
+   * Report unused eslint-disable comments
+   */
+  reportUnusedDisableDirectives?: boolean;
+  parser?: string;
+  parserOptions?: ParserOptions;
+  plugins?: Plugins;
+  /**
+   * By default, ESLint will look for configuration files in all parent folders up to the root directory. This can be useful if you want all of your projects to follow a certain convention, but can sometimes lead to unexpected results. To limit ESLint to a specific project, set this to `true` in a configuration in the root of your project.
+   */
+  root?: boolean;
+  /**
+   * Tell ESLint to ignore specific files and directories. Each value uses the same pattern as the `.eslintignore` file.
+   */
+  ignorePatterns?: string | string[];
+  rules?: Rules;
+  settings?: Settings;
+  overrides?: Overrides;
+  [k: string]: unknown | undefined;
+}
+/**
+ * By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.
+ */
+export interface EcmaFeatures {
+  arrowFunctions?: boolean;
+  binaryLiterals?: boolean;
+  blockBindings?: boolean;
+  classes?: boolean;
+  defaultParams?: boolean;
+  destructuring?: boolean;
+  /**
+   * Enables support for the experimental object rest/spread properties (IMPORTANT: This is an experimental feature that may change significantly in the future. It's recommended that you do not write rules relying on this functionality unless you are willing to incur maintenance cost when it changes.)
+   */
+  experimentalObjectRestSpread?: boolean;
+  forOf?: boolean;
+  generators?: boolean;
+  /**
+   * allow return statements in the global scope
+   */
+  globalReturn?: boolean;
+  /**
+   * enable global strict mode (if ecmaVersion is 5 or greater)
+   */
+  impliedStrict?: boolean;
+  /**
+   * enable JSX
+   */
+  jsx?: boolean;
+  modules?: boolean;
+  objectLiteralComputedProperties?: boolean;
+  objectLiteralDuplicateProperties?: boolean;
+  objectLiteralShorthandMethods?: boolean;
+  objectLiteralShorthandProperties?: boolean;
+  octalLiterals?: boolean;
+  regexUFlag?: boolean;
+  regexYFlag?: boolean;
+  restParams?: boolean;
+  spread?: boolean;
+  superInFunctions?: boolean;
+  templateStrings?: boolean;
+  unicodeCodePointEscapes?: boolean;
+  [k: string]: unknown | undefined;
+}
+/**
+ * An environment defines global variables that are predefined.
+ */
+export interface Env {
+  /**
+   * defines require() and define() as global variables as per the amd spec
+   */
+  amd?: boolean;
+  /**
+   * AppleScript global variables
+   */
+  applescript?: boolean;
+  /**
+   * Atom test helper globals
+   */
+  atomtest?: boolean;
+  /**
+   * browser global variables
+   */
+  browser?: boolean;
+  /**
+   * CommonJS global variables and CommonJS scoping (use this for browser-only code that uses Browserify/WebPack)
+   */
+  commonjs?: boolean;
+  /**
+   * Globals common to both Node and Browser
+   */
+  'shared-node-browser'?: boolean;
+  /**
+   * Ember test helper globals
+   */
+  embertest?: boolean;
+  /**
+   * enable all ECMAScript 6 features except for modules
+   */
+  es6?: boolean;
+  /**
+   * GreaseMonkey globals
+   */
+  greasemonkey?: boolean;
+  /**
+   * adds all of the Jasmine testing global variables for version 1.3 and 2.0
+   */
+  jasmine?: boolean;
+  /**
+   * Jest global variables
+   */
+  jest?: boolean;
+  /**
+   * jQuery global variables
+   */
+  jquery?: boolean;
+  /**
+   * Meteor global variables
+   */
+  meteor?: boolean;
+  /**
+   * adds all of the Mocha test global variables
+   */
+  mocha?: boolean;
+  /**
+   * MongoDB global variables
+   */
+  mongo?: boolean;
+  /**
+   * Java 8 Nashorn global variables
+   */
+  nashorn?: boolean;
+  /**
+   * Node.js global variables and Node.js scoping
+   */
+  node?: boolean;
+  /**
+   * PhantomJS global variables
+   */
+  phantomjs?: boolean;
+  /**
+   * Prototype.js global variables
+   */
+  prototypejs?: boolean;
+  /**
+   * Protractor global variables
+   */
+  protractor?: boolean;
+  /**
+   * QUnit global variables
+   */
+  qunit?: boolean;
+  /**
+   * Service Worker global variables
+   */
+  serviceworker?: boolean;
+  /**
+   * ShellJS global variables
+   */
+  shelljs?: boolean;
+  /**
+   * WebExtensions globals
+   */
+  webextensions?: boolean;
+  /**
+   * web workers global variables
+   */
+  worker?: boolean;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Set each global variable name equal to true to allow the variable to be overwritten or false to disallow overwriting.
+ */
+export interface Globals {
+  [k: string]: 'readonly' | 'writable' | 'off' | boolean | undefined;
+}
+/**
+ * The JavaScript language options to be supported
+ */
+export interface ParserOptions {
+  ecmaFeatures?: EcmaFeatures;
+  /**
+   * Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set "latest" to use the most recently supported version.
+   */
+  ecmaVersion?:
+    | 3
+    | 5
+    | 6
+    | 2015
+    | 7
+    | 2016
+    | 8
+    | 2017
+    | 9
+    | 2018
+    | 10
+    | 2019
+    | 11
+    | 2020
+    | 12
+    | 2021
+    | 13
+    | 2022
+    | 14
+    | 2023
+    | 15
+    | 2024
+    | 'latest';
+  /**
+   * set to "script" (default), "commonjs", or "module" if your code is in ECMAScript modules
+   */
+  sourceType?: 'script' | 'module' | 'commonjs';
+  [k: string]: unknown | undefined;
+}
+export interface PossibleErrors {
+  /**
+   * Require or disallow trailing commas
+   */
+  'comma-dangle'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce "for" loop update clause moving the counter in the right direction
+   */
+  'for-direction'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce return statements in getters
+   */
+  'getter-return'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow await inside of loops
+   */
+  'no-await-in-loop'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow comparing against -0
+   */
+  'no-compare-neg-zero'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow assignment operators in conditional expressions
+   */
+  'no-cond-assign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of console
+   */
+  'no-console'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow constant expressions in conditions
+   */
+  'no-constant-condition'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow control characters in regular expressions
+   */
+  'no-control-regex'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of debugger
+   */
+  'no-debugger'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow duplicate arguments in function definitions
+   */
+  'no-dupe-args'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow duplicate keys in object literals
+   */
+  'no-dupe-keys'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow duplicate case labels
+   */
+  'no-duplicate-case'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow empty block statements
+   */
+  'no-empty'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow empty character classes in regular expressions
+   */
+  'no-empty-character-class'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow reassigning exceptions in catch clauses
+   */
+  'no-ex-assign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary boolean casts
+   */
+  'no-extra-boolean-cast'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary parentheses
+   */
+  'no-extra-parens'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary semicolons
+   */
+  'no-extra-semi'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow reassigning function declarations
+   */
+  'no-func-assign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow function or var declarations in nested blocks
+   */
+  'no-inner-declarations'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow invalid regular expression strings in RegExp constructors
+   */
+  'no-invalid-regexp'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow irregular whitespace outside of strings and comments
+   */
+  'no-irregular-whitespace'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow negating the left operand in in expressions (deprecated)
+   */
+  'no-negated-in-lhs'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow calling global object properties as functions
+   */
+  'no-obj-calls'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow calling some Object.prototype methods directly on objects
+   */
+  'no-prototype-builtins'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow multiple spaces in regular expressions
+   */
+  'no-regex-spaces'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow sparse arrays
+   */
+  'no-sparse-arrays'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow template literal placeholder syntax in regular strings
+   */
+  'no-template-curly-in-string'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow confusing multiline expressions
+   */
+  'no-unexpected-multiline'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unreachable code after return, throw, continue, and break statements
+   */
+  'no-unreachable'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow control flow statements in finally blocks
+   */
+  'no-unsafe-finally'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow negating the left operand of relational operators
+   */
+  'no-unsafe-negation'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require calls to isNaN() when checking for NaN
+   */
+  'use-isnan'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce valid JSDoc comments
+   */
+  'valid-jsdoc'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce comparing typeof expressions against valid strings
+   */
+  'valid-typeof'?: number | ('off' | 'warn' | 'error') | unknown[];
+  [k: string]: unknown | undefined;
+}
+export interface BestPractices {
+  /**
+   * Enforce getter and setter pairs in objects
+   */
+  'accessor-pairs'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce return statements in callbacks of array methods
+   */
+  'array-callback-return'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce the use of variables within the scope they are defined
+   */
+  'block-scoped-var'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce that class methods utilize this
+   */
+  'class-methods-use-this'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce a maximum cyclomatic complexity allowed in a program
+   */
+  complexity?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require return statements to either always or never specify values
+   */
+  'consistent-return'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent brace style for all control statements
+   */
+  curly?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require default cases in switch statements
+   */
+  'default-case'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent newlines before and after dots
+   */
+  'dot-location'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce dot notation whenever possible
+   */
+  'dot-notation'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require the use of === and !==
+   */
+  eqeqeq?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require for-in loops to include an if statement
+   */
+  'guard-for-in'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of alert, confirm, and prompt
+   */
+  'no-alert'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of arguments.caller or arguments.callee
+   */
+  'no-caller'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow lexical declarations in case clauses
+   */
+  'no-case-declarations'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow division operators explicitly at the beginning of regular expressions
+   */
+  'no-div-regex'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow else blocks after return statements in if statements
+   */
+  'no-else-return'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow empty functions
+   */
+  'no-empty-function'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow empty destructuring patterns
+   */
+  'no-empty-pattern'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow null comparisons without type-checking operators
+   */
+  'no-eq-null'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of eval()
+   */
+  'no-eval'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow extending native types
+   */
+  'no-extend-native'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary calls to .bind()
+   */
+  'no-extra-bind'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary labels
+   */
+  'no-extra-label'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow fallthrough of case statements
+   */
+  'no-fallthrough'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow leading or trailing decimal points in numeric literals
+   */
+  'no-floating-decimal'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow assignments to native objects or read-only global variables
+   */
+  'no-global-assign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow shorthand type conversions
+   */
+  'no-implicit-coercion'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow var and named function declarations in the global scope
+   */
+  'no-implicit-globals'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of eval()-like methods
+   */
+  'no-implied-eval'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow this keywords outside of classes or class-like objects
+   */
+  'no-invalid-this'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of the __iterator__ property
+   */
+  'no-iterator'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow labeled statements
+   */
+  'no-labels'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary nested blocks
+   */
+  'no-lone-blocks'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow function declarations and expressions inside loop statements
+   */
+  'no-loop-func'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow magic numbers
+   */
+  'no-magic-numbers'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow multiple spaces
+   */
+  'no-multi-spaces'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow multiline strings
+   */
+  'no-multi-str'?: number | ('off' | 'warn' | 'error') | unknown[];
+  'no-native-reassign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow new operators outside of assignments or comparisons
+   */
+  'no-new'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow new operators with the Function object
+   */
+  'no-new-func'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow new operators with the String, Number, and Boolean objects
+   */
+  'no-new-wrappers'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow octal literals
+   */
+  'no-octal'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow octal escape sequences in string literals
+   */
+  'no-octal-escape'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow reassigning function parameters
+   */
+  'no-param-reassign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of the __proto__ property
+   */
+  'no-proto'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow var redeclaration
+   */
+  'no-redeclare'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow certain properties on certain objects
+   */
+  'no-restricted-properties'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow assignment operators in return statements
+   */
+  'no-return-assign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary return await
+   */
+  'no-return-await'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow javascript: urls
+   */
+  'no-script-url'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow assignments where both sides are exactly the same
+   */
+  'no-self-assign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow comparisons where both sides are exactly the same
+   */
+  'no-self-compare'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow comma operators
+   */
+  'no-sequences'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow throwing literals as exceptions
+   */
+  'no-throw-literal'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unmodified loop conditions
+   */
+  'no-unmodified-loop-condition'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unused expressions
+   */
+  'no-unused-expressions'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unused labels
+   */
+  'no-unused-labels'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary calls to .call() and .apply()
+   */
+  'no-useless-call'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary concatenation of literals or template literals
+   */
+  'no-useless-concat'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary escape characters
+   */
+  'no-useless-escape'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow redundant return statements
+   */
+  'no-useless-return'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow void operators
+   */
+  'no-void'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow specified warning terms in comments
+   */
+  'no-warning-comments'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow with statements
+   */
+  'no-with'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require using Error objects as Promise rejection reasons
+   */
+  'prefer-promise-reject-errors'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce the consistent use of the radix argument when using parseInt()
+   */
+  radix?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow async functions which have no await expression
+   */
+  'require-await'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require var declarations be placed at the top of their containing scope
+   */
+  'vars-on-top'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require parentheses around immediate function invocations
+   */
+  'wrap-iife'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or Disallow "Yoda" conditions
+   */
+  yoda?: number | ('off' | 'warn' | 'error') | unknown[];
+  [k: string]: unknown | undefined;
+}
+export interface StrictMode {
+  /**
+   * require or disallow strict mode directives
+   */
+  strict?: number | ('off' | 'warn' | 'error') | unknown[];
+  [k: string]: unknown | undefined;
+}
+export interface Variables {
+  /**
+   * Require or disallow initialization in var declarations
+   */
+  'init-declarations'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow catch clause parameters from shadowing variables in the outer scope
+   */
+  'no-catch-shadow'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow deleting variables
+   */
+  'no-delete-var'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow labels that share a name with a variable
+   */
+  'no-label-var'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow specified global variables
+   */
+  'no-restricted-globals'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow var declarations from shadowing variables in the outer scope
+   */
+  'no-shadow'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow identifiers from shadowing restricted names
+   */
+  'no-shadow-restricted-names'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of undeclared variables unless mentioned in /*global * / comments
+   */
+  'no-undef'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of undefined as an identifier
+   */
+  'no-undefined'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow initializing variables to undefined
+   */
+  'no-undef-init'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unused variables
+   */
+  'no-unused-vars'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of variables before they are defined
+   */
+  'no-use-before-define'?: number | ('off' | 'warn' | 'error') | unknown[];
+  [k: string]: unknown | undefined;
+}
+export interface NodeAndCommonJs {
+  /**
+   * Require return statements after callbacks
+   */
+  'callback-return'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require require() calls to be placed at top-level module scope
+   */
+  'global-require'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require error handling in callbacks
+   */
+  'handle-callback-err'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow use of the Buffer() constructor
+   */
+  'no-buffer-constructor'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow require calls to be mixed with regular var declarations
+   */
+  'no-mixed-requires'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow new operators with calls to require
+   */
+  'no-new-require'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow string concatenation with __dirname and __filename
+   */
+  'no-path-concat'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of process.env
+   */
+  'no-process-env'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the use of process.exit()
+   */
+  'no-process-exit'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow specified modules when loaded by require
+   */
+  'no-restricted-modules'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow synchronous methods
+   */
+  'no-sync'?: number | ('off' | 'warn' | 'error') | unknown[];
+  [k: string]: unknown | undefined;
+}
+export interface StylisticIssues {
+  /**
+   * Enforce line breaks after opening and before closing array brackets
+   */
+  'array-bracket-newline'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing inside array brackets
+   */
+  'array-bracket-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce line breaks after each array element
+   */
+  'array-element-newline'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing inside single-line blocks
+   */
+  'block-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent brace style for blocks
+   */
+  'brace-style'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce camelcase naming convention
+   */
+  camelcase?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce or disallow capitalization of the first letter of a comment
+   */
+  'capitalized-comments'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow trailing commas
+   */
+  'comma-dangle'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing before and after commas
+   */
+  'comma-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent comma style
+   */
+  'comma-style'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing inside computed property brackets
+   */
+  'computed-property-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent naming when capturing the current execution context
+   */
+  'consistent-this'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce at least one newline at the end of files
+   */
+  'eol-last'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow spacing between function identifiers and their invocations
+   */
+  'func-call-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require function names to match the name of the variable or property to which they are assigned
+   */
+  'func-name-matching'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow named function expressions
+   */
+  'func-names'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce the consistent use of either function declarations or expressions
+   */
+  'func-style'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce line breaks between arguments of a function call
+   */
+  'function-call-argument-newline'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent line breaks inside function parentheses
+   */
+  'function-paren-newline'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow specified identifiers
+   */
+  'id-blacklist'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce minimum and maximum identifier lengths
+   */
+  'id-length'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require identifiers to match a specified regular expression
+   */
+  'id-match'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce the location of arrow function bodies
+   */
+  'implicit-arrow-linebreak'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent indentation
+   */
+  indent?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent indentation (legacy, deprecated)
+   */
+  'indent-legacy'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce the consistent use of either double or single quotes in JSX attributes
+   */
+  'jsx-quotes'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing between keys and values in object literal properties
+   */
+  'key-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing before and after keywords
+   */
+  'keyword-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce position of line comments
+   */
+  'line-comment-position'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow an empty line between class members
+   */
+  'lines-between-class-members'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent linebreak style
+   */
+  'linebreak-style'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require empty lines around comments
+   */
+  'lines-around-comment'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow newlines around directives
+   */
+  'lines-around-directive'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce a maximum depth that blocks can be nested
+   */
+  'max-depth'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce a maximum line length
+   */
+  'max-len'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce a maximum number of lines per file
+   */
+  'max-lines'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce a maximum depth that callbacks can be nested
+   */
+  'max-nested-callbacks'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce a maximum number of parameters in function definitions
+   */
+  'max-params'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce a maximum number of statements allowed in function blocks
+   */
+  'max-statements'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce a maximum number of statements allowed per line
+   */
+  'max-statements-per-line'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce a particular style for multiline comments
+   */
+  'multiline-comment-style'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce newlines between operands of ternary expressions
+   */
+  'multiline-ternary'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require constructor function names to begin with a capital letter
+   */
+  'new-cap'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow an empty line after var declarations
+   */
+  'newline-after-var'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require an empty line before return statements
+   */
+  'newline-before-return'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require a newline after each call in a method chain
+   */
+  'newline-per-chained-call'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require parentheses when invoking a constructor with no arguments
+   */
+  'new-parens'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow Array constructors
+   */
+  'no-array-constructor'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow bitwise operators
+   */
+  'no-bitwise'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow continue statements
+   */
+  'no-continue'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow inline comments after code
+   */
+  'no-inline-comments'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow if statements as the only statement in else blocks
+   */
+  'no-lonely-if'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow mixed binary operators
+   */
+  'no-mixed-operators'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow mixed spaces and tabs for indentation
+   */
+  'no-mixed-spaces-and-tabs'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow use of chained assignment expressions
+   */
+  'no-multi-assign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow multiple empty lines
+   */
+  'no-multiple-empty-lines'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow negated conditions
+   */
+  'no-negated-condition'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow nested ternary expressions
+   */
+  'no-nested-ternary'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow Object constructors
+   */
+  'no-new-object'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow the unary operators ++ and --
+   */
+  'no-plusplus'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow specified syntax
+   */
+  'no-restricted-syntax'?: number | ('off' | 'warn' | 'error') | unknown[];
+  'no-spaced-func'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow tabs in file
+   */
+  'no-tabs'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow ternary operators
+   */
+  'no-ternary'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow trailing whitespace at the end of lines
+   */
+  'no-trailing-spaces'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow dangling underscores in identifiers
+   */
+  'no-underscore-dangle'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow ternary operators when simpler alternatives exist
+   */
+  'no-unneeded-ternary'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow whitespace before properties
+   */
+  'no-whitespace-before-property'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce the location of single-line statements
+   */
+  'nonblock-statement-body-position'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent line breaks inside braces
+   */
+  'object-curly-newline'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing inside braces
+   */
+  'object-curly-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce placing object properties on separate lines
+   */
+  'object-property-newline'?: number | ('off' | 'warn' | 'error') | unknown[];
+  'object-shorthand'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce variables to be declared either together or separately in functions
+   */
+  'one-var'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow newlines around var declarations
+   */
+  'one-var-declaration-per-line'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow assignment operator shorthand where possible
+   */
+  'operator-assignment'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent linebreak style for operators
+   */
+  'operator-linebreak'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow padding within blocks
+   */
+  'padded-blocks'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow padding lines between statements
+   */
+  'padding-line-between-statements'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require quotes around object literal property names
+   */
+  'quote-props'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce the consistent use of either backticks, double, or single quotes
+   */
+  quotes?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require JSDoc comments
+   */
+  'require-jsdoc'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow semicolons instead of ASI
+   */
+  semi?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing before and after semicolons
+   */
+  'semi-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce location of semicolons
+   */
+  'semi-style'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Requires object keys to be sorted
+   */
+  'sort-keys'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require variables within the same declaration block to be sorted
+   */
+  'sort-vars'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing before blocks
+   */
+  'space-before-blocks'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing before function definition opening parenthesis
+   */
+  'space-before-function-paren'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing after the // or /* in a comment
+   */
+  'spaced-comment'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require spacing around operators
+   */
+  'space-infix-ops'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing inside parentheses
+   */
+  'space-in-parens'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing before or after unary operators
+   */
+  'space-unary-ops'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce spacing around colons of switch statements
+   */
+  'switch-colon-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow spacing between template tags and their literals
+   */
+  'template-tag-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow Unicode byte order mark (BOM)
+   */
+  'unicode-bom'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require parenthesis around regex literals
+   */
+  'wrap-regex'?: number | ('off' | 'warn' | 'error') | unknown[];
+  [k: string]: unknown | undefined;
+}
+export interface EcmaScript6 {
+  /**
+   * Require braces around arrow function bodies
+   */
+  'arrow-body-style'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require parentheses around arrow function arguments
+   */
+  'arrow-parens'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing before and after the arrow in arrow functions
+   */
+  'arrow-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require super() calls in constructors
+   */
+  'constructor-super'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce consistent spacing around * operators in generator functions
+   */
+  'generator-star-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow reassigning class members
+   */
+  'no-class-assign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow arrow functions where they could be confused with comparisons
+   */
+  'no-confusing-arrow'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow reassigning const variables
+   */
+  'no-const-assign'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow duplicate class members
+   */
+  'no-dupe-class-members'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow duplicate module imports
+   */
+  'no-duplicate-imports'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow new operators with the Symbol object
+   */
+  'no-new-symbol'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow specified modules when loaded by import
+   */
+  'no-restricted-imports'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow this/super before calling super() in constructors
+   */
+  'no-this-before-super'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary computed property keys in object literals
+   */
+  'no-useless-computed-key'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow unnecessary constructors
+   */
+  'no-useless-constructor'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow renaming import, export, and destructured assignments to the same name
+   */
+  'no-useless-rename'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require let or const instead of var
+   */
+  'no-var'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow method and property shorthand syntax for object literals
+   */
+  'object-shorthand'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require arrow functions as callbacks
+   */
+  'prefer-arrow-callback'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require const declarations for variables that are never reassigned after declared
+   */
+  'prefer-const'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require destructuring from arrays and/or objects
+   */
+  'prefer-destructuring'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Disallow parseInt() in favor of binary, octal, and hexadecimal literals
+   */
+  'prefer-numeric-literals'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require Reflect methods where applicable
+   */
+  'prefer-reflect'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require rest parameters instead of arguments
+   */
+  'prefer-rest-params'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require spread operators instead of .apply()
+   */
+  'prefer-spread'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require template literals instead of string concatenation
+   */
+  'prefer-template'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require generator functions to contain yield
+   */
+  'require-yield'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce spacing between rest and spread operators and their expressions
+   */
+  'rest-spread-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Enforce sorted import declarations within modules
+   */
+  'sort-imports'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require symbol descriptions
+   */
+  'symbol-description'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow spacing around embedded expressions of template strings
+   */
+  'template-curly-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  /**
+   * Require or disallow spacing around the * in yield* expressions
+   */
+  'yield-star-spacing'?: number | ('off' | 'warn' | 'error') | unknown[];
+  [k: string]: unknown | undefined;
+}
+export interface Legacy {
+  'max-depth'?: number | ('off' | 'warn' | 'error') | unknown[];
+  'max-len'?: number | ('off' | 'warn' | 'error') | unknown[];
+  'max-params'?: number | ('off' | 'warn' | 'error') | unknown[];
+  'max-statements'?: number | ('off' | 'warn' | 'error') | unknown[];
+  'no-bitwise'?: number | ('off' | 'warn' | 'error') | unknown[];
+  'no-plusplus'?: number | ('off' | 'warn' | 'error') | unknown[];
+  [k: string]: unknown | undefined;
+}
+export interface HttpsJsonSchemastoreOrgPartialEslintPluginsJson {
+  /**
+   * Classes decorated with @Component must have suffix "Component" (or custom) in their name. See more at https://angular.dev/style-guide#style-02-03
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/component-class-suffix.md
+   */
+  '@angular-eslint/component-class-suffix'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          suffixes?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforces a maximum number of lines in inline template, styles and animations. See more at https://angular.dev/style-guide#style-05-04
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/component-max-inline-declarations.md
+   */
+  '@angular-eslint/component-max-inline-declarations'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          template?: number;
+          styles?: number;
+          animations?: number;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Component selectors should follow given naming rules. See more at https://angular.dev/style-guide#style-02-07, https://angular.dev/style-guide#style-05-02
+   *       and https://angular.dev/style-guide#style-05-03.
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/component-selector.md
+   */
+  '@angular-eslint/component-selector'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          type?: string | ('element' | 'attribute')[];
+          prefix?: string | unknown[];
+          style?: 'camelCase' | 'kebab-case';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensures consistent usage of `styles`/`styleUrls`/`styleUrl` within Component metadata
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/consistent-component-styles.md
+   */
+  '@angular-eslint/consistent-component-styles'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensures that classes use contextual decorators in its body
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/contextual-decorator.md
+   */
+  '@angular-eslint/contextual-decorator'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures that lifecycle methods are used in a correct context
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/contextual-lifecycle.md
+   */
+  '@angular-eslint/contextual-lifecycle'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Classes decorated with @Directive must have suffix "Directive" (or custom) in their name. See more at https://angular.dev/style-guide#style-02-03
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/directive-class-suffix.md
+   */
+  '@angular-eslint/directive-class-suffix'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          suffixes?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Directive selectors should follow given naming rules. See more at https://angular.dev/style-guide#style-02-06 and https://angular.dev/style-guide#style-02-08.
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/directive-selector.md
+   */
+  '@angular-eslint/directive-selector'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          type?: string | ('element' | 'attribute')[];
+          prefix?: string | unknown[];
+          style?: 'camelCase' | 'kebab-case';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Angular Lifecycle methods should not be async. Angular does not wait for async lifecycle but the code incorrectly suggests it does.
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-async-lifecycle-method.md
+   */
+  '@angular-eslint/no-async-lifecycle-method'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * The @Attribute decorator is used to obtain a single value for an attribute. This is a much less common use-case than getting a stream of values (using @Input), so often the @Attribute decorator is mistakenly used when @Input was what was intended. This rule disallows usage of @Attribute decorator altogether in order to prevent these mistakes.
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-attribute-decorator.md
+   */
+  '@angular-eslint/no-attribute-decorator'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures that directives not implement conflicting lifecycle interfaces.
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-conflicting-lifecycle.md
+   */
+  '@angular-eslint/no-conflicting-lifecycle'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures that metadata arrays do not contain duplicate entries.
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-duplicates-in-metadata-arrays.md
+   */
+  '@angular-eslint/no-duplicates-in-metadata-arrays'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallows declaring empty lifecycle methods
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-empty-lifecycle-method.md
+   */
+  '@angular-eslint/no-empty-lifecycle-method'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallows usage of `forwardRef` references for DI
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-forward-ref.md
+   */
+  '@angular-eslint/no-forward-ref'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallows usage of the `host` metadata property. NOTE: This used to be recommended by the Angular Team, but now they recommend the exact opposite: https://github.com/angular/angular/issues/54284
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-host-metadata-property.md
+   */
+  '@angular-eslint/no-host-metadata-property'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowStatic?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensures that input bindings, including aliases, are not named or prefixed by the configured disallowed prefixes
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-input-prefix.md
+   */
+  '@angular-eslint/no-input-prefix'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          prefixes?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensures that input bindings are not aliased
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-input-rename.md
+   */
+  '@angular-eslint/no-input-rename'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * A list with allowed input names
+           */
+          allowedNames?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallows usage of the `inputs` metadata property. See more at https://angular.dev/style-guide#style-05-12
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-inputs-metadata-property.md
+   */
+  '@angular-eslint/no-inputs-metadata-property'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallows explicit calls to lifecycle methods
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-lifecycle-call.md
+   */
+  '@angular-eslint/no-lifecycle-call'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures that output bindings, including aliases, are not named as standard DOM events
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-output-native.md
+   */
+  '@angular-eslint/no-output-native'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures that output bindings, including aliases, are not named "on", nor prefixed with it. See more at https://angular.dev/style-guide#style-05-16
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-output-on-prefix.md
+   */
+  '@angular-eslint/no-output-on-prefix'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures that output bindings are not aliased
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-output-rename.md
+   */
+  '@angular-eslint/no-output-rename'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallows usage of the `outputs` metadata property. See more at https://angular.dev/style-guide#style-05-12
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-outputs-metadata-property.md
+   */
+  '@angular-eslint/no-outputs-metadata-property'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallows the declaration of impure pipes
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-pipe-impure.md
+   */
+  '@angular-eslint/no-pipe-impure'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallows usage of the `queries` metadata property. See more at https://angular.dev/style-guide#style-05-12.
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/no-queries-metadata-property.md
+   */
+  '@angular-eslint/no-queries-metadata-property'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent prefix for pipes.
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/pipe-prefix.md
+   */
+  '@angular-eslint/pipe-prefix'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          prefixes?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensures component's `changeDetection` is set to `ChangeDetectionStrategy.OnPush`
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/prefer-on-push-component-change-detection.md
+   */
+  '@angular-eslint/prefer-on-push-component-change-detection'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures component, directive and pipe `standalone` property is set to `true` in the component decorator
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/prefer-standalone.md
+   */
+  '@angular-eslint/prefer-standalone'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures component `standalone` property is set to `true` in the component decorator
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/prefer-standalone-component.md
+   */
+  '@angular-eslint/prefer-standalone-component'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer to declare `@Output` as `readonly` since they are not supposed to be reassigned
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/prefer-output-readonly.md
+   */
+  '@angular-eslint/prefer-output-readonly'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * The ./ and ../ prefix is standard syntax for relative URLs; don't depend on Angular's current ability to do without that prefix. See more at https://angular.dev/style-guide#style-05-04
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/relative-url-prefix.md
+   */
+  '@angular-eslint/relative-url-prefix'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures that $localize tagged messages contain helpful metadata to aid with translations.
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/require-localize-metadata.md
+   */
+  '@angular-eslint/require-localize-metadata'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          requireDescription?: boolean;
+          requireMeaning?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensures that lifecycle methods are declared in order of execution
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/sort-lifecycle-methods.md
+   */
+  '@angular-eslint/sort-lifecycle-methods'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures ASC alphabetical order for `NgModule` metadata arrays for easy visual scanning
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/sort-ngmodule-metadata-arrays.md
+   */
+  '@angular-eslint/sort-ngmodule-metadata-arrays'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * A string with a BCP 47 language tag.
+           */
+          locale?: string;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Component selector must be declared
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/use-component-selector.md
+   */
+  '@angular-eslint/use-component-selector'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallows using `ViewEncapsulation.None`
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/use-component-view-encapsulation.md
+   */
+  '@angular-eslint/use-component-view-encapsulation'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Using the `providedIn` property makes `Injectables` tree-shakable
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/use-injectable-provided-in.md
+   */
+  '@angular-eslint/use-injectable-provided-in'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreClassNamePattern?: string;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensures that classes implement lifecycle interfaces corresponding to the declared lifecycle methods. See more at https://angular.dev/style-guide#style-09-01
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/use-lifecycle-interface.md
+   */
+  '@angular-eslint/use-lifecycle-interface'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensures that `Pipes` implement `PipeTransform` interface
+   * https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin/docs/rules/use-pipe-transform-interface.md
+   */
+  '@angular-eslint/use-pipe-transform-interface'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensure imports point to a file/module that can be resolved.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-unresolved.md
+   */
+  'eslint-plugin-import/no-unresolved'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          commonjs?: boolean;
+          amd?: boolean;
+          esmodule?: boolean;
+          /**
+           * @minItems 1
+           */
+          ignore?: [string, ...string[]];
+          caseSensitive?: boolean;
+          caseSensitiveStrict?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensure named imports correspond to a named export in the remote file.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/named.md
+   */
+  'eslint-plugin-import/named'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          commonjs?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensure a default export is present, given a default import.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/default.md
+   */
+  'eslint-plugin-import/default'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensure imported namespaces contain dereferenced properties as they are dereferenced.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/namespace.md
+   */
+  'eslint-plugin-import/namespace'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * If `false`, will report computed (and thus, un-lintable) references to namespace members.
+           */
+          allowComputed?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid namespace (a.k.a. "wildcard" `*`) imports.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-namespace.md
+   */
+  'eslint-plugin-import/no-namespace'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignore?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid any invalid exports, i.e. re-export of the same name.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/export.md
+   */
+  'eslint-plugin-import/export'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid the use of mutable exports with `var` or `let`.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-mutable-exports.md
+   */
+  'eslint-plugin-import/no-mutable-exports'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensure consistent use of file extension within the import path.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/extensions.md
+   */
+  'eslint-plugin-import/extensions'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce which files can be imported in a given folder.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-restricted-paths.md
+   */
+  'eslint-plugin-import/no-restricted-paths'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * @minItems 1
+           */
+          zones?: [
+            {
+              target?: string | [string, ...string[]];
+              from?: string | [string, ...string[]];
+              except?: string[];
+              message?: string;
+            },
+            ...{
+              target?: string | [string, ...string[]];
+              from?: string | [string, ...string[]];
+              except?: string[];
+              message?: string;
+            }[]
+          ];
+          basePath?: string;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid importing the submodules of other modules.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-internal-modules.md
+   */
+  'eslint-plugin-import/no-internal-modules'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer named exports to be grouped together in a single export declaration
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/group-exports.md
+   */
+  'eslint-plugin-import/group-exports'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid importing packages through relative paths.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-relative-packages.md
+   */
+  'eslint-plugin-import/no-relative-packages'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          commonjs?: boolean;
+          amd?: boolean;
+          esmodule?: boolean;
+          /**
+           * @minItems 1
+           */
+          ignore?: [string, ...string[]];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid importing modules from parent directories.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-relative-parent-imports.md
+   */
+  'eslint-plugin-import/no-relative-parent-imports'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          commonjs?: boolean;
+          amd?: boolean;
+          esmodule?: boolean;
+          /**
+           * @minItems 1
+           */
+          ignore?: [string, ...string[]];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce or ban the use of inline type-only markers for named imports.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/consistent-type-specifier-style.md
+   */
+  'eslint-plugin-import/consistent-type-specifier-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid a module from importing itself.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-self-import.md
+   */
+  'eslint-plugin-import/no-self-import'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid a module from importing a module with a dependency path back to itself.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-cycle.md
+   */
+  'eslint-plugin-import/no-cycle'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          commonjs?: boolean;
+          amd?: boolean;
+          esmodule?: boolean;
+          /**
+           * @minItems 1
+           */
+          ignore?: [string, ...string[]];
+          maxDepth?: number | '∞';
+          /**
+           * ignore external modules
+           */
+          ignoreExternal?: boolean;
+          /**
+           * Allow cyclic dependency if there is at least one dynamic import in the chain
+           */
+          allowUnsafeDynamicCyclicDependency?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid named default exports.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-named-default.md
+   */
+  'eslint-plugin-import/no-named-default'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid use of exported name as identifier of default export.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-named-as-default.md
+   */
+  'eslint-plugin-import/no-named-as-default'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid use of exported name as property of default export.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-named-as-default-member.md
+   */
+  'eslint-plugin-import/no-named-as-default-member'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid anonymous values as default exports.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-anonymous-default-export.md
+   */
+  'eslint-plugin-import/no-anonymous-default-export'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * If `false`, will report default export of an array
+           */
+          allowArray?: boolean;
+          /**
+           * If `false`, will report default export of an arrow function
+           */
+          allowArrowFunction?: boolean;
+          /**
+           * If `false`, will report default export of a function call
+           */
+          allowCallExpression?: boolean;
+          /**
+           * If `false`, will report default export of an anonymous class
+           */
+          allowAnonymousClass?: boolean;
+          /**
+           * If `false`, will report default export of an anonymous function
+           */
+          allowAnonymousFunction?: boolean;
+          /**
+           * If `false`, will report default export of a literal
+           */
+          allowLiteral?: boolean;
+          /**
+           * If `false`, will report default export of an object expression
+           */
+          allowObject?: boolean;
+          /**
+           * If `false`, will report default export of a class instantiation
+           */
+          allowNew?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid modules without exports, or exports without matching import in another module.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-unused-modules.md
+   */
+  'eslint-plugin-import/no-unused-modules'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * files/paths to be analyzed (only for unused exports)
+           */
+          src?: string[];
+          /**
+           * files/paths for which unused exports will not be reported (e.g module entry points)
+           */
+          ignoreExports?: string[];
+          /**
+           * report modules without any exports
+           */
+          missingExports?: boolean;
+          /**
+           * report exports without any usage
+           */
+          unusedExports?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid CommonJS `require` calls and `module.exports` or `exports.*`.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-commonjs.md
+   */
+  'eslint-plugin-import/no-commonjs'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid AMD `require` and `define` calls.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-amd.md
+   */
+  'eslint-plugin-import/no-amd'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid repeated import of the same module in multiple places.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-duplicates.md
+   */
+  'eslint-plugin-import/no-duplicates'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          considerQueryString?: boolean;
+          'prefer-inline'?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Ensure all imports appear before other statements.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/first.md
+   */
+  'eslint-plugin-import/first'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce the maximum number of dependencies a module can have.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/max-dependencies.md
+   */
+  'eslint-plugin-import/max-dependencies'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          max?: number;
+          ignoreTypeImports?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid the use of extraneous packages.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-extraneous-dependencies.md
+   */
+  'eslint-plugin-import/no-extraneous-dependencies'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          devDependencies?: boolean | unknown[];
+          optionalDependencies?: boolean | unknown[];
+          peerDependencies?: boolean | unknown[];
+          bundledDependencies?: boolean | unknown[];
+          packageDir?: string | unknown[];
+          includeInternal?: boolean;
+          includeTypes?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid import of modules using absolute paths.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-absolute-path.md
+   */
+  'eslint-plugin-import/no-absolute-path'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          commonjs?: boolean;
+          amd?: boolean;
+          esmodule?: boolean;
+          /**
+           * @minItems 1
+           */
+          ignore?: [string, ...string[]];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid Node.js builtin modules.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-nodejs-modules.md
+   */
+  'eslint-plugin-import/no-nodejs-modules'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allow?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid webpack loader syntax in imports.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-webpack-loader-syntax.md
+   */
+  'eslint-plugin-import/no-webpack-loader-syntax'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce a convention in module import order.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/order.md
+   */
+  'eslint-plugin-import/order'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          groups?: unknown[];
+          pathGroupsExcludedImportTypes?: unknown[];
+          distinctGroup?: boolean;
+          pathGroups?: {
+            pattern: string;
+            patternOptions?: {
+              [k: string]: unknown | undefined;
+            };
+            group: 'builtin' | 'external' | 'internal' | 'unknown' | 'parent' | 'sibling' | 'index' | 'object' | 'type';
+            position?: 'after' | 'before';
+          }[];
+          'newlines-between'?: 'ignore' | 'always' | 'always-and-inside-groups' | 'never';
+          alphabetize?: {
+            caseInsensitive?: boolean;
+            order?: 'ignore' | 'asc' | 'desc';
+            orderImportKind?: 'ignore' | 'asc' | 'desc';
+          };
+          warnOnUnassignedImports?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce a newline after import statements.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/newline-after-import.md
+   */
+  'eslint-plugin-import/newline-after-import'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          count?: number;
+          exactCount?: boolean;
+          considerComments?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer a default export if module exports a single name or multiple names.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/prefer-default-export.md
+   */
+  'eslint-plugin-import/prefer-default-export'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          target?: 'single' | 'any';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid default exports.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-default-export.md
+   */
+  'eslint-plugin-import/no-default-export'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid named exports.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-named-export.md
+   */
+  'eslint-plugin-import/no-named-export'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid `require()` calls with expressions.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-dynamic-require.md
+   */
+  'eslint-plugin-import/no-dynamic-require'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          esmodule?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid potentially ambiguous parse goal (`script` vs. `module`).
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/unambiguous.md
+   */
+  'eslint-plugin-import/unambiguous'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid unassigned imports
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-unassigned-import.md
+   */
+  'eslint-plugin-import/no-unassigned-import'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          devDependencies?: boolean | unknown[];
+          optionalDependencies?: boolean | unknown[];
+          peerDependencies?: boolean | unknown[];
+          allow?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid unnecessary path segments in import and require statements.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-useless-path-segments.md
+   */
+  'eslint-plugin-import/no-useless-path-segments'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          commonjs?: boolean;
+          noUselessIndex?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce a leading comment with the webpackChunkName for dynamic imports.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/dynamic-import-chunkname.md
+   */
+  'eslint-plugin-import/dynamic-import-chunkname'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          importFunctions?: string[];
+          webpackChunknameFormat?: string;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid import statements with CommonJS module.exports.
+   *
+   */
+  'eslint-plugin-import/no-import-module-exports'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          exceptions?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Forbid empty named import blocks.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-empty-named-blocks.md
+   */
+  'eslint-plugin-import/no-empty-named-blocks'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Ensure all exports appear after other statements.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/exports-last.md
+   */
+  'eslint-plugin-import/exports-last'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Forbid imported names marked with `@deprecated` documentation tag.
+   * https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-deprecated.md
+   */
+  'eslint-plugin-import/no-deprecated'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Replaced by `import/first`.
+   * https://github.com/import-js/eslint-plugin-import/blob/7b25c1cb95ee18acc1531002fd343e1e6031f9ed/docs/rules/imports-first.md
+   */
+  'eslint-plugin-import/imports-first'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Improve regexes by making them shorter, consistent, and safer.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/better-regex.md
+   */
+  'eslint-plugin-unicorn/better-regex'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          sortCharacterClasses?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce a specific parameter name in catch clauses.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/catch-error-name.md
+   */
+  'eslint-plugin-unicorn/catch-error-name'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          name?: string;
+          ignore?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Use destructured variables over properties.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/consistent-destructuring.md
+   */
+  'eslint-plugin-unicorn/consistent-destructuring'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer consistent types when spreading a ternary in an array literal.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/consistent-empty-array-spread.md
+   */
+  'eslint-plugin-unicorn/consistent-empty-array-spread'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Move function definitions to the highest possible scope.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/consistent-function-scoping.md
+   */
+  'eslint-plugin-unicorn/consistent-function-scoping'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          checkArrowFunctions?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce correct `Error` subclassing.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/custom-error-definition.md
+   */
+  'eslint-plugin-unicorn/custom-error-definition'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce no spaces between braces.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/empty-brace-spaces.md
+   */
+  'eslint-plugin-unicorn/empty-brace-spaces'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce passing a `message` value when creating a built-in error.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/error-message.md
+   */
+  'eslint-plugin-unicorn/error-message'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require escape sequences to use uppercase values.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/escape-case.md
+   */
+  'eslint-plugin-unicorn/escape-case'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Add expiration conditions to TODO comments.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/expiring-todo-comments.md
+   */
+  'eslint-plugin-unicorn/expiring-todo-comments'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          terms?: string[];
+          ignore?: unknown[];
+          ignoreDatesOnPullRequests?: boolean;
+          allowWarningComments?: boolean;
+          date?: string;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce explicitly comparing the `length` or `size` property of a value.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/explicit-length-check.md
+   */
+  'eslint-plugin-unicorn/explicit-length-check'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          'non-zero'?: 'greater-than' | 'not-equal';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce a case style for filenames.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/filename-case.md
+   */
+  'eslint-plugin-unicorn/filename-case'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce specific import styles per module.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/import-style.md
+   */
+  'eslint-plugin-unicorn/import-style'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce the use of `new` for all builtins, except `String`, `Number`, `Boolean`, `Symbol` and `BigInt`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/new-for-builtins.md
+   */
+  'eslint-plugin-unicorn/new-for-builtins'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce specifying rules to disable in `eslint-disable` comments.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-abusive-eslint-disable.md
+   */
+  'eslint-plugin-unicorn/no-abusive-eslint-disable'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow anonymous functions and classes as the default export.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-anonymous-default-export.md
+   */
+  'eslint-plugin-unicorn/no-anonymous-default-export'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prevent passing a function reference directly to iterator methods.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-array-callback-reference.md
+   */
+  'eslint-plugin-unicorn/no-array-callback-reference'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `for…of` over the `forEach` method.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-array-for-each.md
+   */
+  'eslint-plugin-unicorn/no-array-for-each'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow using the `this` argument in array methods.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-array-method-this-argument.md
+   */
+  'eslint-plugin-unicorn/no-array-method-this-argument'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce combining multiple `Array#push()` into one call.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-array-push-push.md
+   */
+  'eslint-plugin-unicorn/no-array-push-push'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignore?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow `Array#reduce()` and `Array#reduceRight()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-array-reduce.md
+   */
+  'eslint-plugin-unicorn/no-array-reduce'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowSimpleOperations?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow member access from await expression.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-await-expression-member.md
+   */
+  'eslint-plugin-unicorn/no-await-expression-member'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow using `await` in `Promise` method parameters.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-await-in-promise-methods.md
+   */
+  'eslint-plugin-unicorn/no-await-in-promise-methods'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Do not use leading/trailing space between `console.log` parameters.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-console-spaces.md
+   */
+  'eslint-plugin-unicorn/no-console-spaces'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Do not use `document.cookie` directly.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-document-cookie.md
+   */
+  'eslint-plugin-unicorn/no-document-cookie'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow empty files.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-empty-file.md
+   */
+  'eslint-plugin-unicorn/no-empty-file'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Do not use a `for` loop that can be replaced with a `for-of` loop.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-for-loop.md
+   */
+  'eslint-plugin-unicorn/no-for-loop'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce the use of Unicode escapes instead of hexadecimal escapes.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-hex-escape.md
+   */
+  'eslint-plugin-unicorn/no-hex-escape'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require `Array.isArray()` instead of `instanceof Array`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-instanceof-array.md
+   */
+  'eslint-plugin-unicorn/no-instanceof-array'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow invalid options in `fetch()` and `new Request()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-invalid-fetch-options.md
+   */
+  'eslint-plugin-unicorn/no-invalid-fetch-options'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prevent calling `EventTarget#removeEventListener()` with the result of an expression.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-invalid-remove-event-listener.md
+   */
+  'eslint-plugin-unicorn/no-invalid-remove-event-listener'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow identifiers starting with `new` or `class`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-keyword-prefix.md
+   */
+  'eslint-plugin-unicorn/no-keyword-prefix'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * @minItems 1
+           * @maxItems 1
+           */
+          disallowedPrefixes?: [string];
+          checkProperties?: boolean;
+          onlyCamelCase?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow `if` statements as the only statement in `if` blocks without `else`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-lonely-if.md
+   */
+  'eslint-plugin-unicorn/no-lonely-if'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow a magic number as the `depth` argument in `Array#flat(…).`
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-magic-array-flat-depth.md
+   */
+  'eslint-plugin-unicorn/no-magic-array-flat-depth'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow negated conditions.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-negated-condition.md
+   */
+  'eslint-plugin-unicorn/no-negated-condition'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow negated expression in equality check.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-negation-in-equality-check.md
+   */
+  'eslint-plugin-unicorn/no-negation-in-equality-check'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow nested ternary expressions.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-nested-ternary.md
+   */
+  'eslint-plugin-unicorn/no-nested-ternary'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow `new Array()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-new-array.md
+   */
+  'eslint-plugin-unicorn/no-new-array'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce the use of `Buffer.from()` and `Buffer.alloc()` instead of the deprecated `new Buffer()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-new-buffer.md
+   */
+  'eslint-plugin-unicorn/no-new-buffer'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow the use of the `null` literal.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-null.md
+   */
+  'eslint-plugin-unicorn/no-null'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          checkStrictEquality?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow the use of objects as default parameters.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-object-as-default-parameter.md
+   */
+  'eslint-plugin-unicorn/no-object-as-default-parameter'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow `process.exit()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-process-exit.md
+   */
+  'eslint-plugin-unicorn/no-process-exit'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow passing single-element arrays to `Promise` methods.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-single-promise-in-promise-methods.md
+   */
+  'eslint-plugin-unicorn/no-single-promise-in-promise-methods'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow classes that only have static members.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-static-only-class.md
+   */
+  'eslint-plugin-unicorn/no-static-only-class'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow `then` property.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-thenable.md
+   */
+  'eslint-plugin-unicorn/no-thenable'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow assigning `this` to a variable.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-this-assignment.md
+   */
+  'eslint-plugin-unicorn/no-this-assignment'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow comparing `undefined` using `typeof`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-typeof-undefined.md
+   */
+  'eslint-plugin-unicorn/no-typeof-undefined'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          checkGlobalVariables?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow awaiting non-promise values.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-unnecessary-await.md
+   */
+  'eslint-plugin-unicorn/no-unnecessary-await'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce the use of built-in methods instead of unnecessary polyfills.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-unnecessary-polyfills.md
+   */
+  'eslint-plugin-unicorn/no-unnecessary-polyfills'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          targets?:
+            | string
+            | unknown[]
+            | {
+                [k: string]: unknown | undefined;
+              };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow unreadable array destructuring.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-unreadable-array-destructuring.md
+   */
+  'eslint-plugin-unicorn/no-unreadable-array-destructuring'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unreadable IIFEs.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-unreadable-iife.md
+   */
+  'eslint-plugin-unicorn/no-unreadable-iife'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unused object properties.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-unused-properties.md
+   */
+  'eslint-plugin-unicorn/no-unused-properties'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow useless fallback when spreading in object literals.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-useless-fallback-in-spread.md
+   */
+  'eslint-plugin-unicorn/no-useless-fallback-in-spread'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow useless array length check.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-useless-length-check.md
+   */
+  'eslint-plugin-unicorn/no-useless-length-check'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow returning/yielding `Promise.resolve/reject()` in async functions or promise callbacks
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-useless-promise-resolve-reject.md
+   */
+  'eslint-plugin-unicorn/no-useless-promise-resolve-reject'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unnecessary spread.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-useless-spread.md
+   */
+  'eslint-plugin-unicorn/no-useless-spread'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow useless case in switch statements.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-useless-switch-case.md
+   */
+  'eslint-plugin-unicorn/no-useless-switch-case'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow useless `undefined`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-useless-undefined.md
+   */
+  'eslint-plugin-unicorn/no-useless-undefined'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          checkArguments?: boolean;
+          checkArrowFunctionBody?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow number literals with zero fractions or dangling dots.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/no-zero-fractions.md
+   */
+  'eslint-plugin-unicorn/no-zero-fractions'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce proper case for numeric literals.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/number-literal-case.md
+   */
+  'eslint-plugin-unicorn/number-literal-case'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce the style of numeric separators by correctly grouping digits.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/numeric-separators-style.md
+   */
+  'eslint-plugin-unicorn/numeric-separators-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          binary?: {
+            onlyIfContainsSeparator?: boolean;
+            minimumDigits?: number;
+            groupLength?: number;
+          };
+          octal?: {
+            onlyIfContainsSeparator?: boolean;
+            minimumDigits?: number;
+            groupLength?: number;
+          };
+          hexadecimal?: {
+            onlyIfContainsSeparator?: boolean;
+            minimumDigits?: number;
+            groupLength?: number;
+          };
+          number?: {
+            onlyIfContainsSeparator?: boolean;
+            minimumDigits?: number;
+            groupLength?: number;
+          };
+          onlyIfContainsSeparator?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer `.addEventListener()` and `.removeEventListener()` over `on`-functions.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-add-event-listener.md
+   */
+  'eslint-plugin-unicorn/prefer-add-event-listener'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          excludedPackages?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer `.find(…)` and `.findLast(…)` over the first or last element from `.filter(…)`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-array-find.md
+   */
+  'eslint-plugin-unicorn/prefer-array-find'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          checkFromLast?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer `.flatMap(…)` over `.map(…).flat()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-array-flat-map.md
+   */
+  'eslint-plugin-unicorn/prefer-array-flat-map'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `Array#flat()` over legacy techniques to flatten arrays.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-array-flat.md
+   */
+  'eslint-plugin-unicorn/prefer-array-flat'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          functions?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer `Array#{indexOf,lastIndexOf}()` over `Array#{findIndex,findLastIndex}()` when looking for the index of an item.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-array-index-of.md
+   */
+  'eslint-plugin-unicorn/prefer-array-index-of'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `.some(…)` over `.filter(…).length` check and `.{find,findLast,findIndex,findLastIndex}(…)`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-array-some.md
+   */
+  'eslint-plugin-unicorn/prefer-array-some'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `.at()` method for index access and `String#charAt()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-at.md
+   */
+  'eslint-plugin-unicorn/prefer-at'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          getLastElementFunctions?: unknown[];
+          checkAllIndexAccess?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer `Blob#arrayBuffer()` over `FileReader#readAsArrayBuffer(…)` and `Blob#text()` over `FileReader#readAsText(…)`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-blob-reading-methods.md
+   */
+  'eslint-plugin-unicorn/prefer-blob-reading-methods'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `String#codePointAt(…)` over `String#charCodeAt(…)` and `String.fromCodePoint(…)` over `String.fromCharCode(…)`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-code-point.md
+   */
+  'eslint-plugin-unicorn/prefer-code-point'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `Date.now()` to get the number of milliseconds since the Unix Epoch.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-date-now.md
+   */
+  'eslint-plugin-unicorn/prefer-date-now'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer default parameters over reassignment.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-default-parameters.md
+   */
+  'eslint-plugin-unicorn/prefer-default-parameters'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `Node#append()` over `Node#appendChild()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-dom-node-append.md
+   */
+  'eslint-plugin-unicorn/prefer-dom-node-append'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer using `.dataset` on DOM elements over calling attribute methods.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-dom-node-dataset.md
+   */
+  'eslint-plugin-unicorn/prefer-dom-node-dataset'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `childNode.remove()` over `parentNode.removeChild(childNode)`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-dom-node-remove.md
+   */
+  'eslint-plugin-unicorn/prefer-dom-node-remove'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `.textContent` over `.innerText`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-dom-node-text-content.md
+   */
+  'eslint-plugin-unicorn/prefer-dom-node-text-content'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `EventTarget` over `EventEmitter`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-event-target.md
+   */
+  'eslint-plugin-unicorn/prefer-event-target'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `export…from` when re-exporting.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-export-from.md
+   */
+  'eslint-plugin-unicorn/prefer-export-from'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreUsedVariables?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer `.includes()` over `.indexOf()`, `.lastIndexOf()`, and `Array#some()` when checking for existence or non-existence.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-includes.md
+   */
+  'eslint-plugin-unicorn/prefer-includes'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer reading a JSON file as a buffer.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-json-parse-buffer.md
+   */
+  'eslint-plugin-unicorn/prefer-json-parse-buffer'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `KeyboardEvent#key` over `KeyboardEvent#keyCode`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-keyboard-event-key.md
+   */
+  'eslint-plugin-unicorn/prefer-keyboard-event-key'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer using a logical operator over a ternary.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-logical-operator-over-ternary.md
+   */
+  'eslint-plugin-unicorn/prefer-logical-operator-over-ternary'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce the use of `Math.trunc` instead of bitwise operators.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-math-trunc.md
+   */
+  'eslint-plugin-unicorn/prefer-math-trunc'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `.before()` over `.insertBefore()`, `.replaceWith()` over `.replaceChild()`, prefer one of `.before()`, `.after()`, `.append()` or `.prepend()` over `insertAdjacentText()` and `insertAdjacentElement()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-modern-dom-apis.md
+   */
+  'eslint-plugin-unicorn/prefer-modern-dom-apis'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer modern `Math` APIs over legacy patterns.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-modern-math-apis.md
+   */
+  'eslint-plugin-unicorn/prefer-modern-math-apis'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer JavaScript modules (ESM) over CommonJS.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-module.md
+   */
+  'eslint-plugin-unicorn/prefer-module'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer using `String`, `Number`, `BigInt`, `Boolean`, and `Symbol` directly.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-native-coercion-functions.md
+   */
+  'eslint-plugin-unicorn/prefer-native-coercion-functions'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer negative index over `.length - index` when possible.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-negative-index.md
+   */
+  'eslint-plugin-unicorn/prefer-negative-index'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer using the `node:` protocol when importing Node.js builtin modules.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-node-protocol.md
+   */
+  'eslint-plugin-unicorn/prefer-node-protocol'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `Number` static properties over global ones.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-number-properties.md
+   */
+  'eslint-plugin-unicorn/prefer-number-properties'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          checkInfinity?: boolean;
+          checkNaN?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer using `Object.fromEntries(…)` to transform a list of key-value pairs into an object.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-object-from-entries.md
+   */
+  'eslint-plugin-unicorn/prefer-object-from-entries'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          functions?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer omitting the `catch` binding parameter.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-optional-catch-binding.md
+   */
+  'eslint-plugin-unicorn/prefer-optional-catch-binding'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer borrowing methods from the prototype instead of the instance.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-prototype-methods.md
+   */
+  'eslint-plugin-unicorn/prefer-prototype-methods'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `.querySelector()` over `.getElementById()`, `.querySelectorAll()` over `.getElementsByClassName()` and `.getElementsByTagName()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-query-selector.md
+   */
+  'eslint-plugin-unicorn/prefer-query-selector'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `Reflect.apply()` over `Function#apply()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-reflect-apply.md
+   */
+  'eslint-plugin-unicorn/prefer-reflect-apply'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `RegExp#test()` over `String#match()` and `RegExp#exec()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-regexp-test.md
+   */
+  'eslint-plugin-unicorn/prefer-regexp-test'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `Set#has()` over `Array#includes()` when checking for existence or non-existence.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-set-has.md
+   */
+  'eslint-plugin-unicorn/prefer-set-has'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer using `Set#size` instead of `Array#length`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-set-size.md
+   */
+  'eslint-plugin-unicorn/prefer-set-size'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer the spread operator over `Array.from(…)`, `Array#concat(…)`, `Array#{slice,toSpliced}()` and `String#split('')`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-spread.md
+   */
+  'eslint-plugin-unicorn/prefer-spread'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer using the `String.raw` tag to avoid escaping `\`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-string-raw.md
+   */
+  'eslint-plugin-unicorn/prefer-string-raw'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `String#replaceAll()` over regex searches with the global flag.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-string-replace-all.md
+   */
+  'eslint-plugin-unicorn/prefer-string-replace-all'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `String#slice()` over `String#substr()` and `String#substring()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-string-slice.md
+   */
+  'eslint-plugin-unicorn/prefer-string-slice'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-string-starts-ends-with.md
+   */
+  'eslint-plugin-unicorn/prefer-string-starts-ends-with'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer `String#trimStart()` / `String#trimEnd()` over `String#trimLeft()` / `String#trimRight()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-string-trim-start-end.md
+   */
+  'eslint-plugin-unicorn/prefer-string-trim-start-end'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prefer using `structuredClone` to create a deep clone.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-structured-clone.md
+   */
+  'eslint-plugin-unicorn/prefer-structured-clone'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          functions?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer `switch` over multiple `else-if`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-switch.md
+   */
+  'eslint-plugin-unicorn/prefer-switch'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          minimumCases?: number;
+          emptyDefaultCase?: 'no-default-comment' | 'do-nothing-comment' | 'no-default-case';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer ternary expressions over simple `if-else` statements.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-ternary.md
+   */
+  'eslint-plugin-unicorn/prefer-ternary'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Prefer top-level await over top-level promises and async function calls.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-top-level-await.md
+   */
+  'eslint-plugin-unicorn/prefer-top-level-await'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce throwing `TypeError` in type checking conditions.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prefer-type-error.md
+   */
+  'eslint-plugin-unicorn/prefer-type-error'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Prevent abbreviations.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/prevent-abbreviations.md
+   */
+  'eslint-plugin-unicorn/prevent-abbreviations'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent relative URL style.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/relative-url-style.md
+   */
+  'eslint-plugin-unicorn/relative-url-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce using the separator argument with `Array#join()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/require-array-join-separator.md
+   */
+  'eslint-plugin-unicorn/require-array-join-separator'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce using the digits argument with `Number#toFixed()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/require-number-to-fixed-digits-argument.md
+   */
+  'eslint-plugin-unicorn/require-number-to-fixed-digits-argument'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce using the `targetOrigin` argument with `window.postMessage()`.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/require-post-message-target-origin.md
+   */
+  'eslint-plugin-unicorn/require-post-message-target-origin'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce better string content.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/string-content.md
+   */
+  'eslint-plugin-unicorn/string-content'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          patterns?: {
+            [k: string]:
+              | string
+              | {
+                  suggest: string;
+                  fix?: boolean;
+                  message?: string;
+                }
+              | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent brace style for `case` clauses.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/switch-case-braces.md
+   */
+  'eslint-plugin-unicorn/switch-case-braces'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Fix whitespace-insensitive template indentation.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/template-indent.md
+   */
+  'eslint-plugin-unicorn/template-indent'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          indent?: string | number;
+          tags?: string[];
+          functions?: string[];
+          selectors?: string[];
+          comments?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent case for text encoding identifiers.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/text-encoding-identifier-case.md
+   */
+  'eslint-plugin-unicorn/text-encoding-identifier-case'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require `new` when creating an error.
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/rules/throw-new-error.md
+   */
+  'eslint-plugin-unicorn/throw-new-error'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#import-index
+   */
+  'eslint-plugin-unicorn/import-index'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#no-array-instanceof
+   */
+  'eslint-plugin-unicorn/no-array-instanceof'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#no-fn-reference-in-iterator
+   */
+  'eslint-plugin-unicorn/no-fn-reference-in-iterator'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#no-reduce
+   */
+  'eslint-plugin-unicorn/no-reduce'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#no-unsafe-regex
+   */
+  'eslint-plugin-unicorn/no-unsafe-regex'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-dataset
+   */
+  'eslint-plugin-unicorn/prefer-dataset'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-event-key
+   */
+  'eslint-plugin-unicorn/prefer-event-key'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-exponentiation-operator
+   */
+  'eslint-plugin-unicorn/prefer-exponentiation-operator'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-flat-map
+   */
+  'eslint-plugin-unicorn/prefer-flat-map'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-node-append
+   */
+  'eslint-plugin-unicorn/prefer-node-append'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-node-remove
+   */
+  'eslint-plugin-unicorn/prefer-node-remove'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-object-has-own
+   */
+  'eslint-plugin-unicorn/prefer-object-has-own'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-replace-all
+   */
+  'eslint-plugin-unicorn/prefer-replace-all'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-starts-ends-with
+   */
+  'eslint-plugin-unicorn/prefer-starts-ends-with'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-text-content
+   */
+  'eslint-plugin-unicorn/prefer-text-content'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#prefer-trim-start-end
+   */
+  'eslint-plugin-unicorn/prefer-trim-start-end'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   *
+   * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v54.0.0/docs/deprecated-rules.md#regex-shorthand
+   */
+  'eslint-plugin-unicorn/regex-shorthand'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce linebreaks after opening and before closing array brackets in `<template>`
+   * https://eslint.vuejs.org/rules/array-bracket-newline.html
+   */
+  'eslint-plugin-vue/array-bracket-newline'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent spacing inside array brackets in `<template>`
+   * https://eslint.vuejs.org/rules/array-bracket-spacing.html
+   */
+  'eslint-plugin-vue/array-bracket-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce line breaks after each array element in `<template>`
+   * https://eslint.vuejs.org/rules/array-element-newline.html
+   */
+  'eslint-plugin-vue/array-element-newline'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent spacing before and after the arrow in arrow functions in `<template>`
+   * https://eslint.vuejs.org/rules/arrow-spacing.html
+   */
+  'eslint-plugin-vue/arrow-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          before?: boolean;
+          after?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce attribute naming style on custom components in template
+   * https://eslint.vuejs.org/rules/attribute-hyphenation.html
+   */
+  'eslint-plugin-vue/attribute-hyphenation'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce order of attributes
+   * https://eslint.vuejs.org/rules/attributes-order.html
+   */
+  'eslint-plugin-vue/attributes-order'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          order?: (
+            | (
+                | 'DEFINITION'
+                | 'LIST_RENDERING'
+                | 'CONDITIONALS'
+                | 'RENDER_MODIFIERS'
+                | 'GLOBAL'
+                | 'UNIQUE'
+                | 'SLOT'
+                | 'TWO_WAY_BINDING'
+                | 'OTHER_DIRECTIVES'
+                | 'OTHER_ATTR'
+                | 'ATTR_STATIC'
+                | 'ATTR_DYNAMIC'
+                | 'ATTR_SHORTHAND_BOOL'
+                | 'EVENTS'
+                | 'CONTENT'
+              )
+            | (
+                | 'DEFINITION'
+                | 'LIST_RENDERING'
+                | 'CONDITIONALS'
+                | 'RENDER_MODIFIERS'
+                | 'GLOBAL'
+                | 'UNIQUE'
+                | 'SLOT'
+                | 'TWO_WAY_BINDING'
+                | 'OTHER_DIRECTIVES'
+                | 'OTHER_ATTR'
+                | 'ATTR_STATIC'
+                | 'ATTR_DYNAMIC'
+                | 'ATTR_SHORTHAND_BOOL'
+                | 'EVENTS'
+                | 'CONTENT'
+              )[]
+          )[];
+          alphabetical?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow use other than available `lang`
+   * https://eslint.vuejs.org/rules/block-lang.html
+   */
+  'eslint-plugin-vue/block-lang'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce order of component top-level elements
+   * https://eslint.vuejs.org/rules/block-order.html
+   */
+  'eslint-plugin-vue/block-order'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          order?: (string | string[])[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow or enforce spaces inside of blocks after opening block and before closing block in `<template>`
+   * https://eslint.vuejs.org/rules/block-spacing.html
+   */
+  'eslint-plugin-vue/block-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce line breaks after opening and before closing block-level tags
+   * https://eslint.vuejs.org/rules/block-tag-newline.html
+   */
+  'eslint-plugin-vue/block-tag-newline'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          singleline?: 'always' | 'never' | 'consistent' | 'ignore';
+          multiline?: 'always' | 'never' | 'consistent' | 'ignore';
+          maxEmptyLines?: number;
+          blocks?: {
+            /**
+             * This interface was referenced by `undefined`'s JSON-Schema definition
+             * via the `patternProperty` "^(?:\S+)$".
+             */
+            [k: string]:
+              | {
+                  singleline?: 'always' | 'never' | 'consistent' | 'ignore';
+                  multiline?: 'always' | 'never' | 'consistent' | 'ignore';
+                  maxEmptyLines?: number;
+                }
+              | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent brace style for blocks in `<template>`
+   * https://eslint.vuejs.org/rules/brace-style.html
+   */
+  'eslint-plugin-vue/brace-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce camelcase naming convention in `<template>`
+   * https://eslint.vuejs.org/rules/camelcase.html
+   */
+  'eslint-plugin-vue/camelcase'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreDestructuring?: boolean;
+          ignoreImports?: boolean;
+          ignoreGlobals?: boolean;
+          properties?: 'always' | 'never';
+          /**
+           * @minItems 0
+           */
+          allow?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require or disallow trailing commas in `<template>`
+   * https://eslint.vuejs.org/rules/comma-dangle.html
+   */
+  'eslint-plugin-vue/comma-dangle'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent spacing before and after commas in `<template>`
+   * https://eslint.vuejs.org/rules/comma-spacing.html
+   */
+  'eslint-plugin-vue/comma-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          before?: boolean;
+          after?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent comma style in `<template>`
+   * https://eslint.vuejs.org/rules/comma-style.html
+   */
+  'eslint-plugin-vue/comma-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * support comment-directives in `<template>`
+   * https://eslint.vuejs.org/rules/comment-directive.html
+   */
+  'eslint-plugin-vue/comment-directive'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          reportUnusedDisableDirectives?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce component API style
+   * https://eslint.vuejs.org/rules/component-api-style.html
+   */
+  'eslint-plugin-vue/component-api-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce specific casing for component definition name
+   * https://eslint.vuejs.org/rules/component-definition-name-casing.html
+   */
+  'eslint-plugin-vue/component-definition-name-casing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce specific casing for the component naming style in template
+   * https://eslint.vuejs.org/rules/component-name-in-template-casing.html
+   */
+  'eslint-plugin-vue/component-name-in-template-casing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce the casing of component name in `components` options
+   * https://eslint.vuejs.org/rules/component-options-name-casing.html
+   */
+  'eslint-plugin-vue/component-options-name-casing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce order of component top-level elements
+   * https://eslint.vuejs.org/rules/component-tags-order.html
+   */
+  'eslint-plugin-vue/component-tags-order'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          order?: (string | string[])[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce specific casing for custom event name
+   * https://eslint.vuejs.org/rules/custom-event-name-casing.html
+   */
+  'eslint-plugin-vue/custom-event-name-casing'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce declaration style of `defineEmits`
+   * https://eslint.vuejs.org/rules/define-emits-declaration.html
+   */
+  'eslint-plugin-vue/define-emits-declaration'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce order of `defineEmits` and `defineProps` compiler macros
+   * https://eslint.vuejs.org/rules/define-macros-order.html
+   */
+  'eslint-plugin-vue/define-macros-order'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          order?: ('defineEmits' | 'defineProps' | 'defineOptions' | 'defineSlots' | 'defineModel')[];
+          defineExposeLast?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce declaration style of `defineProps`
+   * https://eslint.vuejs.org/rules/define-props-declaration.html
+   */
+  'eslint-plugin-vue/define-props-declaration'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent newlines before and after dots in `<template>`
+   * https://eslint.vuejs.org/rules/dot-location.html
+   */
+  'eslint-plugin-vue/dot-location'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce dot notation whenever possible in `<template>`
+   * https://eslint.vuejs.org/rules/dot-notation.html
+   */
+  'eslint-plugin-vue/dot-notation'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowKeywords?: boolean;
+          allowPattern?: string;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce or forbid the use of the `scoped` and `module` attributes in SFC top level style tags
+   * https://eslint.vuejs.org/rules/enforce-style-attribute.html
+   */
+  'eslint-plugin-vue/enforce-style-attribute'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * @minItems 1
+           */
+          allow?: ['plain' | 'scoped' | 'module', ...('plain' | 'scoped' | 'module')[]];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require the use of `===` and `!==` in `<template>`
+   * https://eslint.vuejs.org/rules/eqeqeq.html
+   */
+  'eslint-plugin-vue/eqeqeq'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce the location of first attribute
+   * https://eslint.vuejs.org/rules/first-attribute-linebreak.html
+   */
+  'eslint-plugin-vue/first-attribute-linebreak'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          multiline?: 'below' | 'beside' | 'ignore';
+          singleline?: 'below' | 'beside' | 'ignore';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require or disallow spacing between function identifiers and their invocations in `<template>`
+   * https://eslint.vuejs.org/rules/func-call-spacing.html
+   */
+  'eslint-plugin-vue/func-call-spacing'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow usage of button without an explicit type attribute
+   * https://eslint.vuejs.org/rules/html-button-has-type.html
+   */
+  'eslint-plugin-vue/html-button-has-type'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          button?: boolean;
+          submit?: boolean;
+          reset?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require or disallow a line break before tag's closing brackets
+   * https://eslint.vuejs.org/rules/html-closing-bracket-newline.html
+   */
+  'eslint-plugin-vue/html-closing-bracket-newline'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          singleline?: 'always' | 'never';
+          multiline?: 'always' | 'never';
+          selfClosingTag?: {
+            singleline?: 'always' | 'never';
+            multiline?: 'always' | 'never';
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require or disallow a space before tag's closing brackets
+   * https://eslint.vuejs.org/rules/html-closing-bracket-spacing.html
+   */
+  'eslint-plugin-vue/html-closing-bracket-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          startTag?: 'always' | 'never';
+          endTag?: 'always' | 'never';
+          selfClosingTag?: 'always' | 'never';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce unified line brake in HTML comments
+   * https://eslint.vuejs.org/rules/html-comment-content-newline.html
+   */
+  'eslint-plugin-vue/html-comment-content-newline'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce unified spacing in HTML comments
+   * https://eslint.vuejs.org/rules/html-comment-content-spacing.html
+   */
+  'eslint-plugin-vue/html-comment-content-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce consistent indentation in HTML comments
+   * https://eslint.vuejs.org/rules/html-comment-indent.html
+   */
+  'eslint-plugin-vue/html-comment-indent'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce end tag style
+   * https://eslint.vuejs.org/rules/html-end-tags.html
+   */
+  'eslint-plugin-vue/html-end-tags'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce consistent indentation in `<template>`
+   * https://eslint.vuejs.org/rules/html-indent.html
+   */
+  'eslint-plugin-vue/html-indent'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce quotes style of HTML attributes
+   * https://eslint.vuejs.org/rules/html-quotes.html
+   */
+  'eslint-plugin-vue/html-quotes'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce self-closing style
+   * https://eslint.vuejs.org/rules/html-self-closing.html
+   */
+  'eslint-plugin-vue/html-self-closing'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * prevent variables used in JSX to be marked as unused
+   * https://eslint.vuejs.org/rules/jsx-uses-vars.html
+   */
+  'eslint-plugin-vue/jsx-uses-vars'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent spacing between keys and values in object literal properties in `<template>`
+   * https://eslint.vuejs.org/rules/key-spacing.html
+   */
+  'eslint-plugin-vue/key-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent spacing before and after keywords in `<template>`
+   * https://eslint.vuejs.org/rules/keyword-spacing.html
+   */
+  'eslint-plugin-vue/keyword-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          before?: boolean;
+          after?: boolean;
+          overrides?: {
+            abstract?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            as?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            async?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            await?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            boolean?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            break?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            byte?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            case?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            catch?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            char?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            class?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            const?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            continue?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            debugger?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            default?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            delete?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            do?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            double?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            else?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            enum?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            export?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            extends?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            false?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            final?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            finally?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            float?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            for?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            from?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            function?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            get?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            goto?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            if?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            implements?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            import?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            in?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            instanceof?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            int?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            interface?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            let?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            long?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            native?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            new?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            null?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            of?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            package?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            private?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            protected?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            public?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            return?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            set?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            short?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            static?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            super?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            switch?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            synchronized?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            this?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            throw?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            throws?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            transient?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            true?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            try?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            typeof?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            var?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            void?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            volatile?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            while?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            with?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            yield?: {
+              before?: boolean;
+              after?: boolean;
+            };
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require component name property to match its file name
+   * https://eslint.vuejs.org/rules/match-component-file-name.html
+   */
+  'eslint-plugin-vue/match-component-file-name'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          extensions?: string[];
+          shouldMatchCase?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require the registered component name to match the imported component name
+   * https://eslint.vuejs.org/rules/match-component-import-name.html
+   */
+  'eslint-plugin-vue/match-component-import-name'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce the maximum number of attributes per line
+   * https://eslint.vuejs.org/rules/max-attributes-per-line.html
+   */
+  'eslint-plugin-vue/max-attributes-per-line'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          singleline?:
+            | number
+            | {
+                max?: number;
+              };
+          multiline?:
+            | number
+            | {
+                max?: number;
+              };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce a maximum line length in `.vue` files
+   * https://eslint.vuejs.org/rules/max-len.html
+   */
+  'eslint-plugin-vue/max-len'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce maximum number of lines in Vue SFC blocks
+   * https://eslint.vuejs.org/rules/max-lines-per-block.html
+   */
+  'eslint-plugin-vue/max-lines-per-block'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          style?: number;
+          template?: number;
+          script?: number;
+          skipBlankLines?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require component names to be always multi-word
+   * https://eslint.vuejs.org/rules/multi-word-component-names.html
+   */
+  'eslint-plugin-vue/multi-word-component-names'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignores?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require a line break before and after the contents of a multiline element
+   * https://eslint.vuejs.org/rules/multiline-html-element-content-newline.html
+   */
+  'eslint-plugin-vue/multiline-html-element-content-newline'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreWhenEmpty?: boolean;
+          ignores?: string[];
+          allowEmptyLines?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce newlines between operands of ternary expressions in `<template>`
+   * https://eslint.vuejs.org/rules/multiline-ternary.html
+   */
+  'eslint-plugin-vue/multiline-ternary'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce unified spacing in mustache interpolations
+   * https://eslint.vuejs.org/rules/mustache-interpolation-spacing.html
+   */
+  'eslint-plugin-vue/mustache-interpolation-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce new lines between multi-line properties in Vue components
+   * https://eslint.vuejs.org/rules/new-line-between-multi-line-property.html
+   */
+  'eslint-plugin-vue/new-line-between-multi-line-property'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          minLineOfMultilineProperty?: number;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce Promise or callback style in `nextTick`
+   * https://eslint.vuejs.org/rules/next-tick-style.html
+   */
+  'eslint-plugin-vue/next-tick-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow using arrow functions to define watcher
+   * https://eslint.vuejs.org/rules/no-arrow-functions-in-watch.html
+   */
+  'eslint-plugin-vue/no-arrow-functions-in-watch'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow asynchronous actions in computed properties
+   * https://eslint.vuejs.org/rules/no-async-in-computed-properties.html
+   */
+  'eslint-plugin-vue/no-async-in-computed-properties'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow the use of bare strings in `<template>`
+   * https://eslint.vuejs.org/rules/no-bare-strings-in-template.html
+   */
+  'eslint-plugin-vue/no-bare-strings-in-template'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowlist?: string[];
+          attributes?: {
+            /**
+             * This interface was referenced by `undefined`'s JSON-Schema definition
+             * via the `patternProperty` "^(?:\S+|/.*\/[a-z]*)$".
+             */
+            [k: string]: string[] | undefined;
+          };
+          directives?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow boolean defaults
+   * https://eslint.vuejs.org/rules/no-boolean-default.html
+   */
+  'eslint-plugin-vue/no-boolean-default'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow element's child contents which would be overwritten by a directive like `v-html` or `v-text`
+   * https://eslint.vuejs.org/rules/no-child-content.html
+   */
+  'eslint-plugin-vue/no-child-content'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * @minItems 1
+           */
+          additionalDirectives?: [string, ...string[]];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow accessing computed properties in `data`.
+   * https://eslint.vuejs.org/rules/no-computed-properties-in-data.html
+   */
+  'eslint-plugin-vue/no-computed-properties-in-data'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow the use of `console` in `<template>`
+   * https://eslint.vuejs.org/rules/no-console.html
+   */
+  'eslint-plugin-vue/no-console'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * @minItems 1
+           */
+          allow?: [string, ...string[]];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow constant expressions in conditions in `<template>`
+   * https://eslint.vuejs.org/rules/no-constant-condition.html
+   */
+  'eslint-plugin-vue/no-constant-condition'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          checkLoops?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow custom modifiers on v-model used on the component
+   * https://eslint.vuejs.org/rules/no-custom-modifiers-on-v-model.html
+   */
+  'eslint-plugin-vue/no-custom-modifiers-on-v-model'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated object declaration on data (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-data-object-declaration.html
+   */
+  'eslint-plugin-vue/no-deprecated-data-object-declaration'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated `destroyed` and `beforeDestroy` lifecycle hooks (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-destroyed-lifecycle.html
+   */
+  'eslint-plugin-vue/no-deprecated-destroyed-lifecycle'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated `$listeners` (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-dollar-listeners-api.html
+   */
+  'eslint-plugin-vue/no-deprecated-dollar-listeners-api'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated `$scopedSlots` (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-dollar-scopedslots-api.html
+   */
+  'eslint-plugin-vue/no-deprecated-dollar-scopedslots-api'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated events api (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-events-api.html
+   */
+  'eslint-plugin-vue/no-deprecated-events-api'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated filters syntax (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-filter.html
+   */
+  'eslint-plugin-vue/no-deprecated-filter'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated the `functional` template (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-functional-template.html
+   */
+  'eslint-plugin-vue/no-deprecated-functional-template'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated the `is` attribute on HTML elements (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-html-element-is.html
+   */
+  'eslint-plugin-vue/no-deprecated-html-element-is'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated `inline-template` attribute (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-inline-template.html
+   */
+  'eslint-plugin-vue/no-deprecated-inline-template'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow deprecated `model` definition (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-model-definition.html
+   */
+  'eslint-plugin-vue/no-deprecated-model-definition'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowVue3Compat?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow deprecated `this` access in props default function (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-props-default-this.html
+   */
+  'eslint-plugin-vue/no-deprecated-props-default-this'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated `tag` property on `RouterLink` (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-router-link-tag-prop.html
+   */
+  'eslint-plugin-vue/no-deprecated-router-link-tag-prop'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * @minItems 1
+           */
+          components?: [string, ...string[]];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow deprecated `scope` attribute (in Vue.js 2.5.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-scope-attribute.html
+   */
+  'eslint-plugin-vue/no-deprecated-scope-attribute'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow deprecated `slot` attribute (in Vue.js 2.6.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html
+   */
+  'eslint-plugin-vue/no-deprecated-slot-attribute'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignore?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow deprecated `slot-scope` attribute (in Vue.js 2.6.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-slot-scope-attribute.html
+   */
+  'eslint-plugin-vue/no-deprecated-slot-scope-attribute'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow use of deprecated `.sync` modifier on `v-bind` directive (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-v-bind-sync.html
+   */
+  'eslint-plugin-vue/no-deprecated-v-bind-sync'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow deprecated `v-is` directive (in Vue.js 3.1.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-v-is.html
+   */
+  'eslint-plugin-vue/no-deprecated-v-is'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated `.native` modifiers (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-v-on-native-modifier.html
+   */
+  'eslint-plugin-vue/no-deprecated-v-on-native-modifier'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated number (keycode) modifiers (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-v-on-number-modifiers.html
+   */
+  'eslint-plugin-vue/no-deprecated-v-on-number-modifiers'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using deprecated `Vue.config.keyCodes` (in Vue.js 3.0.0+)
+   * https://eslint.vuejs.org/rules/no-deprecated-vue-config-keycodes.html
+   */
+  'eslint-plugin-vue/no-deprecated-vue-config-keycodes'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow duplication of field names
+   * https://eslint.vuejs.org/rules/no-dupe-keys.html
+   */
+  'eslint-plugin-vue/no-dupe-keys'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          groups?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow duplicate conditions in `v-if` / `v-else-if` chains
+   * https://eslint.vuejs.org/rules/no-dupe-v-else-if.html
+   */
+  'eslint-plugin-vue/no-dupe-v-else-if'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce `inheritAttrs` to be set to `false` when using `v-bind="$attrs"`
+   * https://eslint.vuejs.org/rules/no-duplicate-attr-inheritance.html
+   */
+  'eslint-plugin-vue/no-duplicate-attr-inheritance'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow duplication of attributes
+   * https://eslint.vuejs.org/rules/no-duplicate-attributes.html
+   */
+  'eslint-plugin-vue/no-duplicate-attributes'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowCoexistClass?: boolean;
+          allowCoexistStyle?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow the `<template>` `<script>` `<style>` block to be empty
+   * https://eslint.vuejs.org/rules/no-empty-component-block.html
+   */
+  'eslint-plugin-vue/no-empty-component-block'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow empty destructuring patterns in `<template>`
+   * https://eslint.vuejs.org/rules/no-empty-pattern.html
+   */
+  'eslint-plugin-vue/no-empty-pattern'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowObjectPatternsAsParameters?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow `export` in `<script setup>`
+   * https://eslint.vuejs.org/rules/no-export-in-script-setup.html
+   */
+  'eslint-plugin-vue/no-export-in-script-setup'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow asynchronously registered `expose`
+   * https://eslint.vuejs.org/rules/no-expose-after-await.html
+   */
+  'eslint-plugin-vue/no-expose-after-await'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unnecessary parentheses in `<template>`
+   * https://eslint.vuejs.org/rules/no-extra-parens.html
+   */
+  'eslint-plugin-vue/no-extra-parens'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require valid keys in model option
+   * https://eslint.vuejs.org/rules/no-invalid-model-keys.html
+   */
+  'eslint-plugin-vue/no-invalid-model-keys'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow irregular whitespace in `.vue` files
+   * https://eslint.vuejs.org/rules/no-irregular-whitespace.html
+   */
+  'eslint-plugin-vue/no-irregular-whitespace'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          skipComments?: boolean;
+          skipStrings?: boolean;
+          skipTemplates?: boolean;
+          skipRegExps?: boolean;
+          skipHTMLAttributeValues?: boolean;
+          skipHTMLTextContents?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow asynchronously registered lifecycle hooks
+   * https://eslint.vuejs.org/rules/no-lifecycle-after-await.html
+   */
+  'eslint-plugin-vue/no-lifecycle-after-await'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow unnecessary `<template>`
+   * https://eslint.vuejs.org/rules/no-lone-template.html
+   */
+  'eslint-plugin-vue/no-lone-template'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreAccessible?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow literal numbers that lose precision in `<template>`
+   * https://eslint.vuejs.org/rules/no-loss-of-precision.html
+   */
+  'eslint-plugin-vue/no-loss-of-precision'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow multiple spaces
+   * https://eslint.vuejs.org/rules/no-multi-spaces.html
+   */
+  'eslint-plugin-vue/no-multi-spaces'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreProperties?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow to pass multiple objects into array to class
+   * https://eslint.vuejs.org/rules/no-multiple-objects-in-class.html
+   */
+  'eslint-plugin-vue/no-multiple-objects-in-class'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow to pass multiple arguments to scoped slots
+   * https://eslint.vuejs.org/rules/no-multiple-slot-args.html
+   */
+  'eslint-plugin-vue/no-multiple-slot-args'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow adding multiple root nodes to the template
+   * https://eslint.vuejs.org/rules/no-multiple-template-root.html
+   */
+  'eslint-plugin-vue/no-multiple-template-root'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow mutation of component props
+   * https://eslint.vuejs.org/rules/no-mutating-props.html
+   */
+  'eslint-plugin-vue/no-mutating-props'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          shallowOnly?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow parsing errors in `<template>`
+   * https://eslint.vuejs.org/rules/no-parsing-error.html
+   */
+  'eslint-plugin-vue/no-parsing-error'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          'abrupt-closing-of-empty-comment'?: boolean;
+          'absence-of-digits-in-numeric-character-reference'?: boolean;
+          'cdata-in-html-content'?: boolean;
+          'character-reference-outside-unicode-range'?: boolean;
+          'control-character-in-input-stream'?: boolean;
+          'control-character-reference'?: boolean;
+          'eof-before-tag-name'?: boolean;
+          'eof-in-cdata'?: boolean;
+          'eof-in-comment'?: boolean;
+          'eof-in-tag'?: boolean;
+          'incorrectly-closed-comment'?: boolean;
+          'incorrectly-opened-comment'?: boolean;
+          'invalid-first-character-of-tag-name'?: boolean;
+          'missing-attribute-value'?: boolean;
+          'missing-end-tag-name'?: boolean;
+          'missing-semicolon-after-character-reference'?: boolean;
+          'missing-whitespace-between-attributes'?: boolean;
+          'nested-comment'?: boolean;
+          'noncharacter-character-reference'?: boolean;
+          'noncharacter-in-input-stream'?: boolean;
+          'null-character-reference'?: boolean;
+          'surrogate-character-reference'?: boolean;
+          'surrogate-in-input-stream'?: boolean;
+          'unexpected-character-in-attribute-name'?: boolean;
+          'unexpected-character-in-unquoted-attribute-value'?: boolean;
+          'unexpected-equals-sign-before-attribute-name'?: boolean;
+          'unexpected-null-character'?: boolean;
+          'unexpected-question-mark-instead-of-tag-name'?: boolean;
+          'unexpected-solidus-in-tag'?: boolean;
+          'unknown-named-character-reference'?: boolean;
+          'end-tag-with-attributes'?: boolean;
+          'duplicate-attribute'?: boolean;
+          'end-tag-with-trailing-solidus'?: boolean;
+          'non-void-html-element-start-tag-with-trailing-solidus'?: boolean;
+          'x-invalid-end-tag'?: boolean;
+          'x-invalid-namespace'?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow a potential typo in your component property
+   * https://eslint.vuejs.org/rules/no-potential-component-option-typo.html
+   */
+  'eslint-plugin-vue/no-potential-component-option-typo'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * @minItems 0
+           */
+          presets?: ('all' | 'vue' | 'vue-router' | 'nuxt')[];
+          /**
+           * @minItems 0
+           */
+          custom?: string[];
+          threshold?: number;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow use of value wrapped by `ref()` (Composition API) as an operand
+   * https://eslint.vuejs.org/rules/no-ref-as-operand.html
+   */
+  'eslint-plugin-vue/no-ref-as-operand'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow usages of ref objects that can lead to loss of reactivity
+   * https://eslint.vuejs.org/rules/no-ref-object-destructure.html
+   */
+  'eslint-plugin-vue/no-ref-object-destructure'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow usages of ref objects that can lead to loss of reactivity
+   * https://eslint.vuejs.org/rules/no-ref-object-reactivity-loss.html
+   */
+  'eslint-plugin-vue/no-ref-object-reactivity-loss'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce props with default values to be optional
+   * https://eslint.vuejs.org/rules/no-required-prop-with-default.html
+   */
+  'eslint-plugin-vue/no-required-prop-with-default'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          autofix?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow the use of reserved names in component definitions
+   * https://eslint.vuejs.org/rules/no-reserved-component-names.html
+   */
+  'eslint-plugin-vue/no-reserved-component-names'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          disallowVueBuiltInComponents?: boolean;
+          disallowVue3BuiltInComponents?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow overwriting reserved keys
+   * https://eslint.vuejs.org/rules/no-reserved-keys.html
+   */
+  'eslint-plugin-vue/no-reserved-keys'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          reserved?: unknown[];
+          groups?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow reserved names in props
+   * https://eslint.vuejs.org/rules/no-reserved-props.html
+   */
+  'eslint-plugin-vue/no-reserved-props'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          vueVersion?: 2 | 3;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow specific block
+   * https://eslint.vuejs.org/rules/no-restricted-block.html
+   */
+  'eslint-plugin-vue/no-restricted-block'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow asynchronously called restricted methods
+   * https://eslint.vuejs.org/rules/no-restricted-call-after-await.html
+   */
+  'eslint-plugin-vue/no-restricted-call-after-await'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow specific classes in Vue components
+   * https://eslint.vuejs.org/rules/no-restricted-class.html
+   */
+  'eslint-plugin-vue/no-restricted-class'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow specific component names
+   * https://eslint.vuejs.org/rules/no-restricted-component-names.html
+   */
+  'eslint-plugin-vue/no-restricted-component-names'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow specific component option
+   * https://eslint.vuejs.org/rules/no-restricted-component-options.html
+   */
+  'eslint-plugin-vue/no-restricted-component-options'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow specific custom event
+   * https://eslint.vuejs.org/rules/no-restricted-custom-event.html
+   */
+  'eslint-plugin-vue/no-restricted-custom-event'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow specific HTML elements
+   * https://eslint.vuejs.org/rules/no-restricted-html-elements.html
+   */
+  'eslint-plugin-vue/no-restricted-html-elements'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow specific props
+   * https://eslint.vuejs.org/rules/no-restricted-props.html
+   */
+  'eslint-plugin-vue/no-restricted-props'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow specific attribute
+   * https://eslint.vuejs.org/rules/no-restricted-static-attribute.html
+   */
+  'eslint-plugin-vue/no-restricted-static-attribute'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow specified syntax in `<template>`
+   * https://eslint.vuejs.org/rules/no-restricted-syntax.html
+   */
+  'eslint-plugin-vue/no-restricted-syntax'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow specific argument in `v-bind`
+   * https://eslint.vuejs.org/rules/no-restricted-v-bind.html
+   */
+  'eslint-plugin-vue/no-restricted-v-bind'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow specific argument in `v-on`
+   * https://eslint.vuejs.org/rules/no-restricted-v-on.html
+   */
+  'eslint-plugin-vue/no-restricted-v-on'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow `v-if` directives on root element
+   * https://eslint.vuejs.org/rules/no-root-v-if.html
+   */
+  'eslint-plugin-vue/no-root-v-if'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow usages that lose the reactivity of `props` passed to `setup`
+   * https://eslint.vuejs.org/rules/no-setup-props-destructure.html
+   */
+  'eslint-plugin-vue/no-setup-props-destructure'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow usages that lose the reactivity of `props` passed to `setup`
+   * https://eslint.vuejs.org/rules/no-setup-props-reactivity-loss.html
+   */
+  'eslint-plugin-vue/no-setup-props-reactivity-loss'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce component's data property to be a function
+   * https://eslint.vuejs.org/rules/no-shared-component-data.html
+   */
+  'eslint-plugin-vue/no-shared-component-data'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow side effects in computed properties
+   * https://eslint.vuejs.org/rules/no-side-effects-in-computed-properties.html
+   */
+  'eslint-plugin-vue/no-side-effects-in-computed-properties'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow spaces around equal signs in attribute
+   * https://eslint.vuejs.org/rules/no-spaces-around-equal-signs-in-attribute.html
+   */
+  'eslint-plugin-vue/no-spaces-around-equal-signs-in-attribute'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow sparse arrays in `<template>`
+   * https://eslint.vuejs.org/rules/no-sparse-arrays.html
+   */
+  'eslint-plugin-vue/no-sparse-arrays'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow static inline `style` attributes
+   * https://eslint.vuejs.org/rules/no-static-inline-styles.html
+   */
+  'eslint-plugin-vue/no-static-inline-styles'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowBinding?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow `key` attribute on `<template>`
+   * https://eslint.vuejs.org/rules/no-template-key.html
+   */
+  'eslint-plugin-vue/no-template-key'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow variable declarations from shadowing variables declared in the outer scope
+   * https://eslint.vuejs.org/rules/no-template-shadow.html
+   */
+  'eslint-plugin-vue/no-template-shadow'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allow?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow target="_blank" attribute without rel="noopener noreferrer"
+   * https://eslint.vuejs.org/rules/no-template-target-blank.html
+   */
+  'eslint-plugin-vue/no-template-target-blank'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowReferrer?: boolean;
+          enforceDynamicLinks?: 'always' | 'never';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow mustaches in `<textarea>`
+   * https://eslint.vuejs.org/rules/no-textarea-mustache.html
+   */
+  'eslint-plugin-vue/no-textarea-mustache'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow `this` usage in a `beforeRouteEnter` method
+   * https://eslint.vuejs.org/rules/no-this-in-before-route-enter.html
+   */
+  'eslint-plugin-vue/no-this-in-before-route-enter'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow use of undefined components in `<template>`
+   * https://eslint.vuejs.org/rules/no-undef-components.html
+   */
+  'eslint-plugin-vue/no-undef-components'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignorePatterns?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow undefined properties
+   * https://eslint.vuejs.org/rules/no-undef-properties.html
+   */
+  'eslint-plugin-vue/no-undef-properties'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignores?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow unsupported Vue.js syntax on the specified version
+   * https://eslint.vuejs.org/rules/no-unsupported-features.html
+   */
+  'eslint-plugin-vue/no-unsupported-features'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          version?: string;
+          ignores?: (
+            | 'slot-scope-attribute'
+            | 'dynamic-directive-arguments'
+            | 'v-slot'
+            | 'script-setup'
+            | 'style-css-vars-injection'
+            | 'v-model-argument'
+            | 'v-model-custom-modifiers'
+            | 'v-is'
+            | 'is-attribute-with-vue-prefix'
+            | 'v-memo'
+            | 'v-bind-prop-modifier-shorthand'
+            | 'v-bind-attr-modifier'
+            | 'define-options'
+            | 'define-slots'
+            | 'define-model'
+            | 'v-bind-same-name-shorthand'
+          )[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow registering components that are not used inside templates
+   * https://eslint.vuejs.org/rules/no-unused-components.html
+   */
+  'eslint-plugin-vue/no-unused-components'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreWhenBindingPresent?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow unused emit declarations
+   * https://eslint.vuejs.org/rules/no-unused-emit-declarations.html
+   */
+  'eslint-plugin-vue/no-unused-emit-declarations'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow unused properties
+   * https://eslint.vuejs.org/rules/no-unused-properties.html
+   */
+  'eslint-plugin-vue/no-unused-properties'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          groups?: ('props' | 'data' | 'asyncData' | 'computed' | 'methods' | 'setup')[];
+          deepData?: boolean;
+          ignorePublicMembers?: boolean;
+          unreferencedOptions?: ('unknownMemberAsUnreferenced' | 'returnAsUnreferenced')[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow unused refs
+   * https://eslint.vuejs.org/rules/no-unused-refs.html
+   */
+  'eslint-plugin-vue/no-unused-refs'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow unused variable definitions of v-for directives or scope attributes
+   * https://eslint.vuejs.org/rules/no-unused-vars.html
+   */
+  'eslint-plugin-vue/no-unused-vars'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignorePattern?: string;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow use computed property like method
+   * https://eslint.vuejs.org/rules/no-use-computed-property-like-method.html
+   */
+  'eslint-plugin-vue/no-use-computed-property-like-method'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using `v-else-if`/`v-else` on the same element as `v-for`
+   * https://eslint.vuejs.org/rules/no-use-v-else-with-v-for.html
+   */
+  'eslint-plugin-vue/no-use-v-else-with-v-for'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow using `v-if` on the same element as `v-for`
+   * https://eslint.vuejs.org/rules/no-use-v-if-with-v-for.html
+   */
+  'eslint-plugin-vue/no-use-v-if-with-v-for'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowUsingIterationVar?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow unnecessary concatenation of literals or template literals in `<template>`
+   * https://eslint.vuejs.org/rules/no-useless-concat.html
+   */
+  'eslint-plugin-vue/no-useless-concat'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow unnecessary mustache interpolations
+   * https://eslint.vuejs.org/rules/no-useless-mustaches.html
+   */
+  'eslint-plugin-vue/no-useless-mustaches'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreIncludesComment?: boolean;
+          ignoreStringEscape?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow useless attribute on `<template>`
+   * https://eslint.vuejs.org/rules/no-useless-template-attributes.html
+   */
+  'eslint-plugin-vue/no-useless-template-attributes'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow unnecessary `v-bind` directives
+   * https://eslint.vuejs.org/rules/no-useless-v-bind.html
+   */
+  'eslint-plugin-vue/no-useless-v-bind'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreIncludesComment?: boolean;
+          ignoreStringEscape?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow key of `<template v-for>` placed on child elements
+   * https://eslint.vuejs.org/rules/no-v-for-template-key-on-child.html
+   */
+  'eslint-plugin-vue/no-v-for-template-key-on-child'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow `key` attribute on `<template v-for>`
+   * https://eslint.vuejs.org/rules/no-v-for-template-key.html
+   */
+  'eslint-plugin-vue/no-v-for-template-key'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow use of v-html to prevent XSS attack
+   * https://eslint.vuejs.org/rules/no-v-html.html
+   */
+  'eslint-plugin-vue/no-v-html'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow adding an argument to `v-model` used in custom component
+   * https://eslint.vuejs.org/rules/no-v-model-argument.html
+   */
+  'eslint-plugin-vue/no-v-model-argument'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow v-text / v-html on component
+   * https://eslint.vuejs.org/rules/no-v-text-v-html-on-component.html
+   */
+  'eslint-plugin-vue/no-v-text-v-html-on-component'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allow?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow use of v-text
+   * https://eslint.vuejs.org/rules/no-v-text.html
+   */
+  'eslint-plugin-vue/no-v-text'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * disallow asynchronously registered `watch`
+   * https://eslint.vuejs.org/rules/no-watch-after-await.html
+   */
+  'eslint-plugin-vue/no-watch-after-await'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent line breaks after opening and before closing braces in `<template>`
+   * https://eslint.vuejs.org/rules/object-curly-newline.html
+   */
+  'eslint-plugin-vue/object-curly-newline'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent spacing inside braces in `<template>`
+   * https://eslint.vuejs.org/rules/object-curly-spacing.html
+   */
+  'eslint-plugin-vue/object-curly-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce placing object properties on separate lines in `<template>`
+   * https://eslint.vuejs.org/rules/object-property-newline.html
+   */
+  'eslint-plugin-vue/object-property-newline'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowAllPropertiesOnSameLine?: boolean;
+          allowMultiplePropertiesPerLine?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require or disallow method and property shorthand syntax for object literals in `<template>`
+   * https://eslint.vuejs.org/rules/object-shorthand.html
+   */
+  'eslint-plugin-vue/object-shorthand'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce that each component should be in its own file
+   * https://eslint.vuejs.org/rules/one-component-per-file.html
+   */
+  'eslint-plugin-vue/one-component-per-file'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent linebreak style for operators in `<template>`
+   * https://eslint.vuejs.org/rules/operator-linebreak.html
+   */
+  'eslint-plugin-vue/operator-linebreak'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce order of properties in components
+   * https://eslint.vuejs.org/rules/order-in-components.html
+   */
+  'eslint-plugin-vue/order-in-components'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          order?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require or disallow padding lines between blocks
+   * https://eslint.vuejs.org/rules/padding-line-between-blocks.html
+   */
+  'eslint-plugin-vue/padding-line-between-blocks'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require or disallow newlines between sibling tags in template
+   * https://eslint.vuejs.org/rules/padding-line-between-tags.html
+   */
+  'eslint-plugin-vue/padding-line-between-tags'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require or disallow padding lines in component definition
+   * https://eslint.vuejs.org/rules/padding-lines-in-component-definition.html
+   */
+  'eslint-plugin-vue/padding-lines-in-component-definition'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce use of `defineOptions` instead of default export.
+   * https://eslint.vuejs.org/rules/prefer-define-options.html
+   */
+  'eslint-plugin-vue/prefer-define-options'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce import from 'vue' instead of import from '@vue/*'
+   * https://eslint.vuejs.org/rules/prefer-import-from-vue.html
+   */
+  'eslint-plugin-vue/prefer-import-from-vue'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce `Boolean` comes first in component prop types
+   * https://eslint.vuejs.org/rules/prefer-prop-type-boolean-first.html
+   */
+  'eslint-plugin-vue/prefer-prop-type-boolean-first'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require static class names in template to be in a separate `class` attribute
+   * https://eslint.vuejs.org/rules/prefer-separate-static-class.html
+   */
+  'eslint-plugin-vue/prefer-separate-static-class'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require template literals instead of string concatenation in `<template>`
+   * https://eslint.vuejs.org/rules/prefer-template.html
+   */
+  'eslint-plugin-vue/prefer-template'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require shorthand form attribute when `v-bind` value is `true`
+   * https://eslint.vuejs.org/rules/prefer-true-attribute-shorthand.html
+   */
+  'eslint-plugin-vue/prefer-true-attribute-shorthand'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce specific casing for the Prop name in Vue components
+   * https://eslint.vuejs.org/rules/prop-name-casing.html
+   */
+  'eslint-plugin-vue/prop-name-casing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require quotes around object literal property names in `<template>`
+   * https://eslint.vuejs.org/rules/quote-props.html
+   */
+  'eslint-plugin-vue/quote-props'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require `v-bind:is` of `<component>` elements
+   * https://eslint.vuejs.org/rules/require-component-is.html
+   */
+  'eslint-plugin-vue/require-component-is'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require default value for props
+   * https://eslint.vuejs.org/rules/require-default-prop.html
+   */
+  'eslint-plugin-vue/require-default-prop'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require the component to be directly exported
+   * https://eslint.vuejs.org/rules/require-direct-export.html
+   */
+  'eslint-plugin-vue/require-direct-export'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          disallowFunctionalComponentFunction?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require type definitions in emits
+   * https://eslint.vuejs.org/rules/require-emit-validator.html
+   */
+  'eslint-plugin-vue/require-emit-validator'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require `emits` option with name triggered by `$emit()`
+   * https://eslint.vuejs.org/rules/require-explicit-emits.html
+   */
+  'eslint-plugin-vue/require-explicit-emits'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowProps?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require slots to be explicitly defined
+   * https://eslint.vuejs.org/rules/require-explicit-slots.html
+   */
+  'eslint-plugin-vue/require-explicit-slots'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require declare public properties using `expose`
+   * https://eslint.vuejs.org/rules/require-expose.html
+   */
+  'eslint-plugin-vue/require-expose'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require a certain macro variable name
+   * https://eslint.vuejs.org/rules/require-macro-variable-name.html
+   */
+  'eslint-plugin-vue/require-macro-variable-name'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          defineProps?: string;
+          defineEmits?: string;
+          defineSlots?: string;
+          useSlots?: string;
+          useAttrs?: string;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require a name property in Vue components
+   * https://eslint.vuejs.org/rules/require-name-property.html
+   */
+  'eslint-plugin-vue/require-name-property'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require props to have a comment
+   * https://eslint.vuejs.org/rules/require-prop-comment.html
+   */
+  'eslint-plugin-vue/require-prop-comment'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          type?: 'JSDoc' | 'line' | 'block' | 'any';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require prop type to be a constructor
+   * https://eslint.vuejs.org/rules/require-prop-type-constructor.html
+   */
+  'eslint-plugin-vue/require-prop-type-constructor'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require type definitions in props
+   * https://eslint.vuejs.org/rules/require-prop-types.html
+   */
+  'eslint-plugin-vue/require-prop-types'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce render function to always return value
+   * https://eslint.vuejs.org/rules/require-render-return.html
+   */
+  'eslint-plugin-vue/require-render-return'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce properties of `$slots` to be used as a function
+   * https://eslint.vuejs.org/rules/require-slots-as-functions.html
+   */
+  'eslint-plugin-vue/require-slots-as-functions'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require control the display of the content inside `<transition>`
+   * https://eslint.vuejs.org/rules/require-toggle-inside-transition.html
+   */
+  'eslint-plugin-vue/require-toggle-inside-transition'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce adding type declarations to object props
+   * https://eslint.vuejs.org/rules/require-typed-object-prop.html
+   */
+  'eslint-plugin-vue/require-typed-object-prop'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require `ref` and `shallowRef` functions to be strongly typed
+   * https://eslint.vuejs.org/rules/require-typed-ref.html
+   */
+  'eslint-plugin-vue/require-typed-ref'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require `v-bind:key` with `v-for` directives
+   * https://eslint.vuejs.org/rules/require-v-for-key.html
+   */
+  'eslint-plugin-vue/require-v-for-key'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce props default values to be valid
+   * https://eslint.vuejs.org/rules/require-valid-default-prop.html
+   */
+  'eslint-plugin-vue/require-valid-default-prop'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce that a return statement is present in computed property
+   * https://eslint.vuejs.org/rules/return-in-computed-property.html
+   */
+  'eslint-plugin-vue/return-in-computed-property'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          treatUndefinedAsUnspecified?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce that a return statement is present in emits validator
+   * https://eslint.vuejs.org/rules/return-in-emits-validator.html
+   */
+  'eslint-plugin-vue/return-in-emits-validator'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce consistent indentation in `<script>`
+   * https://eslint.vuejs.org/rules/script-indent.html
+   */
+  'eslint-plugin-vue/script-indent'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * prevent `<script setup>` variables used in `<template>` to be marked as unused
+   * https://eslint.vuejs.org/rules/script-setup-uses-vars.html
+   */
+  'eslint-plugin-vue/script-setup-uses-vars'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require a line break before and after the contents of a singleline element
+   * https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html
+   */
+  'eslint-plugin-vue/singleline-html-element-content-newline'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreWhenNoAttributes?: boolean;
+          ignoreWhenEmpty?: boolean;
+          ignores?: string[];
+          externalIgnores?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce sort-keys in a manner that is compatible with order-in-components
+   * https://eslint.vuejs.org/rules/sort-keys.html
+   */
+  'eslint-plugin-vue/sort-keys'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent spacing inside parentheses in `<template>`
+   * https://eslint.vuejs.org/rules/space-in-parens.html
+   */
+  'eslint-plugin-vue/space-in-parens'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require spacing around infix operators in `<template>`
+   * https://eslint.vuejs.org/rules/space-infix-ops.html
+   */
+  'eslint-plugin-vue/space-infix-ops'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          int32Hint?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent spacing before or after unary operators in `<template>`
+   * https://eslint.vuejs.org/rules/space-unary-ops.html
+   */
+  'eslint-plugin-vue/space-unary-ops'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          words?: boolean;
+          nonwords?: boolean;
+          overrides?: {
+            [k: string]: boolean | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce static class names order
+   * https://eslint.vuejs.org/rules/static-class-names-order.html
+   */
+  'eslint-plugin-vue/static-class-names-order'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require or disallow spacing around embedded expressions of template strings in `<template>`
+   * https://eslint.vuejs.org/rules/template-curly-spacing.html
+   */
+  'eslint-plugin-vue/template-curly-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * disallow usage of `this` in template
+   * https://eslint.vuejs.org/rules/this-in-template.html
+   */
+  'eslint-plugin-vue/this-in-template'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce usage of `exact` modifier on `v-on`
+   * https://eslint.vuejs.org/rules/use-v-on-exact.html
+   */
+  'eslint-plugin-vue/use-v-on-exact'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce `v-bind` directive style
+   * https://eslint.vuejs.org/rules/v-bind-style.html
+   */
+  'eslint-plugin-vue/v-bind-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce `v-for` directive's delimiter style
+   * https://eslint.vuejs.org/rules/v-for-delimiter-style.html
+   */
+  'eslint-plugin-vue/v-for-delimiter-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require key attribute for conditionally rendered repeated components
+   * https://eslint.vuejs.org/rules/v-if-else-key.html
+   */
+  'eslint-plugin-vue/v-if-else-key'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce v-on event naming style on custom components in template
+   * https://eslint.vuejs.org/rules/v-on-event-hyphenation.html
+   */
+  'eslint-plugin-vue/v-on-event-hyphenation'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce or forbid parentheses after method calls without arguments in `v-on` directives
+   * https://eslint.vuejs.org/rules/v-on-function-call.html
+   */
+  'eslint-plugin-vue/v-on-function-call'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce writing style for handlers in `v-on` directives
+   * https://eslint.vuejs.org/rules/v-on-handler-style.html
+   */
+  'eslint-plugin-vue/v-on-handler-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce `v-on` directive style
+   * https://eslint.vuejs.org/rules/v-on-style.html
+   */
+  'eslint-plugin-vue/v-on-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce `v-slot` directive style
+   * https://eslint.vuejs.org/rules/v-slot-style.html
+   */
+  'eslint-plugin-vue/v-slot-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * require valid attribute names
+   * https://eslint.vuejs.org/rules/valid-attribute-name.html
+   */
+  'eslint-plugin-vue/valid-attribute-name'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `defineEmits` compiler macro
+   * https://eslint.vuejs.org/rules/valid-define-emits.html
+   */
+  'eslint-plugin-vue/valid-define-emits'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `defineOptions` compiler macro
+   * https://eslint.vuejs.org/rules/valid-define-options.html
+   */
+  'eslint-plugin-vue/valid-define-options'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `defineProps` compiler macro
+   * https://eslint.vuejs.org/rules/valid-define-props.html
+   */
+  'eslint-plugin-vue/valid-define-props'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * require valid keys in model option
+   * https://eslint.vuejs.org/rules/valid-model-definition.html
+   */
+  'eslint-plugin-vue/valid-model-definition'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `nextTick` function calls
+   * https://eslint.vuejs.org/rules/valid-next-tick.html
+   */
+  'eslint-plugin-vue/valid-next-tick'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid template root
+   * https://eslint.vuejs.org/rules/valid-template-root.html
+   */
+  'eslint-plugin-vue/valid-template-root'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `.sync` modifier on `v-bind` directives
+   * https://eslint.vuejs.org/rules/valid-v-bind-sync.html
+   */
+  'eslint-plugin-vue/valid-v-bind-sync'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-bind` directives
+   * https://eslint.vuejs.org/rules/valid-v-bind.html
+   */
+  'eslint-plugin-vue/valid-v-bind'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-cloak` directives
+   * https://eslint.vuejs.org/rules/valid-v-cloak.html
+   */
+  'eslint-plugin-vue/valid-v-cloak'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-else-if` directives
+   * https://eslint.vuejs.org/rules/valid-v-else-if.html
+   */
+  'eslint-plugin-vue/valid-v-else-if'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-else` directives
+   * https://eslint.vuejs.org/rules/valid-v-else.html
+   */
+  'eslint-plugin-vue/valid-v-else'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-for` directives
+   * https://eslint.vuejs.org/rules/valid-v-for.html
+   */
+  'eslint-plugin-vue/valid-v-for'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-html` directives
+   * https://eslint.vuejs.org/rules/valid-v-html.html
+   */
+  'eslint-plugin-vue/valid-v-html'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-if` directives
+   * https://eslint.vuejs.org/rules/valid-v-if.html
+   */
+  'eslint-plugin-vue/valid-v-if'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-is` directives
+   * https://eslint.vuejs.org/rules/valid-v-is.html
+   */
+  'eslint-plugin-vue/valid-v-is'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-memo` directives
+   * https://eslint.vuejs.org/rules/valid-v-memo.html
+   */
+  'eslint-plugin-vue/valid-v-memo'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-model` directives
+   * https://eslint.vuejs.org/rules/valid-v-model.html
+   */
+  'eslint-plugin-vue/valid-v-model'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-on` directives
+   * https://eslint.vuejs.org/rules/valid-v-on.html
+   */
+  'eslint-plugin-vue/valid-v-on'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          modifiers?: unknown[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce valid `v-once` directives
+   * https://eslint.vuejs.org/rules/valid-v-once.html
+   */
+  'eslint-plugin-vue/valid-v-once'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-pre` directives
+   * https://eslint.vuejs.org/rules/valid-v-pre.html
+   */
+  'eslint-plugin-vue/valid-v-pre'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-show` directives
+   * https://eslint.vuejs.org/rules/valid-v-show.html
+   */
+  'eslint-plugin-vue/valid-v-show'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * enforce valid `v-slot` directives
+   * https://eslint.vuejs.org/rules/valid-v-slot.html
+   */
+  'eslint-plugin-vue/valid-v-slot'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowModifiers?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * enforce valid `v-text` directives
+   * https://eslint.vuejs.org/rules/valid-v-text.html
+   */
+  'eslint-plugin-vue/valid-v-text'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require that function overload signatures be consecutive
+   * https://typescript-eslint.io/rules/adjacent-overload-signatures
+   */
+  '@typescript-eslint/adjacent-overload-signatures'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require consistently using either `T[]` or `Array<T>` for arrays
+   * https://typescript-eslint.io/rules/array-type
+   */
+  '@typescript-eslint/array-type'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * The array type expected for mutable cases.
+           */
+          default?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * The array type expected for readonly cases. If omitted, the value for `default` will be used.
+           */
+          readonly?: {
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow awaiting a value that is not a Thenable
+   * https://typescript-eslint.io/rules/await-thenable
+   */
+  '@typescript-eslint/await-thenable'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow `@ts-<directive>` comments or require descriptions after directives
+   * https://typescript-eslint.io/rules/ban-ts-comment
+   */
+  '@typescript-eslint/ban-ts-comment'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          'ts-expect-error'?: unknown;
+          'ts-ignore'?: unknown;
+          'ts-nocheck'?: unknown;
+          'ts-check'?: unknown;
+          minimumDescriptionLength?: number;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow `// tslint:<rule-flag>` comments
+   * https://typescript-eslint.io/rules/ban-tslint-comment
+   */
+  '@typescript-eslint/ban-tslint-comment'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow certain types
+   * https://typescript-eslint.io/rules/ban-types
+   */
+  '@typescript-eslint/ban-types'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          types?: {
+            [k: string]: unknown | undefined;
+          };
+          extendDefaults?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow or enforce spaces inside of blocks after opening block and before closing block
+   * https://typescript-eslint.io/rules/block-spacing
+   */
+  '@typescript-eslint/block-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent brace style for blocks
+   * https://typescript-eslint.io/rules/brace-style
+   */
+  '@typescript-eslint/brace-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce that literals on classes are exposed in a consistent style
+   * https://typescript-eslint.io/rules/class-literal-property-style
+   */
+  '@typescript-eslint/class-literal-property-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce that class methods utilize `this`
+   * https://typescript-eslint.io/rules/class-methods-use-this
+   */
+  '@typescript-eslint/class-methods-use-this'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Allows specified method names to be ignored with this rule
+           */
+          exceptMethods?: string[];
+          /**
+           * Enforces that functions used as instance field initializers utilize `this`
+           */
+          enforceForClassFields?: boolean;
+          /**
+           * Ignore members marked with the `override` modifier
+           */
+          ignoreOverrideMethods?: boolean;
+          /**
+           * Ignore classes that specifically implement some interface
+           */
+          ignoreClassesThatImplementAnInterface?: boolean | 'public-fields';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require or disallow trailing commas
+   * https://typescript-eslint.io/rules/comma-dangle
+   */
+  '@typescript-eslint/comma-dangle'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent spacing before and after commas
+   * https://typescript-eslint.io/rules/comma-spacing
+   */
+  '@typescript-eslint/comma-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          before?: boolean;
+          after?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce specifying generic type arguments on type annotation or constructor name of a constructor call
+   * https://typescript-eslint.io/rules/consistent-generic-constructors
+   */
+  '@typescript-eslint/consistent-generic-constructors'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require or disallow the `Record` type
+   * https://typescript-eslint.io/rules/consistent-indexed-object-style
+   */
+  '@typescript-eslint/consistent-indexed-object-style'?:
+    number | ('off' | 'warn' | 'error') | [number | ('off' | 'warn' | 'error'), 'record' | 'index-signature'];
+  /**
+   * Require `return` statements to either always or never specify values
+   * https://typescript-eslint.io/rules/consistent-return
+   */
+  '@typescript-eslint/consistent-return'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          treatUndefinedAsUnspecified?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent usage of type assertions
+   * https://typescript-eslint.io/rules/consistent-type-assertions
+   */
+  '@typescript-eslint/consistent-type-assertions'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce type definitions to consistently use either `interface` or `type`
+   * https://typescript-eslint.io/rules/consistent-type-definitions
+   */
+  '@typescript-eslint/consistent-type-definitions'?:
+    number | ('off' | 'warn' | 'error') | [number | ('off' | 'warn' | 'error'), 'interface' | 'type'];
+  /**
+   * Enforce consistent usage of type exports
+   * https://typescript-eslint.io/rules/consistent-type-exports
+   */
+  '@typescript-eslint/consistent-type-exports'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          fixMixedExportsWithInlineTypeSpecifier?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent usage of type imports
+   * https://typescript-eslint.io/rules/consistent-type-imports
+   */
+  '@typescript-eslint/consistent-type-imports'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          disallowTypeAnnotations?: boolean;
+          fixStyle?: 'separate-type-imports' | 'inline-type-imports';
+          prefer?: 'type-imports' | 'no-type-imports';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce default parameters to be last
+   * https://typescript-eslint.io/rules/default-param-last
+   */
+  '@typescript-eslint/default-param-last'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce dot notation whenever possible
+   * https://typescript-eslint.io/rules/dot-notation
+   */
+  '@typescript-eslint/dot-notation'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowKeywords?: boolean;
+          allowPattern?: string;
+          allowPrivateClassPropertyAccess?: boolean;
+          allowProtectedClassPropertyAccess?: boolean;
+          allowIndexSignaturePropertyAccess?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require explicit return types on functions and class methods
+   * https://typescript-eslint.io/rules/explicit-function-return-type
+   */
+  '@typescript-eslint/explicit-function-return-type'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to allow arrow functions that start with the `void` keyword.
+           */
+          allowConciseArrowFunctionExpressionsStartingWithVoid?: boolean;
+          /**
+           * Whether to ignore function expressions (functions which are not part of a declaration).
+           */
+          allowExpressions?: boolean;
+          /**
+           * Whether to ignore functions immediately returning another function expression.
+           */
+          allowHigherOrderFunctions?: boolean;
+          /**
+           * Whether to ignore type annotations on the variable of function expressions.
+           */
+          allowTypedFunctionExpressions?: boolean;
+          /**
+           * Whether to ignore arrow functions immediately returning a `as const` value.
+           */
+          allowDirectConstAssertionInArrowFunctions?: boolean;
+          /**
+           * Whether to ignore functions that don't have generic type parameters.
+           */
+          allowFunctionsWithoutTypeParameters?: boolean;
+          /**
+           * An array of function/method names that will not have their arguments or return values checked.
+           */
+          allowedNames?: string[];
+          /**
+           * Whether to ignore immediately invoked function expressions (IIFEs).
+           */
+          allowIIFEs?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require explicit accessibility modifiers on class properties and methods
+   * https://typescript-eslint.io/rules/explicit-member-accessibility
+   */
+  '@typescript-eslint/explicit-member-accessibility'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          accessibility?: unknown;
+          overrides?: {
+            accessors?: unknown;
+            constructors?: unknown;
+            methods?: unknown;
+            properties?: unknown;
+            parameterProperties?: unknown;
+          };
+          ignoredMethodNames?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require explicit return and argument types on exported functions' and classes' public class methods
+   * https://typescript-eslint.io/rules/explicit-module-boundary-types
+   */
+  '@typescript-eslint/explicit-module-boundary-types'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to ignore arguments that are explicitly typed as `any`.
+           */
+          allowArgumentsExplicitlyTypedAsAny?: boolean;
+          /**
+           * Whether to ignore return type annotations on body-less arrow functions that return an `as const` type assertion.
+           * You must still type the parameters of the function.
+           */
+          allowDirectConstAssertionInArrowFunctions?: boolean;
+          /**
+           * An array of function/method names that will not have their arguments or return values checked.
+           */
+          allowedNames?: string[];
+          /**
+           * Whether to ignore return type annotations on functions immediately returning another function expression.
+           * You must still type the parameters of the function.
+           */
+          allowHigherOrderFunctions?: boolean;
+          /**
+           * Whether to ignore type annotations on the variable of a function expression.
+           */
+          allowTypedFunctionExpressions?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require or disallow spacing between function identifiers and their invocations
+   * https://typescript-eslint.io/rules/func-call-spacing
+   */
+  '@typescript-eslint/func-call-spacing'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent indentation
+   * https://typescript-eslint.io/rules/indent
+   */
+  '@typescript-eslint/indent'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require or disallow initialization in variable declarations
+   * https://typescript-eslint.io/rules/init-declarations
+   */
+  '@typescript-eslint/init-declarations'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent spacing between property names and type annotations in types and interfaces
+   * https://typescript-eslint.io/rules/key-spacing
+   */
+  '@typescript-eslint/key-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent spacing before and after keywords
+   * https://typescript-eslint.io/rules/keyword-spacing
+   */
+  '@typescript-eslint/keyword-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          before?: boolean;
+          after?: boolean;
+          overrides?: {
+            abstract?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            as?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            async?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            await?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            boolean?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            break?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            byte?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            case?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            catch?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            char?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            class?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            const?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            continue?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            debugger?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            default?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            delete?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            do?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            double?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            else?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            enum?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            export?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            extends?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            false?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            final?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            finally?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            float?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            for?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            from?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            function?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            get?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            goto?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            if?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            implements?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            import?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            in?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            instanceof?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            int?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            interface?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            let?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            long?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            native?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            new?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            null?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            of?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            package?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            private?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            protected?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            public?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            return?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            set?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            short?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            static?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            super?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            switch?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            synchronized?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            this?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            throw?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            throws?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            transient?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            true?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            try?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            typeof?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            var?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            void?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            volatile?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            while?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            with?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            yield?: {
+              before?: boolean;
+              after?: boolean;
+            };
+            type?: {
+              before?: boolean;
+              after?: boolean;
+            };
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require empty lines around comments
+   * https://typescript-eslint.io/rules/lines-around-comment
+   */
+  '@typescript-eslint/lines-around-comment'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          beforeBlockComment?: boolean;
+          afterBlockComment?: boolean;
+          beforeLineComment?: boolean;
+          afterLineComment?: boolean;
+          allowBlockStart?: boolean;
+          allowBlockEnd?: boolean;
+          allowClassStart?: boolean;
+          allowClassEnd?: boolean;
+          allowObjectStart?: boolean;
+          allowObjectEnd?: boolean;
+          allowArrayStart?: boolean;
+          allowArrayEnd?: boolean;
+          allowInterfaceStart?: boolean;
+          allowInterfaceEnd?: boolean;
+          allowTypeStart?: boolean;
+          allowTypeEnd?: boolean;
+          allowEnumStart?: boolean;
+          allowEnumEnd?: boolean;
+          allowModuleStart?: boolean;
+          allowModuleEnd?: boolean;
+          ignorePattern?: string;
+          applyDefaultIgnorePatterns?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require or disallow an empty line between class members
+   * https://typescript-eslint.io/rules/lines-between-class-members
+   */
+  '@typescript-eslint/lines-between-class-members'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce a maximum number of parameters in function definitions
+   * https://typescript-eslint.io/rules/max-params
+   */
+  '@typescript-eslint/max-params'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          maximum?: number;
+          max?: number;
+          countVoidThis?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require a specific member delimiter style for interfaces and type literals
+   * https://typescript-eslint.io/rules/member-delimiter-style
+   */
+  '@typescript-eslint/member-delimiter-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          multiline?: {
+            delimiter?: unknown;
+            requireLast?: boolean;
+          };
+          singleline?: {
+            delimiter?: unknown;
+            requireLast?: boolean;
+          };
+          overrides?: {
+            interface?: unknown;
+            typeLiteral?: unknown;
+          };
+          multilineDetection?: 'brackets' | 'last-member';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require a consistent member declaration order
+   * https://typescript-eslint.io/rules/member-ordering
+   */
+  '@typescript-eslint/member-ordering'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          default?: unknown;
+          classes?: unknown;
+          classExpressions?: unknown;
+          interfaces?: unknown;
+          typeLiterals?: unknown;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce using a particular method signature syntax
+   * https://typescript-eslint.io/rules/method-signature-style
+   */
+  '@typescript-eslint/method-signature-style'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce naming conventions for everything across a codebase
+   * https://typescript-eslint.io/rules/naming-convention
+   */
+  '@typescript-eslint/naming-convention'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow generic `Array` constructors
+   * https://typescript-eslint.io/rules/no-array-constructor
+   */
+  '@typescript-eslint/no-array-constructor'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow using the `delete` operator on array values
+   * https://typescript-eslint.io/rules/no-array-delete
+   */
+  '@typescript-eslint/no-array-delete'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require `.toString()` to only be called on objects which provide useful information when stringified
+   * https://typescript-eslint.io/rules/no-base-to-string
+   */
+  '@typescript-eslint/no-base-to-string'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoredTypeNames?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow non-null assertion in locations that may be confusing
+   * https://typescript-eslint.io/rules/no-confusing-non-null-assertion
+   */
+  '@typescript-eslint/no-confusing-non-null-assertion'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require expressions of type void to appear in statement position
+   * https://typescript-eslint.io/rules/no-confusing-void-expression
+   */
+  '@typescript-eslint/no-confusing-void-expression'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreArrowShorthand?: boolean;
+          ignoreVoidOperator?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow duplicate class members
+   * https://typescript-eslint.io/rules/no-dupe-class-members
+   */
+  '@typescript-eslint/no-dupe-class-members'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow duplicate enum member values
+   * https://typescript-eslint.io/rules/no-duplicate-enum-values
+   */
+  '@typescript-eslint/no-duplicate-enum-values'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow duplicate constituents of union or intersection types
+   * https://typescript-eslint.io/rules/no-duplicate-type-constituents
+   */
+  '@typescript-eslint/no-duplicate-type-constituents'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreIntersections?: boolean;
+          ignoreUnions?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow using the `delete` operator on computed key expressions
+   * https://typescript-eslint.io/rules/no-dynamic-delete
+   */
+  '@typescript-eslint/no-dynamic-delete'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow empty functions
+   * https://typescript-eslint.io/rules/no-empty-function
+   */
+  '@typescript-eslint/no-empty-function'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allow?: (
+            | 'functions'
+            | 'arrowFunctions'
+            | 'generatorFunctions'
+            | 'methods'
+            | 'generatorMethods'
+            | 'getters'
+            | 'setters'
+            | 'constructors'
+            | 'private-constructors'
+            | 'protected-constructors'
+            | 'asyncFunctions'
+            | 'asyncMethods'
+            | 'decoratedFunctions'
+            | 'overrideMethods'
+          )[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow the declaration of empty interfaces
+   * https://typescript-eslint.io/rules/no-empty-interface
+   */
+  '@typescript-eslint/no-empty-interface'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowSingleExtends?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow the `any` type
+   * https://typescript-eslint.io/rules/no-explicit-any
+   */
+  '@typescript-eslint/no-explicit-any'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to enable auto-fixing in which the `any` type is converted to the `unknown` type.
+           */
+          fixToUnknown?: boolean;
+          /**
+           * Whether to ignore rest parameter arrays.
+           */
+          ignoreRestArgs?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow extra non-null assertions
+   * https://typescript-eslint.io/rules/no-extra-non-null-assertion
+   */
+  '@typescript-eslint/no-extra-non-null-assertion'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unnecessary parentheses
+   * https://typescript-eslint.io/rules/no-extra-parens
+   */
+  '@typescript-eslint/no-extra-parens'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unnecessary semicolons
+   * https://typescript-eslint.io/rules/no-extra-semi
+   */
+  '@typescript-eslint/no-extra-semi'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow classes used as namespaces
+   * https://typescript-eslint.io/rules/no-extraneous-class
+   */
+  '@typescript-eslint/no-extraneous-class'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to allow extraneous classes that contain only a constructor.
+           */
+          allowConstructorOnly?: boolean;
+          /**
+           * Whether to allow extraneous classes that have no body (i.e. are empty).
+           */
+          allowEmpty?: boolean;
+          /**
+           * Whether to allow extraneous classes that only contain static members.
+           */
+          allowStaticOnly?: boolean;
+          /**
+           * Whether to allow extraneous classes that include a decorator.
+           */
+          allowWithDecorator?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require Promise-like statements to be handled appropriately
+   * https://typescript-eslint.io/rules/no-floating-promises
+   */
+  '@typescript-eslint/no-floating-promises'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to ignore `void` expressions.
+           */
+          ignoreVoid?: boolean;
+          /**
+           * Whether to ignore async IIFEs (Immediately Invoked Function Expressions).
+           */
+          ignoreIIFE?: boolean;
+          allowForKnownSafePromises?: (
+            | string
+            | {
+                from: 'file';
+                name: string | [string, ...string[]];
+                path?: string;
+              }
+            | {
+                from: 'lib';
+                name: string | [string, ...string[]];
+              }
+            | {
+                from: 'package';
+                name: string | [string, ...string[]];
+                package: string;
+              }
+          )[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow iterating over an array with a for-in loop
+   * https://typescript-eslint.io/rules/no-for-in-array
+   */
+  '@typescript-eslint/no-for-in-array'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow the use of `eval()`-like methods
+   * https://typescript-eslint.io/rules/no-implied-eval
+   */
+  '@typescript-eslint/no-implied-eval'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce the use of top-level import type qualifier when an import only has specifiers with inline type qualifiers
+   * https://typescript-eslint.io/rules/no-import-type-side-effects
+   */
+  '@typescript-eslint/no-import-type-side-effects'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow explicit type declarations for variables or parameters initialized to a number, string, or boolean
+   * https://typescript-eslint.io/rules/no-inferrable-types
+   */
+  '@typescript-eslint/no-inferrable-types'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          ignoreParameters?: boolean;
+          ignoreProperties?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow `this` keywords outside of classes or class-like objects
+   * https://typescript-eslint.io/rules/no-invalid-this
+   */
+  '@typescript-eslint/no-invalid-this'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          capIsConstructor?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow `void` type outside of generic or return types
+   * https://typescript-eslint.io/rules/no-invalid-void-type
+   */
+  '@typescript-eslint/no-invalid-void-type'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowInGenericTypeArguments?: boolean | [string, ...string[]];
+          allowAsThisParameter?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow function declarations that contain unsafe references inside loop statements
+   * https://typescript-eslint.io/rules/no-loop-func
+   */
+  '@typescript-eslint/no-loop-func'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow literal numbers that lose precision
+   * https://typescript-eslint.io/rules/no-loss-of-precision
+   */
+  '@typescript-eslint/no-loss-of-precision'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow magic numbers
+   * https://typescript-eslint.io/rules/no-magic-numbers
+   */
+  '@typescript-eslint/no-magic-numbers'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          detectObjects?: boolean;
+          enforceConst?: boolean;
+          ignore?: (number | string)[];
+          ignoreArrayIndexes?: boolean;
+          ignoreDefaultValues?: boolean;
+          ignoreClassFieldInitialValues?: boolean;
+          ignoreNumericLiteralTypes?: boolean;
+          ignoreEnums?: boolean;
+          ignoreReadonlyClassProperties?: boolean;
+          ignoreTypeIndexes?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow the `void` operator except when used to discard a value
+   * https://typescript-eslint.io/rules/no-meaningless-void-operator
+   */
+  '@typescript-eslint/no-meaningless-void-operator'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          checkNever?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce valid definition of `new` and `constructor`
+   * https://typescript-eslint.io/rules/no-misused-new
+   */
+  '@typescript-eslint/no-misused-new'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow Promises in places not designed to handle them
+   * https://typescript-eslint.io/rules/no-misused-promises
+   */
+  '@typescript-eslint/no-misused-promises'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          checksConditionals?: boolean;
+          checksVoidReturn?:
+            | boolean
+            | {
+                arguments?: boolean;
+                attributes?: boolean;
+                properties?: boolean;
+                returns?: boolean;
+                variables?: boolean;
+              };
+          checksSpreads?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow enums from having both number and string members
+   * https://typescript-eslint.io/rules/no-mixed-enums
+   */
+  '@typescript-eslint/no-mixed-enums'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow TypeScript namespaces
+   * https://typescript-eslint.io/rules/no-namespace
+   */
+  '@typescript-eslint/no-namespace'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to allow `declare` with custom TypeScript namespaces.
+           */
+          allowDeclarations?: boolean;
+          /**
+           * Whether to allow `declare` with custom TypeScript namespaces inside definition files.
+           */
+          allowDefinitionFiles?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow non-null assertions in the left operand of a nullish coalescing operator
+   * https://typescript-eslint.io/rules/no-non-null-asserted-nullish-coalescing
+   */
+  '@typescript-eslint/no-non-null-asserted-nullish-coalescing'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow non-null assertions after an optional chain expression
+   * https://typescript-eslint.io/rules/no-non-null-asserted-optional-chain
+   */
+  '@typescript-eslint/no-non-null-asserted-optional-chain'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow non-null assertions using the `!` postfix operator
+   * https://typescript-eslint.io/rules/no-non-null-assertion
+   */
+  '@typescript-eslint/no-non-null-assertion'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow variable redeclaration
+   * https://typescript-eslint.io/rules/no-redeclare
+   */
+  '@typescript-eslint/no-redeclare'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          builtinGlobals?: boolean;
+          ignoreDeclarationMerge?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow members of unions and intersections that do nothing or override type information
+   * https://typescript-eslint.io/rules/no-redundant-type-constituents
+   */
+  '@typescript-eslint/no-redundant-type-constituents'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow invocation of `require()`
+   * https://typescript-eslint.io/rules/no-require-imports
+   */
+  '@typescript-eslint/no-require-imports'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Patterns of import paths to allow requiring from.
+           */
+          allow?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow specified modules when loaded by `import`
+   * https://typescript-eslint.io/rules/no-restricted-imports
+   */
+  '@typescript-eslint/no-restricted-imports'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow variable declarations from shadowing variables declared in the outer scope
+   * https://typescript-eslint.io/rules/no-shadow
+   */
+  '@typescript-eslint/no-shadow'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          builtinGlobals?: boolean;
+          hoist?: 'all' | 'functions' | 'never';
+          allow?: string[];
+          ignoreOnInitialization?: boolean;
+          ignoreTypeValueShadow?: boolean;
+          ignoreFunctionTypeParameterNameValueShadow?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow aliasing `this`
+   * https://typescript-eslint.io/rules/no-this-alias
+   */
+  '@typescript-eslint/no-this-alias'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to ignore destructurings, such as `const { props, state } = this`.
+           */
+          allowDestructuring?: boolean;
+          /**
+           * Names to ignore, such as ["self"] for `const self = this;`.
+           */
+          allowedNames?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow throwing literals as exceptions
+   * https://typescript-eslint.io/rules/no-throw-literal
+   */
+  '@typescript-eslint/no-throw-literal'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowThrowingAny?: boolean;
+          allowThrowingUnknown?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow type aliases
+   * https://typescript-eslint.io/rules/no-type-alias
+   */
+  '@typescript-eslint/no-type-alias'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to allow direct one-to-one type aliases.
+           */
+          allowAliases?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Whether to allow type aliases for callbacks.
+           */
+          allowCallbacks?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Whether to allow type aliases for conditional types.
+           */
+          allowConditionalTypes?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Whether to allow type aliases with constructors.
+           */
+          allowConstructors?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Whether to allow type aliases with object literal types.
+           */
+          allowLiterals?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Whether to allow type aliases with mapped types.
+           */
+          allowMappedTypes?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Whether to allow type aliases with tuple types.
+           */
+          allowTupleTypes?: {
+            [k: string]: unknown | undefined;
+          };
+          /**
+           * Whether to allow type aliases with generic types.
+           */
+          allowGenerics?: {
+            [k: string]: unknown | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow unnecessary equality comparisons against boolean literals
+   * https://typescript-eslint.io/rules/no-unnecessary-boolean-literal-compare
+   */
+  '@typescript-eslint/no-unnecessary-boolean-literal-compare'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to allow comparisons between nullable boolean variables and `true`.
+           */
+          allowComparingNullableBooleansToTrue?: boolean;
+          /**
+           * Whether to allow comparisons between nullable boolean variables and `false`.
+           */
+          allowComparingNullableBooleansToFalse?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow conditionals where the type is always truthy or always falsy
+   * https://typescript-eslint.io/rules/no-unnecessary-condition
+   */
+  '@typescript-eslint/no-unnecessary-condition'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to ignore constant loop conditions, such as `while (true)`.
+           */
+          allowConstantLoopConditions?: boolean;
+          /**
+           * Whether to not error when running with a tsconfig that has strictNullChecks turned.
+           */
+          allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow unnecessary namespace qualifiers
+   * https://typescript-eslint.io/rules/no-unnecessary-qualifier
+   */
+  '@typescript-eslint/no-unnecessary-qualifier'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unnecessary template expressions
+   * https://typescript-eslint.io/rules/no-unnecessary-template-expression
+   */
+  '@typescript-eslint/no-unnecessary-template-expression'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow type arguments that are equal to the default
+   * https://typescript-eslint.io/rules/no-unnecessary-type-arguments
+   */
+  '@typescript-eslint/no-unnecessary-type-arguments'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow type assertions that do not change the type of an expression
+   * https://typescript-eslint.io/rules/no-unnecessary-type-assertion
+   */
+  '@typescript-eslint/no-unnecessary-type-assertion'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * A list of type names to ignore.
+           */
+          typesToIgnore?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow unnecessary constraints on generic types
+   * https://typescript-eslint.io/rules/no-unnecessary-type-constraint
+   */
+  '@typescript-eslint/no-unnecessary-type-constraint'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow calling a function with a value with type `any`
+   * https://typescript-eslint.io/rules/no-unsafe-argument
+   */
+  '@typescript-eslint/no-unsafe-argument'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow assigning a value with type `any` to variables and properties
+   * https://typescript-eslint.io/rules/no-unsafe-assignment
+   */
+  '@typescript-eslint/no-unsafe-assignment'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow calling a value with type `any`
+   * https://typescript-eslint.io/rules/no-unsafe-call
+   */
+  '@typescript-eslint/no-unsafe-call'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unsafe declaration merging
+   * https://typescript-eslint.io/rules/no-unsafe-declaration-merging
+   */
+  '@typescript-eslint/no-unsafe-declaration-merging'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow comparing an enum value with a non-enum value
+   * https://typescript-eslint.io/rules/no-unsafe-enum-comparison
+   */
+  '@typescript-eslint/no-unsafe-enum-comparison'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow member access on a value with type `any`
+   * https://typescript-eslint.io/rules/no-unsafe-member-access
+   */
+  '@typescript-eslint/no-unsafe-member-access'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow returning a value with type `any` from a function
+   * https://typescript-eslint.io/rules/no-unsafe-return
+   */
+  '@typescript-eslint/no-unsafe-return'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require unary negation to take a number
+   * https://typescript-eslint.io/rules/no-unsafe-unary-minus
+   */
+  '@typescript-eslint/no-unsafe-unary-minus'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unused expressions
+   * https://typescript-eslint.io/rules/no-unused-expressions
+   */
+  '@typescript-eslint/no-unused-expressions'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowShortCircuit?: boolean;
+          allowTernary?: boolean;
+          allowTaggedTemplates?: boolean;
+          enforceForJSX?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow unused variables
+   * https://typescript-eslint.io/rules/no-unused-vars
+   */
+  '@typescript-eslint/no-unused-vars'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow the use of variables before they are defined
+   * https://typescript-eslint.io/rules/no-use-before-define
+   */
+  '@typescript-eslint/no-use-before-define'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow unnecessary constructors
+   * https://typescript-eslint.io/rules/no-useless-constructor
+   */
+  '@typescript-eslint/no-useless-constructor'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow empty exports that don't change anything in a module file
+   * https://typescript-eslint.io/rules/no-useless-empty-export
+   */
+  '@typescript-eslint/no-useless-empty-export'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow unnecessary template expressions
+   * https://typescript-eslint.io/rules/no-useless-template-literals
+   */
+  '@typescript-eslint/no-useless-template-literals'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Disallow `require` statements except in import statements
+   * https://typescript-eslint.io/rules/no-var-requires
+   */
+  '@typescript-eslint/no-var-requires'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Patterns of import paths to allow requiring from.
+           */
+          allow?: string[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce non-null assertions over explicit type casts
+   * https://typescript-eslint.io/rules/non-nullable-type-assertion-style
+   */
+  '@typescript-eslint/non-nullable-type-assertion-style'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce consistent spacing inside braces
+   * https://typescript-eslint.io/rules/object-curly-spacing
+   */
+  '@typescript-eslint/object-curly-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow throwing non-`Error` values as exceptions
+   * https://typescript-eslint.io/rules/only-throw-error
+   */
+  '@typescript-eslint/only-throw-error'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowThrowingAny?: boolean;
+          allowThrowingUnknown?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require or disallow padding lines between statements
+   * https://typescript-eslint.io/rules/padding-line-between-statements
+   */
+  '@typescript-eslint/padding-line-between-statements'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require or disallow parameter properties in class constructors
+   * https://typescript-eslint.io/rules/parameter-properties
+   */
+  '@typescript-eslint/parameter-properties'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allow?: unknown[];
+          prefer?: 'class-property' | 'parameter-property';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce the use of `as const` over literal type
+   * https://typescript-eslint.io/rules/prefer-as-const
+   */
+  '@typescript-eslint/prefer-as-const'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require destructuring from arrays and/or objects
+   * https://typescript-eslint.io/rules/prefer-destructuring
+   */
+  '@typescript-eslint/prefer-destructuring'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require each enum member value to be explicitly initialized
+   * https://typescript-eslint.io/rules/prefer-enum-initializers
+   */
+  '@typescript-eslint/prefer-enum-initializers'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce the use of Array.prototype.find() over Array.prototype.filter() followed by [0] when looking for a single result
+   * https://typescript-eslint.io/rules/prefer-find
+   */
+  '@typescript-eslint/prefer-find'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce the use of `for-of` loop over the standard `for` loop where possible
+   * https://typescript-eslint.io/rules/prefer-for-of
+   */
+  '@typescript-eslint/prefer-for-of'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce using function types instead of interfaces with call signatures
+   * https://typescript-eslint.io/rules/prefer-function-type
+   */
+  '@typescript-eslint/prefer-function-type'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce `includes` method over `indexOf` method
+   * https://typescript-eslint.io/rules/prefer-includes
+   */
+  '@typescript-eslint/prefer-includes'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require all enum members to be literal values
+   * https://typescript-eslint.io/rules/prefer-literal-enum-member
+   */
+  '@typescript-eslint/prefer-literal-enum-member'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowBitwiseExpressions?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require using `namespace` keyword over `module` keyword to declare custom TypeScript modules
+   * https://typescript-eslint.io/rules/prefer-namespace-keyword
+   */
+  '@typescript-eslint/prefer-namespace-keyword'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce using the nullish coalescing operator instead of logical assignments or chaining
+   * https://typescript-eslint.io/rules/prefer-nullish-coalescing
+   */
+  '@typescript-eslint/prefer-nullish-coalescing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean;
+          ignoreConditionalTests?: boolean;
+          ignoreMixedLogicalExpressions?: boolean;
+          ignorePrimitives?:
+            | {
+                bigint?: boolean;
+                boolean?: boolean;
+                number?: boolean;
+                string?: boolean;
+                [k: string]: unknown | undefined;
+              }
+            | true;
+          ignoreTernaryTests?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce using concise optional chain expressions instead of chained logical ands, negated logical ors, or empty objects
+   * https://typescript-eslint.io/rules/prefer-optional-chain
+   */
+  '@typescript-eslint/prefer-optional-chain'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Check operands that are typed as `any` when inspecting "loose boolean" operands.
+           */
+          checkAny?: boolean;
+          /**
+           * Check operands that are typed as `unknown` when inspecting "loose boolean" operands.
+           */
+          checkUnknown?: boolean;
+          /**
+           * Check operands that are typed as `string` when inspecting "loose boolean" operands.
+           */
+          checkString?: boolean;
+          /**
+           * Check operands that are typed as `number` when inspecting "loose boolean" operands.
+           */
+          checkNumber?: boolean;
+          /**
+           * Check operands that are typed as `boolean` when inspecting "loose boolean" operands.
+           */
+          checkBoolean?: boolean;
+          /**
+           * Check operands that are typed as `bigint` when inspecting "loose boolean" operands.
+           */
+          checkBigInt?: boolean;
+          /**
+           * Skip operands that are not typed with `null` and/or `undefined` when inspecting "loose boolean" operands.
+           */
+          requireNullish?: boolean;
+          /**
+           * Allow autofixers that will change the return type of the expression. This option is considered unsafe as it may break the build.
+           */
+          allowPotentiallyUnsafeFixesThatModifyTheReturnTypeIKnowWhatImDoing?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require using Error objects as Promise rejection reasons
+   * https://typescript-eslint.io/rules/prefer-promise-reject-errors
+   */
+  '@typescript-eslint/prefer-promise-reject-errors'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowEmptyReject?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require private members to be marked as `readonly` if they're never modified outside of the constructor
+   * https://typescript-eslint.io/rules/prefer-readonly
+   */
+  '@typescript-eslint/prefer-readonly'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          onlyInlineLambdas?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require function parameters to be typed as `readonly` to prevent accidental mutation of inputs
+   * https://typescript-eslint.io/rules/prefer-readonly-parameter-types
+   */
+  '@typescript-eslint/prefer-readonly-parameter-types'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allow?: (
+            | string
+            | {
+                from: 'file';
+                name: string | [string, ...string[]];
+                path?: string;
+              }
+            | {
+                from: 'lib';
+                name: string | [string, ...string[]];
+              }
+            | {
+                from: 'package';
+                name: string | [string, ...string[]];
+                package: string;
+              }
+          )[];
+          checkParameterProperties?: boolean;
+          ignoreInferredTypes?: boolean;
+          treatMethodsAsReadonly?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce using type parameter when calling `Array#reduce` instead of casting
+   * https://typescript-eslint.io/rules/prefer-reduce-type-parameter
+   */
+  '@typescript-eslint/prefer-reduce-type-parameter'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce `RegExp#exec` over `String#match` if no global flag is provided
+   * https://typescript-eslint.io/rules/prefer-regexp-exec
+   */
+  '@typescript-eslint/prefer-regexp-exec'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce that `this` is used when only `this` type is returned
+   * https://typescript-eslint.io/rules/prefer-return-this-type
+   */
+  '@typescript-eslint/prefer-return-this-type'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce using `String#startsWith` and `String#endsWith` over other equivalent methods of checking substrings
+   * https://typescript-eslint.io/rules/prefer-string-starts-ends-with
+   */
+  '@typescript-eslint/prefer-string-starts-ends-with'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to allow equality checks against the first or last element of a string.
+           */
+          allowSingleElementEquality?: 'always' | 'never';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce using `@ts-expect-error` over `@ts-ignore`
+   * https://typescript-eslint.io/rules/prefer-ts-expect-error
+   */
+  '@typescript-eslint/prefer-ts-expect-error'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require any function or method that returns a Promise to be marked async
+   * https://typescript-eslint.io/rules/promise-function-async
+   */
+  '@typescript-eslint/promise-function-async'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to consider `any` and `unknown` to be Promises.
+           */
+          allowAny?: boolean;
+          /**
+           * Any extra names of classes or interfaces to be considered Promises.
+           */
+          allowedPromiseNames?: string[];
+          checkArrowFunctions?: boolean;
+          checkFunctionDeclarations?: boolean;
+          checkFunctionExpressions?: boolean;
+          checkMethodDeclarations?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * DEPRECATED. Enforce the consistent use of either backticks, double, or single quotes
+   * https://typescript-eslint.io/rules/quotes
+   */
+  '@typescript-eslint/quotes'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | (
+        | [number | ('off' | 'warn' | 'error'), 'double' | 'single' | 'backtick']
+        | [
+            number | ('off' | 'warn' | 'error'),
+            'double' | 'single' | 'backtick',
+            {
+              /**
+               * allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise
+               */
+              avoidEscape?: boolean;
+              /**
+               * allows strings to use backticks
+               */
+              allowTemplateLiterals?: boolean;
+              /**
+               * Deprecated: The object property avoid-escape is deprecated; please use the object property avoidEscape instead.
+               */
+              'avoid-escape'?: boolean;
+              [k: string]: unknown | undefined;
+            }
+          ]
+      );
+  /**
+   * Require `Array#sort` and `Array#toSorted` calls to always provide a `compareFunction`
+   * https://typescript-eslint.io/rules/require-array-sort-compare
+   */
+  '@typescript-eslint/require-array-sort-compare'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to ignore arrays in which all elements are strings.
+           */
+          ignoreStringArrays?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow async functions which do not return promises and have no `await` expression
+   * https://typescript-eslint.io/rules/require-await
+   */
+  '@typescript-eslint/require-await'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Require both operands of addition to be the same type and be `bigint`, `number`, or `string`
+   * https://typescript-eslint.io/rules/restrict-plus-operands
+   */
+  '@typescript-eslint/restrict-plus-operands'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to allow `any` typed values.
+           */
+          allowAny?: boolean;
+          /**
+           * Whether to allow `boolean` typed values.
+           */
+          allowBoolean?: boolean;
+          /**
+           * Whether to allow potentially `null` or `undefined` typed values.
+           */
+          allowNullish?: boolean;
+          /**
+           * Whether to allow `bigint`/`number` typed values and `string` typed values to be added together.
+           */
+          allowNumberAndString?: boolean;
+          /**
+           * Whether to allow `regexp` typed values.
+           */
+          allowRegExp?: boolean;
+          /**
+           * Whether to skip compound assignments such as `+=`.
+           */
+          skipCompoundAssignments?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce template literal expressions to be of `string` type
+   * https://typescript-eslint.io/rules/restrict-template-expressions
+   */
+  '@typescript-eslint/restrict-template-expressions'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to allow `any` typed values in template expressions.
+           */
+          allowAny?: boolean;
+          /**
+           * Whether to allow `array` typed values in template expressions.
+           */
+          allowArray?: boolean;
+          /**
+           * Whether to allow `boolean` typed values in template expressions.
+           */
+          allowBoolean?: boolean;
+          /**
+           * Whether to allow `nullish` typed values in template expressions.
+           */
+          allowNullish?: boolean;
+          /**
+           * Whether to allow `number` typed values in template expressions.
+           */
+          allowNumber?: boolean;
+          /**
+           * Whether to allow `regexp` typed values in template expressions.
+           */
+          allowRegExp?: boolean;
+          /**
+           * Whether to allow `never` typed values in template expressions.
+           */
+          allowNever?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent awaiting of returned promises
+   * https://typescript-eslint.io/rules/return-await
+   */
+  '@typescript-eslint/return-await'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [number | ('off' | 'warn' | 'error'), 'never' | 'error-handling-correctness-only' | 'in-try-catch' | 'always'];
+  /**
+   * Require or disallow semicolons instead of ASI
+   * https://typescript-eslint.io/rules/semi
+   */
+  '@typescript-eslint/semi'?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Enforce constituents of a type union/intersection to be sorted alphabetically
+   * https://typescript-eslint.io/rules/sort-type-constituents
+   */
+  '@typescript-eslint/sort-type-constituents'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to check intersection types.
+           */
+          checkIntersections?: boolean;
+          /**
+           * Whether to check union types.
+           */
+          checkUnions?: boolean;
+          /**
+           * Whether to sort using case sensitive sorting.
+           */
+          caseSensitive?: boolean;
+          /**
+           * Ordering of the groups.
+           */
+          groupOrder?: (
+            | 'conditional'
+            | 'function'
+            | 'import'
+            | 'intersection'
+            | 'keyword'
+            | 'nullish'
+            | 'literal'
+            | 'named'
+            | 'object'
+            | 'operator'
+            | 'tuple'
+            | 'union'
+          )[];
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent spacing before blocks
+   * https://typescript-eslint.io/rules/space-before-blocks
+   */
+  '@typescript-eslint/space-before-blocks'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce consistent spacing before function parenthesis
+   * https://typescript-eslint.io/rules/space-before-function-paren
+   */
+  '@typescript-eslint/space-before-function-paren'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require spacing around infix operators
+   * https://typescript-eslint.io/rules/space-infix-ops
+   */
+  '@typescript-eslint/space-infix-ops'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          int32Hint?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow certain types in boolean expressions
+   * https://typescript-eslint.io/rules/strict-boolean-expressions
+   */
+  '@typescript-eslint/strict-boolean-expressions'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          allowString?: boolean;
+          allowNumber?: boolean;
+          allowNullableObject?: boolean;
+          allowNullableBoolean?: boolean;
+          allowNullableString?: boolean;
+          allowNullableNumber?: boolean;
+          allowNullableEnum?: boolean;
+          allowAny?: boolean;
+          allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require switch-case statements to be exhaustive
+   * https://typescript-eslint.io/rules/switch-exhaustiveness-check
+   */
+  '@typescript-eslint/switch-exhaustiveness-check'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * If 'true', allow 'default' cases on switch statements with exhaustive cases.
+           */
+          allowDefaultCaseForExhaustiveSwitch?: boolean;
+          /**
+           * If 'true', require a 'default' clause for switches on non-union types.
+           */
+          requireDefaultForNonUnion?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow certain triple slash directives in favor of ES6-style import declarations
+   * https://typescript-eslint.io/rules/triple-slash-reference
+   */
+  '@typescript-eslint/triple-slash-reference'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          lib?: 'always' | 'never';
+          path?: 'always' | 'never';
+          types?: 'always' | 'never' | 'prefer-import';
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require consistent spacing around type annotations
+   * https://typescript-eslint.io/rules/type-annotation-spacing
+   */
+  '@typescript-eslint/type-annotation-spacing'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          before?: boolean;
+          after?: boolean;
+          overrides?: {
+            colon?: unknown;
+            arrow?: unknown;
+            variable?: unknown;
+            parameter?: unknown;
+            property?: unknown;
+            returnType?: unknown;
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Require type annotations in certain places
+   * https://typescript-eslint.io/rules/typedef
+   */
+  '@typescript-eslint/typedef'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          arrayDestructuring?: boolean;
+          arrowParameter?: boolean;
+          memberVariableDeclaration?: boolean;
+          objectDestructuring?: boolean;
+          parameter?: boolean;
+          propertyDeclaration?: boolean;
+          variableDeclaration?: boolean;
+          variableDeclarationIgnoreFunction?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce unbound methods are called with their expected scope
+   * https://typescript-eslint.io/rules/unbound-method
+   */
+  '@typescript-eslint/unbound-method'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether to skip checking whether `static` methods are correctly bound.
+           */
+          ignoreStatic?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Disallow two overloads that could be unified into one with a union or an optional/rest parameter
+   * https://typescript-eslint.io/rules/unified-signatures
+   */
+  '@typescript-eslint/unified-signatures'?:
+    | number
+    | ('off' | 'warn' | 'error')
+    | [
+        number | ('off' | 'warn' | 'error'),
+        {
+          /**
+           * Whether two parameters with different names at the same index should be considered different even if their types are the same.
+           */
+          ignoreDifferentlyNamedParameters?: boolean;
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Enforce typing arguments in `.catch()` callbacks as `unknown`
+   * https://typescript-eslint.io/rules/use-unknown-in-catch-callback-variable
+   */
+  '@typescript-eslint/use-unknown-in-catch-callback-variable'?: {
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+}
+/**
+ * ESLint supports adding shared settings into configuration file. You can add settings object to ESLint configuration file and it will be supplied to every rule that will be executed. This may be useful if you are adding custom rules and want them to have access to the same information and be easily configurable.
+ */
+export interface Settings {
+  [k: string]: unknown | undefined;
+}
+export interface OptionsDefinition {
+  /**
+   * Include parentheses around a sole arrow function parameter.
+   */
+  arrowParens?: 'always' | 'avoid';
+  /**
+   * Put > of opening tags on the last line instead of on a new line.
+   */
+  bracketSameLine?: boolean;
+  /**
+   * Print spaces between brackets.
+   */
+  bracketSpacing?: boolean;
+  /**
+   * Check whether the file's first docblock comment contains '@noprettier' or '@noformat' to determine if it should be formatted.
+   */
+  checkIgnorePragma?: boolean;
+  /**
+   * Print (to stderr) where a cursor at the given position would move to after formatting.
+   */
+  cursorOffset?: number;
+  /**
+   * Control how Prettier formats quoted code embedded in the file.
+   */
+  embeddedLanguageFormatting?: 'auto' | 'off';
+  /**
+   * Which end of line characters to apply.
+   */
+  endOfLine?: 'lf' | 'crlf' | 'cr' | 'auto';
+  /**
+   * Where to print operators when binary expressions wrap lines.
+   */
+  experimentalOperatorPosition?: 'start' | 'end';
+  /**
+   * Use curious ternaries, with the question mark after the condition.
+   */
+  experimentalTernaries?: boolean;
+  /**
+   * Specify the input filepath. This will be used to do parser inference.
+   */
+  filepath?: string;
+  /**
+   * How to handle whitespaces in HTML.
+   */
+  htmlWhitespaceSensitivity?: 'css' | 'strict' | 'ignore';
+  /**
+   * Insert @format pragma into file's first docblock comment.
+   */
+  insertPragma?: boolean;
+  /**
+   * Use single quotes in JSX.
+   */
+  jsxSingleQuote?: boolean;
+  /**
+   * How to wrap object literals.
+   */
+  objectWrap?: 'preserve' | 'collapse';
+  /**
+   * Which parser to use.
+   */
+  parser?:
+    | 'flow'
+    | 'babel'
+    | 'babel-flow'
+    | 'babel-ts'
+    | 'typescript'
+    | 'acorn'
+    | 'espree'
+    | 'meriyah'
+    | 'css'
+    | 'less'
+    | 'scss'
+    | 'json'
+    | 'json5'
+    | 'jsonc'
+    | 'json-stringify'
+    | 'graphql'
+    | 'markdown'
+    | 'mdx'
+    | 'vue'
+    | 'yaml'
+    | 'glimmer'
+    | 'html'
+    | 'angular'
+    | 'lwc'
+    | 'mjml'
+    | string;
+  /**
+   * Add a plugin. Multiple plugins can be passed as separate `--plugin`s.
+   */
+  plugins?: string[];
+  /**
+   * The line length where Prettier will try wrap.
+   */
+  printWidth?: number;
+  /**
+   * How to wrap prose.
+   */
+  proseWrap?: 'always' | 'never' | 'preserve';
+  /**
+   * Change when properties in objects are quoted.
+   */
+  quoteProps?: 'as-needed' | 'consistent' | 'preserve';
+  /**
+   * Format code ending at a given character offset (exclusive).
+   * The range will extend forwards to the end of the selected statement.
+   */
+  rangeEnd?: number;
+  /**
+   * Format code starting at a given character offset.
+   * The range will extend backwards to the start of the first line containing the selected statement.
+   */
+  rangeStart?: number;
+  /**
+   * Require either '@prettier' or '@format' to be present in the file's first docblock comment in order for it to be formatted.
+   */
+  requirePragma?: boolean;
+  /**
+   * Print semicolons.
+   */
+  semi?: boolean;
+  /**
+   * Enforce single attribute per line in HTML, Vue and JSX.
+   */
+  singleAttributePerLine?: boolean;
+  /**
+   * Use single quotes instead of double quotes.
+   */
+  singleQuote?: boolean;
+  /**
+   * Number of spaces per indentation level.
+   */
+  tabWidth?: number;
+  /**
+   * Print trailing commas wherever possible when multi-line.
+   */
+  trailingComma?: 'all' | 'es5' | 'none';
+  /**
+   * Indent with tabs instead of spaces.
+   */
+  useTabs?: boolean;
+  /**
+   * Indent script and style tags in Vue files.
+   */
+  vueIndentScriptAndStyle?: boolean;
+  [k: string]: unknown | undefined;
+}
+export interface OverridesDefinition {
+  /**
+   * Provide a list of patterns to override prettier configuration.
+   */
+  overrides?: {
+    /**
+     * Include these files in this override.
+     */
+    files: string | string[];
+    /**
+     * Exclude these files from this override.
+     */
+    excludeFiles?: string | string[];
+    options?: OptionsDefinition;
+  }[];
+  [k: string]: unknown | undefined;
+}
+export interface JSONSchemaForTheStylelintConfigurationFiles {
+  extends?: SimpleStringOrArrayStringRule;
+  plugins?: SimpleArrayStringRule;
+  /**
+   * Specify a custom syntax to use on your code.
+   */
+  customSyntax?: string;
+  /**
+   * Provide rule and behavior overrides for files that match particular glob patterns.
+   */
+  overrides?: {
+    files?: string[];
+    customSyntax?: string;
+    rules?: AllRules;
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * Processors are functions that hook into stylelint's pipeline, modifying code on its way into stylelint and modifying results on their way out
+   */
+  processors?: (
+    | string
+    | []
+    | [
+        string,
+        ...{
+          [k: string]: unknown | undefined;
+        }[]
+      ]
+  )[];
+  /**
+   * Ignore stylelint-disable (e.g. /* stylelint-disable block-no-empty * /) comments.
+   */
+  ignoreDisables?: boolean;
+  ignoreFiles?: SimpleStringOrArrayStringRule;
+  /**
+   * The default severity level for all rules that do not have a severity specified in their secondary options
+   */
+  defaultSeverity?: 'warning' | 'error';
+  reportDescriptionlessDisables?: BooleanRule;
+  reportInvalidScopeDisables?: BooleanRule;
+  reportNeedlessDisables?: BooleanRule;
+  rules?: AllRules;
+  [k: string]: unknown | undefined;
+}
+export interface AtRule {
+  'at-rule-blacklist'?: ArrayStringRule;
+  /**
+   * Require or disallow an empty line before at-rules
+   */
+  'at-rule-empty-line-before'?: (
+    | null
+    | ('always' | 'never' | [])
+    | [
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              except?: [
+                (
+                  | 'all-nested'
+                  | 'after-same-name'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                  | 'first-nested'
+                ),
+                ...(
+                  | 'all-nested'
+                  | 'after-same-name'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                  | 'first-nested'
+                )[]
+              ];
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                (
+                  | 'after-comment'
+                  | 'first-nested'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                ),
+                ...(
+                  | 'after-comment'
+                  | 'first-nested'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                )[]
+              ];
+              ignoreAtRules?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      (
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      ),
+                      ...(
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      )[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      ),
+                      ...(
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      )[]
+                    ];
+                    ignoreAtRules?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      (
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      ),
+                      ...(
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      )[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      ),
+                      ...(
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      )[]
+                    ];
+                    ignoreAtRules?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              except?: [
+                (
+                  | 'all-nested'
+                  | 'after-same-name'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                  | 'first-nested'
+                ),
+                ...(
+                  | 'all-nested'
+                  | 'after-same-name'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                  | 'first-nested'
+                )[]
+              ];
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                (
+                  | 'after-comment'
+                  | 'first-nested'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                ),
+                ...(
+                  | 'after-comment'
+                  | 'first-nested'
+                  | 'inside-block'
+                  | 'blockless-after-same-name-blockless'
+                  | 'blockless-after-blockless'
+                )[]
+              ];
+              ignoreAtRules?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      (
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      ),
+                      ...(
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      )[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      ),
+                      ...(
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      )[]
+                    ];
+                    ignoreAtRules?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      (
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      ),
+                      ...(
+                        | 'all-nested'
+                        | 'after-same-name'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                        | 'first-nested'
+                      )[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      ),
+                      ...(
+                        | 'after-comment'
+                        | 'first-nested'
+                        | 'inside-block'
+                        | 'blockless-after-same-name-blockless'
+                        | 'blockless-after-blockless'
+                      )[]
+                    ];
+                    ignoreAtRules?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'at-rule-name-case'?: LowerUpperRule;
+  'at-rule-name-newline-after'?: AlwaysMultiLineRule;
+  /**
+   * Require a single space after at-rule names
+   */
+  'at-rule-name-space-after'?: (
+    | null
+    | ('always' | 'always-single-line' | [])
+    | [
+        (('always' | 'always-single-line' | {}) | CoreRule) & (
+            | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
+            | (('always' | 'always-single-line' | {}) | CoreRule)
+          ),
+        (('always' | 'always-single-line' | {}) | CoreRule) & (
+            | ((('always' | 'always-single-line' | {}) | CoreRule) & string)
+            | (('always' | 'always-single-line' | {}) | CoreRule)
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  /**
+   * Disallow unknown at-rules
+   */
+  'at-rule-no-unknown'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreAtRules?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreAtRules?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'at-rule-no-vendor-prefix'?: BooleanRule;
+  /**
+   * Require a newline after the semicolon of at-rules
+   */
+  'at-rule-semicolon-newline-after'?: (
+    | null
+    | ('always' | [])
+    | [
+        (('always' | {}) | CoreRule) & (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule)),
+        (('always' | {}) | CoreRule) & (((('always' | {}) | CoreRule) & string) | (('always' | {}) | CoreRule))
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  /**
+   * @deprecated
+   * Require a single space or disallow whitespace before the semicolons of at-rules
+   */
+  'at-rule-semicolon-space-before'?: {
+    [k: string]: unknown | undefined;
+  };
+  'at-rule-whitelist'?: ArrayStringRule;
+  [k: string]: unknown | undefined;
+}
+export interface CoreRule {
+  disableFix?: boolean;
+  /**
+   * Custom message that will be used in errors and warnings
+   */
+  message?: string;
+  reportDisables?: boolean;
+  /**
+   * Message status
+   */
+  severity?: 'warning' | 'error';
+  url?: string;
+  [k: string]: unknown | undefined;
+}
+export interface Block {
+  /**
+   * Require or disallow an empty line before the closing brace of blocks
+   */
+  'block-closing-brace-empty-line-before'?: (
+    | null
+    | ('always-multi-line' | 'never' | [])
+    | [
+        (('always-multi-line' | 'never' | {}) | CoreRule) & (
+            | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
+            | (('always-multi-line' | 'never' | {}) | CoreRule)
+          ),
+        (('always-multi-line' | 'never' | {}) | CoreRule) & (
+            | ((('always-multi-line' | 'never' | {}) | CoreRule) & string)
+            | (('always-multi-line' | 'never' | {}) | CoreRule)
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'block-closing-brace-newline-after'?: NewlineSpaceWithIgnoreRule;
+  'block-closing-brace-newline-before'?: NewlineRule;
+  'block-closing-brace-space-after'?: NewlineSpaceRule;
+  'block-closing-brace-space-before'?: NewlineSpaceRule;
+  'block-no-empty'?: BooleanRule;
+  'block-no-single-line'?: BooleanRule;
+  'block-opening-brace-newline-after'?: NewlineRule;
+  /**
+   * Require a newline or disallow whitespace before the opening brace of blocks
+   */
+  'block-opening-brace-newline-before'?: (
+    | null
+    | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | [])
+    | [
+        (
+          | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
+          | CoreRule
+        ) & (
+            | ((
+                | (
+                    | 'always'
+                    | 'always-single-line'
+                    | 'never-single-line'
+                    | 'always-multi-line'
+                    | 'never-multi-line'
+                    | {}
+                  )
+                | CoreRule
+              ) &
+                string)
+            | (
+                | (
+                    | 'always'
+                    | 'always-single-line'
+                    | 'never-single-line'
+                    | 'always-multi-line'
+                    | 'never-multi-line'
+                    | {}
+                  )
+                | CoreRule
+              )
+          ),
+        (
+          | ('always' | 'always-single-line' | 'never-single-line' | 'always-multi-line' | 'never-multi-line' | {})
+          | CoreRule
+        ) & (
+            | ((
+                | (
+                    | 'always'
+                    | 'always-single-line'
+                    | 'never-single-line'
+                    | 'always-multi-line'
+                    | 'never-multi-line'
+                    | {}
+                  )
+                | CoreRule
+              ) &
+                string)
+            | (
+                | (
+                    | 'always'
+                    | 'always-single-line'
+                    | 'never-single-line'
+                    | 'always-multi-line'
+                    | 'never-multi-line'
+                    | {}
+                  )
+                | CoreRule
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'block-opening-brace-space-after'?: NewlineSpaceRule;
+  'block-opening-brace-space-before'?: NewlineSpaceWithIgnoreRule;
+  [k: string]: unknown | undefined;
+}
+export interface Color {
+  'color-hex-case'?: LowerUpperRule;
+  /**
+   * Specify short or long notation for hex colors
+   */
+  'color-hex-length'?: (
+    | null
+    | ('short' | 'long' | [])
+    | [
+        (('short' | 'long' | {}) | CoreRule) & (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule)),
+        (('short' | 'long' | {}) | CoreRule) & (((('short' | 'long' | {}) | CoreRule) & string) | (('short' | 'long' | {}) | CoreRule))
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  /**
+   * Require (where possible) or disallow named colors
+   */
+  'color-named'?: (
+    | null
+    | ('always-where-possible' | 'never' | [])
+    | [
+        (
+          | ('always-where-possible' | 'never' | {})
+          | (CoreRule & {
+              ignore?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always-where-possible' | 'never' | {})
+                | (CoreRule & {
+                    ignore?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always-where-possible' | 'never' | {})
+                | (CoreRule & {
+                    ignore?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always-where-possible' | 'never' | {})
+          | (CoreRule & {
+              ignore?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always-where-possible' | 'never' | {})
+                | (CoreRule & {
+                    ignore?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always-where-possible' | 'never' | {})
+                | (CoreRule & {
+                    ignore?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'color-no-hex'?: BooleanRule;
+  'color-no-invalid-hex'?: BooleanRule;
+  [k: string]: unknown | undefined;
+}
+export interface Comment {
+  /**
+   * Require or disallow an empty line before comments
+   */
+  'comment-empty-line-before'?: (
+    | null
+    | ('always' | 'never' | [])
+    | [
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option for comments that are nested and the first child of their parent node
+               *
+               * @minItems 1
+               */
+              except?: ['first-nested', ...'first-nested'[]];
+              /**
+               * Don't require an empty line between comments
+               *
+               * @minItems 1
+               */
+              ignore?: [
+                'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for comments that are nested and the first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Don't require an empty line between comments
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                      ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for comments that are nested and the first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Don't require an empty line between comments
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                      ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option for comments that are nested and the first child of their parent node
+               *
+               * @minItems 1
+               */
+              except?: ['first-nested', ...'first-nested'[]];
+              /**
+               * Don't require an empty line between comments
+               *
+               * @minItems 1
+               */
+              ignore?: [
+                'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for comments that are nested and the first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Don't require an empty line between comments
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                      ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for comments that are nested and the first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Don't require an empty line between comments
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands',
+                      ...('between-comments' | 'after-comment' | 'stylelint-command' | 'stylelint-commands')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'comment-no-empty'?: BooleanRule;
+  'comment-whitespace-inside'?: AlwaysNeverRule;
+  'comment-word-blacklist'?: ArrayStringRule;
+  [k: string]: unknown | undefined;
+}
+export interface CustomMedia {
+  'custom-media-pattern'?: StringRule;
+  /**
+   * Disallow unknown custom media queries
+   */
+  'no-unknown-custom-media'?: (true | null) | [true | null] | [true | null, CoreRule1];
+  [k: string]: unknown | undefined;
+}
+export interface CoreRule1 {
+  disableFix?: boolean;
+  /**
+   * Custom message that will be used in errors and warnings
+   */
+  message?: string;
+  reportDisables?: boolean;
+  /**
+   * Message status
+   */
+  severity?: 'warning' | 'error';
+  url?: string;
+}
+export interface CustomProperty {
+  /**
+   * Require or disallow an empty line before custom properties
+   */
+  'custom-property-empty-line-before'?: (
+    | null
+    | ('always' | 'never' | [])
+    | [
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+               *
+               * @minItems 1
+               */
+              except?: [
+                'after-comment' | 'after-custom-property' | 'first-nested',
+                ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+              ];
+              /**
+               * Ignore custom properties that are preceded by comments or inside single-line blocks
+               *
+               * @minItems 1
+               */
+              ignore?: [
+                'after-comment' | 'inside-single-line-block',
+                ...('after-comment' | 'inside-single-line-block')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-custom-property' | 'first-nested',
+                      ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+                    ];
+                    /**
+                     * Ignore custom properties that are preceded by comments or inside single-line blocks
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'inside-single-line-block',
+                      ...('after-comment' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-custom-property' | 'first-nested',
+                      ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+                    ];
+                    /**
+                     * Ignore custom properties that are preceded by comments or inside single-line blocks
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'inside-single-line-block',
+                      ...('after-comment' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+               *
+               * @minItems 1
+               */
+              except?: [
+                'after-comment' | 'after-custom-property' | 'first-nested',
+                ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+              ];
+              /**
+               * Ignore custom properties that are preceded by comments or inside single-line blocks
+               *
+               * @minItems 1
+               */
+              ignore?: [
+                'after-comment' | 'inside-single-line-block',
+                ...('after-comment' | 'inside-single-line-block')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-custom-property' | 'first-nested',
+                      ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+                    ];
+                    /**
+                     * Ignore custom properties that are preceded by comments or inside single-line blocks
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'inside-single-line-block',
+                      ...('after-comment' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option for custom properties that come after a comment, custom property or first child of their parent node
+                     *
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-custom-property' | 'first-nested',
+                      ...('after-comment' | 'after-custom-property' | 'first-nested')[]
+                    ];
+                    /**
+                     * Ignore custom properties that are preceded by comments or inside single-line blocks
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'inside-single-line-block',
+                      ...('after-comment' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'custom-property-no-outside-root'?: BooleanRule;
+  'custom-property-pattern'?: StringRule;
+  /**
+   * Disallow unknown custom properties
+   */
+  'no-unknown-custom-properties'?: (true | null) | [true | null] | [true | null, CoreRule1];
+  [k: string]: unknown | undefined;
+}
+export interface Declaration {
+  'declaration-bang-space-after'?: AlwaysNeverRule;
+  'declaration-bang-space-before'?: AlwaysNeverRule;
+  'declaration-colon-newline-after'?: AlwaysMultiLineRule;
+  /**
+   * Require a single space or disallow whitespace after the colon of declarations
+   */
+  'declaration-colon-space-after'?: (
+    | null
+    | ('always' | 'never' | 'always-single-line' | [])
+    | [
+        (('always' | 'never' | 'always-single-line' | {}) | CoreRule) & (
+            | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
+            | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
+          ),
+        (('always' | 'never' | 'always-single-line' | {}) | CoreRule) & (
+            | ((('always' | 'never' | 'always-single-line' | {}) | CoreRule) & string)
+            | (('always' | 'never' | 'always-single-line' | {}) | CoreRule)
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'declaration-colon-space-before'?: AlwaysNeverRule;
+  /**
+   * Require or disallow an empty line before declarations
+   */
+  'declaration-empty-line-before'?: (
+    | null
+    | ('always' | 'never' | [])
+    | [
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              except?: [
+                'after-comment' | 'after-declaration' | 'first-nested',
+                ...('after-comment' | 'after-declaration' | 'first-nested')[]
+              ];
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-declaration' | 'first-nested',
+                      ...('after-comment' | 'after-declaration' | 'first-nested')[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                      ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-declaration' | 'first-nested',
+                      ...('after-comment' | 'after-declaration' | 'first-nested')[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                      ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              except?: [
+                'after-comment' | 'after-declaration' | 'first-nested',
+                ...('after-comment' | 'after-declaration' | 'first-nested')[]
+              ];
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+              ];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-declaration' | 'first-nested',
+                      ...('after-comment' | 'after-declaration' | 'first-nested')[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                      ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    except?: [
+                      'after-comment' | 'after-declaration' | 'first-nested',
+                      ...('after-comment' | 'after-declaration' | 'first-nested')[]
+                    ];
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block',
+                      ...('after-comment' | 'after-declaration' | 'first-nested' | 'inside-single-line-block')[]
+                    ];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'declaration-no-important'?: BooleanRule;
+  /**
+   * Specify a blacklist of disallowed property and unit pairs within declarations
+   */
+  'declaration-property-unit-blacklist'?:
+    | null
+    | {
+        [k: string]: SimpleStringOrArrayStringRule | undefined;
+      }
+    | [
+        {
+          [k: string]: SimpleStringOrArrayStringRule | undefined;
+        },
+        CoreRule
+      ];
+  /**
+   * Specify a whitelist of allowed property and unit pairs within declarations
+   */
+  'declaration-property-unit-whitelist'?:
+    | null
+    | {
+        [k: string]: SimpleStringOrArrayStringRule | undefined;
+      }
+    | [
+        {
+          [k: string]: SimpleStringOrArrayStringRule | undefined;
+        },
+        CoreRule
+      ];
+  /**
+   * Specify a blacklist of disallowed property and value pairs within declarations
+   */
+  'declaration-property-value-blacklist'?:
+    | null
+    | {
+        [k: string]: SimpleStringOrArrayStringRule | undefined;
+      }
+    | [
+        {
+          [k: string]: SimpleStringOrArrayStringRule | undefined;
+        },
+        CoreRule
+      ];
+  /**
+   * Disallow unknown values for properties within declarations
+   */
+  'declaration-property-value-no-unknown'?:
+    | (true | null)
+    | [true | null]
+    | [
+        true | null,
+        CoreRule & {
+          ignoreProperties?: {
+            [k: string]:
+              | string
+              | string[]
+              | {
+                  [k: string]: unknown | undefined;
+                }
+              | (
+                  | {
+                      [k: string]: unknown | undefined;
+                    }
+                  | string
+                )[]
+              | undefined;
+          };
+          propertiesSyntax?: {
+            [k: string]: string | string[] | undefined;
+          };
+          typesSyntax?: {
+            [k: string]: string | string[] | undefined;
+          };
+          [k: string]: unknown | undefined;
+        }
+      ];
+  /**
+   * Specify a whitelist of allowed property and value pairs within declarations
+   */
+  'declaration-property-value-whitelist'?:
+    | null
+    | {
+        [k: string]: SimpleStringOrArrayStringRule | undefined;
+      }
+    | [
+        {
+          [k: string]: SimpleStringOrArrayStringRule | undefined;
+        },
+        CoreRule
+      ];
+  [k: string]: unknown | undefined;
+}
+export interface DeclarationBlock {
+  /**
+   * Disallow duplicate properties within declaration blocks
+   */
+  'declaration-block-no-duplicate-properties'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                (
+                  | 'consecutive-duplicates'
+                  | 'consecutive-duplicates-with-different-values'
+                  | 'consecutive-duplicates-with-different-syntaxes'
+                  | 'consecutive-duplicates-with-same-prefixless-values'
+                ),
+                ...(
+                  | 'consecutive-duplicates'
+                  | 'consecutive-duplicates-with-different-values'
+                  | 'consecutive-duplicates-with-different-syntaxes'
+                  | 'consecutive-duplicates-with-same-prefixless-values'
+                )[]
+              ];
+              ignoreProperties?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      ),
+                      ...(
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      )[]
+                    ];
+                    ignoreProperties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      ),
+                      ...(
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      )[]
+                    ];
+                    ignoreProperties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                (
+                  | 'consecutive-duplicates'
+                  | 'consecutive-duplicates-with-different-values'
+                  | 'consecutive-duplicates-with-different-syntaxes'
+                  | 'consecutive-duplicates-with-same-prefixless-values'
+                ),
+                ...(
+                  | 'consecutive-duplicates'
+                  | 'consecutive-duplicates-with-different-values'
+                  | 'consecutive-duplicates-with-different-syntaxes'
+                  | 'consecutive-duplicates-with-same-prefixless-values'
+                )[]
+              ];
+              ignoreProperties?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      ),
+                      ...(
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      )[]
+                    ];
+                    ignoreProperties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      (
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      ),
+                      ...(
+                        | 'consecutive-duplicates'
+                        | 'consecutive-duplicates-with-different-values'
+                        | 'consecutive-duplicates-with-different-syntaxes'
+                        | 'consecutive-duplicates-with-same-prefixless-values'
+                      )[]
+                    ];
+                    ignoreProperties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'declaration-block-no-ignored-properties'?: BooleanRule;
+  /**
+   * Disallow longhand properties that can be combined into one shorthand property
+   */
+  'declaration-block-no-redundant-longhand-properties'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreShorthands?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreShorthands?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreShorthands?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreShorthands?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreShorthands?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreShorthands?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'declaration-block-no-shorthand-property-overrides'?: BooleanRule;
+  /**
+   * Specify the order of properties within declaration blocks
+   */
+  'declaration-block-properties-order'?: (
+    | null
+    | ('alphabetical' | [])
+    | [
+        (
+          | ('alphabetical' | [] | {})
+          | string
+          | SimpleArrayStringRule
+          | (CoreRule & {
+              /**
+               * These options only apply if you've defined your own array of properties
+               */
+              unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+              order?: 'strict' | 'flexible';
+              properties?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | ((
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                unknown[])
+            | (
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        ...((
+          | ('alphabetical' | [] | {})
+          | string
+          | SimpleArrayStringRule
+          | (CoreRule & {
+              /**
+               * These options only apply if you've defined your own array of properties
+               */
+              unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+              order?: 'strict' | 'flexible';
+              properties?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | ((
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                unknown[])
+            | (
+                | ('alphabetical' | [] | {})
+                | string
+                | SimpleArrayStringRule
+                | (CoreRule & {
+                    /**
+                     * These options only apply if you've defined your own array of properties
+                     */
+                    unspecified?: 'top' | 'bottom' | 'bottomAlphabetical' | 'ignore';
+                    order?: 'strict' | 'flexible';
+                    properties?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ))[]
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'declaration-block-semicolon-newline-after'?: NewlineRule;
+  'declaration-block-semicolon-newline-before'?: NewlineRule;
+  'declaration-block-semicolon-space-after'?: SpaceRule;
+  'declaration-block-semicolon-space-before'?: SpaceRule;
+  'declaration-block-single-line-max-declarations'?: IntegerRule;
+  'declaration-block-trailing-semicolon'?: AlwaysNeverRule;
+  [k: string]: unknown | undefined;
+}
+export interface Font {
+  /**
+   * Specify whether or not quotation marks should be used around font family names
+   */
+  'font-family-name-quotes'?: (
+    | null
+    | ('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | [])
+    | [
+        (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) & (
+            | ((('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
+                string)
+            | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
+          ),
+        (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) & (
+            | ((('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule) &
+                string)
+            | (('always-where-required' | 'always-where-recommended' | 'always-unless-keyword' | {}) | CoreRule)
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  /**
+   * Require numeric or named (where possible) `font-weight` values. Also, when named values are expected, require only valid names
+   */
+  'font-weight-notation'?: (
+    | null
+    | ('numeric' | 'named-where-possible' | [])
+    | [
+        (
+          | ('numeric' | 'named-where-possible' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['relative', ...'relative'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('numeric' | 'named-where-possible' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['relative', ...'relative'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('numeric' | 'named-where-possible' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['relative', ...'relative'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('numeric' | 'named-where-possible' | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['relative', ...'relative'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('numeric' | 'named-where-possible' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['relative', ...'relative'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('numeric' | 'named-where-possible' | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['relative', ...'relative'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  [k: string]: unknown | undefined;
+}
+export interface Function {
+  'function-blacklist'?: ArrayStringRule;
+  'function-calc-no-unspaced-operator'?: BooleanRule;
+  'function-comma-newline-after'?: NewlineRule;
+  'function-comma-newline-before'?: NewlineRule;
+  'function-comma-space-after'?: SpaceRule;
+  'function-comma-space-before'?: SpaceRule;
+  'function-linear-gradient-no-nonstandard-direction'?: BooleanRule;
+  'function-max-empty-lines'?: IntegerRule;
+  /**
+   * Specify lowercase or uppercase for function names
+   */
+  'function-name-case'?: (
+    | null
+    | ('lower' | 'upper' | [])
+    | [
+        (
+          | ('lower' | 'upper' | {})
+          | (CoreRule & {
+              ignoreFunctions?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreFunctions?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreFunctions?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('lower' | 'upper' | {})
+          | (CoreRule & {
+              ignoreFunctions?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreFunctions?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreFunctions?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'function-parentheses-newline-inside'?: NewlineRule;
+  'function-parentheses-space-inside'?: SpaceRule;
+  'function-url-data-uris'?: AlwaysNeverRule;
+  'function-url-no-scheme-relative'?: BooleanRule;
+  'function-url-quotes'?: AlwaysNeverRule;
+  'function-url-scheme-whitelist'?: ArrayStringRule;
+  'function-whitelist'?: ArrayStringRule;
+  'function-whitespace-after'?: AlwaysNeverRule;
+  [k: string]: unknown | undefined;
+}
+export interface GeneralSheet {
+  /**
+   * Specify indentation
+   */
+  indentation?: (
+    | (null | number)
+    | ('tab' | [])
+    | [number, ...number[]]
+    | [
+        (
+          | number
+          | ('tab' | {})
+          | (CoreRule & {
+              /**
+               * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+               */
+              indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+              /**
+               * Do not indent for these things
+               *
+               * @minItems 1
+               */
+              except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+              /**
+               * Ignore the indentation inside parentheses
+               *
+               * @minItems 1
+               */
+              ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | ((
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | number
+          | ('tab' | {})
+          | (CoreRule & {
+              /**
+               * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+               */
+              indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+              /**
+               * Do not indent for these things
+               *
+               * @minItems 1
+               */
+              except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+              /**
+               * Ignore the indentation inside parentheses
+               *
+               * @minItems 1
+               */
+              ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | ((
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | number
+                | ('tab' | {})
+                | (CoreRule & {
+                    /**
+                     * If `true`, the closing brace of a block (rule or at-rule) will be expected at the same indentation level as the block's inner nodes
+                     */
+                    indentInsideParens?: 'twice' | 'once-at-root-twice-in-block';
+                    /**
+                     * Do not indent for these things
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['block' | 'param' | 'value', ...('block' | 'param' | 'value')[]];
+                    /**
+                     * Ignore the indentation inside parentheses
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['inside-parens' | 'param' | 'value', ...('inside-parens' | 'param' | 'value')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | number | string | unknown[]
+    );
+  /**
+   * @deprecated
+   * Specify unix or windows linebreaks
+   */
+  linebreaks?: {
+    [k: string]: unknown | undefined;
+  };
+  'max-empty-lines'?: IntegerRule;
+  /**
+   * Limit the length of a line
+   */
+  'max-line-length'?: (
+    | (null | number)
+    | [
+        (
+          | number
+          | (CoreRule & {
+              ignore?: (
+                ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+              ) &
+                (
+                  string | unknown[]
+                );
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | (CoreRule & {
+                    ignore?: (
+                      ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+                    ) &
+                      (
+                        string | unknown[]
+                      );
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | (
+                | number
+                | (CoreRule & {
+                    ignore?: (
+                      ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+                    ) &
+                      (
+                        string | unknown[]
+                      );
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | number
+          | (CoreRule & {
+              ignore?: (
+                ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+              ) &
+                (
+                  string | unknown[]
+                );
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | (CoreRule & {
+                    ignore?: (
+                      ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+                    ) &
+                      (
+                        string | unknown[]
+                      );
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | (
+                | number
+                | (CoreRule & {
+                    ignore?: (
+                      ('non-comments' | 'comments') | ['non-comments' | 'comments', ...('non-comments' | 'comments')[]]
+                    ) &
+                      (
+                        string | unknown[]
+                      );
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | number | unknown[]
+    );
+  /**
+   * Limit the allowed nesting depth
+   */
+  'max-nesting-depth'?: (
+    | (null | number)
+    | [
+        (
+          | number
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+              ];
+              ignoreAtRules?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                      ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+                    ];
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | (
+                | number
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                      ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+                    ];
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | number
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: [
+                'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+              ];
+              ignoreAtRules?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | number
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                      ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+                    ];
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                number)
+            | (
+                | number
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: [
+                      'at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes',
+                      ...('at-rules-without-declaration-blocks' | 'blockless-at-rules' | 'pseudo-classes')[]
+                    ];
+                    ignoreAtRules?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | number | unknown[]
+    );
+  /**
+   * Disallow browser hacks that are irrelevant to the browsers you are targeting
+   */
+  'no-browser-hacks'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              browsers?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              browsers?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'no-descending-specificity'?: BooleanRule;
+  'no-duplicate-selectors'?: BooleanRule;
+  /**
+   * @deprecated
+   * Disallow empty first lines
+   */
+  'no-empty-first-line'?: {
+    [k: string]: unknown | undefined;
+  };
+  'no-empty-source'?: BooleanRule;
+  /**
+   * Disallow end-of-line whitespace
+   */
+  'no-eol-whitespace'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['empty-lines', ...'empty-lines'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['empty-lines', ...'empty-lines'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['empty-lines', ...'empty-lines'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['empty-lines', ...'empty-lines'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['empty-lines', ...'empty-lines'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['empty-lines', ...'empty-lines'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'no-extra-semicolons'?: BooleanRule;
+  /**
+   * Disallow colors that are suspiciously close to being identical
+   */
+  'no-indistinguishable-colors'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              threshold?: number;
+              ignore?: SimpleArrayStringRule;
+              /**
+               * An array of color pairs to ignore. Each pair is an array with two items
+               *
+               * @minItems 1
+               */
+              whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    threshold?: number;
+                    ignore?: SimpleArrayStringRule;
+                    /**
+                     * An array of color pairs to ignore. Each pair is an array with two items
+                     *
+                     * @minItems 1
+                     */
+                    whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    threshold?: number;
+                    ignore?: SimpleArrayStringRule;
+                    /**
+                     * An array of color pairs to ignore. Each pair is an array with two items
+                     *
+                     * @minItems 1
+                     */
+                    whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              threshold?: number;
+              ignore?: SimpleArrayStringRule;
+              /**
+               * An array of color pairs to ignore. Each pair is an array with two items
+               *
+               * @minItems 1
+               */
+              whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    threshold?: number;
+                    ignore?: SimpleArrayStringRule;
+                    /**
+                     * An array of color pairs to ignore. Each pair is an array with two items
+                     *
+                     * @minItems 1
+                     */
+                    whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    threshold?: number;
+                    ignore?: SimpleArrayStringRule;
+                    /**
+                     * An array of color pairs to ignore. Each pair is an array with two items
+                     *
+                     * @minItems 1
+                     */
+                    whitelist?: [SimpleArrayStringRule, ...SimpleArrayStringRule[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'no-invalid-double-slash-comments'?: BooleanRule;
+  'no-missing-end-of-source-newline'?: BooleanRule;
+  'no-unknown-animations'?: BooleanRule;
+  'unicode-bom'?: AlwaysNeverRule;
+  /**
+   * Disallow features that are unsupported by the browsers that you are targeting
+   */
+  'no-unsupported-browser-features'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              browsers?: string;
+              ignore?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: string;
+                    ignore?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: string;
+                    ignore?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              browsers?: string;
+              ignore?: SimpleStringOrArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: string;
+                    ignore?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    browsers?: string;
+                    ignore?: SimpleStringOrArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  [k: string]: unknown | undefined;
+}
+export interface KeyframeDeclaration {
+  'keyframe-declaration-no-important'?: BooleanRule;
+  [k: string]: unknown | undefined;
+}
+export interface Length {
+  'length-zero-no-unit'?: BooleanRule;
+  [k: string]: unknown | undefined;
+}
+export interface Lightness {
+  /**
+   * Specify number or percentage notation for lightness
+   */
+  'lightness-notation'?:
+    | (('percentage' | 'number') | null)
+    | [('percentage' | 'number') | null]
+    | [('percentage' | 'number') | null, CoreRule1];
+  [k: string]: unknown | undefined;
+}
+export interface MediaFeature {
+  'media-feature-colon-space-after'?: AlwaysNeverRule;
+  'media-feature-colon-space-before'?: AlwaysNeverRule;
+  'media-feature-name-case'?: LowerUpperRule;
+  /**
+   * Disallow unknown media feature names
+   */
+  'media-feature-name-no-unknown'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreMediaFeatureNames?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreMediaFeatureNames?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreMediaFeatureNames?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreMediaFeatureNames?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreMediaFeatureNames?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreMediaFeatureNames?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  /**
+   * Disallow unknown values for media features
+   */
+  'media-feature-name-value-no-unknown'?: (true | null) | [true | null] | [true | null, CoreRule1];
+  'media-feature-name-no-vendor-prefix'?: BooleanRule;
+  /**
+   * Specify a list of allowed name and unit pairs within media features
+   */
+  'media-feature-name-unit-allowed-list'?:
+    | ({
+        [k: string]: string | string[] | undefined;
+      } | null)
+    | [
+        {
+          [k: string]: string | string[] | undefined;
+        } | null
+      ]
+    | [
+        {
+          [k: string]: string | string[] | undefined;
+        } | null,
+        CoreRule1
+      ];
+  'media-feature-no-missing-punctuation'?: BooleanRule;
+  'media-feature-parentheses-space-inside'?: AlwaysNeverRule;
+  /**
+   * Specify context or prefix notation for media feature ranges
+   */
+  'media-feature-range-notation'?:
+    (('prefix' | 'context') | null) | [('prefix' | 'context') | null] | [('prefix' | 'context') | null, CoreRule1];
+  'media-feature-range-operator-space-after'?: AlwaysNeverRule;
+  'media-feature-range-operator-space-before'?: AlwaysNeverRule;
+  [k: string]: unknown | undefined;
+}
+export interface MediaQuery {
+  /**
+   * Disallow invalid media queries
+   */
+  'media-query-no-invalid'?: (true | null) | [true | null] | [true | null, CoreRule1];
+  [k: string]: unknown | undefined;
+}
+export interface MediaQueryList {
+  'media-query-list-comma-newline-after'?: NewlineRule;
+  'media-query-list-comma-newline-before'?: NewlineRule;
+  'media-query-list-comma-space-after'?: SpaceRule;
+  'media-query-list-comma-space-before'?: SpaceRule;
+  [k: string]: unknown | undefined;
+}
+export interface Number {
+  'number-leading-zero'?: AlwaysNeverRule;
+  'number-max-precision'?: IntegerRule;
+  'number-no-trailing-zeros'?: BooleanRule;
+  [k: string]: unknown | undefined;
+}
+export interface Property {
+  'property-blacklist'?: ArrayStringRule;
+  'property-case'?: LowerUpperRule;
+  /**
+   * Disallow unknown properties
+   */
+  'property-no-unknown'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreProperties?: SimpleArrayStringRule;
+              /**
+               * If `true`, this rule will check vendor-prefixed properties
+               */
+              checkPrefixed?: boolean;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreProperties?: SimpleArrayStringRule;
+                    /**
+                     * If `true`, this rule will check vendor-prefixed properties
+                     */
+                    checkPrefixed?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreProperties?: SimpleArrayStringRule;
+                    /**
+                     * If `true`, this rule will check vendor-prefixed properties
+                     */
+                    checkPrefixed?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreProperties?: SimpleArrayStringRule;
+              /**
+               * If `true`, this rule will check vendor-prefixed properties
+               */
+              checkPrefixed?: boolean;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreProperties?: SimpleArrayStringRule;
+                    /**
+                     * If `true`, this rule will check vendor-prefixed properties
+                     */
+                    checkPrefixed?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreProperties?: SimpleArrayStringRule;
+                    /**
+                     * If `true`, this rule will check vendor-prefixed properties
+                     */
+                    checkPrefixed?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'property-no-vendor-prefix'?: BooleanRule;
+  'property-whitelist'?: ArrayStringRule;
+  [k: string]: unknown | undefined;
+}
+export interface RootRule {
+  'root-no-standard-properties'?: BooleanRule;
+  [k: string]: unknown | undefined;
+}
+export interface Rule {
+  /**
+   * Require or disallow an empty line before nested rules
+   */
+  'rule-nested-empty-line-before'?: (
+    | null
+    | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
+    | [
+        (
+          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option if the rule is the first in a block
+               *
+               * @minItems 1
+               */
+              except?: ['first-nested', ...'first-nested'[]];
+              /**
+               * Ignore rules that come after a comment
+               *
+               * @minItems 1
+               */
+              ignore?: ['after-comment', ...'after-comment'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option if the rule is the first in a block
+               *
+               * @minItems 1
+               */
+              except?: ['first-nested', ...'first-nested'[]];
+              /**
+               * Ignore rules that come after a comment
+               *
+               * @minItems 1
+               */
+              ignore?: ['after-comment', ...'after-comment'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['first-nested', ...'first-nested'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  /**
+   * Require or disallow an empty line before non-nested rules
+   */
+  'rule-non-nested-empty-line-before'?: (
+    | null
+    | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | [])
+    | [
+        (
+          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option if the rule is the first in a block
+               *
+               * @minItems 1
+               */
+              except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+              /**
+               * Ignore rules that come after a comment
+               *
+               * @minItems 1
+               */
+              ignore?: ['after-comment', ...'after-comment'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+          | (CoreRule & {
+              /**
+               * Reverse the primary option if the rule is the first in a block
+               *
+               * @minItems 1
+               */
+              except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+              /**
+               * Ignore rules that come after a comment
+               *
+               * @minItems 1
+               */
+              ignore?: ['after-comment', ...'after-comment'[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('always' | 'never' | 'always-multi-line' | 'never-multi-line' | {})
+                | (CoreRule & {
+                    /**
+                     * Reverse the primary option if the rule is the first in a block
+                     *
+                     * @minItems 1
+                     */
+                    except?: ['after-single-line-comment', ...'after-single-line-comment'[]];
+                    /**
+                     * Ignore rules that come after a comment
+                     *
+                     * @minItems 1
+                     */
+                    ignore?: ['after-comment', ...'after-comment'[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  [k: string]: unknown | undefined;
+}
+export interface Selector {
+  /**
+   * Disallow unmatchable An+B selectors
+   */
+  'selector-anb-no-unmatchable'?: (true | null) | [true | null] | [true | null, CoreRule1];
+  'selector-attribute-brackets-space-inside'?: AlwaysNeverRule;
+  'selector-attribute-operator-blacklist'?: ArrayStringRule;
+  'selector-attribute-operator-space-after'?: AlwaysNeverRule;
+  'selector-attribute-operator-space-before'?: AlwaysNeverRule;
+  'selector-attribute-operator-whitelist'?: ArrayStringRule;
+  'selector-attribute-quotes'?: AlwaysNeverRule;
+  /**
+   * Specify a pattern for class selectors
+   */
+  'selector-class-pattern'?: (
+    | (null | string)
+    | [
+        (
+          | string
+          | (CoreRule & {
+              /**
+               * This option will resolve nested selectors with `&` interpolation
+               */
+              resolveNestedSelectors?: boolean;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | string
+                | (CoreRule & {
+                    /**
+                     * This option will resolve nested selectors with `&` interpolation
+                     */
+                    resolveNestedSelectors?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | string
+                | (CoreRule & {
+                    /**
+                     * This option will resolve nested selectors with `&` interpolation
+                     */
+                    resolveNestedSelectors?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | string
+          | (CoreRule & {
+              /**
+               * This option will resolve nested selectors with `&` interpolation
+               */
+              resolveNestedSelectors?: boolean;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | string
+                | (CoreRule & {
+                    /**
+                     * This option will resolve nested selectors with `&` interpolation
+                     */
+                    resolveNestedSelectors?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | string
+                | (CoreRule & {
+                    /**
+                     * This option will resolve nested selectors with `&` interpolation
+                     */
+                    resolveNestedSelectors?: boolean;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'selector-combinator-space-after'?: AlwaysNeverRule;
+  'selector-combinator-space-before'?: AlwaysNeverRule;
+  'selector-descendant-combinator-no-non-space'?: BooleanRule;
+  'selector-id-pattern'?: StringRule;
+  'selector-max-compound-selectors'?: IntegerRule;
+  'selector-max-specificity'?: StringRule;
+  'selector-nested-pattern'?: StringRule;
+  'selector-no-attribute'?: BooleanRule;
+  'selector-no-combinator'?: BooleanRule;
+  'selector-no-id'?: BooleanRule;
+  /**
+   * Disallow qualifying a selector by type
+   */
+  'selector-no-qualifying-type'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['attribute' | 'class' | 'id', ...('attribute' | 'class' | 'id')[]];
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  /**
+   * Disallow type selectors
+   */
+  'selector-no-type'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+              ignoreTypes?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              /**
+               * @minItems 1
+               */
+              ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+              ignoreTypes?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    /**
+                     * @minItems 1
+                     */
+                    ignore?: ['compounded' | 'descendant', ...('compounded' | 'descendant')[]];
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'selector-no-universal'?: BooleanRule;
+  'selector-no-vendor-prefix'?: BooleanRule;
+  'selector-pseudo-class-case'?: LowerUpperRule;
+  /**
+   * Disallow unknown pseudo-class selectors
+   */
+  'selector-pseudo-class-no-unknown'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignorePseudoClasses?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoClasses?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoClasses?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignorePseudoClasses?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoClasses?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoClasses?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'selector-pseudo-class-parentheses-space-inside'?: AlwaysNeverRule;
+  'selector-pseudo-class-whitelist'?: ArrayStringRule;
+  'selector-pseudo-element-case'?: LowerUpperRule;
+  'selector-pseudo-element-colon-notation'?: SingleDoubleRule;
+  /**
+   * Disallow unknown pseudo-element selectors
+   */
+  'selector-pseudo-element-no-unknown'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignorePseudoElements?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoElements?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoElements?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignorePseudoElements?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoElements?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignorePseudoElements?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'selector-root-no-composition'?: BooleanRule;
+  'selector-type-case'?: LowerUpperRule;
+  /**
+   * Disallow unknown type selectors
+   */
+  'selector-type-no-unknown'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreTypes?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreTypes?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreTypes?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'selector-max-empty-lines'?: IntegerRule;
+  [k: string]: unknown | undefined;
+}
+export interface SelectorList {
+  'selector-list-comma-newline-after'?: NewlineRule;
+  'selector-list-comma-newline-before'?: NewlineRule;
+  'selector-list-comma-space-after'?: SpaceRule;
+  'selector-list-comma-space-before'?: SpaceRule;
+  [k: string]: unknown | undefined;
+}
+export interface ShorthandProperty {
+  'shorthand-property-no-redundant-values'?: BooleanRule;
+  [k: string]: unknown | undefined;
+}
+export interface String {
+  'string-no-newline'?: BooleanRule;
+  'string-quotes'?: SingleDoubleRule;
+  [k: string]: unknown | undefined;
+}
+export interface StylelintDisableComment {
+  /**
+   * Require a reason comment before or after `stylelint-disable` comments
+   */
+  'stylelint-disable-reason'?: (
+    | null
+    | ('always-before' | 'always-after' | [])
+    | [
+        (('always-before' | 'always-after' | {}) | CoreRule) & (
+            | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
+            | (('always-before' | 'always-after' | {}) | CoreRule)
+          ),
+        (('always-before' | 'always-after' | {}) | CoreRule) & (
+            | ((('always-before' | 'always-after' | {}) | CoreRule) & string)
+            | (('always-before' | 'always-after' | {}) | CoreRule)
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  [k: string]: unknown | undefined;
+}
+export interface Time {
+  'time-no-imperceptible'?: BooleanRule;
+  [k: string]: unknown | undefined;
+}
+export interface Unit {
+  'unit-blacklist'?: UnitRule;
+  'unit-case'?: LowerUpperRule;
+  /**
+   * Disallow unknown units
+   */
+  'unit-no-unknown'?: (
+    | null
+    | (true | [])
+    | [
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreUnits?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreUnits?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreUnits?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | (true | {})
+          | (CoreRule & {
+              ignoreUnits?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | (true | {})
+                | (CoreRule & {
+                    ignoreUnits?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                boolean)
+            | (
+                | (true | {})
+                | (CoreRule & {
+                    ignoreUnits?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | boolean | unknown[]
+    );
+  'unit-whitelist'?: UnitRule;
+  [k: string]: unknown | undefined;
+}
+export interface Value {
+  /**
+   * Specify lowercase or uppercase for keywords values
+   */
+  'value-keyword-case'?: (
+    | null
+    | ('lower' | 'upper' | [])
+    | [
+        (
+          | ('lower' | 'upper' | {})
+          | (CoreRule & {
+              ignoreKeywords?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreKeywords?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreKeywords?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          ),
+        (
+          | ('lower' | 'upper' | {})
+          | (CoreRule & {
+              ignoreKeywords?: SimpleArrayStringRule;
+              [k: string]: unknown | undefined;
+            })
+        ) & (
+            | ((
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreKeywords?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              ) &
+                string)
+            | (
+                | ('lower' | 'upper' | {})
+                | (CoreRule & {
+                    ignoreKeywords?: SimpleArrayStringRule;
+                    [k: string]: unknown | undefined;
+                  })
+              )
+          )
+      ]
+  ) &
+    (
+      null | string | unknown[]
+    );
+  'value-no-vendor-prefix'?: BooleanRule;
+  [k: string]: unknown | undefined;
+}
+export interface ValueList {
+  'value-list-comma-newline-after'?: NewlineRule;
+  'value-list-comma-newline-before'?: NewlineRule;
+  'value-list-comma-space-after'?: SpaceRule;
+  'value-list-comma-space-before'?: SpaceRule;
+  'value-list-max-empty-lines'?: IntegerRule;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Configuration Schema for the JavaScript test runner AVA
+ */
+export interface AVAConfigSchema {
+  files?: ArrayOfPaths;
+  ignoredByWatcher?: ArrayOfPaths;
+  match?: ArrayOfPaths;
+  /**
+   * Defaults to `true` to cache compiled files under `node_modules/.cache/ava.` If `false`, files are cached in a temporary directory instead
+   */
+  cache?: boolean;
+  /**
+   * Max number of test files running at the same time (default: CPU cores)
+   */
+  concurrency?: number;
+  /**
+   * Use worker threads to run tests (enabled by default). If `false`, tests will run in child processes
+   */
+  workerThreads?: boolean;
+  /**
+   * Stop running further tests once a test fails
+   */
+  failFast?: boolean;
+  /**
+   * If `false`, does not fail a test if it doesn't run assertions
+   */
+  failWithoutAssertions?: boolean;
+  environmentVariables?: EnvironmentVariables;
+  /**
+   * if `true`, prevents parallel execution of tests within a file
+   */
+  serial?: boolean;
+  /**
+   * If `true`, enables the TAP reporter
+   */
+  tap?: boolean;
+  /**
+   * If `true`, enables verbose output (though currently non-verbose output is not supported)
+   */
+  verbose?: boolean;
+  /**
+   * Specifies a fixed location for storing snapshot files. Use this if your snapshots are ending up in the wrong location
+   */
+  snapshotDir?: string;
+  /**
+   * Extensions of test files. Setting this overrides the default `["cjs", "mjs", "js"]` value, so make sure to include those extensions in the list. Experimentally you can configure how files are loaded
+   */
+  extensions?: ArrayOfStrings | Extensions;
+  require?: ArrayOfPaths;
+  /**
+   * Timeouts in AVA behave differently than in other test frameworks. AVA resets a timer after each test, forcing tests to quit if no new test results were received within the specified timeout. This can be used to handle stalled tests. See our timeout documentation for more options
+   */
+  timeout?: number | string;
+  nodeArguments?: ArrayOfStrings;
+  /**
+   * If `false`, disable parallel builds (default: `true`)
+   */
+  utilizeParallelBuilds?: boolean;
+  typescript?: Configuration;
+}
+/**
+ * Specifies environment variables to be made available to the tests. The environment variables defined here override the ones from `process.env`
+ */
+export interface EnvironmentVariables {
+  [k: string]: string | undefined;
+}
+export interface Extensions {
+  /**
+   * This interface was referenced by `Extensions`'s JSON-Schema definition
+   * via the `patternProperty` "^(c|m)?js$".
+   */
+  [k: string]: true | 'commonjs' | 'module' | undefined;
+}
+/**
+ * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
+ */
+export interface Configuration {
+  extensions?: ArrayOfPaths;
+  rewritePaths?: Paths;
+  /**
+   * If `false`, AVA will assume you have already compiled your project. If set to `'tsc'`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode
+   */
+  compile?: false | 'tsc';
+  [k: string]: unknown | undefined;
+}
+/**
+ * AVA searches your entire project for `*.js`, `*.cjs`, `*.mjs` and `*.ts` files (or other extensions you've configured). It will ignore such files found in the `rewritePaths` targets (e.g. `build/`). If you use more specific paths, for instance `build/main/`, you may need to change AVA's `files` configuration to ignore other directories. Paths are relative to your project directory
+ */
+export interface Paths {
+  /**
+   * This interface was referenced by `Paths`'s JSON-Schema definition
+   * via the `patternProperty` "/$".
+   */
+  [k: string]: string | undefined;
+}
+export interface SemanticReleaseSchema {
+  /**
+   * List of modules or file paths containing a shareable configuration. If multiple shareable configurations are set, they will be imported in the order defined with each configuration option taking precedence over the options defined in a previous shareable configuration
+   */
+  extends?: string | string[];
+  /**
+   * The branches on which releases should happen.
+   */
+  branches?: string | BranchObject | (string | BranchObject)[];
+  /**
+   * The git repository URL
+   */
+  repositoryUrl?: string;
+  /**
+   * The Git tag format used by semantic-release to identify releases. The tag name is generated with Lodash template and will be compiled with the version variable.
+   */
+  tagFormat?: string;
+  /**
+   * Define the list of plugins to use. Plugins will run in series, in the order defined
+   */
+  plugins?: (
+    | string
+    | unknown[]
+    | {
+        path: string;
+        [k: string]: unknown | undefined;
+      }
+  )[];
+  /**
+   * The objective of the dry-run mode is to get a preview of the pending release. Dry-run mode skips the following steps: prepare, publish, success and fail. In addition to this it prints the next version and release notes to the console
+   */
+  dryRun?: boolean;
+  /**
+   * Set to false to skip Continuous Integration environment verifications. This allows for making releases from a local machine
+   */
+  ci?: boolean;
+  [k: string]: unknown | undefined;
+}
+export interface BranchObject {
+  name: string;
+  channel?: string;
+  range?: string;
+  prerelease?: boolean | string;
+}
+export interface HttpsJsonSchemastoreOrgJscpdJson {
+  /**
+   * minimum size of code block in lines to check for duplication
+   */
+  minLines?: number;
+  /**
+   * maximum size of source file in lines to check for duplication
+   */
+  maxLines?: number;
+  /**
+   * maximum size of source file in bytes to check for duplication (e.g., 102400, 1kb, 1m, 120kb)
+   */
+  maxSize?: string | number;
+  /**
+   * minimum size of code block in tokens to check for duplication
+   */
+  minTokens?: number;
+  /**
+   * maximum allowed duplicate lines expressed as a percentage; exit with error and exit code 1 when threshold exceeded
+   */
+  threshold?: number;
+  /**
+   * custom mapping from formats to file extensions, as an object or mapping string (e.g. javascript:es,es6;dart:dt); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
+   */
+  formatsExts?:
+    | {
+        [k: string]: string[] | string | undefined;
+      }
+    | string[]
+    | string;
+  /**
+   * path to directory for non-console reports
+   */
+  output?: string;
+  /**
+   * paths that should be included in duplicate detection (default: [process.cwd()])
+   */
+  path?: string[];
+  /**
+   * glob pattern for files that should be included in duplicate detection (e.g., ** /*.txt); only used to filter directories configured via path option
+   */
+  pattern?: string;
+  /**
+   * ignore code blocks matching these regular expressions
+   */
+  ignorePattern?: string[];
+  /**
+   * mode of detection quality; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#mode
+   */
+  mode?: 'mild' | 'strict' | 'weak';
+  /**
+   * glob pattern for files that should be excluded from duplicate detection
+   */
+  ignore?: string[];
+  /**
+   * format or list of formats for which to detect duplication (default: all); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
+   */
+  format?:
+    | (
+        | (
+            | 'abap'
+            | 'actionscript'
+            | 'ada'
+            | 'apacheconf'
+            | 'apl'
+            | 'applescript'
+            | 'arduino'
+            | 'arff'
+            | 'asciidoc'
+            | 'asm6502'
+            | 'aspnet'
+            | 'autohotkey'
+            | 'autoit'
+            | 'bash'
+            | 'basic'
+            | 'batch'
+            | 'bison'
+            | 'brainfuck'
+            | 'bro'
+            | 'c'
+            | 'c-header'
+            | 'clike'
+            | 'clojure'
+            | 'coffeescript'
+            | 'comments'
+            | 'cpp'
+            | 'cpp-header'
+            | 'crystal'
+            | 'csharp'
+            | 'csp'
+            | 'css-extras'
+            | 'css'
+            | 'd'
+            | 'dart'
+            | 'diff'
+            | 'django'
+            | 'docker'
+            | 'eiffel'
+            | 'elixir'
+            | 'elm'
+            | 'erb'
+            | 'erlang'
+            | 'flow'
+            | 'fortran'
+            | 'fsharp'
+            | 'gdscript'
+            | 'gedcom'
+            | 'gherkin'
+            | 'git'
+            | 'glsl'
+            | 'go'
+            | 'graphql'
+            | 'groovy'
+            | 'haml'
+            | 'handlebars'
+            | 'haskell'
+            | 'haxe'
+            | 'hpkp'
+            | 'hsts'
+            | 'http'
+            | 'ichigojam'
+            | 'icon'
+            | 'inform7'
+            | 'ini'
+            | 'io'
+            | 'j'
+            | 'java'
+            | 'javascript'
+            | 'jolie'
+            | 'json'
+            | 'jsx'
+            | 'julia'
+            | 'keymap'
+            | 'kotlin'
+            | 'latex'
+            | 'less'
+            | 'liquid'
+            | 'lisp'
+            | 'livescript'
+            | 'lolcode'
+            | 'lua'
+            | 'makefile'
+            | 'markdown'
+            | 'markup'
+            | 'matlab'
+            | 'mel'
+            | 'mizar'
+            | 'monkey'
+            | 'n4js'
+            | 'nasm'
+            | 'nginx'
+            | 'nim'
+            | 'nix'
+            | 'nsis'
+            | 'objectivec'
+            | 'ocaml'
+            | 'opencl'
+            | 'oz'
+            | 'parigp'
+            | 'pascal'
+            | 'perl'
+            | 'php'
+            | 'plsql'
+            | 'powershell'
+            | 'processing'
+            | 'prolog'
+            | 'properties'
+            | 'protobuf'
+            | 'pug'
+            | 'puppet'
+            | 'pure'
+            | 'python'
+            | 'q'
+            | 'qore'
+            | 'r'
+            | 'razor'
+            | 'reason'
+            | 'renpy'
+            | 'rest'
+            | 'rip'
+            | 'roboconf'
+            | 'ruby'
+            | 'rust'
+            | 'sas'
+            | 'sass'
+            | 'scala'
+            | 'scheme'
+            | 'scss'
+            | 'svelte'
+            | 'smalltalk'
+            | 'smarty'
+            | 'soy'
+            | 'sql'
+            | 'stylus'
+            | 'swift'
+            | 'tap'
+            | 'tcl'
+            | 'textile'
+            | 'tsx'
+            | 'tt2'
+            | 'twig'
+            | 'typescript'
+            | 'txt'
+            | 'vbnet'
+            | 'velocity'
+            | 'verilog'
+            | 'vhdl'
+            | 'vim'
+            | 'visual-basic'
+            | 'astro'
+            | 'vue'
+            | 'wasm'
+            | 'wiki'
+            | 'xeora'
+            | 'xojo'
+            | 'xquery'
+            | 'yaml'
+            | 'abnf'
+            | 'agda'
+            | 'antlr4'
+            | 'apex'
+            | 'aql'
+            | 'armasm'
+            | 'awk'
+            | 'bicep'
+            | 'bnf'
+            | 'cfscript'
+            | 'cfml'
+            | 'cmake'
+            | 'cobol'
+            | 'csv'
+            | 'cypher'
+            | 'dhall'
+            | 'dns-zone-file'
+            | 'dot'
+            | 'ebnf'
+            | 'editorconfig'
+            | 'excel-formula'
+            | 'factor'
+            | 'ftl'
+            | 'gcode'
+            | 'gettext'
+            | 'gml'
+            | 'go-module'
+            | 'hcl'
+            | 'hlsl'
+            | 'idris'
+            | 'ignore'
+            | 'jq'
+            | 'json5'
+            | 'kusto'
+            | 'lilypond'
+            | 'linker-script'
+            | 'llvm'
+            | 'log'
+            | 'mermaid'
+            | 'mongodb'
+            | 'n1ql'
+            | 'odin'
+            | 'openqasm'
+            | 'plant-uml'
+            | 'powerquery'
+            | 'promql'
+            | 'purescript'
+            | 'qsharp'
+            | 'racket'
+            | 'regex'
+            | 'rego'
+            | 'rescript'
+            | 'robotframework'
+            | 'shell-session'
+            | 'smali'
+            | 'solidity'
+            | 'sparql'
+            | 'stata'
+            | 'toml'
+            | 'turtle'
+            | 'typoscript'
+            | 'unrealscript'
+            | 'uri'
+            | 'vala'
+            | 'wgsl'
+            | 'wolfram'
+            | 'zig'
+          )
+        | string
+      )[]
+    | (
+        | (
+            | 'abap'
+            | 'actionscript'
+            | 'ada'
+            | 'apacheconf'
+            | 'apl'
+            | 'applescript'
+            | 'arduino'
+            | 'arff'
+            | 'asciidoc'
+            | 'asm6502'
+            | 'aspnet'
+            | 'autohotkey'
+            | 'autoit'
+            | 'bash'
+            | 'basic'
+            | 'batch'
+            | 'bison'
+            | 'brainfuck'
+            | 'bro'
+            | 'c'
+            | 'c-header'
+            | 'clike'
+            | 'clojure'
+            | 'coffeescript'
+            | 'comments'
+            | 'cpp'
+            | 'cpp-header'
+            | 'crystal'
+            | 'csharp'
+            | 'csp'
+            | 'css-extras'
+            | 'css'
+            | 'd'
+            | 'dart'
+            | 'diff'
+            | 'django'
+            | 'docker'
+            | 'eiffel'
+            | 'elixir'
+            | 'elm'
+            | 'erb'
+            | 'erlang'
+            | 'flow'
+            | 'fortran'
+            | 'fsharp'
+            | 'gdscript'
+            | 'gedcom'
+            | 'gherkin'
+            | 'git'
+            | 'glsl'
+            | 'go'
+            | 'graphql'
+            | 'groovy'
+            | 'haml'
+            | 'handlebars'
+            | 'haskell'
+            | 'haxe'
+            | 'hpkp'
+            | 'hsts'
+            | 'http'
+            | 'ichigojam'
+            | 'icon'
+            | 'inform7'
+            | 'ini'
+            | 'io'
+            | 'j'
+            | 'java'
+            | 'javascript'
+            | 'jolie'
+            | 'json'
+            | 'jsx'
+            | 'julia'
+            | 'keymap'
+            | 'kotlin'
+            | 'latex'
+            | 'less'
+            | 'liquid'
+            | 'lisp'
+            | 'livescript'
+            | 'lolcode'
+            | 'lua'
+            | 'makefile'
+            | 'markdown'
+            | 'markup'
+            | 'matlab'
+            | 'mel'
+            | 'mizar'
+            | 'monkey'
+            | 'n4js'
+            | 'nasm'
+            | 'nginx'
+            | 'nim'
+            | 'nix'
+            | 'nsis'
+            | 'objectivec'
+            | 'ocaml'
+            | 'opencl'
+            | 'oz'
+            | 'parigp'
+            | 'pascal'
+            | 'perl'
+            | 'php'
+            | 'plsql'
+            | 'powershell'
+            | 'processing'
+            | 'prolog'
+            | 'properties'
+            | 'protobuf'
+            | 'pug'
+            | 'puppet'
+            | 'pure'
+            | 'python'
+            | 'q'
+            | 'qore'
+            | 'r'
+            | 'razor'
+            | 'reason'
+            | 'renpy'
+            | 'rest'
+            | 'rip'
+            | 'roboconf'
+            | 'ruby'
+            | 'rust'
+            | 'sas'
+            | 'sass'
+            | 'scala'
+            | 'scheme'
+            | 'scss'
+            | 'svelte'
+            | 'smalltalk'
+            | 'smarty'
+            | 'soy'
+            | 'sql'
+            | 'stylus'
+            | 'swift'
+            | 'tap'
+            | 'tcl'
+            | 'textile'
+            | 'tsx'
+            | 'tt2'
+            | 'twig'
+            | 'typescript'
+            | 'txt'
+            | 'vbnet'
+            | 'velocity'
+            | 'verilog'
+            | 'vhdl'
+            | 'vim'
+            | 'visual-basic'
+            | 'astro'
+            | 'vue'
+            | 'wasm'
+            | 'wiki'
+            | 'xeora'
+            | 'xojo'
+            | 'xquery'
+            | 'yaml'
+            | 'abnf'
+            | 'agda'
+            | 'antlr4'
+            | 'apex'
+            | 'aql'
+            | 'armasm'
+            | 'awk'
+            | 'bicep'
+            | 'bnf'
+            | 'cfscript'
+            | 'cfml'
+            | 'cmake'
+            | 'cobol'
+            | 'csv'
+            | 'cypher'
+            | 'dhall'
+            | 'dns-zone-file'
+            | 'dot'
+            | 'ebnf'
+            | 'editorconfig'
+            | 'excel-formula'
+            | 'factor'
+            | 'ftl'
+            | 'gcode'
+            | 'gettext'
+            | 'gml'
+            | 'go-module'
+            | 'hcl'
+            | 'hlsl'
+            | 'idris'
+            | 'ignore'
+            | 'jq'
+            | 'json5'
+            | 'kusto'
+            | 'lilypond'
+            | 'linker-script'
+            | 'llvm'
+            | 'log'
+            | 'mermaid'
+            | 'mongodb'
+            | 'n1ql'
+            | 'odin'
+            | 'openqasm'
+            | 'plant-uml'
+            | 'powerquery'
+            | 'promql'
+            | 'purescript'
+            | 'qsharp'
+            | 'racket'
+            | 'regex'
+            | 'rego'
+            | 'rescript'
+            | 'robotframework'
+            | 'shell-session'
+            | 'smali'
+            | 'solidity'
+            | 'sparql'
+            | 'stata'
+            | 'toml'
+            | 'turtle'
+            | 'typoscript'
+            | 'unrealscript'
+            | 'uri'
+            | 'vala'
+            | 'wgsl'
+            | 'wolfram'
+            | 'zig'
+          )
+        | string
+      );
+  /**
+   * store used to collect information about code. v4 supports external stores such as leveldb and redis; v5 reports this config field as migrated to the CLI --store flag.
+   */
+  store?: ('leveldb' | 'redis') | string;
+  /**
+   * a list of reporters to use to output information about duplication; built-ins include console, consoleFull/console-full, json, xml, csv, html, markdown, badge, sarif, ai, xcode, threshold, and silent; third-party reporters are also supported
+   */
+  reporters?: (
+    | (
+        | 'ai'
+        | 'badge'
+        | 'console'
+        | 'console-full'
+        | 'consoleFull'
+        | 'csv'
+        | 'full'
+        | 'html'
+        | 'json'
+        | 'markdown'
+        | 'sarif'
+        | 'silent'
+        | 'threshold'
+        | 'xcode'
+        | 'xml'
+      )
+    | string
+  )[];
+  /**
+   * get information about authors and dates of duplicated blocks from Git
+   */
+  blame?: boolean;
+  /**
+   * do not write duplicate detection progress and result to console
+   */
+  silent?: boolean;
+  /**
+   * show full information during duplicate detection
+   */
+  verbose?: boolean;
+  /**
+   * use absolute paths in reports
+   */
+  absolute?: boolean;
+  /**
+   * do not follow symlinks
+   */
+  noSymlinks?: boolean;
+  /**
+   * skip duplicates within folders; just detect cross-folder duplicates
+   */
+  skipLocal?: boolean;
+  /**
+   * ignore case of symbols in code (experimental)
+   */
+  ignoreCase?: boolean;
+  /**
+   * respect .gitignore files. Enabled by default in current jscpd; set false to opt out in v4 configs.
+   */
+  gitignore?: boolean;
+  reportersOptions?: {
+    badge?: {
+      /**
+       * output path for duplication level badge (default: path.join(output, 'jscpd-badge.svg'))
+       */
+      path?: string;
+      /**
+       * badge subject text (URL-encoding needed for spaces or special characters)
+       */
+      label?: string;
+      /**
+       * badge label color (name or RGB code without #); see https://github.com/badgen/badgen/blob/master/src/color-presets.ts
+       */
+      labelColor?:
+        | ('green' | 'blue' | 'red' | 'yellow' | 'orange' | 'purple' | 'pink' | 'grey' | 'gray' | 'cyan' | 'black')
+        | string;
+      /**
+       * badge value text (URL-encoding needed for spaces or special characters, default: duplication %)
+       */
+      status?: string;
+      /**
+       * badge color (name or RGB code without #, default: green if beneath threshold, red if above threshold, grey if threshold not set); see https://github.com/badgen/badgen/blob/master/src/color-presets.ts
+       */
+      color?:
+        | ('green' | 'blue' | 'red' | 'yellow' | 'orange' | 'purple' | 'pink' | 'grey' | 'gray' | 'cyan' | 'black')
+        | string;
+      /**
+       * badge look: flat or classic
+       */
+      style?: 'flat' | 'classic';
+      /**
+       * URL for icon to display in front of badge subject text (e.g., data:image/svg+xml;base64,...)
+       */
+      icon?: string;
+      /**
+       * SVG width of icon to display in front of badge subject text; set this if icon is not square
+       */
+      iconWidth?: number;
+      /**
+       * size of badge relative to default of 1
+       */
+      scale?: number;
+    };
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * exit code to use when at least one duplicate code block is detected but threshold is not exceeded
+   */
+  exitCode?: number;
+  /**
+   * custom mapping from formats to exact filenames without relying on extensions (e.g. makefile:Makefile,GNUmakefile); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
+   */
+  formatsNames?:
+    | {
+        [k: string]: string[] | string | undefined;
+      }
+    | string[]
+    | string;
+  /**
+   * v5 alias for format; format or list of formats for which to detect duplication
+   */
+  formats?:
+    | (
+        | (
+            | 'abap'
+            | 'actionscript'
+            | 'ada'
+            | 'apacheconf'
+            | 'apl'
+            | 'applescript'
+            | 'arduino'
+            | 'arff'
+            | 'asciidoc'
+            | 'asm6502'
+            | 'aspnet'
+            | 'autohotkey'
+            | 'autoit'
+            | 'bash'
+            | 'basic'
+            | 'batch'
+            | 'bison'
+            | 'brainfuck'
+            | 'bro'
+            | 'c'
+            | 'c-header'
+            | 'clike'
+            | 'clojure'
+            | 'coffeescript'
+            | 'comments'
+            | 'cpp'
+            | 'cpp-header'
+            | 'crystal'
+            | 'csharp'
+            | 'csp'
+            | 'css-extras'
+            | 'css'
+            | 'd'
+            | 'dart'
+            | 'diff'
+            | 'django'
+            | 'docker'
+            | 'eiffel'
+            | 'elixir'
+            | 'elm'
+            | 'erb'
+            | 'erlang'
+            | 'flow'
+            | 'fortran'
+            | 'fsharp'
+            | 'gdscript'
+            | 'gedcom'
+            | 'gherkin'
+            | 'git'
+            | 'glsl'
+            | 'go'
+            | 'graphql'
+            | 'groovy'
+            | 'haml'
+            | 'handlebars'
+            | 'haskell'
+            | 'haxe'
+            | 'hpkp'
+            | 'hsts'
+            | 'http'
+            | 'ichigojam'
+            | 'icon'
+            | 'inform7'
+            | 'ini'
+            | 'io'
+            | 'j'
+            | 'java'
+            | 'javascript'
+            | 'jolie'
+            | 'json'
+            | 'jsx'
+            | 'julia'
+            | 'keymap'
+            | 'kotlin'
+            | 'latex'
+            | 'less'
+            | 'liquid'
+            | 'lisp'
+            | 'livescript'
+            | 'lolcode'
+            | 'lua'
+            | 'makefile'
+            | 'markdown'
+            | 'markup'
+            | 'matlab'
+            | 'mel'
+            | 'mizar'
+            | 'monkey'
+            | 'n4js'
+            | 'nasm'
+            | 'nginx'
+            | 'nim'
+            | 'nix'
+            | 'nsis'
+            | 'objectivec'
+            | 'ocaml'
+            | 'opencl'
+            | 'oz'
+            | 'parigp'
+            | 'pascal'
+            | 'perl'
+            | 'php'
+            | 'plsql'
+            | 'powershell'
+            | 'processing'
+            | 'prolog'
+            | 'properties'
+            | 'protobuf'
+            | 'pug'
+            | 'puppet'
+            | 'pure'
+            | 'python'
+            | 'q'
+            | 'qore'
+            | 'r'
+            | 'razor'
+            | 'reason'
+            | 'renpy'
+            | 'rest'
+            | 'rip'
+            | 'roboconf'
+            | 'ruby'
+            | 'rust'
+            | 'sas'
+            | 'sass'
+            | 'scala'
+            | 'scheme'
+            | 'scss'
+            | 'svelte'
+            | 'smalltalk'
+            | 'smarty'
+            | 'soy'
+            | 'sql'
+            | 'stylus'
+            | 'swift'
+            | 'tap'
+            | 'tcl'
+            | 'textile'
+            | 'tsx'
+            | 'tt2'
+            | 'twig'
+            | 'typescript'
+            | 'txt'
+            | 'vbnet'
+            | 'velocity'
+            | 'verilog'
+            | 'vhdl'
+            | 'vim'
+            | 'visual-basic'
+            | 'astro'
+            | 'vue'
+            | 'wasm'
+            | 'wiki'
+            | 'xeora'
+            | 'xojo'
+            | 'xquery'
+            | 'yaml'
+            | 'abnf'
+            | 'agda'
+            | 'antlr4'
+            | 'apex'
+            | 'aql'
+            | 'armasm'
+            | 'awk'
+            | 'bicep'
+            | 'bnf'
+            | 'cfscript'
+            | 'cfml'
+            | 'cmake'
+            | 'cobol'
+            | 'csv'
+            | 'cypher'
+            | 'dhall'
+            | 'dns-zone-file'
+            | 'dot'
+            | 'ebnf'
+            | 'editorconfig'
+            | 'excel-formula'
+            | 'factor'
+            | 'ftl'
+            | 'gcode'
+            | 'gettext'
+            | 'gml'
+            | 'go-module'
+            | 'hcl'
+            | 'hlsl'
+            | 'idris'
+            | 'ignore'
+            | 'jq'
+            | 'json5'
+            | 'kusto'
+            | 'lilypond'
+            | 'linker-script'
+            | 'llvm'
+            | 'log'
+            | 'mermaid'
+            | 'mongodb'
+            | 'n1ql'
+            | 'odin'
+            | 'openqasm'
+            | 'plant-uml'
+            | 'powerquery'
+            | 'promql'
+            | 'purescript'
+            | 'qsharp'
+            | 'racket'
+            | 'regex'
+            | 'rego'
+            | 'rescript'
+            | 'robotframework'
+            | 'shell-session'
+            | 'smali'
+            | 'solidity'
+            | 'sparql'
+            | 'stata'
+            | 'toml'
+            | 'turtle'
+            | 'typoscript'
+            | 'unrealscript'
+            | 'uri'
+            | 'vala'
+            | 'wgsl'
+            | 'wolfram'
+            | 'zig'
+          )
+        | string
+      )[]
+    | (
+        | (
+            | 'abap'
+            | 'actionscript'
+            | 'ada'
+            | 'apacheconf'
+            | 'apl'
+            | 'applescript'
+            | 'arduino'
+            | 'arff'
+            | 'asciidoc'
+            | 'asm6502'
+            | 'aspnet'
+            | 'autohotkey'
+            | 'autoit'
+            | 'bash'
+            | 'basic'
+            | 'batch'
+            | 'bison'
+            | 'brainfuck'
+            | 'bro'
+            | 'c'
+            | 'c-header'
+            | 'clike'
+            | 'clojure'
+            | 'coffeescript'
+            | 'comments'
+            | 'cpp'
+            | 'cpp-header'
+            | 'crystal'
+            | 'csharp'
+            | 'csp'
+            | 'css-extras'
+            | 'css'
+            | 'd'
+            | 'dart'
+            | 'diff'
+            | 'django'
+            | 'docker'
+            | 'eiffel'
+            | 'elixir'
+            | 'elm'
+            | 'erb'
+            | 'erlang'
+            | 'flow'
+            | 'fortran'
+            | 'fsharp'
+            | 'gdscript'
+            | 'gedcom'
+            | 'gherkin'
+            | 'git'
+            | 'glsl'
+            | 'go'
+            | 'graphql'
+            | 'groovy'
+            | 'haml'
+            | 'handlebars'
+            | 'haskell'
+            | 'haxe'
+            | 'hpkp'
+            | 'hsts'
+            | 'http'
+            | 'ichigojam'
+            | 'icon'
+            | 'inform7'
+            | 'ini'
+            | 'io'
+            | 'j'
+            | 'java'
+            | 'javascript'
+            | 'jolie'
+            | 'json'
+            | 'jsx'
+            | 'julia'
+            | 'keymap'
+            | 'kotlin'
+            | 'latex'
+            | 'less'
+            | 'liquid'
+            | 'lisp'
+            | 'livescript'
+            | 'lolcode'
+            | 'lua'
+            | 'makefile'
+            | 'markdown'
+            | 'markup'
+            | 'matlab'
+            | 'mel'
+            | 'mizar'
+            | 'monkey'
+            | 'n4js'
+            | 'nasm'
+            | 'nginx'
+            | 'nim'
+            | 'nix'
+            | 'nsis'
+            | 'objectivec'
+            | 'ocaml'
+            | 'opencl'
+            | 'oz'
+            | 'parigp'
+            | 'pascal'
+            | 'perl'
+            | 'php'
+            | 'plsql'
+            | 'powershell'
+            | 'processing'
+            | 'prolog'
+            | 'properties'
+            | 'protobuf'
+            | 'pug'
+            | 'puppet'
+            | 'pure'
+            | 'python'
+            | 'q'
+            | 'qore'
+            | 'r'
+            | 'razor'
+            | 'reason'
+            | 'renpy'
+            | 'rest'
+            | 'rip'
+            | 'roboconf'
+            | 'ruby'
+            | 'rust'
+            | 'sas'
+            | 'sass'
+            | 'scala'
+            | 'scheme'
+            | 'scss'
+            | 'svelte'
+            | 'smalltalk'
+            | 'smarty'
+            | 'soy'
+            | 'sql'
+            | 'stylus'
+            | 'swift'
+            | 'tap'
+            | 'tcl'
+            | 'textile'
+            | 'tsx'
+            | 'tt2'
+            | 'twig'
+            | 'typescript'
+            | 'txt'
+            | 'vbnet'
+            | 'velocity'
+            | 'verilog'
+            | 'vhdl'
+            | 'vim'
+            | 'visual-basic'
+            | 'astro'
+            | 'vue'
+            | 'wasm'
+            | 'wiki'
+            | 'xeora'
+            | 'xojo'
+            | 'xquery'
+            | 'yaml'
+            | 'abnf'
+            | 'agda'
+            | 'antlr4'
+            | 'apex'
+            | 'aql'
+            | 'armasm'
+            | 'awk'
+            | 'bicep'
+            | 'bnf'
+            | 'cfscript'
+            | 'cfml'
+            | 'cmake'
+            | 'cobol'
+            | 'csv'
+            | 'cypher'
+            | 'dhall'
+            | 'dns-zone-file'
+            | 'dot'
+            | 'ebnf'
+            | 'editorconfig'
+            | 'excel-formula'
+            | 'factor'
+            | 'ftl'
+            | 'gcode'
+            | 'gettext'
+            | 'gml'
+            | 'go-module'
+            | 'hcl'
+            | 'hlsl'
+            | 'idris'
+            | 'ignore'
+            | 'jq'
+            | 'json5'
+            | 'kusto'
+            | 'lilypond'
+            | 'linker-script'
+            | 'llvm'
+            | 'log'
+            | 'mermaid'
+            | 'mongodb'
+            | 'n1ql'
+            | 'odin'
+            | 'openqasm'
+            | 'plant-uml'
+            | 'powerquery'
+            | 'promql'
+            | 'purescript'
+            | 'qsharp'
+            | 'racket'
+            | 'regex'
+            | 'rego'
+            | 'rescript'
+            | 'robotframework'
+            | 'shell-session'
+            | 'smali'
+            | 'solidity'
+            | 'sparql'
+            | 'stata'
+            | 'toml'
+            | 'turtle'
+            | 'typoscript'
+            | 'unrealscript'
+            | 'uri'
+            | 'vala'
+            | 'wgsl'
+            | 'wolfram'
+            | 'zig'
+          )
+        | string
+      );
+  /**
+   * directory used by the v4 store for cache files, useful for isolating parallel LevelDB runs. v5 reports this config field as migrated to the CLI --store-path flag.
+   */
+  storePath?: string;
+  /**
+   * v5 config field matching --no-gitignore; do not respect .gitignore files
+   */
+  noGitignore?: boolean;
+  /**
+   * v5 config field matching --follow-symlinks; follow symbolic links
+   */
+  followSymlinks?: boolean;
+  /**
+   * compatibility alias for noSymlinks with a capital L; prefer noSymlinks or followSymlinks
+   */
+  noSymLinks?: boolean;
+  /**
+   * disable ANSI color output
+   */
+  noColors?: boolean;
+  /**
+   * suppress tips and promotional messages after detection
+   */
+  noTips?: boolean;
+  /**
+   * show debug information and do not run detection in v4; silently ignored by v5 config compatibility handling
+   */
+  debug?: boolean;
+  /**
+   * v5 kebab-case alias for minTokens. minimum size of code block in tokens to check for duplication
+   */
+  'min-tokens'?: number;
+  /**
+   * v5 kebab-case alias for minLines. minimum size of code block in lines to check for duplication
+   */
+  'min-lines'?: number;
+  /**
+   * v5 kebab-case alias for maxLines. maximum size of source file in lines to check for duplication
+   */
+  'max-lines'?: number;
+  /**
+   * v5 kebab-case alias for maxSize. maximum size of source file in bytes to check for duplication (e.g., 102400, 1kb, 1m, 120kb)
+   */
+  'max-size'?: string | number;
+  /**
+   * v5 kebab-case alias for ignorePattern. ignore code blocks matching these regular expressions
+   */
+  'ignore-pattern'?: string[];
+  /**
+   * v5 kebab-case alias for ignoreCase. ignore case of symbols in code (experimental)
+   */
+  'ignore-case'?: boolean;
+  /**
+   * v5 kebab-case alias for noGitignore. v5 config field matching --no-gitignore; do not respect .gitignore files
+   */
+  'no-gitignore'?: boolean;
+  /**
+   * v5 kebab-case alias for followSymlinks. v5 config field matching --follow-symlinks; follow symbolic links
+   */
+  'follow-symlinks'?: boolean;
+  /**
+   * v5 kebab-case alias for skipLocal. skip duplicates within folders; just detect cross-folder duplicates
+   */
+  'skip-local'?: boolean;
+  /**
+   * v5 kebab-case alias for exitCode. exit code to use when at least one duplicate code block is detected but threshold is not exceeded
+   */
+  'exit-code'?: number;
+  /**
+   * v5 kebab-case alias for noColors. disable ANSI color output
+   */
+  'no-colors'?: boolean;
+  /**
+   * v5 kebab-case alias for noTips. suppress tips and promotional messages after detection
+   */
+  'no-tips'?: boolean;
+  /**
+   * v5 kebab-case alias for formatsExts. custom mapping from formats to file extensions, as an object or mapping string (e.g. javascript:es,es6;dart:dt); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
+   */
+  'formats-exts'?:
+    | {
+        [k: string]: string[] | string | undefined;
+      }
+    | string[]
+    | string;
+  /**
+   * v5 kebab-case alias for formatsNames. custom mapping from formats to exact filenames without relying on extensions (e.g. makefile:Makefile,GNUmakefile); see https://github.com/kucherenko/jscpd/blob/master/FORMATS.md
+   */
+  'formats-names'?:
+    | {
+        [k: string]: string[] | string | undefined;
+      }
+    | string[]
+    | string;
+}
+/**
+ * Configuration for Madge module dependency analysis.
+ * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+ */
+export interface MadgeConfiguration {
+  /**
+   * URI of the JSON Schema used to validate this configuration.
+   * https://json-schema.org/understanding-json-schema/reference/schema.html
+   */
+  $schema?: string;
+  /**
+   * Base directory to use when resolving paths.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  baseDir?: string | null;
+  /**
+   * Whether to include shallow npm dependencies in the graph.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  includeNpm?: boolean;
+  /**
+   * File extensions to analyze, without leading periods.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  fileExtensions?: string[];
+  /**
+   * Regular expression strings used to exclude modules, or false to disable exclusions.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  excludeRegExp?: string[] | false;
+  /**
+   * Path to a RequireJS configuration used to resolve aliased modules.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  requireConfig?: string | null;
+  /**
+   * Path to a webpack configuration used to resolve aliased modules.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  webpackConfig?: string | null;
+  /**
+   * Path to a TypeScript configuration or an embedded TypeScript configuration object.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  tsConfig?:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | null;
+  /**
+   * Graphviz layout engine used to render the graph. Common values are dot, neato, fdp, sfdp, twopi, and circo.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  layout?: string;
+  /**
+   * Graph layout direction. Common Graphviz values are TB, BT, LR, and RL.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  rankdir?: string;
+  /**
+   * Font name used in the graph.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  fontName?: string;
+  /**
+   * Font size used in the graph.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  fontSize?: string;
+  /**
+   * Graph background color in any syntax supported by Graphviz.
+   * https://github.com/pahen/madge/blob/v8.0.0/lib/api.js#L9-L30
+   */
+  backgroundColor?: string;
+  /**
+   * Graphviz shape used for nodes.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  nodeShape?: string;
+  /**
+   * Graphviz style used for nodes.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  nodeStyle?: string;
+  /**
+   * Default node color in any syntax supported by Graphviz.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  nodeColor?: string;
+  /**
+   * Color used for nodes with no dependencies.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  noDependencyColor?: string;
+  /**
+   * Color used for nodes involved in circular dependencies.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  cyclicNodeColor?: string;
+  /**
+   * Color used for graph edges.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  edgeColor?: string;
+  /**
+   * Additional Graphviz graph, edge, and node attributes, or false to use only Madge defaults.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  graphVizOptions?: GraphVizOptions | false;
+  /**
+   * Directory containing the Graphviz executables, or false or null to use executables from PATH.
+   * https://github.com/pahen/madge/blob/v8.0.0/lib/graph.js#L21-L36
+   */
+  graphVizPath?: string | false | null;
+  /**
+   * Parser-specific detective options passed to dependency-tree, or false to use parser defaults.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  detectiveOptions?: DetectiveOptions | false;
+  /**
+   * Disables the programmatic dependency filter. Functions are supported by the JavaScript API but cannot be represented in JSON configuration.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#configuration
+   */
+  dependencyFilter?: false;
+  [k: string]: unknown | undefined;
+}
+export interface GraphVizOptions {
+  G?: GraphVizAttributes;
+  E?: GraphVizAttributes;
+  N?: GraphVizAttributes;
+  [k: string]: unknown | undefined;
+}
+/**
+ * Graph-level Graphviz attributes.
+ * https://github.com/pahen/madge/blob/v8.0.0/lib/graph.js#L45-L74
+ */
+export interface GraphVizAttributes {
+  [k: string]: string | number | boolean | undefined;
+}
+export interface DetectiveOptions {
+  es6?: DetectiveParserOptions;
+  ts?: DetectiveParserOptions;
+  tsx?: DetectiveParserOptions;
+  [k: string]: unknown | undefined;
+}
+export interface DetectiveParserOptions {
+  /**
+   * Whether to detect ES module and CommonJS imports in the same file.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#using-mixed-import-syntax-in-the-same-file
+   */
+  mixedImports?: boolean;
+  /**
+   * Whether to ignore type-only imports.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#how-to-ignore-import-type-statements-in-es6--flow
+   */
+  skipTypeImports?: boolean;
+  /**
+   * Whether to ignore dynamic imports.
+   * https://github.com/pahen/madge/blob/v8.0.0/README.md#how-to-ignore-dynamic-imports-in-typescript
+   */
+  skipAsyncImports?: boolean;
+  [k: string]: unknown | undefined;
+}
+export interface JSONSchemaForNodemonConfig {
+  /**
+   * set to false to disable color output
+   */
+  colours?: boolean;
+  /**
+   * change into <dir> before running the script
+   */
+  cwd?: string;
+  /**
+   * debounce restart for a number of milliseconds
+   */
+  delay?: number;
+  /**
+   * print full debug configuration
+   */
+  dump?: boolean;
+  /**
+   * execute script with "app", ie. -x "python -v".  May use variables.
+   */
+  exec?: string | string[];
+  /**
+   * The global config file is useful for setting up default executables
+   */
+  execMap?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * Exit nodemon after crash
+   */
+  exitcrash?: boolean;
+  /**
+   * extensions to look for, ie. "js,jade,hbs"
+   */
+  ext?: string;
+  /**
+   * Ignore directory or file.  One entry per ignored value.  Wildcards are allowed.
+   */
+  ignore?:
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )[];
+  /**
+   * root paths to ignore
+   */
+  ignoreRoot?: string[];
+  /**
+   * use polling to watch for changes (typically needed when watching over a network/Docker)
+   */
+  legacyWatch?: boolean;
+  /**
+   * opt-out of update version check
+   */
+  noUpdateNotifier?: boolean;
+  /**
+   * arguments to pass to node if exec is "node"
+   */
+  nodeArgs?: unknown[];
+  /**
+   * combined with legacyWatch, milliseconds to poll for (default 100)
+   */
+  pollingInterval?: number;
+  /**
+   * minimise nodemon messages to start/stop only
+   */
+  quiet?: boolean;
+  /**
+   * execute script on change only, not startup
+   */
+  runOnChangeOnly?: boolean;
+  /**
+   * use specified kill signal instead of default (ex. SIGTERM)
+   */
+  signal?: ('SIGTERM' | 'SIGINT' | 'SIGQUIT' | 'SIGKILL' | 'SIGHUP') & string;
+  /**
+   * force nodemon to use spawn (over fork) [node only]
+   */
+  spawn?: boolean;
+  /**
+   * set to false to have nodemon pass stdin directly to child process
+   */
+  stdin?: boolean;
+  /**
+   * show detail on what is causing restarts
+   */
+  verbose?: boolean;
+  /**
+   * Watch directory or file.  One entry per watched value.  Wildcards are allowed.
+   */
+  watch?:
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )
+    | (
+        | string
+        | {
+            re: string;
+          }
+      )[];
+  [k: string]: unknown | undefined;
+}
+/**
+ * Configuration for quikrun, a CLI tool to run code files instantly without typing complex commands in terminal.
+ */
+export interface Quikrun {
+  /**
+   * Path to the JSON schema
+   */
+  $schema?: string;
+  /**
+   * Custom shell to run commands in
+   */
+  shell?:
+    | string
+    | {
+        /**
+         * Custom shell for Windows
+         */
+        win?: string;
+        /**
+         * Custom shell for Linux
+         */
+        linux?: string;
+        /**
+         * Custom shell for macOS (Darwin)
+         */
+        darwin?: string;
+      };
+  /**
+   * Clear the terminal before executing commands
+   */
+  clear_terminal?: boolean;
+  /**
+   * Show time taken to execute the script
+   */
+  show_time_took?: boolean;
+  /**
+   * Show the actual command that is being run
+   */
+  show_command?: boolean;
+  /**
+   * Show the shell being used for execution
+   */
+  show_shell?: boolean;
+  /**
+   * Show the divider line before command stdout/stderr
+   */
+  show_divider?: boolean;
+  /**
+   * Directory to store temporary execution files
+   */
+  temp_dir?: string | null;
+  /**
+   * Change directory to the folder containing the file before execution
+   */
+  cd_to_file_dir?: boolean;
+  /**
+   * Keep generated binaries or temporary files after execution
+   */
+  keep_artifacts?: boolean;
+  /**
+   * Controls closing behavior after execution
+   */
+  auto_close?: ('always' | 'never' | 'on_success') | number;
+  /**
+   * Command Templates by file extension
+   */
+  commands?: {
+    [k: string]: CommandValue | undefined;
+  };
+}
+export interface CompileRun {
+  /**
+   * Command template to compile the file before running (e.g. 'g++ {file} -o {out}')
+   */
+  compile?: string;
+  /**
+   * Command template to execute the compiled binary (e.g. '{out}')
+   */
+  run?: string;
+}
+export interface ShellFamilySpecific {
+  /**
+   * Command for POSIX shells (bash, zsh, sh, etc.)
+   */
+  posix?: CommandValue | OsSpecific;
+  /**
+   * Command for Windows Command Prompt (cmd.exe)
+   */
+  cmd?: CommandValue | OsSpecific;
+  /**
+   * Command for PowerShell Core (pwsh)
+   */
+  pwsh?: CommandValue | OsSpecific;
+}
+export interface OsSpecific {
+  /**
+   * Command for Linux
+   */
+  linux?: (string | CompileRun) | CommandValue[] | ShellFamilySpecific;
+  /**
+   * Command for macOS (Darwin)
+   */
+  darwin?: (string | CompileRun) | CommandValue[] | ShellFamilySpecific;
+  /**
+   * Command for Windows
+   */
+  win?: (string | CompileRun) | CommandValue[] | ShellFamilySpecific;
+}

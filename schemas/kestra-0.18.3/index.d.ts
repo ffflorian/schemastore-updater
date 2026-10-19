@@ -377,7 +377,6 @@ export type WhetherToSetupTheOutputDirectoryMechanism = boolean & string;
 export type DeprecatedUseTheTaskRunnerPropertyInstead1 = 'PROCESS' | 'DOCKER';
 export type TheTargetOperatingSystemWhereTheScriptWillRun = 'LINUX' | 'WINDOWS' | 'AUTO';
 export type WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted = boolean;
-export type DeprecatedUseTheTaskRunnerPropertyInstead3 = 'PROCESS' | 'DOCKER';
 export type TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandFromAFileSuchAsBashMyscriptShOrPythonMyscriptPyUseTheCommandsTaskInstead =
   string;
 export type ChunkSizeForEveryBulkRequest = number;
@@ -611,8 +610,6 @@ export type PythonCommandArgs = string[];
 export type ThePythonInterpreterToUse = string;
 export type RequirementsArePythonDependenciesToAddToThePythonExecutionProcess = string[];
 export type CreateAVirtualEnv = boolean;
-export type DeprecatedUseTheTaskRunnerPropertyInstead5 = 'PROCESS' | 'DOCKER';
-export type DeprecatedUseTheTaskRunnerPropertyInstead7 = 'PROCESS' | 'DOCKER';
 export type TheContentTypeOfTheExtractedText = 'TEXT' | 'XHTML' | 'XHTML_NO_HEADER';
 export type WhetherToExtractTheEmbeddedDocument = boolean;
 export type TheFileToParse = string;
@@ -639,7 +636,6 @@ export type TheMainRScript = string;
  * @minItems 1
  */
 export type TheListOfSparkCLICommandsToRun = [string, ...string[]];
-export type DeprecatedUseTheTaskRunnerPropertyInstead9 = 'PROCESS' | 'DOCKER';
 export type TheInitialGitBranch = string;
 export type WhetherToCloneSubmodules = boolean;
 export type CreatesAShallowCloneWithAHistoryTruncatedToTheSpecifiedNumberOfCommits = number;
@@ -690,8 +686,6 @@ export type TheNamespaceFromWhichFilesShouldBeSyncedFromTheGitDirectoryToKestra 
 export type TheNameOfTheOraclePluggableDatabaseThatTheConnectorCapturesChangesFromUsedInContainerDatabaseCDBInstallationsOnly =
   string;
 export type TheNameOfTheDatabaseToCaptureChangesFrom = string;
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts4 =
-  'ALWAYS' | 'INITIAL' | 'INITIAL_ONLY' | 'WHEN_NEEDED' | 'NO_DATA' | 'RECOVERY';
 export type ServiceNowClientID = string;
 export type ServiceNowClientSecret = string;
 export type ServiceNowDomain = string;
@@ -830,8 +824,6 @@ export type GenieKeyAuthorizationTokenFromOpsgenie = string;
 export type OpsgenieAlertPayload = string;
 export type AlertCreationURL = string;
 export type MapOfVariablesToUseForTheMessageTemplate3 = string;
-export type MapOfVariablesToUseForTheMessageTemplate4 = string;
-export type MapOfVariablesToUseForTheMessageTemplate5 = string;
 export type MapOfVariablesToUseForTheMessageTemplate7 = string[];
 export type PagerDutyMessagePayload = string;
 export type PagerDutyEventURL = string;
@@ -849,9 +841,6 @@ export type TheSendGridAPIKEY = string;
  * @minItems 1
  */
 export type EmailAddressEsOfTheRecipientS = [string, ...string[]];
-export type AddsAnAttachmentToTheEmailMessage3 = IoKestraPluginNotificationsSendgridSendGridMailSendAttachment[];
-export type AddsImageDataToThisEmailThatCanBeReferredToFromTheEmailHTMLBody3 =
-  IoKestraPluginNotificationsSendgridSendGridMailSendAttachment[];
 export type SentryDSN = string;
 export type SentryEventPayload = string;
 export type HexadecimalStringRepresentingAUuid4ValueTheLengthIsExactly32CharactersDashesAreNotAllowedItHasToBeLowercase =
@@ -1074,8 +1063,6 @@ export type TheSNIServerName = string;
 export type ListOfContactEndpointsToUseForTheInitialConnectionToTheCluster =
   IoKestraPluginCassandraStandardCassandraDbSessionEndpoint[];
 export type SpecifiesTheDatacenterThatIsConsideredLocalByTheLoadBalancingPolicy = string;
-export type DeprecatedUseTheTaskRunnerPropertyInstead11 = 'PROCESS' | 'DOCKER';
-export type DeprecatedUseTheTaskRunnerPropertyInstead13 = 'PROCESS' | 'DOCKER';
 export type TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandSuchAsJuliaMyscriptJlUseTheCommandsTaskInstead =
   string;
 export type TheSolaceHostnameToConnectWith = string;
@@ -1127,8 +1114,6 @@ export type TheHttpMethodToUse =
   'CONNECT' | 'CUSTOM' | 'DELETE' | 'GET' | 'HEAD' | 'OPTIONS' | 'PATCH' | 'POST' | 'PUT' | 'TRACE';
 export type TheElasticSearchIndices = string[];
 export type TheWayYouWantToStoreTheData1 = 'STORE' | 'FETCH' | 'FETCH_ONE' | 'NONE';
-export type DeprecatedUseTheTaskRunnerPropertyInstead15 = 'PROCESS' | 'DOCKER';
-export type DeprecatedUseTheTaskRunnerPropertyInstead17 = 'PROCESS' | 'DOCKER';
 export type TheCommandsToExecuteBeforeTheMainListOfCommandsEGToInitializeOrPrepareTheEnvironment = string[];
 /**
  * @minItems 1
@@ -1248,8 +1233,6 @@ export type ExperimentalOptionsAllowingTheSchemaOfTheDestinationTableToBeUpdated
 )[];
 export type TheTimePartitioningFieldForTheDestinationTable = string;
 export type TheTimePartitioningTypeSpecificationForTheDestinationTable = 'DAY' | 'HOUR' | 'MONTH' | 'YEAR';
-export type TheSourceFormatAndPossiblySomeParsingOptionsOfTheExternalData2 =
-  'CSV' | 'JSON' | 'AVRO' | 'PARQUET' | 'ORC';
 export type GoogleCloudStorageSourceData = string[];
 export type SetsWhetherTheJobIsEnabledToCreateArbitrarilyLargeResults = boolean;
 export type SetsTheDefaultDataset = string;
@@ -1295,7 +1278,6 @@ export type TheHCFSURIOfTheScriptThatContainsSparkSQLQueriesToExecute = string;
 export type TheNameOfTheDriverMainClass = string;
 export type TheFirestoreDocumentChildPath = string;
 export type TheFirestoreCollection = string;
-export type TheWayYouWantToStoreTheData2 = 'STORE' | 'FETCH' | 'FETCH_ONE' | 'NONE';
 export type FieldNameForTheFilter = string;
 export type TheOperatorForTheFilterByDefaultEQUAL_TOThatWillCallCollectionWhereEqualToNameValue =
   'EQUAL_TO' | 'NOT_EQUAL_TO' | 'LESS_THAN' | 'LESS_THAN_OR_EQUAL_TO' | 'GREATER_THAN' | 'GREATER_THAN_OR_EQUAL_TO';
@@ -1479,8 +1461,6 @@ export type KafkaTopicToWhichTheMessageShouldBeSent = string;
 export type WhetherTheProducerShouldBeTransactional = boolean;
 export type AvroSchemaIfTheValueIsSetToAVROType = string;
 export type TheSerializerUsedForTheValue = string;
-export type DeprecatedUseTheTaskRunnerPropertyInstead19 = 'PROCESS' | 'DOCKER';
-export type DeprecatedUseTheTaskRunnerPropertyInstead21 = 'PROCESS' | 'DOCKER';
 export type TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandFromAFileSuchAsRscriptMainROrPythonMainPyUseTheCorrespondingCommandsTaskForAGivenLanguageInstead =
   string;
 export type ThePathToTheDbtCLI = string;
@@ -1502,14 +1482,12 @@ export type WhenDbtWouldNormallyWarnRaiseAnException = boolean;
  */
 export type TheListOfDbtCLICommandsToRun = [string, ...string[]];
 export type TheDbtProjectDirectoryIfItSNotTheWorkingDirectory = string;
-export type DeprecatedUseTheTaskRunnerPropertyInstead23 = 'PROCESS' | 'DOCKER';
 export type ExitIfAnyNonTrueReturnValue = boolean;
 export type TheProfilesYmlFileContentCanBeAnObjectAMapOrAString =
   | {
       [k: string]: unknown | undefined;
     }
   | string;
-export type DeprecatedUseTheTaskRunnerPropertyInstead25 = 'PROCESS' | 'DOCKER';
 export type NumericIDOfTheAccount = string;
 export type BaseUrlToSelectTheTenant = string;
 export type TheMaximumDurationTheTaskShouldPollForTheJobCompletion = number & string;
@@ -1522,7 +1500,6 @@ export type OverrideWhetherOrNotThisJobGeneratesDocs = boolean;
 export type TheGitBranchToCheckOutBeforeRunningThisJob = string;
 export type TheGitSHAToCheckOutBeforeRunningThisJob = string;
 export type NumericIDOfTheJob = string;
-export type TheMaximumTotalWaitDuration2 = number & string;
 export type SpecifyFrequencyForJobStateCheckAPICalls = number & string;
 export type OverrideTheDestinationSchemaInTheConfiguredTargetForThisJob = string;
 export type OverrideTheListOfStepsForThisJob = string[];
@@ -1534,7 +1511,6 @@ export type AccessKeyIdInOrderToConnectToAWS = string;
 export type AthenaCatalog = string;
 export type AthenaDatabase = string;
 export type TheEndpointWithWhichTheSDKShouldCommunicate = string;
-export type TheWayYouWantToStoreTheData3 = 'STORE' | 'FETCH' | 'FETCH_ONE' | 'NONE';
 export type AthenaOutputLocation = string;
 export type AthenaSQLQuery = string;
 export type AWSRegionWithWhichTheSDKShouldCommunicate = string;
@@ -1553,10 +1529,8 @@ export type AWSSTSSessionName = string;
 export type TheAWSCommandsToRun = [string, ...string[]];
 export type ExpectedOutputFormatForAWSCommandsCanBeOverriddenWithFormatParameter = 'JSON' | 'TEXT' | 'TABLE' | 'YAML';
 export type TheDynamoDBTableName = string;
-export type TheWayYouWantToStoreTheData4 = 'STORE' | 'FETCH' | 'FETCH_ONE' | 'NONE';
 export type QueryFilterExpression = string;
 export type QueryKeyConditionExpression = string;
-export type TheWayYouWantToStoreTheData5 = 'STORE' | 'FETCH' | 'FETCH_ONE' | 'NONE';
 export type ScanFilterExpression = string;
 export type ListOfEventEntriesToSendToOrInternalStorageURIToRetrieveIt =
   string | IoKestraPluginAwsEventbridgeModelEntry[];
@@ -1640,14 +1614,10 @@ export type ThePassphraseUseToUnlockTheSecretRing = string;
 export type TheListOfRecipientsTheFileWillBeGenerated = string[];
 export type ThePublicKeyUseToSignTheFiles = string[];
 export type ThePublicKeyUseToSignTheFiles1 = string;
-export type ThePublicKeyUseToSignTheFiles2 = string;
-export type ThePublicKeyUseToSignTheFiles3 = string;
 export type TheUserThatWillSignedTheFiles = string;
 export type NodeCommandArgs = string[];
 export type TheNodeInterpreterToUse = string;
 export type TheNpmBinaryToUse = string;
-export type DeprecatedUseTheTaskRunnerPropertyInstead27 = 'PROCESS' | 'DOCKER';
-export type DeprecatedUseTheTaskRunnerPropertyInstead29 = 'PROCESS' | 'DOCKER';
 export type OverrideDefaultSingerCommand = string;
 export type DateUpToWhenHistoricalDataWillBeExtracted = string;
 export type LimitsTheNumberOfRecordsReturnedInEachStreamAppliedAsALimitInTheQuery = number;
@@ -1915,7 +1885,6 @@ export type NamedExternalStageNameCreatedAtPreRequirementsSectionHasToBeAFullyQu
 export type ValidateEverySingleRecordMessageToTheCorrespondingJSONSchemaThisOptionIsDisabledByDefaultAndInvalidRECORDMessagesWillFailOnlyAtLoadTimeBySnowflakeEnablingThisOptionWillDetectInvalidRecordsEarlierButCouldCausePerformanceDegradation =
   boolean;
 export type DefaultTargetSchemaToWriteTo = string;
-export type UserDefinedConfigValuesToBeUsedWithinMapExpressions2 = string;
 export type PrefixToAddToTableNameUsefulIfRetrievingDataFromMultipleTapsForEasierFiltering = string;
 export type AddInputFileToBeLoadedWithLOADDATALOCAL = string;
 export type WhetherToCompressDataBeforeUploadingStream = boolean;
@@ -2021,8 +1990,6 @@ export type TheAddressOfTheServerToConnectToSpecifiedAsAURI = string;
 export type TopicWhereToSendMessage = string;
 export type TheUserNameToUseForTheConnection = string;
 export type TheMQTTVersionToUse = 'V3' | 'V5';
-export type TheCommandsToRun13 = string[];
-export type DeprecatedUseTheTaskRunnerPropertyInstead31 = 'PROCESS' | 'DOCKER';
 export type AuthenticationToken = string;
 export type TheConsumerName = string;
 export type SerializerDeserializerUsedForTheValue = 'STRING' | 'JSON' | 'BYTES';
@@ -2095,8 +2062,6 @@ export type TargetRowGroupSize1 = 'V1' | 'V2';
 export type XmlRootName = string;
 export type ListOfXMLTagsThatMustBeParsedAsLists = string[];
 export type XPathUseToQueryInTheXMLFile = string;
-export type DeprecatedUseTheTaskRunnerPropertyInstead33 = 'PROCESS' | 'DOCKER';
-export type DeprecatedUseTheTaskRunnerPropertyInstead35 = 'PROCESS' | 'DOCKER';
 export type AShortDescriptionOfTheFile = string;
 export type TheMIMETypeOfTheFile = string;
 export type TheNameOfTheFile = string;
@@ -2112,28 +2077,22 @@ export type ListOfBodiesOfItemsFilesDocumentsToWhichTheQueryApplies = (
 )[];
 export type QueryOperatorsToFilterResults = string;
 export type TheFileIdToUpdate = string;
-export type TheDestinationPath5 = string[];
 export type HowDatesTimesAndDurationsShouldBeRepresentedInTheOutput1 = 'SERIAL_NUMBER' | 'FORMATTED_STRING';
 export type SpecifiesIfTheFirstLineShouldBeTheHeaderDefaultFalse = boolean;
 export type TheSheetTitleToBeIncluded = string[];
 export type TheSpreadsheetUniqueId = string;
-export type HowDatesTimesAndDurationsShouldBeRepresentedInTheOutput2 = 'SERIAL_NUMBER' | 'FORMATTED_STRING';
 export type TheRangeToSelect = string;
 export type TheConnectionIDToSync = string;
-export type TheMaximumTotalWaitDuration3 = number & string;
 export type BasicAuthAuthenticationPassword = string;
 export type SpecifyFrequencyForStateCheckAPICall = number & string;
 export type BasicAuthAuthenticationUsername = string;
 export type WaitForTheJobToEnd = boolean;
-export type TheMaximumTotalWaitDuration4 = number & string;
 export type HTTPConnectionTimeout = number & string;
-export type TheMaximumTotalWaitDuration5 = number & string;
 export type BasicAuthenticationPassword = string;
 export type SpecifyHowOftenTheTaskShouldPollForTheSyncStatus = number & string;
 export type TheURLOfYourAirbyteInstance = string;
 export type BasicAuthenticationUsername = string;
 export type SpecifyWhetherTaskShouldFailIfASyncIsAlreadyRunning = boolean;
-export type TheMaximumTotalWaitDuration6 = number & string;
 export type SpecifyFrequencyForSyncAttemptStateCheckAPICall = number & string;
 export type APISecret = string;
 export type TheConnectorIdToSync = string;
@@ -2202,8 +2161,6 @@ export type IoKestraCoreModelsFlowsInputIntInput2 = IoKestraCoreModelsFlowsInput
   type: 'INT';
   [k: string]: unknown | undefined;
 };
-export type MaximalValue4 = number;
-export type MinimalValue4 = number;
 export type IoKestraCoreModelsFlowsInputJsonInput2 = IoKestraCoreModelsFlowsInputJsonInput1 & {
   type: 'JSON';
   [k: string]: unknown | undefined;
@@ -4756,30 +4713,10 @@ export type TheTimeZoneIdentifierHttpsEnWikipediaOrgWikiListOfTzDatabaseTimeZone
 export type WhetherTheCronExpressionHasSecondsPrecision = boolean;
 export type TheUniqueKeyThatWillBePartOfTheURL = string;
 export type HowToCommitTheOffsetsToTheStateStore = 'ON_EACH_BATCH' | 'ON_STOP';
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts8 =
-  'INITIAL' | 'INITIAL_ONLY' | 'WHEN_NEEDED' | 'NEVER' | 'SCHEMA_ONLY' | 'SCHEMA_ONLY_RECOVERY';
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts9 =
-  'INITIAL' | 'INITIAL_ONLY' | 'WHEN_NEEDED' | 'NEVER' | 'SCHEMA_ONLY' | 'SCHEMA_ONLY_RECOVERY';
 export type TheIntervalBetweenTestOfTriggers = number & string;
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts10 =
-  'INITIAL' | 'INITIAL_ONLY' | 'SCHEMA_ONLY';
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts11 =
-  'INITIAL' | 'INITIAL_ONLY' | 'SCHEMA_ONLY';
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts12 =
-  'ALWAYS' | 'INITIAL' | 'INITIAL_ONLY' | 'WHEN_NEEDED' | 'NO_DATA' | 'RECOVERY';
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts13 =
-  'ALWAYS' | 'INITIAL' | 'INITIAL_ONLY' | 'WHEN_NEEDED' | 'NO_DATA' | 'RECOVERY';
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts14 =
-  'ALWAYS' | 'INITIAL' | 'INITIAL_ONLY' | 'WHEN_NEEDED' | 'NO_DATA' | 'RECOVERY';
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts15 =
-  'ALWAYS' | 'INITIAL' | 'INITIAL_ONLY' | 'WHEN_NEEDED' | 'NO_DATA' | 'RECOVERY';
 export type CQLQuery = string;
 export type ConnectionPortDefaultValueIs80001 = number;
 export type WhetherThePubSubSubscriptionShouldBeCreatedIfNotExist = boolean;
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts16 =
-  'INITIAL' | 'INITIAL_ONLY' | 'NO_DATA' | 'WHEN_NEEDED';
-export type SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts17 =
-  'INITIAL' | 'INITIAL_ONLY' | 'NO_DATA' | 'WHEN_NEEDED';
 export type TheMaximumNumberOfAttemptsUsedByTheSQSClientSRetryStrategy = number;
 export type TheMaximumNumberOfMessagesReturnedFromRequestMadeToSQS = number;
 export type TheDurationForWhichTheSQSClientWaitsForAMessage = number & string;
@@ -8781,9 +8718,9 @@ export interface ExecuteASubflowForEachBatchOfItems {
   flowId: TheIdentifierOfTheSubflowToBeExecuted;
   id: string;
   inheritLabels?: WhetherTheSubflowShouldInheritLabelsFromThisExecutionThatTriggeredIt;
-  inputs?: TheInputsToPassToTheSubflowToBeExecuted1;
+  inputs?: TheInputsToPassToTheSubflowToBeExecuted;
   items: TheItemsToBeSplitIntoBatchesAndProcessedMakeSureToSetItToKestraSInternalStorageURIThisCanBeEitherTheOutputFromAPreviousTaskFormattedAsOutputsTaskIdUriOrAFILETypeInputParameterLikeInputsMyfileThisTaskIsOptimizedForFilesWhereEachLineRepresentsASingleItemSuitableFileTypesIncludeAmazonIONTypeFilesCommonlyProducedByQueryTasksNewlineSeparatedJSONFilesOrCSVFilesFormattedWithOneRowPerLineAndWithoutAHeaderForFilesInOtherFormatsSuchAsExcelCSVAvroParquetXMLOrJSONItSRecommendedToFirstConvertThemToTheIONFormatThisCanBeDoneUsingTheConversionTasksAvailableInTheIoKestraPluginSerdesModuleWhichWillTransformFilesFromTheirOriginalFormatToION;
-  labels?: TheLabelsToPassToTheSubflowToBeExecuted1;
+  labels?: TheLabelsToPassToTheSubflowToBeExecuted;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   namespace: TheNamespaceOfTheSubflowToBeExecuted;
   retry?:
@@ -11691,7 +11628,7 @@ export interface RunTasksSequentiallyInTheSameWorkingDirectory {
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles40;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
@@ -12228,33 +12165,21 @@ export interface MakeAnHTTPAPIRequestToASpecifiedURLAndStoreTheResponseAsOutput 
   description?: string;
   disabled?: boolean;
   encryptBody?: IfTrueTheHTTPResponseBodyWillBeAutomaticallyEncryptedAndDecryptedInTheOutputsProvidedThatEncryptionIsConfiguredInYourKestraConfiguration;
-  formData?: TheFormDataToBeSend1;
-  headers?: TheHeadersToPassToTheRequest1;
+  formData?: TheFormDataToBeSend;
+  headers?: TheHeadersToPassToTheRequest;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   method?: TheHTTPMethodToUse;
-  options?: IoKestraPluginCoreHttpHttpInterfaceRequestOptions & TheHTTPRequestOptions1;
+  options?: IoKestraPluginCoreHttpHttpInterfaceRequestOptions & TheHTTPRequestOptions;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  sslOptions?: IoKestraPluginCoreHttpHttpInterfaceSslOptions & TheSSLRequestOptions1;
+  sslOptions?: IoKestraPluginCoreHttpHttpInterfaceSslOptions & TheSSLRequestOptions;
   timeout?: string;
   type: 'io.kestra.plugin.core.http.Request';
   uri: TheFullyQualifiedURIThatPointsToTheHTTPDestination;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheFormDataToBeSend1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheHeadersToPassToTheRequest1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheHTTPRequestOptions1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheSSLRequestOptions1 {
   [k: string]: unknown | undefined;
 }
 export interface DeletesAKVPair {
@@ -13066,7 +12991,7 @@ export interface DeleteSpecificObjectsInAWeaviateDatabase {
   description?: string;
   disabled?: boolean;
   filter?: AttributesToFilterByForDeletion;
-  headers?: AdditionalHeadersToAddToTheRequestEGToAuthenticateWithOpenAIAPI1;
+  headers?: AdditionalHeadersToAddToTheRequestEGToAuthenticateWithOpenAIAPI;
   id: IdOfTheObjectToDelete;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   retry?:
@@ -13082,16 +13007,13 @@ export interface DeleteSpecificObjectsInAWeaviateDatabase {
 export interface AttributesToFilterByForDeletion {
   [k: string]: unknown | undefined;
 }
-export interface AdditionalHeadersToAddToTheRequestEGToAuthenticateWithOpenAIAPI1 {
-  [k: string]: unknown | undefined;
-}
 export interface QueryWeaviateDatabaseWithGraphQL {
   allowFailure?: boolean;
   apiKey?: APIKeyToAuthenticateWithAManagedWeaviateCluster;
   description?: string;
   disabled?: boolean;
   fetchType?: HowYouWantToStoreTheOutputData;
-  headers?: AdditionalHeadersToAddToTheRequestEGToAuthenticateWithOpenAIAPI2;
+  headers?: AdditionalHeadersToAddToTheRequestEGToAuthenticateWithOpenAIAPI;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   query?: GraphQLQuery;
@@ -13105,9 +13027,6 @@ export interface QueryWeaviateDatabaseWithGraphQL {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface AdditionalHeadersToAddToTheRequestEGToAuthenticateWithOpenAIAPI2 {
-  [k: string]: unknown | undefined;
-}
 export interface CreateAClassSchemaInAWeaviateDatabase {
   allowFailure?: boolean;
   apiKey?: APIKeyToAuthenticateWithAManagedWeaviateCluster;
@@ -13115,7 +13034,7 @@ export interface CreateAClassSchemaInAWeaviateDatabase {
   description?: string;
   disabled?: boolean;
   fields?: FieldsToAddToTheClass;
-  headers?: AdditionalHeadersToAddToTheRequestEGToAuthenticateWithOpenAIAPI3;
+  headers?: AdditionalHeadersToAddToTheRequestEGToAuthenticateWithOpenAIAPI;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   retry?:
@@ -13129,9 +13048,6 @@ export interface CreateAClassSchemaInAWeaviateDatabase {
   [k: string]: unknown | undefined;
 }
 export interface FieldsToAddToTheClass {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalHeadersToAddToTheRequestEGToAuthenticateWithOpenAIAPI3 {
   [k: string]: unknown | undefined;
 }
 export interface QueryADB2Database {
@@ -13400,7 +13316,7 @@ export interface RunASodaScan {
   runner?: RunnerToUse;
   taskRunner?:
     | (RunATaskInADockerContainer & TheTaskRunnerToUse)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse1);
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.soda.Scan';
   variables?: TheVariablesToPass;
@@ -13487,15 +13403,15 @@ export interface InputFilesAreExtraFilesThatWillBeAvailableInTheDbtWorkingDirect
 }
 export interface RunATaskInADockerContainer {
   config?: DockerConfigurationFile;
-  cpu?: IoKestraPluginScriptsRunnerDockerCpu & LimitsTheCPUUsageToAGivenMaximumThresholdValue1;
-  credentials?: CredentialsForAPrivateContainerRegistry & CredentialsForAPrivateContainerRegistry2;
+  cpu?: IoKestraPluginScriptsRunnerDockerCpu & LimitsTheCPUUsageToAGivenMaximumThresholdValue;
+  credentials?: CredentialsForAPrivateContainerRegistry & CredentialsForAPrivateContainerRegistry1;
   delete?: WhetherTheContainerShouldBeDeletedUponCompletion;
   deviceRequests?: AListOfDeviceRequestsToBeSentToDeviceDrivers;
   entryPoint?: DockerEntrypointToUse;
   extraHosts?: ExtraHostnameMappingsToTheContainerNetworkInterfaceConfiguration;
   fileHandlingStrategy?: FileHandlingStrategy;
   host?: DockerAPIURI;
-  memory?: IoKestraPluginScriptsRunnerDockerMemory & LimitsMemoryUsageToAGivenMaximumThresholdValue1;
+  memory?: IoKestraPluginScriptsRunnerDockerMemory & LimitsMemoryUsageToAGivenMaximumThresholdValue;
   networkMode?: DockerNetworkModeToUseEGHostNoneEtc;
   pullPolicy?: TheImagePullPolicyForAContainerImageAndTheTagOfTheImageWhichAffectWhenDockerAttemptsToPullDownloadTheSpecifiedImage &
     ThePullPolicyForAContainerImage;
@@ -13505,23 +13421,11 @@ export interface RunATaskInADockerContainer {
   volumes?: ListOfVolumesToMount;
   [k: string]: unknown | undefined;
 }
-export interface LimitsTheCPUUsageToAGivenMaximumThresholdValue1 {
-  [k: string]: unknown | undefined;
-}
-export interface CredentialsForAPrivateContainerRegistry2 {
-  [k: string]: unknown | undefined;
-}
-export interface LimitsMemoryUsageToAGivenMaximumThresholdValue1 {
-  [k: string]: unknown | undefined;
-}
 export interface TheTaskRunnerToUse {
   [k: string]: unknown | undefined;
 }
 export interface TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost {
   type: 'io.kestra.plugin.core.runner.Process';
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse1 {
   [k: string]: unknown | undefined;
 }
 export interface TheVariablesToPass {
@@ -13534,8 +13438,8 @@ export interface ExecuteModalCommandsFromTheCommandLineInterface {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead1;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess1;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -13546,18 +13450,12 @@ export interface ExecuteModalCommandsFromTheCommandLineInterface {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse2)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse3);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.modal.cli.ModalCLI';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead1 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess1 {
-  [k: string]: string | undefined;
 }
 export interface IoKestraCoreModelsTasksNamespaceFiles {
   enabled?: WhetherToEnableNamespaceFilesToBeLoadedIntoTheWorkingDirectoryIfExplicitlySetToTrueInATaskItWillLoadAllNamespaceFilesHttpsKestraIoDocsDeveloperGuideNamespaceFilesIntoTheTaskSWorkingDirectoryNoteThatThisPropertyIsByDefaultSetToTrueSoThatYouCanSpecifyOnlyTheIncludeAndExcludePropertiesToFilterTheFilesToLoadWithoutHavingToExplicitlySetEnabledToTrue;
@@ -13566,12 +13464,6 @@ export interface IoKestraCoreModelsTasksNamespaceFiles {
   [k: string]: unknown | undefined;
 }
 export interface InjectNamespaceFiles {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse2 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse3 {
   [k: string]: unknown | undefined;
 }
 export interface QueryARocksetServer {
@@ -13646,13 +13538,13 @@ export interface ExecuteOneOrMoreShellCommands {
   description?: string;
   disabled?: boolean;
   docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess2;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles1;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
@@ -13662,8 +13554,8 @@ export interface ExecuteOneOrMoreShellCommands {
   runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse4)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse5);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.shell.Commands';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
@@ -13673,63 +13565,36 @@ export interface ExecuteOneOrMoreShellCommands {
 export interface DeprecatedUseTheTaskRunnerPropertyInstead {
   [k: string]: unknown | undefined;
 }
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess2 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse4 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse5 {
-  [k: string]: unknown | undefined;
-}
 export interface ExecuteAShellScript {
   allowFailure?: boolean;
   beforeCommands?: AListOfCommandsThatWillRunBeforeTheCommandsAllowingToSetUpTheEnvironmentEGPipInstallRRequirementsTxt;
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead2;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess3;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles2;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead3;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   script: TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandFromAFileSuchAsBashMyscriptShOrPythonMyscriptPyUseTheCommandsTaskInstead;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse6)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse7);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.shell.Script';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead2 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess3 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles2 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse6 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse7 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteBulkHttpsWwwMongodbComDocsManualReferenceMethodBulkRequestInMongoDB {
@@ -13762,7 +13627,7 @@ export interface MongoDBConnectionProperties {
 export interface DeleteOneOrManyDocumentsFromAMongoDBCollection {
   allowFailure?: boolean;
   collection: MongoDBCollection;
-  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties1;
+  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties;
   database: MongoDBDatabase;
   description?: string;
   disabled?: boolean;
@@ -13779,20 +13644,17 @@ export interface DeleteOneOrManyDocumentsFromAMongoDBCollection {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface MongoDBConnectionProperties1 {
-  [k: string]: unknown | undefined;
-}
 export interface MongoDBBSONFilter {
   [k: string]: unknown | undefined;
 }
 export interface FindDocumentsFromAMongoDBCollection {
   allowFailure?: boolean;
   collection: MongoDBCollection;
-  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties2;
+  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties;
   database: MongoDBDatabase;
   description?: string;
   disabled?: boolean;
-  filter?: MongoDBBSONFilter1;
+  filter?: MongoDBBSONFilter;
   id: string;
   limit?: TheNumberOfRecordsToReturn;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -13809,12 +13671,6 @@ export interface FindDocumentsFromAMongoDBCollection {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface MongoDBConnectionProperties2 {
-  [k: string]: unknown | undefined;
-}
-export interface MongoDBBSONFilter1 {
-  [k: string]: unknown | undefined;
-}
 export interface MongoDBBSONProjection {
   [k: string]: unknown | undefined;
 }
@@ -13824,7 +13680,7 @@ export interface MongoDBBSONSort {
 export interface InsertADocumentIntoAMongoDBCollection {
   allowFailure?: boolean;
   collection: MongoDBCollection;
-  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties3;
+  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties;
   database: MongoDBDatabase;
   description?: string;
   disabled?: boolean;
@@ -13840,9 +13696,6 @@ export interface InsertADocumentIntoAMongoDBCollection {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface MongoDBConnectionProperties3 {
-  [k: string]: unknown | undefined;
-}
 export interface MongoDBDocument {
   [k: string]: unknown | undefined;
 }
@@ -13850,7 +13703,7 @@ export interface BulkLoadDocumentsInMongoDBUsingKestraInternalStorageFile {
   allowFailure?: boolean;
   chunk?: ChunkSizeForEveryBulkRequest;
   collection: MongoDBCollection;
-  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties4;
+  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties;
   database: MongoDBDatabase;
   description?: string;
   disabled?: boolean;
@@ -13868,18 +13721,15 @@ export interface BulkLoadDocumentsInMongoDBUsingKestraInternalStorageFile {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface MongoDBConnectionProperties4 {
-  [k: string]: unknown | undefined;
-}
 export interface UpdateOrReplaceOneOrManyDocumentsInAMongoDBCollection {
   allowFailure?: boolean;
   collection: MongoDBCollection;
-  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties5;
+  connection: IoKestraPluginMongodbMongoDbConnection & MongoDBConnectionProperties;
   database: MongoDBDatabase;
   description?: string;
   disabled?: boolean;
-  document: MongoDBDocument1;
-  filter: MongoDBBSONFilter2;
+  document: MongoDBDocument;
+  filter: MongoDBBSONFilter;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   operation?: OperationToUse1;
@@ -13890,15 +13740,6 @@ export interface UpdateOrReplaceOneOrManyDocumentsInAMongoDBCollection {
   timeout?: string;
   type: 'io.kestra.plugin.mongodb.Update';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface MongoDBConnectionProperties5 {
-  [k: string]: unknown | undefined;
-}
-export interface MongoDBDocument1 {
-  [k: string]: unknown | undefined;
-}
-export interface MongoDBBSONFilter2 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForChangeDataCaptureEventOnPostgreSQLServer {
@@ -14106,38 +13947,23 @@ export interface OrchestrateADataformProject {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead2;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess4;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles3;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse8)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse9);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.dataform.cli.DataformCLI';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead2 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess4 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles3 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse8 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse9 {
   [k: string]: unknown | undefined;
 }
 export interface QueryACouchbaseDatabaseWithN1QL {
@@ -14244,7 +14070,7 @@ export interface BuildADockerImageAndPushItToARemoteContainerRegistry {
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   labels?: AdditionalMetadataForTheImageInAKeyValueFormat;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles4;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   platforms?: TheTargetPlatformForTheImageEGLinuxAmd64;
   pull?: AlwaysAttemptToPullTheLatestVersionOfTheBaseImage;
   push?: WhetherToPushTheImageToARemoteContainerRegistry;
@@ -14267,16 +14093,13 @@ export interface CredentialsToPushYourImageToAContainerRegistry {
 export interface AdditionalMetadataForTheImageInAKeyValueFormat {
   [k: string]: string | undefined;
 }
-export interface InjectNamespaceFiles4 {
-  [k: string]: unknown | undefined;
-}
 export interface RunADockerContainer {
   allowFailure?: boolean;
   commands?: TheCommandsToRun3;
   config?: DockerConfigurationFile;
   containerImage: DockerImageToUse;
-  cpu?: IoKestraPluginScriptsRunnerDockerCpu & LimitsTheCPUUsageToAGivenMaximumThresholdValue2;
-  credentials?: CredentialsForAPrivateContainerRegistry & CredentialsForAPrivateContainerRegistry3;
+  cpu?: IoKestraPluginScriptsRunnerDockerCpu & LimitsTheCPUUsageToAGivenMaximumThresholdValue;
+  credentials?: CredentialsForAPrivateContainerRegistry & CredentialsForAPrivateContainerRegistry1;
   description?: string;
   deviceRequests?: AListOfDeviceRequestsToBeSentToDeviceDrivers;
   disabled?: boolean;
@@ -14287,8 +14110,8 @@ export interface RunADockerContainer {
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  memory?: IoKestraPluginScriptsRunnerDockerMemory & LimitsMemoryUsageToAGivenMaximumThresholdValue2;
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles5;
+  memory?: IoKestraPluginScriptsRunnerDockerMemory & LimitsMemoryUsageToAGivenMaximumThresholdValue;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   networkMode?: DockerNetworkModeToUseEGHostNoneEtc;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   pullPolicy?: TheImagePullPolicyForAContainerImageAndTheTagOfTheImageWhichAffectWhenDockerAttemptsToPullDownloadTheSpecifiedImage &
@@ -14306,20 +14129,8 @@ export interface RunADockerContainer {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface LimitsTheCPUUsageToAGivenMaximumThresholdValue2 {
-  [k: string]: unknown | undefined;
-}
-export interface CredentialsForAPrivateContainerRegistry3 {
-  [k: string]: unknown | undefined;
-}
 export interface AdditionalEnvironmentVariablesForTheDockerContainer {
   [k: string]: string | undefined;
-}
-export interface LimitsMemoryUsageToAGivenMaximumThresholdValue2 {
-  [k: string]: unknown | undefined;
-}
-export interface InjectNamespaceFiles5 {
-  [k: string]: unknown | undefined;
 }
 export interface ExecuteABatchQueryToAOracleServer {
   allowFailure?: boolean;
@@ -14399,16 +14210,16 @@ export interface WaitForChangeDataCaptureEventOnMySQLServer {
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues1;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges1;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture1;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: string;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues1;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges1;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture1;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   maxDuration?: TheMaximumDurationWaitingForNewRows;
@@ -14419,7 +14230,7 @@ export interface WaitForChangeDataCaptureEventOnMySQLServer {
   metadataFieldName?: TheNameOfMetadataFieldIfMetadataIsADD_FIELD;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties1;
+  properties?: AdditionalConfigurationProperties;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
@@ -14432,27 +14243,6 @@ export interface WaitForChangeDataCaptureEventOnMySQLServer {
   type: 'io.kestra.plugin.debezium.mysql.Capture';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues1 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges1 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture1 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues1 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges1 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture1 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties1 {
   [k: string]: unknown | undefined;
 }
 export interface DeleteAFileToAFTPServer {
@@ -15252,16 +15042,16 @@ export interface WaitForChangeDataCaptureEventOnMicrosoftSQLServer {
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues2;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges2;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture2;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: string;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues2;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges2;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture2;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   maxDuration?: TheMaximumDurationWaitingForNewRows;
@@ -15272,7 +15062,7 @@ export interface WaitForChangeDataCaptureEventOnMicrosoftSQLServer {
   metadataFieldName?: TheNameOfMetadataFieldIfMetadataIsADD_FIELD;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties2;
+  properties?: AdditionalConfigurationProperties;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
@@ -15284,27 +15074,6 @@ export interface WaitForChangeDataCaptureEventOnMicrosoftSQLServer {
   type: 'io.kestra.plugin.debezium.sqlserver.Capture';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues2 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges2 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture2 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues2 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges2 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture2 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties2 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteABatchQueryToAPostgreSQLServer {
@@ -15537,16 +15306,16 @@ export interface WaitForChangeDataCaptureEventOnDb2Server {
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues3;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges3;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture3;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: string;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues3;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges3;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture3;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   maxDuration?: TheMaximumDurationWaitingForNewRows;
@@ -15557,7 +15326,7 @@ export interface WaitForChangeDataCaptureEventOnDb2Server {
   metadataFieldName?: TheNameOfMetadataFieldIfMetadataIsADD_FIELD;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties3;
+  properties?: AdditionalConfigurationProperties;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
@@ -15569,27 +15338,6 @@ export interface WaitForChangeDataCaptureEventOnDb2Server {
   type: 'io.kestra.plugin.debezium.db2.Capture';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues3 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges3 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture3 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues3 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges3 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture3 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties3 {
   [k: string]: unknown | undefined;
 }
 export interface CreateAJiraTicketBasedOnWorkflowExecutionStatus {
@@ -15644,12 +15392,12 @@ export interface ExecuteAPythonScript {
   commands?: TheCommandsToRun;
   description?: string;
   disabled?: boolean;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DockerOptionsWhenUsingTheDOCKERRunner1;
-  env?: OneOrMoreAdditionalEnvironmentVariableSToAddToTheTaskRun1;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DockerOptionsWhenUsingTheDOCKERRunner;
+  env?: OneOrMoreAdditionalEnvironmentVariableSToAddToTheTaskRun;
   exitOnFailed?: ExitIfAnyNonTrueValueIsReturned;
   files?: DeprecatedTheListOfFilesThatWillBeUploadedToKestraSInternalStorage;
   id: string;
-  inputFiles?: InputFilesAreExtraFilesThatWillBeAvailableInTheScriptSWorkingDirectory1;
+  inputFiles?: InputFilesAreExtraFilesThatWillBeAvailableInTheScriptSWorkingDirectory;
   interpreter?: InterpreterToUseWhenLaunchingTheProcess;
   interpreterArgs?: InterpreterArgumentsToBeUsed;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -15670,15 +15418,6 @@ export interface ExecuteAPythonScript {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DockerOptionsWhenUsingTheDOCKERRunner1 {
-  [k: string]: unknown | undefined;
-}
-export interface OneOrMoreAdditionalEnvironmentVariableSToAddToTheTaskRun1 {
-  [k: string]: string | undefined;
-}
-export interface InputFilesAreExtraFilesThatWillBeAvailableInTheScriptSWorkingDirectory1 {
-  [k: string]: string | undefined;
-}
 export interface ExecuteOneOrMorePythonScriptsFromACommandLineInterface {
   allowFailure?: boolean;
   beforeCommands?: AListOfCommandsThatWillRunBeforeTheCommandsAllowingToSetUpTheEnvironmentEGPipInstallRRequirementsTxt;
@@ -15686,44 +15425,29 @@ export interface ExecuteOneOrMorePythonScriptsFromACommandLineInterface {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead4;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess5;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles6;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead5;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse10)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse11);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.python.Commands';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead4 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess5 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles6 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse10 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse11 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteAPythonScript1 {
@@ -15732,45 +15456,30 @@ export interface ExecuteAPythonScript1 {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead6;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess6;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles7;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead7;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   script: TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandFromAFileSuchAsBashMyscriptShOrPythonMyscriptPyUseTheCommandsTaskInstead;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse12)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse13);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.python.Script';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead6 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess6 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles7 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse12 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse13 {
   [k: string]: unknown | undefined;
 }
 export interface ParseADocumentAndExtractItsContentAndMetadata {
@@ -15846,8 +15555,8 @@ export interface SubmitASparkJobToARemoteClusterUsingAJARFile {
   deployMode?: DeployModeForTheApplication;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead3;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess7;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   jars?: AdditionalJARFilesToBeSubmittedWithTheApplication;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -15862,8 +15571,8 @@ export interface SubmitASparkJobToARemoteClusterUsingAJARFile {
   runner?: ScriptRunnerToUse;
   sparkSubmitPath?: TheSparkSubmitBinaryPath;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse14)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse15);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.spark.JarSubmit';
   verbose?: EnablesVerboseReporting;
@@ -15876,32 +15585,20 @@ export interface AddsAFileToBeSubmittedWithTheApplication {
 export interface ConfigurationPropertiesForTheApplication {
   [k: string]: string | undefined;
 }
-export interface DeprecatedUseTaskRunnerInstead3 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess7 {
-  [k: string]: string | undefined;
-}
 export interface AdditionalJARFilesToBeSubmittedWithTheApplication {
   [k: string]: string | undefined;
 }
-export interface TheTaskRunnerToUse14 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse15 {
-  [k: string]: unknown | undefined;
-}
 export interface SubmitAPySparkJobToARemoteCluster {
   allowFailure?: boolean;
-  appFiles?: AddsAFileToBeSubmittedWithTheApplication1;
+  appFiles?: AddsAFileToBeSubmittedWithTheApplication;
   args?: CommandLineArgumentsForTheApplication;
-  configurations?: ConfigurationPropertiesForTheApplication1;
+  configurations?: ConfigurationPropertiesForTheApplication;
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   deployMode?: DeployModeForTheApplication;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead4;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess8;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   mainScript: TheMainPythonScript;
@@ -15915,46 +15612,28 @@ export interface SubmitAPySparkJobToARemoteCluster {
   runner?: ScriptRunnerToUse;
   sparkSubmitPath?: TheSparkSubmitBinaryPath;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse16)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse17);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.spark.PythonSubmit';
   verbose?: EnablesVerboseReporting;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface AddsAFileToBeSubmittedWithTheApplication1 {
-  [k: string]: string | undefined;
-}
-export interface ConfigurationPropertiesForTheApplication1 {
-  [k: string]: string | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead4 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess8 {
-  [k: string]: string | undefined;
-}
 export interface AddsAPythonFileZipEggPackageToBeSubmittedWithTheApplication {
   [k: string]: string | undefined;
 }
-export interface TheTaskRunnerToUse16 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse17 {
-  [k: string]: unknown | undefined;
-}
 export interface SubmitAnRJobToARemoteCluster {
   allowFailure?: boolean;
-  appFiles?: AddsAFileToBeSubmittedWithTheApplication2;
+  appFiles?: AddsAFileToBeSubmittedWithTheApplication;
   args?: CommandLineArgumentsForTheApplication;
-  configurations?: ConfigurationPropertiesForTheApplication2;
+  configurations?: ConfigurationPropertiesForTheApplication;
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   deployMode?: DeployModeForTheApplication;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead5;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess9;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   mainScript: TheMainRScript;
@@ -15967,30 +15646,12 @@ export interface SubmitAnRJobToARemoteCluster {
   runner?: ScriptRunnerToUse;
   sparkSubmitPath?: TheSparkSubmitBinaryPath;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse18)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse19);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.spark.RSubmit';
   verbose?: EnablesVerboseReporting;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AddsAFileToBeSubmittedWithTheApplication2 {
-  [k: string]: string | undefined;
-}
-export interface ConfigurationPropertiesForTheApplication2 {
-  [k: string]: string | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead5 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess9 {
-  [k: string]: string | undefined;
-}
-export interface TheTaskRunnerToUse18 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse19 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteSparkCLICommands {
@@ -16000,44 +15661,29 @@ export interface ExecuteSparkCLICommands {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead8;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess10;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles8;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead9;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse20)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse21);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.spark.SparkCLI';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead8 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess10 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles8 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse20 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse21 {
   [k: string]: unknown | undefined;
 }
 export interface CloneARepository {
@@ -16078,7 +15724,7 @@ export interface CommitAndPushFilesToAGitRepository {
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles9;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   passphrase?: ThePassphraseForThePrivateKey;
   password?: ThePasswordOrPersonalAccessTokenPATWhenYouAuthenticateTheTaskWithAPATAnyFlowsOrFilesPushedToGitFromKestraWillBePushedFromTheUserAssociatedWithThatPATThisWayYouDonTNeedToConfigureTheCommitAuthorTheAuthorNameAndAuthorEmailProperties;
   privateKey?: PEMFormatPrivateKeyContentThatIsPairedWithAPublicKeyRegisteredOnGit;
@@ -16108,9 +15754,6 @@ export interface IoKestraPluginGitPushFlowFiles {
   [k: string]: unknown | undefined;
 }
 export interface WhetherToPushFlowsFromTheCurrentNamespaceToGit {
-  [k: string]: unknown | undefined;
-}
-export interface InjectNamespaceFiles9 {
   [k: string]: unknown | undefined;
 }
 export interface CommitAndPushYourSavedFlowsToAGitRepository {
@@ -16261,16 +15904,16 @@ export interface WaitForChangeDataCaptureEventOnOracleServer {
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues4;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges4;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture4;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: string;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues4;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges4;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture4;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   maxDuration?: TheMaximumDurationWaitingForNewRows;
@@ -16282,40 +15925,19 @@ export interface WaitForChangeDataCaptureEventOnOracleServer {
   password?: PasswordOnTheRemoteServer;
   pluggableDatabase?: TheNameOfTheOraclePluggableDatabaseThatTheConnectorCapturesChangesFromUsedInContainerDatabaseCDBInstallationsOnly;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties4;
+  properties?: AdditionalConfigurationProperties;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   sid: TheNameOfTheDatabaseToCaptureChangesFrom;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts4;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts3;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   timeout?: string;
   type: 'io.kestra.plugin.debezium.oracle.Capture';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues4 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges4 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture4 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues4 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges4 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture4 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties4 {
   [k: string]: unknown | undefined;
 }
 export interface InsertDataInsideAServiceNowTable {
@@ -16326,7 +15948,7 @@ export interface InsertDataInsideAServiceNowTable {
   description?: string;
   disabled?: boolean;
   domain: ServiceNowDomain;
-  headers?: TheHeadersToPassToTheRequest2;
+  headers?: TheHeadersToPassToTheRequest;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   password: ServiceNowPassword;
@@ -16342,9 +15964,6 @@ export interface InsertDataInsideAServiceNowTable {
   [k: string]: unknown | undefined;
 }
 export interface TheDataToInsert {
-  [k: string]: unknown | undefined;
-}
-export interface TheHeadersToPassToTheRequest2 {
   [k: string]: unknown | undefined;
 }
 export interface QueryASybaseDatabase {
@@ -16662,39 +16281,27 @@ export interface ExecuteCloudQueryCommandsFromACLI {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead6;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   env?: AdditionalEnvironmentVariablesForTheCloudQueryProcess;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles10;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse22)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse23);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.cloudquery.CloudQueryCLI';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DeprecatedUseTaskRunnerInstead6 {
-  [k: string]: unknown | undefined;
-}
 export interface AdditionalEnvironmentVariablesForTheCloudQueryProcess {
   [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles10 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse22 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse23 {
-  [k: string]: unknown | undefined;
 }
 export interface ExecuteACloudQuerySync {
   allowFailure?: boolean;
@@ -16702,39 +16309,24 @@ export interface ExecuteACloudQuerySync {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead7;
-  env?: AdditionalEnvironmentVariablesForTheCloudQueryProcess1;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCloudQueryProcess;
   id: string;
   incremental?: WhetherToUseKestraSInternalBackendToSaveIncrementalIndex;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles11;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse24)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse25);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.cloudquery.Sync';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead7 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCloudQueryProcess1 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles11 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse24 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse25 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeMessagesFromANATSSubjectOnAJetStreamEnabledNATSServer {
@@ -16976,7 +16568,7 @@ export interface SendADiscordMessageUsingAnIncomingWebhook {
 }
 export interface SendAGoogleChatMessageWithTheExecutionInformation {
   allowFailure?: boolean;
-  customFields?: CustomFieldsToBeAddedOnNotification1;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -16988,18 +16580,12 @@ export interface SendAGoogleChatMessageWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate1;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   text?: MessageBody;
   timeout?: string;
   type: 'io.kestra.plugin.notifications.google.GoogleChatExecution';
   url: GoogleChatIncomingWebhookURL;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface CustomFieldsToBeAddedOnNotification1 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate1 {
   [k: string]: unknown | undefined;
 }
 export interface SendAGoogleChatMessageUsingAnIncomingWebhook {
@@ -17023,7 +16609,7 @@ export interface SendAnEmailWithTheExecutionInformation {
   allowFailure?: boolean;
   attachments?: AddsAnAttachmentToTheEmailMessage;
   cc?: OneOrMoreCcCarbonCopyOptionalRecipientEmailAddressUseSemicolonAsDelimiterToProvideSeveralAddresses;
-  customFields?: CustomFieldsToBeAddedOnNotification2;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -17043,7 +16629,7 @@ export interface SendAnEmailWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysRandom2;
   sessionTimeout?: IntegerValueInMillisecondsDefaultIs10000MillisecondsIE10Seconds;
   subject?: TheOptionalSubjectOfThisEmail;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate2;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   timeout?: string;
   to?: EmailAddressEsOfTheRecipientSUseSemicolonAsDelimiterToProvideSeveralEmailAddresses;
   transportStrategy?: TheOptionalTransportStrategy;
@@ -17056,12 +16642,6 @@ export interface IoKestraPluginNotificationsMailMailSendAttachment {
   contentType?: OneOrMoreCcCarbonCopyOptionalRecipientEmailAddressEsUseSemicolonAsADelimiterToProvideSeveralAddresses;
   name: TheNameOfTheAttachmentEgFilenameTxt;
   uri: AnAttachmentURIFromKestraInternalStorage;
-  [k: string]: unknown | undefined;
-}
-export interface CustomFieldsToBeAddedOnNotification2 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate2 {
   [k: string]: unknown | undefined;
 }
 export interface SendAnAutomatedEmailFromAWorkflow {
@@ -17115,40 +16695,28 @@ export interface SendANotificationWithTheExecutionInformationViaOpsgenie {
   alias?: MapOfVariablesToUseForTheMessageTemplate3;
   allowFailure?: boolean;
   authorizationToken?: GenieKeyAuthorizationTokenFromOpsgenie;
-  customFields?: CustomFieldsToBeAddedOnNotification3;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
   executionId?: TheExecutionIdToUse;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  message?: MapOfVariablesToUseForTheMessageTemplate4;
+  message?: MapOfVariablesToUseForTheMessageTemplate3;
   payload?: OpsgenieAlertPayload;
-  priority?: MapOfVariablesToUseForTheMessageTemplate5;
-  responders?: MapOfVariablesToUseForTheMessageTemplate6;
+  priority?: MapOfVariablesToUseForTheMessageTemplate3;
+  responders?: MapOfVariablesToUseForTheMessageTemplate;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   tags?: MapOfVariablesToUseForTheMessageTemplate7;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate8;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   timeout?: string;
   type: 'io.kestra.plugin.notifications.opsgenie.OpsgenieExecution';
   url: AlertCreationURL;
-  visibleTo?: MapOfVariablesToUseForTheMessageTemplate9;
+  visibleTo?: MapOfVariablesToUseForTheMessageTemplate;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface CustomFieldsToBeAddedOnNotification3 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate6 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate8 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate9 {
   [k: string]: unknown | undefined;
 }
 export interface SendAPagerDutyAlert {
@@ -17170,7 +16738,7 @@ export interface SendAPagerDutyAlert {
 }
 export interface SendAPagerDutyMessageWithTheExecutionInformation {
   allowFailure?: boolean;
-  customFields?: CustomFieldsToBeAddedOnNotification4;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   deduplicationKey?: DeduplicationKeyForCorrelatingTriggersAndResolves;
   description?: string;
@@ -17186,24 +16754,18 @@ export interface SendAPagerDutyMessageWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   routingKey?: IntegrationKeyForAnIntegrationOnAPagerDutyService;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate10;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   timeout?: string;
   type: 'io.kestra.plugin.notifications.pagerduty.PagerDutyExecution';
   url: PagerDutyEventURL;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface CustomFieldsToBeAddedOnNotification4 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate10 {
-  [k: string]: unknown | undefined;
-}
 export interface SendAnSendGridEmailWithTheExecutionInformation {
   allowFailure?: boolean;
   attachments?: AddsAnAttachmentToTheEmailMessage2;
   cc?: OneOrMoreCcCarbonCopyOptionalRecipientSEmailAddressEs;
-  customFields?: CustomFieldsToBeAddedOnNotification5;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -17219,7 +16781,7 @@ export interface SendAnSendGridEmailWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysRandom2;
   sendgridApiKey: TheSendGridAPIKEY;
   subject?: TheOptionalSubjectOfThisEmail;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate11;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   textContent?: TheOptionalEmailMessageBodyInPlainText;
   timeout?: string;
   to: EmailAddressEsOfTheRecipientS;
@@ -17233,19 +16795,13 @@ export interface IoKestraPluginNotificationsSendgridSendGridMailSendAttachment {
   uri: AnAttachmentURIFromKestraInternalStorage;
   [k: string]: unknown | undefined;
 }
-export interface CustomFieldsToBeAddedOnNotification5 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate11 {
-  [k: string]: unknown | undefined;
-}
 export interface SendAnAutomatedSendGridEmailFromAWorkflow {
   allowFailure?: boolean;
-  attachments?: AddsAnAttachmentToTheEmailMessage3;
+  attachments?: AddsAnAttachmentToTheEmailMessage2;
   cc?: OneOrMoreCcCarbonCopyOptionalRecipientSEmailAddressEs;
   description?: string;
   disabled?: boolean;
-  embeddedImages?: AddsImageDataToThisEmailThatCanBeReferredToFromTheEmailHTMLBody3;
+  embeddedImages?: AddsImageDataToThisEmailThatCanBeReferredToFromTheEmailHTMLBody2;
   from: TheAddressOfTheSenderOfThisEmail;
   htmlContent?: TheOptionalEmailMessageBodyInHTML;
   id: string;
@@ -17282,7 +16838,7 @@ export interface SendASentryAlertWhenASpecificFlowOrTaskFails {
 }
 export interface SendASentryAlertWithTheExecutionInformation {
   allowFailure?: boolean;
-  customFields?: CustomFieldsToBeAddedOnNotification6;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -17290,7 +16846,7 @@ export interface SendASentryAlertWithTheExecutionInformation {
   errors?: AnArbitraryMappingOfAdditionalMetadataToStoreWithTheEvent;
   eventId?: HexadecimalStringRepresentingAUuid4ValueTheLengthIsExactly32CharactersDashesAreNotAllowedItHasToBeLowercase;
   executionId?: TheExecutionIdToUse;
-  extra?: AnArbitraryMappingOfAdditionalMetadataToStoreWithTheEvent1;
+  extra?: AnArbitraryMappingOfAdditionalMetadataToStoreWithTheEvent;
   id: string;
   level?: TheRecordSeverity;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -17301,29 +16857,20 @@ export interface SendASentryAlertWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   serverName?: IdentifiesTheHostFromWhichTheEventWasRecorded;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate12;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   timeout?: string;
   transaction?: TheNameOfTheTransactionWhichCausedThisAlert;
   type: 'io.kestra.plugin.notifications.sentry.SentryExecution';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface CustomFieldsToBeAddedOnNotification6 {
-  [k: string]: unknown | undefined;
-}
 export interface AnArbitraryMappingOfAdditionalMetadataToStoreWithTheEvent {
-  [k: string]: unknown | undefined;
-}
-export interface AnArbitraryMappingOfAdditionalMetadataToStoreWithTheEvent1 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate12 {
   [k: string]: unknown | undefined;
 }
 export interface SendASlackMessageWithTheExecutionInformation {
   allowFailure?: boolean;
   channel?: SlackChannelToSendTheMessageTo;
-  customFields?: CustomFieldsToBeAddedOnNotification7;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -17337,18 +16884,12 @@ export interface SendASlackMessageWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate13;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   timeout?: string;
   type: 'io.kestra.plugin.notifications.slack.SlackExecution';
   url: SlackIncomingWebhookURL;
   username?: AuthorOfTheSlackMessage;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface CustomFieldsToBeAddedOnNotification7 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate13 {
   [k: string]: unknown | undefined;
 }
 export interface SendASlackMessageUsingAnIncomingWebhook {
@@ -17372,7 +16913,7 @@ export interface SendAMicrosoftTeamsMessageWithTheExecutionInformation {
   activitySubtitle?: ActivitySubtitle;
   activityTitle?: ActivityTitle;
   allowFailure?: boolean;
-  customFields?: CustomFieldsToBeAddedOnNotification8;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -17384,18 +16925,12 @@ export interface SendAMicrosoftTeamsMessageWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate14;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   themeColor?: ThemeColor;
   timeout?: string;
   type: 'io.kestra.plugin.notifications.teams.TeamsExecution';
   url: MicrosoftTeamsIncomingWebhookURL;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface CustomFieldsToBeAddedOnNotification8 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate14 {
   [k: string]: unknown | undefined;
 }
 export interface SendAMicrosoftTeamsMessageUsingAnIncomingWebhook {
@@ -17418,7 +16953,7 @@ export interface SendAMicrosoftTeamsMessageUsingAnIncomingWebhook {
 export interface SendATelegramMessageWithTheExecutionInformation {
   allowFailure?: boolean;
   channel: TelegramChannelUserID;
-  customFields?: CustomFieldsToBeAddedOnNotification9;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -17436,9 +16971,6 @@ export interface SendATelegramMessageWithTheExecutionInformation {
   token: TelegramBotToken;
   type: 'io.kestra.plugin.notifications.telegram.TelegramExecution';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface CustomFieldsToBeAddedOnNotification9 {
   [k: string]: unknown | undefined;
 }
 export interface MapOfVariablesToUseForTheMessageTemplateUnusedInTheDefaultTemplate {
@@ -17487,7 +17019,7 @@ export interface SendATwilioMessageWithTheExecutionInformation {
   allowFailure?: boolean;
   authToken: TwilioAuthenticationToken;
   body?: AlertMessageBody;
-  customFields?: CustomFieldsToBeAddedOnNotification10;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -17501,22 +17033,16 @@ export interface SendATwilioMessageWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   tag?: TagAssociatedWithUsers;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate15;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   timeout?: string;
   type: 'io.kestra.plugin.notifications.twilio.TwilioExecution';
   url: TwilioNotificationURL;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface CustomFieldsToBeAddedOnNotification10 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate15 {
-  [k: string]: unknown | undefined;
-}
 export interface SendAWhatsAppMessageWithTheExecutionInformation {
   allowFailure?: boolean;
-  customFields?: CustomFieldsToBeAddedOnNotification11;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -17532,19 +17058,13 @@ export interface SendAWhatsAppMessageWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate16;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   textBody?: Message;
   timeout?: string;
   type: 'io.kestra.plugin.notifications.whatsapp.WhatsAppExecution';
   url: WebhookURLWhichShouldBeTakenFromWhatsappIntegrationsTab;
   whatsAppIds?: TheWhatsAppIDOfTheContact;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface CustomFieldsToBeAddedOnNotification11 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate16 {
   [k: string]: unknown | undefined;
 }
 export interface SendAWhatsAppMessageUsingAnIncomingWebhook {
@@ -17584,7 +17104,7 @@ export interface SendAZendutyAlert {
 export interface SendAZendutyMessageWithTheExecutionInformation {
   alertType?: EventAlertType;
   allowFailure?: boolean;
-  customFields?: CustomFieldsToBeAddedOnNotification12;
+  customFields?: CustomFieldsToBeAddedOnNotification;
   customMessage?: CustomMessageToBeAddedOnNotification;
   description?: string;
   disabled?: boolean;
@@ -17599,18 +17119,12 @@ export interface SendAZendutyMessageWithTheExecutionInformation {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   summary?: EventMessageSummaryDescription;
-  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate17;
+  templateRenderMap?: MapOfVariablesToUseForTheMessageTemplate;
   timeout?: string;
   type: 'io.kestra.plugin.notifications.zenduty.ZendutyExecution';
   url: ZendutyAPIEndpoint;
   urls?: ListOfURLsRelatedToTheAlert;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface CustomFieldsToBeAddedOnNotification12 {
-  [k: string]: unknown | undefined;
-}
-export interface MapOfVariablesToUseForTheMessageTemplate17 {
   [k: string]: unknown | undefined;
 }
 export interface CreateAAzureBatchJobWithTasks {
@@ -17785,12 +17299,12 @@ export interface ExecuteOneOrMoreAzCommandsFromACommandLineInterfaceWeRecommendU
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead8;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess11;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles12;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   password?: AccountPassword;
   retry?:
@@ -17799,28 +17313,13 @@ export interface ExecuteOneOrMoreAzCommandsFromACommandLineInterfaceWeRecommendU
     | IoKestraCoreModelsTasksRetrysRandom2;
   servicePrincipal?: IsTheAccountAServicePrincipal;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse26)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse27);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   tenant?: TenantIDToUse;
   timeout?: string;
   type: 'io.kestra.plugin.azure.cli.AzCLI';
   username?: AccountUsernameIfSetItWillUseAzLoginBeforeRunningTheCommands;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead8 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess11 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles12 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse26 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse27 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeEventsFromAzureEventHubs {
@@ -18253,7 +17752,7 @@ export interface ParseArbitraryTextAndStructureItUsingGrokExpressions1 {
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   namedCapturesOnly?: IfTrueOnlyStoreNamedCapturesFromGrok;
   pattern?: TheGrokPatternToMatch;
-  patternDefinitions?: CustomPatternDefinitions1;
+  patternDefinitions?: CustomPatternDefinitions;
   patterns?: TheListOfGrokPatternsToMatch;
   patternsDir?: ListOfUserDefinedPatternDirectories;
   retry?:
@@ -18265,19 +17764,16 @@ export interface ParseArbitraryTextAndStructureItUsingGrokExpressions1 {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface CustomPatternDefinitions1 {
-  [k: string]: unknown | undefined;
-}
 export interface CreateAPodOnAKubernetesClusterWaitUntilThePodStopsAndCollectItsLogs {
   allowFailure?: boolean;
-  connection?: IoKestraPluginKubernetesModelsConnection & TheConnectionParametersToTheKubernetesCluster1;
+  connection?: IoKestraPluginKubernetesModelsConnection & TheConnectionParametersToTheKubernetesCluster;
   delete?: WhetherThePodShouldBeDeletedUponCompletion;
   description?: string;
   disabled?: boolean;
   fileSidecar?: IoKestraPluginKubernetesModelsSideCar &
-    TheConfigurationOfTheFileSidecarContainerThatHandleDownloadAndUploadOfFiles1;
+    TheConfigurationOfTheFileSidecarContainerThatHandleDownloadAndUploadOfFiles;
   id: string;
-  inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject40;
+  inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject13;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   metadata?: TheYAMLMetadataOfThePod;
   namespace?: TheNamespaceWhereThePodWillBeCreated;
@@ -18944,7 +18440,7 @@ export interface QueryACassandraDatabaseWithCQL {
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  session: IoKestraPluginCassandraStandardCassandraDbSession & TheSessionConnectionProperties1;
+  session: IoKestraPluginCassandraStandardCassandraDbSession & TheSessionConnectionProperties;
   store?: WhetherToStoreTheDataFromTheQueryResultIntoAnIonSerializedDataFile;
   timeout?: string;
   type: 'io.kestra.plugin.cassandra.standard.Query';
@@ -18965,9 +18461,6 @@ export interface IoKestraPluginCassandraStandardCassandraDbSessionEndpoint {
   serverName?: TheSNIServerName;
   [k: string]: unknown | undefined;
 }
-export interface TheSessionConnectionProperties1 {
-  [k: string]: unknown | undefined;
-}
 export interface ExecuteJuliaScriptsFromTheCommandLineInterface {
   allowFailure?: boolean;
   beforeCommands?: AListOfCommandsThatWillRunBeforeTheCommandsAllowingToSetUpTheEnvironmentEGPipInstallRRequirementsTxt;
@@ -18975,44 +18468,29 @@ export interface ExecuteJuliaScriptsFromTheCommandLineInterface {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead10;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess12;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles13;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead11;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse28)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse29);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.julia.Commands';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead10 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess12 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles13 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse28 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse29 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteAJuliaScript {
@@ -19021,45 +18499,30 @@ export interface ExecuteAJuliaScript {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead12;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess13;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles14;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead13;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   script: TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandSuchAsJuliaMyscriptJlUseTheCommandsTaskInstead;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse30)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse31);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.julia.Script';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead12 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess13 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles14 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse30 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse31 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeMessagesFromASolaceBroker {
@@ -19072,7 +18535,7 @@ export interface ConsumeMessagesFromASolaceBroker {
   maxDuration?: TheMaximumTimeToWaitForReceivingANumberOfMessagesUpToMaxMessages;
   maxMessages?: TheMaximumNumberOfMessagesToBeReceivedPerPoll;
   messageDeserializer?: TheDeserializerToBeUsedForDeserializingMessages;
-  messageDeserializerProperties?: TheConfigPropertiesToBePassedToTheDeserializer1;
+  messageDeserializerProperties?: TheConfigPropertiesToBePassedToTheDeserializer;
   messageSelector?: TheMessageSelectorToBeUsedForReceivingMessages;
   password?: TheSolacePassword;
   properties?: TheSolacePropertiesToBeUsedForConnectingToTheBroker;
@@ -19087,9 +18550,6 @@ export interface ConsumeMessagesFromASolaceBroker {
   username?: TheSolaceUsername;
   vpn?: TheSolaceVPNToConnectWith;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheConfigPropertiesToBePassedToTheDeserializer1 {
   [k: string]: unknown | undefined;
 }
 export interface TheSolacePropertiesToBeUsedForConnectingToTheBroker {
@@ -19107,9 +18567,9 @@ export interface PublishMessagesToASolaceBroker {
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   messageProperties?: AdditionalPropertiesToCustomizeAllMessagesToBePublished;
   messageSerializer?: TheSerializerToBeUsedForSerializingMessages;
-  messageSerializerProperties?: TheConfigPropertiesToBePassedToTheSerializer1;
+  messageSerializerProperties?: TheConfigPropertiesToBePassedToTheSerializer;
   password?: TheSolacePassword;
-  properties?: TheSolacePropertiesToBeUsedForConnectingToTheBroker1;
+  properties?: TheSolacePropertiesToBeUsedForConnectingToTheBroker;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
@@ -19125,12 +18585,6 @@ export interface PublishMessagesToASolaceBroker {
 export interface AdditionalPropertiesToCustomizeAllMessagesToBePublished {
   [k: string]: unknown | undefined;
 }
-export interface TheConfigPropertiesToBePassedToTheSerializer1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheSolacePropertiesToBeUsedForConnectingToTheBroker1 {
-  [k: string]: unknown | undefined;
-}
 export interface ExecuteAnsibleCommand {
   allowFailure?: boolean;
   beforeCommands?: TheCommandsToRunBeforeTheMainListOfCommands;
@@ -19138,38 +18592,23 @@ export interface ExecuteAnsibleCommand {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead9;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess14;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles15;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse32)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse33);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.ansible.cli.AnsibleCLI';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead9 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess14 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles15 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse32 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse33 {
   [k: string]: unknown | undefined;
 }
 export interface BulkLoadDocumentsInElasticSearchUsingBulkFilesHttpsWwwElasticCoGuideEnElasticsearchReferenceCurrentDocsBulkHtmlElasticFiles {
@@ -19213,7 +18652,7 @@ export interface TheConnectionProperties {
 }
 export interface GetAnElasticSearchDocument {
   allowFailure?: boolean;
-  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties1;
+  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties;
   description?: string;
   disabled?: boolean;
   id: string;
@@ -19231,13 +18670,10 @@ export interface GetAnElasticSearchDocument {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface TheConnectionProperties1 {
-  [k: string]: unknown | undefined;
-}
 export interface BulkLoadDocumentsInElasticSearchUsingKestraInternalStorageFile {
   allowFailure?: boolean;
   chunk?: TheChunkSizeForEveryBulkRequest;
-  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties2;
+  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties;
   description?: string;
   disabled?: boolean;
   from: TheSourceFile;
@@ -19257,12 +18693,9 @@ export interface BulkLoadDocumentsInElasticSearchUsingKestraInternalStorageFile 
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface TheConnectionProperties2 {
-  [k: string]: unknown | undefined;
-}
 export interface PutAnElasticSearchDocument {
   allowFailure?: boolean;
-  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties3;
+  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties;
   contentType?: TheContentTypeOfValue;
   description?: string;
   disabled?: boolean;
@@ -19283,16 +18716,13 @@ export interface PutAnElasticSearchDocument {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface TheConnectionProperties3 {
-  [k: string]: unknown | undefined;
-}
 export interface TheElasticsearchValue {
   [k: string]: unknown | undefined;
 }
 export interface SendAGenericElasticSearchRequest {
   allowFailure?: boolean;
   body?: TheFullBody;
-  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties4;
+  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties;
   description?: string;
   disabled?: boolean;
   endpoint?: ThePathOfTheRequestWithoutSchemeHostPortOrPrefix;
@@ -19313,15 +18743,12 @@ export interface SendAGenericElasticSearchRequest {
 export interface TheFullBody {
   [k: string]: unknown | undefined;
 }
-export interface TheConnectionProperties4 {
-  [k: string]: unknown | undefined;
-}
 export interface QueryStringParameters {
   [k: string]: string | undefined;
 }
 export interface ScrollOverSearchRequest {
   allowFailure?: boolean;
-  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties5;
+  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties;
   contentType?: TheContentTypeOfValue;
   description?: string;
   disabled?: boolean;
@@ -19339,15 +18766,12 @@ export interface ScrollOverSearchRequest {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface TheConnectionProperties5 {
-  [k: string]: unknown | undefined;
-}
 export interface TheElasticSearchValue {
   [k: string]: unknown | undefined;
 }
 export interface SendASearchRequest {
   allowFailure?: boolean;
-  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties6;
+  connection: IoKestraPluginElasticsearchElasticsearchConnection & TheConnectionProperties;
   contentType?: TheContentTypeOfValue;
   description?: string;
   disabled?: boolean;
@@ -19355,7 +18779,7 @@ export interface SendASearchRequest {
   id: string;
   indexes?: TheElasticSearchIndices;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  request?: TheElasticSearchValue1;
+  request?: TheElasticSearchValue;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
@@ -19364,12 +18788,6 @@ export interface SendASearchRequest {
   timeout?: string;
   type: 'io.kestra.plugin.elasticsearch.Search';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheConnectionProperties6 {
-  [k: string]: unknown | undefined;
-}
-export interface TheElasticSearchValue1 {
   [k: string]: unknown | undefined;
 }
 export interface QueryAApachePinotServer {
@@ -19438,44 +18856,29 @@ export interface ExecuteARubyScriptFromTheCommandLineInterface {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead14;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess15;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles16;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead15;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse34)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse35);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.ruby.Commands';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead14 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess15 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles16 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse34 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse35 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteARubyScript {
@@ -19484,45 +18887,30 @@ export interface ExecuteARubyScript {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead16;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess16;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles17;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead17;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   script: TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandFromAFileSuchAsBashMyscriptShOrPythonMyscriptPyUseTheCommandsTaskInstead;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse36)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse37);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.ruby.Script';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead16 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess16 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles17 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse36 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse37 {
   [k: string]: unknown | undefined;
 }
 export interface OrchestrateASQLMeshProjectFromTheCommandLineInterface {
@@ -19532,38 +18920,23 @@ export interface OrchestrateASQLMeshProjectFromTheCommandLineInterface {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead10;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess17;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles18;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse38)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse39);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.sqlmesh.cli.SQLMeshCLI';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead10 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess17 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles18 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse38 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse39 {
   [k: string]: unknown | undefined;
 }
 export interface QueryASurrealDBDatabaseWithSurrealQL {
@@ -19685,8 +19058,8 @@ export interface CopyABigQueryTableOrPartitionToOtherOne {
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
     | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions1)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions2);
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -19704,12 +19077,6 @@ export interface TheLabelsAssociatedWithThisJob {
 export interface AutomaticRetryForRetryableBigQueryExceptions {
   [k: string]: unknown | undefined;
 }
-export interface AutomaticRetryForRetryableBigQueryExceptions1 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions2 {
-  [k: string]: unknown | undefined;
-}
 export interface CopyPartitionsBetweenIntervalToAnotherTable {
   allowFailure?: boolean;
   createDisposition?: WhetherTheJobIsAllowedToCreateTables;
@@ -19721,7 +19088,7 @@ export interface CopyPartitionsBetweenIntervalToAnotherTable {
   from: TheInclusiveStartingDateOrInteger;
   id: string;
   jobTimeout?: JobTimeout;
-  labels?: TheLabelsAssociatedWithThisJob1;
+  labels?: TheLabelsAssociatedWithThisJob;
   location?: TheGeographicLocationWhereTheDatasetShouldReside;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   partitionType: ThePartitionTypeOfTheTable;
@@ -19731,9 +19098,9 @@ export interface CopyPartitionsBetweenIntervalToAnotherTable {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions3)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions4)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions5);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -19744,18 +19111,6 @@ export interface CopyPartitionsBetweenIntervalToAnotherTable {
   type: 'io.kestra.plugin.gcp.bigquery.CopyPartitions';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   writeDisposition?: TheActionThatShouldOccurIfTheDestinationTableAlreadyExists;
-  [k: string]: unknown | undefined;
-}
-export interface TheLabelsAssociatedWithThisJob1 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions3 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions4 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions5 {
   [k: string]: unknown | undefined;
 }
 export interface CreateADatasetOrUpdateIfItAlreadyExists {
@@ -19780,9 +19135,9 @@ export interface CreateADatasetOrUpdateIfItAlreadyExists {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions6)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions7)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions8);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -19815,15 +19170,6 @@ export interface TheDefaultEncryptionKeyForAllTablesInTheDataset {
 export interface TheDatasetSLabels {
   [k: string]: unknown | undefined;
 }
-export interface AutomaticRetryForRetryableBigQueryExceptions6 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions7 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions8 {
-  [k: string]: unknown | undefined;
-}
 export interface CreateATable {
   allowFailure?: boolean;
   dataset: TheDatasetSUserDefinedID;
@@ -19843,9 +19189,9 @@ export interface CreateATable {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions9)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions10)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions11);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -19865,15 +19211,6 @@ export interface TheEncryptionConfiguration {
   [k: string]: unknown | undefined;
 }
 export interface ReturnAMapForLabelsAppliedToTheTable {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions9 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions10 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions11 {
   [k: string]: unknown | undefined;
 }
 export interface IoKestraPluginGcpBigqueryModelsTableDefinition {
@@ -20009,9 +19346,9 @@ export interface DeleteADataset {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions12)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions13)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions14);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -20019,15 +19356,6 @@ export interface DeleteADataset {
   timeout?: string;
   type: 'io.kestra.plugin.gcp.bigquery.DeleteDataset';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions12 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions13 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions14 {
   [k: string]: unknown | undefined;
 }
 export interface DeletePartitionsBetweenInterval {
@@ -20046,9 +19374,9 @@ export interface DeletePartitionsBetweenInterval {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions15)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions16)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions17);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -20058,15 +19386,6 @@ export interface DeletePartitionsBetweenInterval {
   to: TheInclusiveEndingDateOrInteger;
   type: 'io.kestra.plugin.gcp.bigquery.DeletePartitions';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions15 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions16 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions17 {
   [k: string]: unknown | undefined;
 }
 export interface DeleteATableOrAPartition {
@@ -20083,9 +19402,9 @@ export interface DeleteATableOrAPartition {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions18)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions19)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions20);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -20094,15 +19413,6 @@ export interface DeleteATableOrAPartition {
   timeout?: string;
   type: 'io.kestra.plugin.gcp.bigquery.DeleteTable';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions18 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions19 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions20 {
   [k: string]: unknown | undefined;
 }
 export interface ExtractDataFromBigQueryTableToGCSGoogleCloudStorage {
@@ -20115,7 +19425,7 @@ export interface ExtractDataFromBigQueryTableToGCSGoogleCloudStorage {
   format?: TheExportedFileFormatIfNotSetTableIsExportedInCSVFormat;
   id: string;
   jobTimeoutMs?: OptionalJobTimeoutInMillisecondsIfThisTimeLimitIsExceededBigQueryMayAttemptToTerminateTheJob;
-  labels?: TheLabelsAssociatedWithThisJob2;
+  labels?: TheLabelsAssociatedWithThisJob;
   location?: TheGeographicLocationWhereTheDatasetShouldReside;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   printHeader?: WhetherToPrintOutAHeaderRowInTheResultsByDefaultAnHeaderIsPrinted;
@@ -20125,9 +19435,9 @@ export interface ExtractDataFromBigQueryTableToGCSGoogleCloudStorage {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions21)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions22)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions23);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -20137,18 +19447,6 @@ export interface ExtractDataFromBigQueryTableToGCSGoogleCloudStorage {
   type: 'io.kestra.plugin.gcp.bigquery.ExtractToGcs';
   useAvroLogicalTypes?: OptionalFlagIfFormatIsSetToAVRO;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheLabelsAssociatedWithThisJob2 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions21 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions22 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions23 {
   [k: string]: unknown | undefined;
 }
 export interface LoadDataFromLocalFileToBigQuery {
@@ -20175,9 +19473,9 @@ export interface LoadDataFromLocalFileToBigQuery {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions24)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions25)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions26);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   schema?: TheSchemaForTheDestinationTable;
@@ -20211,29 +19509,20 @@ export interface IoKestraPluginGcpBigqueryAbstractLoadCsvOptions {
 export interface CsvParsingOptions {
   [k: string]: unknown | undefined;
 }
-export interface AutomaticRetryForRetryableBigQueryExceptions24 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions25 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions26 {
-  [k: string]: unknown | undefined;
-}
 export interface TheSchemaForTheDestinationTable {
   [k: string]: unknown | undefined;
 }
 export interface LoadDataFromGCSGoogleCloudStorageToBigQuery {
   allowFailure?: boolean;
   autodetect?: ExperimentalAutomaticInferenceOfTheOptionsAndSchemaForCSVAndJSONSources;
-  avroOptions?: IoKestraPluginGcpBigqueryAbstractLoadAvroOptions & AvroParsingOptions1;
+  avroOptions?: IoKestraPluginGcpBigqueryAbstractLoadAvroOptions & AvroParsingOptions;
   clusteringFields?: TheClusteringSpecificationForTheDestinationTable;
   createDisposition?: WhetherTheJobIsAllowedToCreateTables;
-  csvOptions?: IoKestraPluginGcpBigqueryAbstractLoadCsvOptions & CsvParsingOptions1;
+  csvOptions?: IoKestraPluginGcpBigqueryAbstractLoadCsvOptions & CsvParsingOptions;
   description?: string;
   destinationTable?: TheTableWhereToPutQueryResults;
   disabled?: boolean;
-  format?: TheSourceFormatAndPossiblySomeParsingOptionsOfTheExternalData2;
+  format?: TheSourceFormatAndPossiblySomeParsingOptionsOfTheExternalData1;
   from?: GoogleCloudStorageSourceData;
   id: string;
   ignoreUnknownValues?: WhetherBigQueryShouldAllowExtraValuesThatAreNotRepresentedInTheTableSchema;
@@ -20246,12 +19535,12 @@ export interface LoadDataFromGCSGoogleCloudStorageToBigQuery {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions27)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions28)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions29);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
-  schema?: TheSchemaForTheDestinationTable1;
+  schema?: TheSchemaForTheDestinationTable;
   schemaUpdateOptions?: ExperimentalOptionsAllowingTheSchemaOfTheDestinationTableToBeUpdatedAsASideEffectOfTheQueryJob;
   scopes?: TheGCPScopesToBeUsed;
   serviceAccount?: TheGCPServiceAccountKey;
@@ -20261,24 +19550,6 @@ export interface LoadDataFromGCSGoogleCloudStorageToBigQuery {
   type: 'io.kestra.plugin.gcp.bigquery.LoadFromGcs';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   writeDisposition?: TheActionThatShouldOccurIfTheDestinationTableAlreadyExists;
-  [k: string]: unknown | undefined;
-}
-export interface AvroParsingOptions1 {
-  [k: string]: unknown | undefined;
-}
-export interface CsvParsingOptions1 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions27 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions28 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions29 {
-  [k: string]: unknown | undefined;
-}
-export interface TheSchemaForTheDestinationTable1 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteBigQuerySQLQueryInASpecificBigQueryDatabase {
@@ -20296,7 +19567,7 @@ export interface ExecuteBigQuerySQLQueryInASpecificBigQueryDatabase {
   flattenResults?: SetsWhetherNestedAndRepeatedFieldsShouldBeFlattened;
   id: string;
   jobTimeout?: JobTimeout;
-  labels?: TheLabelsAssociatedWithThisJob3;
+  labels?: TheLabelsAssociatedWithThisJob;
   legacySql?: WhetherToUseBigQuerySLegacySQLDialectForThisQuery;
   location?: TheGeographicLocationWhereTheDatasetShouldReside;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -20314,9 +19585,9 @@ export interface ExecuteBigQuerySQLQueryInASpecificBigQueryDatabase {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions30)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions31)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions32);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   schemaUpdateOptions?: ExperimentalOptionsAllowingTheSchemaOfTheDestinationTableToBeUpdatedAsASideEffectOfTheQueryJob;
@@ -20332,18 +19603,6 @@ export interface ExecuteBigQuerySQLQueryInASpecificBigQueryDatabase {
   useQueryCache?: SetsWhetherToLookForTheResultInTheQueryCache;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   writeDisposition?: TheActionThatShouldOccurIfTheDestinationTableAlreadyExists;
-  [k: string]: unknown | undefined;
-}
-export interface TheLabelsAssociatedWithThisJob3 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions30 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions31 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions32 {
   [k: string]: unknown | undefined;
 }
 export interface LoadAnKestraInternalStorageFileOnBigqueryUsingBigQueryStorageAPIHttpsCloudGoogleComBigqueryDocsWriteApiWriteToAStreamInCommittedMode {
@@ -20384,9 +19643,9 @@ export interface GetTableMetadata {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions33)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions34)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions35);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -20397,27 +19656,18 @@ export interface GetTableMetadata {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface AutomaticRetryForRetryableBigQueryExceptions33 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions34 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions35 {
-  [k: string]: unknown | undefined;
-}
 export interface UpdateADataset {
   acl?: TheDatasetSAccessControlConfiguration;
   allowFailure?: boolean;
   defaultEncryptionConfiguration?: ComGoogleCloudBigqueryEncryptionConfiguration &
-    TheDefaultEncryptionKeyForAllTablesInTheDataset1;
+    TheDefaultEncryptionKeyForAllTablesInTheDataset;
   defaultPartitionExpirationMs?: OptionalTheDefaultPartitionExpirationTimeForAllPartitionedTablesInTheDatasetInMilliseconds;
   defaultTableLifetime?: TheDefaultLifetimeOfAllTablesInTheDatasetInMilliseconds;
   description?: TheDatasetDescription;
   disabled?: boolean;
   friendlyName?: AUserFriendlyNameForTheDataset;
   id: string;
-  labels?: TheDatasetSLabels1;
+  labels?: TheDatasetSLabels;
   location?: TheGeographicLocationWhereTheDatasetShouldReside;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   name: TheDatasetSUserDefinedID;
@@ -20427,9 +19677,9 @@ export interface UpdateADataset {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions36)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions37)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions38);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
@@ -20439,31 +19689,16 @@ export interface UpdateADataset {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface TheDefaultEncryptionKeyForAllTablesInTheDataset1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheDatasetSLabels1 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions36 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions37 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions38 {
-  [k: string]: unknown | undefined;
-}
 export interface UpdateTableMetadata {
   allowFailure?: boolean;
   dataset: TheDatasetSUserDefinedID;
   description?: TheUserFriendlyDescriptionForTheTable;
   disabled?: boolean;
-  encryptionConfiguration?: IoKestraPluginGcpBigqueryModelsEncryptionConfiguration & TheEncryptionConfiguration1;
+  encryptionConfiguration?: IoKestraPluginGcpBigqueryModelsEncryptionConfiguration & TheEncryptionConfiguration;
   expirationDuration?: SetsTheDurationSinceNowWhenThisTableExpires;
   friendlyName?: TheUserFriendlyNameForTheTable;
   id: string;
-  labels?: ReturnAMapForLabelsAppliedToTheTable1;
+  labels?: ReturnAMapForLabelsAppliedToTheTable;
   location?: TheGeographicLocationWhereTheDatasetShouldReside;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   projectId?: TheGCPProjectID;
@@ -20473,36 +19708,18 @@ export interface UpdateTableMetadata {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   retryAuto?:
-    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions39)
-    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions40)
-    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions41);
+    | (IoKestraCoreModelsTasksRetrysConstant2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysExponential2 & AutomaticRetryForRetryableBigQueryExceptions)
+    | (IoKestraCoreModelsTasksRetrysRandom2 & AutomaticRetryForRetryableBigQueryExceptions);
   retryMessages?: TheMessagesWhichWouldTriggerAnAutomaticRetry;
   retryReasons?: TheReasonsWhichWouldTriggerAnAutomaticRetry;
   scopes?: TheGCPScopesToBeUsed;
   serviceAccount?: TheGCPServiceAccountKey;
   table: TheTableSUserDefinedID;
-  tableDefinition?: IoKestraPluginGcpBigqueryModelsTableDefinition & TheTableDefinition1;
+  tableDefinition?: IoKestraPluginGcpBigqueryModelsTableDefinition & TheTableDefinition;
   timeout?: string;
   type: 'io.kestra.plugin.gcp.bigquery.UpdateTable';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheEncryptionConfiguration1 {
-  [k: string]: unknown | undefined;
-}
-export interface ReturnAMapForLabelsAppliedToTheTable1 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions39 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions40 {
-  [k: string]: unknown | undefined;
-}
-export interface AutomaticRetryForRetryableBigQueryExceptions41 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTableDefinition1 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteGcloudCommands {
@@ -20511,12 +19728,12 @@ export interface ExecuteGcloudCommands {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead11;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess18;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles19;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   projectId?: TheGCPProjectIDToScopeTheCommandsTo;
   retry?:
@@ -20525,26 +19742,11 @@ export interface ExecuteGcloudCommands {
     | IoKestraCoreModelsTasksRetrysRandom2;
   serviceAccount?: TheFullServiceAccountJSONKeyToUseToAuthenticateToGcloud;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse40)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse41);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.gcp.cli.GCloudCLI';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead11 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess18 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles19 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse40 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse41 {
   [k: string]: unknown | undefined;
 }
 export interface SubmitAnApachePySparkHttpsSparkApacheOrgDocsLatestApiPythonGettingStartedBatchWorkload {
@@ -20621,7 +19823,7 @@ export interface SubmitAnApacheSparkRHttpsSparkApacheOrgDocsLatestSparkrHtmlBatc
   args?: TheArgumentsToPassToTheDriver;
   description?: string;
   disabled?: boolean;
-  execution?: IoKestraPluginGcpDataprocBatchesAbstractBatchExecutionConfiguration & ExecutionConfigurationForAWorkload1;
+  execution?: IoKestraPluginGcpDataprocBatchesAbstractBatchExecutionConfiguration & ExecutionConfigurationForAWorkload;
   fileUris?: HCFSURIsOfFilesToBePlacedInTheWorkingDirectoryOfEachExecutor;
   id: string;
   jarFileUris?: HCFSURIsOfJarFilesToAddToTheClasspathOfTheSparkDriverAndTasks;
@@ -20629,28 +19831,19 @@ export interface SubmitAnApacheSparkRHttpsSparkApacheOrgDocsLatestSparkrHtmlBatc
   mainRFileUri: TheHCFSURIOfTheMainRFileToUseAsTheDriverMustBeAROrRFile;
   name: TheBatchName;
   peripherals?: IoKestraPluginGcpDataprocBatchesAbstractBatchPeripheralsConfiguration &
-    PeripheralsConfigurationForAWorkload1;
+    PeripheralsConfigurationForAWorkload;
   projectId?: TheGCPProjectID;
   region: TheRegion;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runtime?: IoKestraPluginGcpDataprocBatchesAbstractBatchRuntimeConfiguration & RuntimeConfigurationForAWorkload1;
+  runtime?: IoKestraPluginGcpDataprocBatchesAbstractBatchRuntimeConfiguration & RuntimeConfigurationForAWorkload;
   scopes?: TheGCPScopesToBeUsed;
   serviceAccount?: TheGCPServiceAccountKey;
   timeout?: string;
   type: 'io.kestra.plugin.gcp.dataproc.batches.RSparkSubmit';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface ExecutionConfigurationForAWorkload1 {
-  [k: string]: unknown | undefined;
-}
-export interface PeripheralsConfigurationForAWorkload1 {
-  [k: string]: unknown | undefined;
-}
-export interface RuntimeConfigurationForAWorkload1 {
   [k: string]: unknown | undefined;
 }
 export interface ApacheSparkSQLHttpsSparkApacheOrgSqlQueriesAsABatchWorkload {
@@ -20659,14 +19852,14 @@ export interface ApacheSparkSQLHttpsSparkApacheOrgSqlQueriesAsABatchWorkload {
   args?: TheArgumentsToPassToTheDriver;
   description?: string;
   disabled?: boolean;
-  execution?: IoKestraPluginGcpDataprocBatchesAbstractBatchExecutionConfiguration & ExecutionConfigurationForAWorkload2;
+  execution?: IoKestraPluginGcpDataprocBatchesAbstractBatchExecutionConfiguration & ExecutionConfigurationForAWorkload;
   fileUris?: HCFSURIsOfFilesToBePlacedInTheWorkingDirectoryOfEachExecutor;
   id: string;
   jarFileUris?: HCFSURIsOfJarFilesToAddToTheClasspathOfTheSparkDriverAndTasks;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   name: TheBatchName;
   peripherals?: IoKestraPluginGcpDataprocBatchesAbstractBatchPeripheralsConfiguration &
-    PeripheralsConfigurationForAWorkload2;
+    PeripheralsConfigurationForAWorkload;
   projectId?: TheGCPProjectID;
   queryFileUri: TheHCFSURIOfTheScriptThatContainsSparkSQLQueriesToExecute;
   region: TheRegion;
@@ -20674,21 +19867,12 @@ export interface ApacheSparkSQLHttpsSparkApacheOrgSqlQueriesAsABatchWorkload {
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runtime?: IoKestraPluginGcpDataprocBatchesAbstractBatchRuntimeConfiguration & RuntimeConfigurationForAWorkload2;
+  runtime?: IoKestraPluginGcpDataprocBatchesAbstractBatchRuntimeConfiguration & RuntimeConfigurationForAWorkload;
   scopes?: TheGCPScopesToBeUsed;
   serviceAccount?: TheGCPServiceAccountKey;
   timeout?: string;
   type: 'io.kestra.plugin.gcp.dataproc.batches.SparkSqlSubmit';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface ExecutionConfigurationForAWorkload2 {
-  [k: string]: unknown | undefined;
-}
-export interface PeripheralsConfigurationForAWorkload2 {
-  [k: string]: unknown | undefined;
-}
-export interface RuntimeConfigurationForAWorkload2 {
   [k: string]: unknown | undefined;
 }
 export interface SubmitAnApacheSparkHttpsSparkApacheOrgBatchWorkload {
@@ -20697,7 +19881,7 @@ export interface SubmitAnApacheSparkHttpsSparkApacheOrgBatchWorkload {
   args?: TheArgumentsToPassToTheDriver;
   description?: string;
   disabled?: boolean;
-  execution?: IoKestraPluginGcpDataprocBatchesAbstractBatchExecutionConfiguration & ExecutionConfigurationForAWorkload3;
+  execution?: IoKestraPluginGcpDataprocBatchesAbstractBatchExecutionConfiguration & ExecutionConfigurationForAWorkload;
   fileUris?: HCFSURIsOfFilesToBePlacedInTheWorkingDirectoryOfEachExecutor;
   id: string;
   jarFileUris?: HCFSURIsOfJarFilesToAddToTheClasspathOfTheSparkDriverAndTasks;
@@ -20705,28 +19889,19 @@ export interface SubmitAnApacheSparkHttpsSparkApacheOrgBatchWorkload {
   mainClass: TheNameOfTheDriverMainClass;
   name: TheBatchName;
   peripherals?: IoKestraPluginGcpDataprocBatchesAbstractBatchPeripheralsConfiguration &
-    PeripheralsConfigurationForAWorkload3;
+    PeripheralsConfigurationForAWorkload;
   projectId?: TheGCPProjectID;
   region: TheRegion;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runtime?: IoKestraPluginGcpDataprocBatchesAbstractBatchRuntimeConfiguration & RuntimeConfigurationForAWorkload3;
+  runtime?: IoKestraPluginGcpDataprocBatchesAbstractBatchRuntimeConfiguration & RuntimeConfigurationForAWorkload;
   scopes?: TheGCPScopesToBeUsed;
   serviceAccount?: TheGCPServiceAccountKey;
   timeout?: string;
   type: 'io.kestra.plugin.gcp.dataproc.batches.SparkSubmit';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface ExecutionConfigurationForAWorkload3 {
-  [k: string]: unknown | undefined;
-}
-export interface PeripheralsConfigurationForAWorkload3 {
-  [k: string]: unknown | undefined;
-}
-export interface RuntimeConfigurationForAWorkload3 {
   [k: string]: unknown | undefined;
 }
 export interface DeleteADocumentFromACollection {
@@ -20774,7 +19949,7 @@ export interface QueryDocumentsOfACollection {
   collection?: TheFirestoreCollection;
   description?: string;
   disabled?: boolean;
-  fetchType?: TheWayYouWantToStoreTheData2;
+  fetchType?: TheWayYouWantToStoreTheData1;
   filters?: ListOfQueryFiltersThatWillBeAddedAsAWhereClause;
   id: string;
   limit?: MaximumNumbersOfReturnedResults;
@@ -21132,14 +20307,14 @@ export interface UpdateABucket {
   defaultKmsKeyName?: TheDefaultCloudKMSKeyNameForThisBucket;
   description?: string;
   disabled?: boolean;
-  iamConfiguration?: IoKestraPluginGcpGcsModelsIamConfiguration & TheBucketSIAMConfiguration1;
+  iamConfiguration?: IoKestraPluginGcpGcsModelsIamConfiguration & TheBucketSIAMConfiguration;
   id: string;
   indexPage?: TheBucketSWebsiteIndexPage;
-  labels?: TheLabelsOfThisBucket1;
+  labels?: TheLabelsOfThisBucket;
   lifecycleRules?: TheBucketSLifecycleConfiguration;
   location?: TheBucketSLocation;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  logging?: IoKestraPluginGcpGcsModelsLogging & TheBucketSLoggingConfiguration1;
+  logging?: IoKestraPluginGcpGcsModelsLogging & TheBucketSLoggingConfiguration;
   name: BucketSUniqueName;
   notFoundPage?: TheCustomObjectToReturnWhenARequestedResourceIsNotFound;
   projectId?: TheGCPProjectID;
@@ -21156,15 +20331,6 @@ export interface UpdateABucket {
   type: 'io.kestra.plugin.gcp.gcs.UpdateBucket';
   versioningEnabled?: WhetherVersioningShouldBeEnabledForThisBucket;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheBucketSIAMConfiguration1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheLabelsOfThisBucket1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheBucketSLoggingConfiguration1 {
   [k: string]: unknown | undefined;
 }
 export interface UploadAFileToAGCSBucket {
@@ -21423,7 +20589,7 @@ export interface MultimodalCompletionUsingTheVertexAIGeminiLargeLanguageModelsLL
   disabled?: boolean;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  parameters?: IoKestraPluginGcpVertexaiAbstractGenerativeAiModelParameter & TheModelParameters1;
+  parameters?: IoKestraPluginGcpVertexaiAbstractGenerativeAiModelParameter & TheModelParameters;
   projectId?: TheGCPProjectID;
   region: TheGCPRegion;
   retry?:
@@ -21442,16 +20608,13 @@ export interface IoKestraPluginGcpVertexaiMultimodalCompletionContent {
   mimeType?: MimeTypeOfTheContentUseItOnlyWhenTheContentIsNotText;
   [k: string]: unknown | undefined;
 }
-export interface TheModelParameters1 {
-  [k: string]: unknown | undefined;
-}
 export interface TextCompletionUsingTheVertexAIAPIForGoogleSGeminiLargeLanguageModelsLLM {
   allowFailure?: boolean;
   description?: string;
   disabled?: boolean;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  parameters?: IoKestraPluginGcpVertexaiAbstractGenerativeAiModelParameter & TheModelParameters2;
+  parameters?: IoKestraPluginGcpVertexaiAbstractGenerativeAiModelParameter & TheModelParameters;
   projectId?: TheGCPProjectID;
   prompt?: TextInputToGenerateModelResponse;
   region: TheGCPRegion;
@@ -21464,9 +20627,6 @@ export interface TextCompletionUsingTheVertexAIAPIForGoogleSGeminiLargeLanguageM
   timeout?: string;
   type: 'io.kestra.plugin.gcp.vertexai.TextCompletion';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheModelParameters2 {
   [k: string]: unknown | undefined;
 }
 export interface QueryADatabaseThroughApacheArrowFlightSQLDriver {
@@ -21500,39 +20660,27 @@ export interface OrchestrateInfrastructureAsCodeByExecutingTerraformCLICommandsI
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead12;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   env?: AdditionalEnvironmentVariablesSuchAsCredentialsAndConfigurationForTheTerraformProvider;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles20;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse42)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse43);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.terraform.cli.TerraformCLI';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DeprecatedUseTaskRunnerInstead12 {
-  [k: string]: unknown | undefined;
-}
 export interface AdditionalEnvironmentVariablesSuchAsCredentialsAndConfigurationForTheTerraformProvider {
   [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles20 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse42 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse43 {
-  [k: string]: unknown | undefined;
 }
 export interface TriggerAnAirflowDAGWithCustomInputsAndWaitForItsCompletion {
   allowFailure?: boolean;
@@ -21575,17 +20723,17 @@ export interface WaitForChangeDataCaptureEventOnMongoDBServer {
   description?: string;
   disabled?: boolean;
   excludedCollections?: TheNameOfTheMongoDBDatabaseCollectionExcludedFromWhichToStreamTheChanges;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues5;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges5;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture5;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: string;
   ignoreDdl?: IgnoreDDLStatement;
   includedCollections?: TheNameOfTheMongoDBDatabaseCollectionIncludedFromWhichToStreamTheChanges;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues5;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges5;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture5;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   maxDuration?: TheMaximumDurationWaitingForNewRows;
@@ -21596,7 +20744,7 @@ export interface WaitForChangeDataCaptureEventOnMongoDBServer {
   metadataFieldName?: TheNameOfMetadataFieldIfMetadataIsADD_FIELD;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties5;
+  properties?: AdditionalConfigurationProperties;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
@@ -21613,28 +20761,7 @@ export interface WaitForChangeDataCaptureEventOnMongoDBServer {
 export interface TheNameOfTheMongoDBDatabaseCollectionExcludedFromWhichToStreamTheChanges {
   [k: string]: unknown | undefined;
 }
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues5 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges5 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture5 {
-  [k: string]: unknown | undefined;
-}
 export interface TheNameOfTheMongoDBDatabaseCollectionIncludedFromWhichToStreamTheChanges {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues5 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges5 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture5 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties5 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeMessagesFromOneOrMoreKafkaTopics {
@@ -21682,12 +20809,12 @@ export interface SendAMessageToAKafkaTopic {
   keyAvroSchema?: AvroSchemaIfTheKeyIsSetToAVROType;
   keySerializer?: SerializerDeserializerToUseForTheValue & TheSerializerUsedForTheKey;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  properties: KafkaConnectionProperties1;
+  properties: KafkaConnectionProperties;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  serdeProperties?: SerializerConfiguration1;
+  serdeProperties?: SerializerConfiguration;
   timeout?: string;
   topic?: KafkaTopicToWhichTheMessageShouldBeSent;
   transactional?: WhetherTheProducerShouldBeTransactional;
@@ -21697,12 +20824,6 @@ export interface SendAMessageToAKafkaTopic {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface KafkaConnectionProperties1 {
-  [k: string]: unknown | undefined;
-}
-export interface SerializerConfiguration1 {
-  [k: string]: unknown | undefined;
-}
 export interface ExecuteRScriptsFromTheCommandLineInterface {
   allowFailure?: boolean;
   beforeCommands?: AListOfCommandsThatWillRunBeforeTheCommandsAllowingToSetUpTheEnvironmentEGPipInstallRRequirementsTxt;
@@ -21710,44 +20831,29 @@ export interface ExecuteRScriptsFromTheCommandLineInterface {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead18;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess19;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles21;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead19;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse44)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse45);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.r.Commands';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead18 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess19 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles21 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse44 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse45 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteAnRScript {
@@ -21756,45 +20862,30 @@ export interface ExecuteAnRScript {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead20;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess20;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles22;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead21;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   script: TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandFromAFileSuchAsRscriptMainROrPythonMainPyUseTheCorrespondingCommandsTaskForAGivenLanguageInstead;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse46)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse47);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.r.Script';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead20 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess20 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles22 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse46 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse47 {
   [k: string]: unknown | undefined;
 }
 export interface InvokeDbtBuildCommand {
@@ -21804,16 +20895,16 @@ export interface InvokeDbtBuildCommand {
   debug?: DisplayDebugLoggingDuringDbtExecution;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead13;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead1;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess21;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exclude?: ListOfModelsToExclude;
   failFast?: StopExecutionAtTheFirstFailure;
   fullRefresh?: WhetherDbtWillDropIncrementalModelsAndFullyRecalculateTheIncrementalTableFromTheModelDefinition;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles23;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
   profiles?: TheProfilesYmlFileContent;
@@ -21827,31 +20918,13 @@ export interface InvokeDbtBuildCommand {
   selector?: TheSelectorNameToUseAsDefinedInSelectorsYml;
   target?: WhichTargetToLoadForTheGivenProfile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse48)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse49);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   thread?: SpecifyTheNumberOfThreadsToUseWhileExecutingModels;
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.Build';
   warnError?: WhenDbtWouldNormallyWarnRaiseAnException;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead13 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead1 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess21 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles23 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse48 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse49 {
   [k: string]: unknown | undefined;
 }
 export interface InvokeDbtCompileCommand {
@@ -21861,16 +20934,16 @@ export interface InvokeDbtCompileCommand {
   debug?: DisplayDebugLoggingDuringDbtExecution;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead14;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead2;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess22;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exclude?: ListOfModelsToExclude;
   failFast?: StopExecutionAtTheFirstFailure;
   fullRefresh?: WhetherDbtWillDropIncrementalModelsAndFullyRecalculateTheIncrementalTableFromTheModelDefinition;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles24;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
   profiles?: TheProfilesYmlFileContent;
@@ -21884,31 +20957,13 @@ export interface InvokeDbtCompileCommand {
   selector?: TheSelectorNameToUseAsDefinedInSelectorsYml;
   target?: WhichTargetToLoadForTheGivenProfile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse50)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse51);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   thread?: SpecifyTheNumberOfThreadsToUseWhileExecutingModels;
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.Compile';
   warnError?: WhenDbtWouldNormallyWarnRaiseAnException;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead14 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead2 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess22 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles24 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse50 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse51 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteDbtCLICommands {
@@ -21918,14 +20973,14 @@ export interface ExecuteDbtCLICommands {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead22;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess23;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles25;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
@@ -21935,30 +20990,15 @@ export interface ExecuteDbtCLICommands {
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead23;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse52)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse53);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.DbtCLI';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead22 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess23 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles25 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse52 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse53 {
   [k: string]: unknown | undefined;
 }
 export interface InvokeDbtDepsCommand {
@@ -21968,16 +21008,16 @@ export interface InvokeDbtDepsCommand {
   debug?: DisplayDebugLoggingDuringDbtExecution;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead15;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead3;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess24;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exclude?: ListOfModelsToExclude;
   failFast?: StopExecutionAtTheFirstFailure;
   fullRefresh?: WhetherDbtWillDropIncrementalModelsAndFullyRecalculateTheIncrementalTableFromTheModelDefinition;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles26;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
   profiles?: TheProfilesYmlFileContent;
@@ -21991,31 +21031,13 @@ export interface InvokeDbtDepsCommand {
   selector?: TheSelectorNameToUseAsDefinedInSelectorsYml;
   target?: WhichTargetToLoadForTheGivenProfile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse54)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse55);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   thread?: SpecifyTheNumberOfThreadsToUseWhileExecutingModels;
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.Deps';
   warnError?: WhenDbtWouldNormallyWarnRaiseAnException;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead15 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead3 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess24 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles26 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse54 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse55 {
   [k: string]: unknown | undefined;
 }
 export interface InvokeDbtSourceFreshnessCommand {
@@ -22025,16 +21047,16 @@ export interface InvokeDbtSourceFreshnessCommand {
   debug?: DisplayDebugLoggingDuringDbtExecution;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead16;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead4;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess25;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exclude?: ListOfModelsToExclude;
   failFast?: StopExecutionAtTheFirstFailure;
   fullRefresh?: WhetherDbtWillDropIncrementalModelsAndFullyRecalculateTheIncrementalTableFromTheModelDefinition;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles27;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
   profiles?: TheProfilesYmlFileContent;
@@ -22048,31 +21070,13 @@ export interface InvokeDbtSourceFreshnessCommand {
   selector?: TheSelectorNameToUseAsDefinedInSelectorsYml;
   target?: WhichTargetToLoadForTheGivenProfile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse56)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse57);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   thread?: SpecifyTheNumberOfThreadsToUseWhileExecutingModels;
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.Freshness';
   warnError?: WhenDbtWouldNormallyWarnRaiseAnException;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead16 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead4 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess25 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles27 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse56 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse57 {
   [k: string]: unknown | undefined;
 }
 export interface InvokeDbtListCommand {
@@ -22082,16 +21086,16 @@ export interface InvokeDbtListCommand {
   debug?: DisplayDebugLoggingDuringDbtExecution;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead17;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead5;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess26;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exclude?: ListOfModelsToExclude;
   failFast?: StopExecutionAtTheFirstFailure;
   fullRefresh?: WhetherDbtWillDropIncrementalModelsAndFullyRecalculateTheIncrementalTableFromTheModelDefinition;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles28;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
   profiles?: TheProfilesYmlFileContent;
@@ -22105,31 +21109,13 @@ export interface InvokeDbtListCommand {
   selector?: TheSelectorNameToUseAsDefinedInSelectorsYml;
   target?: WhichTargetToLoadForTheGivenProfile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse58)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse59);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   thread?: SpecifyTheNumberOfThreadsToUseWhileExecutingModels;
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.List';
   warnError?: WhenDbtWouldNormallyWarnRaiseAnException;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead17 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead5 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess26 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles28 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse58 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse59 {
   [k: string]: unknown | undefined;
 }
 export interface InvokeDbtRunCommand {
@@ -22139,16 +21125,16 @@ export interface InvokeDbtRunCommand {
   debug?: DisplayDebugLoggingDuringDbtExecution;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead18;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead6;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess27;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exclude?: ListOfModelsToExclude;
   failFast?: StopExecutionAtTheFirstFailure;
   fullRefresh?: WhetherDbtWillDropIncrementalModelsAndFullyRecalculateTheIncrementalTableFromTheModelDefinition;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles29;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
   profiles?: TheProfilesYmlFileContent;
@@ -22162,31 +21148,13 @@ export interface InvokeDbtRunCommand {
   selector?: TheSelectorNameToUseAsDefinedInSelectorsYml;
   target?: WhichTargetToLoadForTheGivenProfile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse60)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse61);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   thread?: SpecifyTheNumberOfThreadsToUseWhileExecutingModels;
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.Run';
   warnError?: WhenDbtWouldNormallyWarnRaiseAnException;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead18 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead6 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess27 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles29 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse60 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse61 {
   [k: string]: unknown | undefined;
 }
 export interface InvokeDbtSeedCommand {
@@ -22196,16 +21164,16 @@ export interface InvokeDbtSeedCommand {
   debug?: DisplayDebugLoggingDuringDbtExecution;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead19;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead7;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess28;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exclude?: ListOfModelsToExclude;
   failFast?: StopExecutionAtTheFirstFailure;
   fullRefresh?: WhetherDbtWillDropIncrementalModelsAndFullyRecalculateTheIncrementalTableFromTheModelDefinition;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles30;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
   profiles?: TheProfilesYmlFileContent;
@@ -22219,31 +21187,13 @@ export interface InvokeDbtSeedCommand {
   selector?: TheSelectorNameToUseAsDefinedInSelectorsYml;
   target?: WhichTargetToLoadForTheGivenProfile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse62)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse63);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   thread?: SpecifyTheNumberOfThreadsToUseWhileExecutingModels;
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.Seed';
   warnError?: WhenDbtWouldNormallyWarnRaiseAnException;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead19 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead7 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess28 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles30 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse62 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse63 {
   [k: string]: unknown | undefined;
 }
 export interface SetupDbtInAPythonVirtualenv {
@@ -22252,16 +21202,16 @@ export interface SetupDbtInAPythonVirtualenv {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead24;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead8;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess29;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exitOnFailed?: ExitIfAnyNonTrueReturnValue;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
-  inputFiles?: InputFilesAreExtraFilesThatWillBeAvailableInTheDbtWorkingDirectory1;
+  inputFiles?: InputFilesAreExtraFilesThatWillBeAvailableInTheDbtWorkingDirectory;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles31;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   profiles: TheProfilesYmlFileContentCanBeAnObjectAMapOrAString;
@@ -22271,36 +21221,15 @@ export interface SetupDbtInAPythonVirtualenv {
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead25;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse64)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse65);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.Setup';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead24 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead8 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess29 {
-  [k: string]: string | undefined;
-}
-export interface InputFilesAreExtraFilesThatWillBeAvailableInTheDbtWorkingDirectory1 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles31 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse64 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse65 {
   [k: string]: unknown | undefined;
 }
 export interface InvokeDbtSnapshotCommand {
@@ -22310,16 +21239,16 @@ export interface InvokeDbtSnapshotCommand {
   debug?: DisplayDebugLoggingDuringDbtExecution;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead20;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead9;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess30;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exclude?: ListOfModelsToExclude;
   failFast?: StopExecutionAtTheFirstFailure;
   fullRefresh?: WhetherDbtWillDropIncrementalModelsAndFullyRecalculateTheIncrementalTableFromTheModelDefinition;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles32;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
   profiles?: TheProfilesYmlFileContent;
@@ -22333,31 +21262,13 @@ export interface InvokeDbtSnapshotCommand {
   selector?: TheSelectorNameToUseAsDefinedInSelectorsYml;
   target?: WhichTargetToLoadForTheGivenProfile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse66)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse67);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   thread?: SpecifyTheNumberOfThreadsToUseWhileExecutingModels;
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.Snapshot';
   warnError?: WhenDbtWouldNormallyWarnRaiseAnException;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead20 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead9 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess30 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles32 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse66 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse67 {
   [k: string]: unknown | undefined;
 }
 export interface InvokeDbtTestCommand {
@@ -22367,16 +21278,16 @@ export interface InvokeDbtTestCommand {
   debug?: DisplayDebugLoggingDuringDbtExecution;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead21;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead10;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess31;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheDockerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   exclude?: ListOfModelsToExclude;
   failFast?: StopExecutionAtTheFirstFailure;
   fullRefresh?: WhetherDbtWillDropIncrementalModelsAndFullyRecalculateTheIncrementalTableFromTheModelDefinition;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles33;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   parseRunResults?: ParseRunResult;
   profiles?: TheProfilesYmlFileContent;
@@ -22390,31 +21301,13 @@ export interface InvokeDbtTestCommand {
   selector?: TheSelectorNameToUseAsDefinedInSelectorsYml;
   target?: WhichTargetToLoadForTheGivenProfile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse68)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse69);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   thread?: SpecifyTheNumberOfThreadsToUseWhileExecutingModels;
   timeout?: string;
   type: 'io.kestra.plugin.dbt.cli.Test';
   warnError?: WhenDbtWouldNormallyWarnRaiseAnException;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead21 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheDockerPropertyInstead10 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess31 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles33 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse68 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse69 {
   [k: string]: unknown | undefined;
 }
 export interface CheckTheStatusOfADbtCloudJob {
@@ -22453,7 +21346,7 @@ export interface TriggerJobToRun {
   id: string;
   jobId: NumericIDOfTheJob;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  maxDuration?: TheMaximumTotalWaitDuration2;
+  maxDuration?: TheMaximumTotalWaitDuration1;
   parseRunResults?: ParseRunResult;
   pollFrequency?: SpecifyFrequencyForJobStateCheckAPICalls;
   retry?:
@@ -22481,7 +21374,7 @@ export interface QueryAnAthenaTable {
   description?: string;
   disabled?: boolean;
   endpointOverride?: TheEndpointWithWhichTheSDKShouldCommunicate;
-  fetchType?: TheWayYouWantToStoreTheData3;
+  fetchType?: TheWayYouWantToStoreTheData1;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   outputLocation: AthenaOutputLocation;
@@ -22512,13 +21405,13 @@ export interface ExecuteAWSCommands {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead22;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   endpointOverride?: TheEndpointWithWhichTheSDKShouldCommunicate;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess32;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles34;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   outputFormat?: ExpectedOutputFormatForAWSCommandsCanBeOverriddenWithFormatParameter;
   region?: AWSRegionWithWhichTheSDKShouldCommunicate;
@@ -22534,26 +21427,11 @@ export interface ExecuteAWSCommands {
   stsRoleSessionDuration?: AWSSTSSessionDuration;
   stsRoleSessionName?: AWSSTSSessionName;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse70)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse71);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.aws.cli.AwsCLI';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead22 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess32 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles34 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse70 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse71 {
   [k: string]: unknown | undefined;
 }
 export interface DeleteAnItemFromATable {
@@ -22595,7 +21473,7 @@ export interface GetAnItemFromATable {
   disabled?: boolean;
   endpointOverride?: TheEndpointWithWhichTheSDKShouldCommunicate;
   id: string;
-  key?: TheDynamoDBItemKey1;
+  key?: TheDynamoDBItemKey;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   region?: AWSRegionWithWhichTheSDKShouldCommunicate;
   retry?:
@@ -22613,9 +21491,6 @@ export interface GetAnItemFromATable {
   timeout?: string;
   type: 'io.kestra.plugin.aws.dynamodb.GetItem';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheDynamoDBItemKey1 {
   [k: string]: unknown | undefined;
 }
 export interface PutAnItemIntoADynamoDBTableIfAnItemWithTheSameKeyAlreadyExistsTheElementWillBeUpdated {
@@ -22657,7 +21532,7 @@ export interface QueryItemsFromATable {
   disabled?: boolean;
   endpointOverride?: TheEndpointWithWhichTheSDKShouldCommunicate;
   expressionAttributeValues: QueryExpressionAttributes;
-  fetchType?: TheWayYouWantToStoreTheData4;
+  fetchType?: TheWayYouWantToStoreTheData1;
   filterExpression?: QueryFilterExpression;
   id: string;
   keyConditionExpression: QueryKeyConditionExpression;
@@ -22692,7 +21567,7 @@ export interface ScanItemsFromATable {
   disabled?: boolean;
   endpointOverride?: TheEndpointWithWhichTheSDKShouldCommunicate;
   expressionAttributeValues?: ScanExpressionAttributes;
-  fetchType?: TheWayYouWantToStoreTheData5;
+  fetchType?: TheWayYouWantToStoreTheData1;
   filterExpression?: ScanFilterExpression;
   id: string;
   limit?: MaximumNumbersOfReturnedResults;
@@ -22858,7 +21733,7 @@ export interface CopyAFileBetweenS3Buckets {
   description?: string;
   disabled?: boolean;
   endpointOverride?: TheEndpointWithWhichTheSDKShouldCommunicate;
-  from?: IoKestraPluginAwsS3CopyCopyObjectFrom & TheSourceBucketAndKey1;
+  from?: IoKestraPluginAwsS3CopyCopyObjectFrom & TheSourceBucketAndKey;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   region?: AWSRegionWithWhichTheSDKShouldCommunicate;
@@ -22874,7 +21749,7 @@ export interface CopyAFileBetweenS3Buckets {
   stsRoleSessionDuration?: AWSSTSSessionDuration;
   stsRoleSessionName?: AWSSTSSessionName;
   timeout?: string;
-  to?: IoKestraPluginAwsS3CopyCopyObject & TheDestinationBucketAndKey1;
+  to?: IoKestraPluginAwsS3CopyCopyObject & TheDestinationBucketAndKey;
   type: 'io.kestra.plugin.aws.s3.Copy';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
@@ -22885,15 +21760,9 @@ export interface IoKestraPluginAwsS3CopyCopyObjectFrom {
   versionId?: TheSpecificVersionOfTheObject;
   [k: string]: unknown | undefined;
 }
-export interface TheSourceBucketAndKey1 {
-  [k: string]: unknown | undefined;
-}
 export interface IoKestraPluginAwsS3CopyCopyObject {
   bucket: TheBucketName;
   key: TheBucketKey;
-  [k: string]: unknown | undefined;
-}
-export interface TheDestinationBucketAndKey1 {
   [k: string]: unknown | undefined;
 }
 export interface CreateABucket1 {
@@ -23046,7 +21915,7 @@ export interface DownloadsMultipleFilesFromAS3Bucket {
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   marker?: MarkerIsWhereYouWantAmazonS3ToStartListingFrom;
   maxKeys?: SetsTheMaximumNumberOfKeysReturnedInTheResponse;
-  moveTo?: IoKestraPluginAwsS3CopyCopyObject & TheDestinationBucketAndKeyForMOVEAction1;
+  moveTo?: IoKestraPluginAwsS3CopyCopyObject & TheDestinationBucketAndKeyForMOVEAction;
   prefix?: LimitsTheResponseToKeysThatBeginWithTheSpecifiedPrefix;
   regexp?: ARegexpToFilterOnFullKey;
   region?: AWSRegionWithWhichTheSDKShouldCommunicate;
@@ -23065,9 +21934,6 @@ export interface DownloadsMultipleFilesFromAS3Bucket {
   timeout?: string;
   type: 'io.kestra.plugin.aws.s3.Downloads';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheDestinationBucketAndKeyForMOVEAction1 {
   [k: string]: unknown | undefined;
 }
 export interface ListKeysOnAS3Bucket {
@@ -23291,8 +22157,8 @@ export interface EncryptAFileWithPGP {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   signPassphrase?: ThePassphraseUseToUnlockTheSecretRing;
-  signPrivateKey?: ThePublicKeyUseToSignTheFiles2;
-  signPublicKey?: ThePublicKeyUseToSignTheFiles3;
+  signPrivateKey?: ThePublicKeyUseToSignTheFiles1;
+  signPublicKey?: ThePublicKeyUseToSignTheFiles1;
   signUser?: TheUserThatWillSignedTheFiles;
   timeout?: string;
   type: 'io.kestra.plugin.crypto.openpgp.Encrypt';
@@ -23304,12 +22170,12 @@ export interface ExecuteANodeJsScript {
   args?: NodeCommandArgs;
   description?: string;
   disabled?: boolean;
-  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DockerOptionsWhenUsingTheDOCKERRunner2;
-  env?: OneOrMoreAdditionalEnvironmentVariableSToAddToTheTaskRun2;
+  dockerOptions?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DockerOptionsWhenUsingTheDOCKERRunner;
+  env?: OneOrMoreAdditionalEnvironmentVariableSToAddToTheTaskRun;
   exitOnFailed?: ExitIfAnyNonTrueValueIsReturned;
   files?: DeprecatedTheListOfFilesThatWillBeUploadedToKestraSInternalStorage;
   id: string;
-  inputFiles?: InputFilesAreExtraFilesThatWillBeAvailableInTheScriptSWorkingDirectory2;
+  inputFiles?: InputFilesAreExtraFilesThatWillBeAvailableInTheScriptSWorkingDirectory;
   interpreter?: InterpreterToUseWhenLaunchingTheProcess;
   interpreterArgs?: InterpreterArgumentsToBeUsed;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -23329,15 +22195,6 @@ export interface ExecuteANodeJsScript {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DockerOptionsWhenUsingTheDOCKERRunner2 {
-  [k: string]: unknown | undefined;
-}
-export interface OneOrMoreAdditionalEnvironmentVariableSToAddToTheTaskRun2 {
-  [k: string]: string | undefined;
-}
-export interface InputFilesAreExtraFilesThatWillBeAvailableInTheScriptSWorkingDirectory2 {
-  [k: string]: string | undefined;
-}
 export interface ExecuteOneOrMoreNodeJsCommandsFromTheCommandLineInterfaceNoteThatInsteadOfAddingTheScriptUsingTheInputFilesPropertyYouCouldAlsoAddTheScriptFromTheEmbeddedVSCodeEditorAndPointToItsLocationByPathIfYouDoSoMakeSureToEnableNamespaceFilesBySettingTheEnabledFlagOfTheNamespaceFilesPropertyToTrue {
   allowFailure?: boolean;
   beforeCommands?: AListOfCommandsThatWillRunBeforeTheCommandsAllowingToSetUpTheEnvironmentEGPipInstallRRequirementsTxt;
@@ -23345,44 +22202,29 @@ export interface ExecuteOneOrMoreNodeJsCommandsFromTheCommandLineInterfaceNoteTh
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead26;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess33;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles35;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead27;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse72)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse73);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.node.Commands';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead26 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess33 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles35 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse72 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse73 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteANodeJsScript1 {
@@ -23391,45 +22233,30 @@ export interface ExecuteANodeJsScript1 {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead28;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess34;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles36;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead29;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   script: TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandFromAFileSuchAsBashMyscriptShOrPythonMyscriptPyUseTheCommandsTaskInstead;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse74)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse75);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.node.Script';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead28 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess34 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles36 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse74 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse75 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromABigQuery {
@@ -23438,7 +22265,7 @@ export interface ASingerTapToFetchDataFromABigQuery {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead23;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   endDateTime?: DateUpToWhenHistoricalDataWillBeExtracted;
   id: string;
   limit: LimitsTheNumberOfRecordsReturnedInEachStreamAppliedAsALimitInTheQuery;
@@ -23455,14 +22282,11 @@ export interface ASingerTapToFetchDataFromABigQuery {
   streams: ArrayHoldingObjectsDescribingStreamsTablesToExtractWithNameTableColumnsDatetimeKeyAndFiltersKeys;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse76)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse77);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.BigQuery';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead23 {
   [k: string]: unknown | undefined;
 }
 export interface IoKestraPluginSingerTapsBigQueryStream {
@@ -23481,12 +22305,6 @@ export interface IoKestraPluginSingerModelsStreamsConfiguration {
   stream?: string;
   [k: string]: unknown | undefined;
 }
-export interface TheTaskRunnerToUse76 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse77 {
-  [k: string]: unknown | undefined;
-}
 export interface ASingerTapToFetchDataFromBingAds {
   accountIds: YourAccountsIDs;
   allowFailure?: boolean;
@@ -23496,7 +22314,7 @@ export interface ASingerTapToFetchDataFromBingAds {
   description?: string;
   developerToken: YourDeveloperTokenForBingAdsApplication;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead24;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   oauthClientId: YourOAuthClientID;
@@ -23511,20 +22329,11 @@ export interface ASingerTapToFetchDataFromBingAds {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse78)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse79);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.BingAds';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead24 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse78 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse79 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAChargeBeeAccount {
@@ -23534,7 +22343,7 @@ export interface ASingerTapToFetchDataFromAChargeBeeAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead25;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   pipPackages?: OverrideDefaultPipPackagesToUseASpecificVersion;
@@ -23548,20 +22357,11 @@ export interface ASingerTapToFetchDataFromAChargeBeeAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse80)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse81);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.ChargeBee';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead25 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse80 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse81 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAExchangerateHostAPI {
@@ -23571,7 +22371,7 @@ export interface ASingerTapToFetchDataFromAExchangerateHostAPI {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead26;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   endDate?: DateUpToWhenHistoricalDataWillBeExtracted;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -23584,20 +22384,11 @@ export interface ASingerTapToFetchDataFromAExchangerateHostAPI {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse82)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse83);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.ExchangeRateHost';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead26 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse82 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse83 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAFacebookAds {
@@ -23608,7 +22399,7 @@ export interface ASingerTapToFetchDataFromAFacebookAds {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead27;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   endDate?: DateUpToWhenHistoricalDataWillBeExtracted;
   id: string;
   insightsBufferDays?: HowManyDaysBeforeTheStartDateToFetchAdsInsightsFor;
@@ -23622,20 +22413,11 @@ export interface ASingerTapToFetchDataFromAFacebookAds {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse84)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse85);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.FacebookAds';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead27 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse84 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse85 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAFastlyAccount {
@@ -23645,7 +22427,7 @@ export interface ASingerTapToFetchDataFromAFastlyAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead28;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   pipPackages?: OverrideDefaultPipPackagesToUseASpecificVersion;
@@ -23657,20 +22439,11 @@ export interface ASingerTapToFetchDataFromAFastlyAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse86)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse87);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Fastly';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead28 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse86 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse87 {
   [k: string]: unknown | undefined;
 }
 export interface AGenericSingerTap {
@@ -23680,7 +22453,7 @@ export interface AGenericSingerTap {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead29;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   features?: TheListOfFeatureTheConnectorSupports;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -23692,23 +22465,14 @@ export interface AGenericSingerTap {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse88)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse89);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.GenericTap';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
 export interface TheConfigurationToUse {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead29 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse88 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse89 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAGitHubAPI {
@@ -23718,7 +22482,7 @@ export interface ASingerTapToFetchDataFromAGitHubAPI {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead30;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   pipPackages?: OverrideDefaultPipPackagesToUseASpecificVersion;
@@ -23732,23 +22496,14 @@ export interface ASingerTapToFetchDataFromAGitHubAPI {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse90)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse91);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.GitHub';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DeprecatedUseTaskRunnerInstead30 {
-  [k: string]: unknown | undefined;
-}
 export interface ListOfGitHubRepositories {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse90 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse91 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAGitLabAccount {
@@ -23758,7 +22513,7 @@ export interface ASingerTapToFetchDataFromAGitLabAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead31;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   fetchMergeRequestCommits?: ForEachMergeRequestAlsoFetchTheMRSCommitsAndCreateTheJoinTableMergeRequestCommitsWithTheMergeRequestAndRelatedCommitIDs;
   fetchPipelinesExtended?: ForEveryPipelineAlsoFetchExtendedDetailsOfEachOfThesePipelines;
   groups?: NamesOfGroupsToExtractDataFrom;
@@ -23775,21 +22530,12 @@ export interface ASingerTapToFetchDataFromAGitLabAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse92)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse93);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Gitlab';
   ultimateLicense?: EnableToPullInExtraDataLikeEpicsEpicIssuesAndOtherEntitiesOnlyAvailableToGitLabUltimateAndGitLabComGoldAccounts;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead31 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse92 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse93 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromGoogleAdwords {
@@ -23801,7 +22547,7 @@ export interface ASingerTapToFetchDataFromGoogleAdwords {
   description?: string;
   developerToken: YourDeveloperTokenForGoogleAdWordApplication;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead32;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   endDate?: DateUpToWhenHistoricalDataWillBeExtracted;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -23818,24 +22564,15 @@ export interface ASingerTapToFetchDataFromGoogleAdwords {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse94)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse95);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.GoogleAdwords';
   userAgent?: UserAgentForYourOAuthClient;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DeprecatedUseTaskRunnerInstead32 {
-  [k: string]: unknown | undefined;
-}
 export interface PrimaryKeysForTheSelectedEntitiesStreams {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse94 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse95 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromFromTheGoogleAnalyticsReportingAPI {
@@ -23844,7 +22581,7 @@ export interface ASingerTapToFetchDataFromFromTheGoogleAnalyticsReportingAPI {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead33;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   endDate?: DateUpToWhenHistoricalDataWillBeExtracted;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -23863,27 +22600,18 @@ export interface ASingerTapToFetchDataFromFromTheGoogleAnalyticsReportingAPI {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse96)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse97);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.GoogleAnalytics';
   view_id?: OAuthRefreshToken;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DeprecatedUseTaskRunnerInstead33 {
-  [k: string]: unknown | undefined;
-}
 export interface IoKestraPluginSingerTapsGoogleAnalyticsReport {
   dimensions?: string[];
   metrics?: string[];
   name?: string;
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse96 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse97 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromTheGoogleSearchConsole {
@@ -23894,7 +22622,7 @@ export interface ASingerTapToFetchDataFromTheGoogleSearchConsole {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead34;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   pipPackages?: OverrideDefaultPipPackagesToUseASpecificVersion;
@@ -23908,21 +22636,12 @@ export interface ASingerTapToFetchDataFromTheGoogleSearchConsole {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse98)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse99);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.GoogleSearchConsole';
   userAgent?: UserAgentForYourOAuthClient;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead34 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse98 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse99 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAHubSpotAPI {
@@ -23932,7 +22651,7 @@ export interface ASingerTapToFetchDataFromAHubSpotAPI {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead35;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   flatteningEnabled?: ToEnableSchemaFlatteningAndAutomaticallyExpandNestedProperties;
   flatteningMaxDepth?: TheMaxDepthToFlattenSchemas;
   id: string;
@@ -23948,26 +22667,17 @@ export interface ASingerTapToFetchDataFromAHubSpotAPI {
   streamMaps?: ListConfigObjectForStreamMapsCapability;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse100)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse101);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.HubSpot';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead35 {
   [k: string]: unknown | undefined;
 }
 export interface UserDefinedConfigValuesToBeUsedWithinMapExpressions {
   [k: string]: unknown | undefined;
 }
 export interface ListConfigObjectForStreamMapsCapability {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse100 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse101 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAMarketoAccount {
@@ -23978,7 +22688,7 @@ export interface ASingerTapToFetchDataFromAMarketoAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead36;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   endpoint: EndpointURL;
   id: string;
   identity: Identity;
@@ -23992,20 +22702,11 @@ export interface ASingerTapToFetchDataFromAMarketoAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse102)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse103);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Marketo';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead36 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse102 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse103 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromANetsuiteAccount {
@@ -24017,7 +22718,7 @@ export interface ASingerTapToFetchDataFromANetsuiteAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead37;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   isSandbox: IsThisSandboxAccount;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -24031,22 +22732,13 @@ export interface ASingerTapToFetchDataFromANetsuiteAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse104)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse105);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   tokenKey: YourTokenKeyForTokenBasedAuthenticationConsumerKeyForSOAPConnection;
   tokenSecret: OurTokenSecretForTokenBasedAuthenticationConsumerKeyForSOAPConnection;
   type: 'io.kestra.plugin.singer.taps.Netsuite';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead37 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse104 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse105 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAMongoDBDatabase {
@@ -24058,7 +22750,7 @@ export interface ASingerTapToFetchDataFromAMongoDBDatabase {
   database: TheDatabaseName;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead38;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   host: TheDatabaseHostname;
   id: string;
   includeSchemaInStream?: ForcesTheStreamNamesToTakeTheFormDatabaseName_CollectionNameInsteadOfCollectionName;
@@ -24076,22 +22768,13 @@ export interface ASingerTapToFetchDataFromAMongoDBDatabase {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse106)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse107);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.PipelinewiseMongoDb';
   updateBufferSize?: TheSizeOfTheBufferThatHoldsDetectedUpdateOperationsInMemory;
   username: TheDatabaseUser;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead38 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse106 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse107 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAMySQLDatabase {
@@ -24100,7 +22783,7 @@ export interface ASingerTapToFetchDataFromAMySQLDatabase {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead39;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   exportBatchRows?: NumberOfRowsToExportFromMySQLInOneBatch;
   filterDbs?: TheListOfSchemasToExtractTablesOnlyFromParticularSchemasAndToImproveDataExtractionPerformance;
   host: TheDatabaseHostname;
@@ -24118,21 +22801,12 @@ export interface ASingerTapToFetchDataFromAMySQLDatabase {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse108)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse109);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.PipelinewiseMysql';
   username: TheDatabaseUser;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead39 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse108 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse109 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAOracleDatabase {
@@ -24141,7 +22815,7 @@ export interface ASingerTapToFetchDataFromAOracleDatabase {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead40;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   filterSchemas?: TheSchemasToFilter;
   host: TheDatabaseHostname;
   id: string;
@@ -24157,21 +22831,12 @@ export interface ASingerTapToFetchDataFromAOracleDatabase {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse110)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse111);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.PipelinewiseOracle';
   username: TheDatabaseUser;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead40 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse110 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse111 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAPostgresDatabase {
@@ -24183,7 +22848,7 @@ export interface ASingerTapToFetchDataFromAPostgresDatabase {
   debugLsn?: IfSetToTrueThenAddSdcLsnPropertyToTheSingerMessagesToDebugPostgresLSNPositionInTheWALStream;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead41;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   filterSchemas?: TheListOfSchemasToExtractTablesOnlyFromParticularSchemasAndToImproveDataExtractionPerformance;
   host: TheDatabaseHostname;
   id: string;
@@ -24201,21 +22866,12 @@ export interface ASingerTapToFetchDataFromAPostgresDatabase {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse112)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse113);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.PipelinewisePostgres';
   username: TheDatabaseUser;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead41 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse112 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse113 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAMicrosoftSQLServerDatabase {
@@ -24227,7 +22883,7 @@ export interface ASingerTapToFetchDataFromAMicrosoftSQLServerDatabase {
   database: TheDatabaseName;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead42;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   filterDbs?: TheListOfSchemasToExtractTablesOnlyFromParticularSchemasAndToImproveDataExtractionPerformance;
   host: TheDatabaseHostname;
   id: string;
@@ -24242,8 +22898,8 @@ export interface ASingerTapToFetchDataFromAMicrosoftSQLServerDatabase {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse114)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse115);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   tdsVersion?: TDSVersionToUseWhenCommunicatingWithSQLServerDefaultIs73;
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.PipelinewiseSqlServer';
@@ -24251,15 +22907,6 @@ export interface ASingerTapToFetchDataFromAMicrosoftSQLServerDatabase {
   useSingerDecimal?: EmitAllNumericValuesAsStringsAndTreatFloatsAsStringDataTypesForTheTargetDefaultFalse;
   username: TheDatabaseUser;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead42 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse114 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse115 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAQuickbooksAccount {
@@ -24270,7 +22917,7 @@ export interface ASingerTapToFetchDataFromAQuickbooksAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead43;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   isSandbox?: SelectByDefaultAnyNewFieldsDiscoveredInQuickbooksObjects;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -24288,20 +22935,11 @@ export interface ASingerTapToFetchDataFromAQuickbooksAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse116)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse117);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Quickbooks';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead43 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse116 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse117 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromARechargeAccount {
@@ -24311,7 +22949,7 @@ export interface ASingerTapToFetchDataFromARechargeAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead44;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   pipPackages?: OverrideDefaultPipPackagesToUseASpecificVersion;
@@ -24323,21 +22961,12 @@ export interface ASingerTapToFetchDataFromARechargeAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse118)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse119);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Recharge';
   userAgent?: UserAgent;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead44 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse118 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse119 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromASageIntacctAccount {
@@ -24347,7 +22976,7 @@ export interface ASingerTapToFetchDataFromASageIntacctAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead45;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   pipPackages?: OverrideDefaultPipPackagesToUseASpecificVersion;
@@ -24361,22 +22990,13 @@ export interface ASingerTapToFetchDataFromASageIntacctAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse120)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse121);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.SageIntacct';
   userId: IntacctUserID;
   userPassword: IntacctUserPassword;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead45 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse120 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse121 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromASalesforceAccount {
@@ -24388,7 +23008,7 @@ export interface ASingerTapToFetchDataFromASalesforceAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead46;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   isSandbox?: SelectByDefaultAnyNewFieldsDiscoveredInSalesforceObjects;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -24407,21 +23027,12 @@ export interface ASingerTapToFetchDataFromASalesforceAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse122)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse123);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Salesforce';
   username?: SalesforceUsername;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead46 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse122 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse123 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAShopifyAccount {
@@ -24431,7 +23042,7 @@ export interface ASingerTapToFetchDataFromAShopifyAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead47;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   pipPackages?: OverrideDefaultPipPackagesToUseASpecificVersion;
@@ -24444,20 +23055,11 @@ export interface ASingerTapToFetchDataFromAShopifyAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse124)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse125);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Shopify';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead47 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse124 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse125 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromSlack {
@@ -24470,7 +23072,7 @@ export interface ASingerTapToFetchDataFromSlack {
   dateWindowSize?: ChannelsToSync1;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead48;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   pipPackages?: OverrideDefaultPipPackagesToUseASpecificVersion;
@@ -24484,20 +23086,11 @@ export interface ASingerTapToFetchDataFromSlack {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse126)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse127);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Slack';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead48 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse126 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse127 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAStripeAccount {
@@ -24508,7 +23101,7 @@ export interface ASingerTapToFetchDataFromAStripeAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead49;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   pipPackages?: OverrideDefaultPipPackagesToUseASpecificVersion;
@@ -24520,20 +23113,11 @@ export interface ASingerTapToFetchDataFromAStripeAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse128)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse129);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Stripe';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead49 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse128 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse129 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAZendeskAccount {
@@ -24544,7 +23128,7 @@ export interface ASingerTapToFetchDataFromAZendeskAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead50;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   email?: ZendeskEmail;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -24558,20 +23142,11 @@ export interface ASingerTapToFetchDataFromAZendeskAccount {
   streamsConfigurations: TheListOfStreamConfigurations;
   subdomain: ZendeskSubdomain;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse130)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse131);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Zendesk';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead50 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse130 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse131 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTapToFetchDataFromAZoomAccount {
@@ -24582,7 +23157,7 @@ export interface ASingerTapToFetchDataFromAZoomAccount {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead51;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   id: string;
   jwt?: ZoomJSONWebToken;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -24595,20 +23170,11 @@ export interface ASingerTapToFetchDataFromAZoomAccount {
   stateName?: TheNameOfSingerStateFile;
   streamsConfigurations: TheListOfStreamConfigurations;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse132)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse133);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.taps.Zoom';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead51 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse132 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse133 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetLoadsDataIntoABigQuery {
@@ -24619,7 +23185,7 @@ export interface ASingerTargetLoadsDataIntoABigQuery {
   datasetId: TheBigQueryDataset;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead52;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   from: TheRawDataFromATap;
   id: string;
   location?: TheDatasetLocation;
@@ -24639,24 +23205,15 @@ export interface ASingerTargetLoadsDataIntoABigQuery {
   tablePrefix?: AddPrefixToTableName;
   tableSuffix?: AddSuffixToTableName;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse134)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse135);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.AdswerveBigQuery';
   validateRecords?: ValidateEverySingleRecordMessageToTheCorrespondingJSONSchema;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DeprecatedUseTaskRunnerInstead52 {
-  [k: string]: unknown | undefined;
-}
 export interface TableConfigs {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse134 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse135 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetLoadsDataIntoACSVFiles {
@@ -24666,7 +23223,7 @@ export interface ASingerTargetLoadsDataIntoACSVFiles {
   delimiter?: AOneCharacterStringUsedToSeparateFields;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead53;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   from: TheRawDataFromATap;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -24678,20 +23235,11 @@ export interface ASingerTargetLoadsDataIntoACSVFiles {
     | IoKestraCoreModelsTasksRetrysRandom2;
   stateName?: TheNameOfSingerStateFile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse136)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse137);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.Csv';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead53 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse136 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse137 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetLoadsDataIntoAPostgresDatabase {
@@ -24705,7 +23253,7 @@ export interface ASingerTargetLoadsDataIntoAPostgresDatabase {
   dbName?: TheDatabaseName;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead54;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   from: TheRawDataFromATap;
   host: TheDatabaseHostname;
   id: string;
@@ -24727,31 +23275,22 @@ export interface ASingerTargetLoadsDataIntoAPostgresDatabase {
   sslMode?: ReferToTheLibpqHttpsWwwPostgresqlOrgDocsCurrentLibpqConnectHtmlLIBPQPARAMKEYWORDSDocsForMoreInformationAboutSSL;
   stateName?: TheNameOfSingerStateFile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse138)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse139);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.DatamillCoPostgres';
   username: TheDatabaseUser;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DeprecatedUseTaskRunnerInstead54 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse138 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse139 {
-  [k: string]: unknown | undefined;
-}
 export interface AGenericSingerTarget {
   allowFailure?: boolean;
   command: TheCommandToStart;
-  configs: TheConfigurationToUse1;
+  configs: TheConfigurationToUse;
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead55;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   from: TheRawDataFromATap;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -24762,23 +23301,11 @@ export interface AGenericSingerTarget {
     | IoKestraCoreModelsTasksRetrysRandom2;
   stateName?: TheNameOfSingerStateFile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse140)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse141);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.GenericTarget';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheConfigurationToUse1 {
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead55 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse140 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse141 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetLoadsDataIntoJSONFiles {
@@ -24787,7 +23314,7 @@ export interface ASingerTargetLoadsDataIntoJSONFiles {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead56;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   from: TheRawDataFromATap;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -24798,20 +23325,11 @@ export interface ASingerTargetLoadsDataIntoJSONFiles {
     | IoKestraCoreModelsTasksRetrysRandom2;
   stateName?: TheNameOfSingerStateFile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse142)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse143);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.Json';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead56 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse142 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse143 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetLoadsDataIntoASnowflakeDatabase {
@@ -24824,7 +23342,7 @@ export interface ASingerTargetLoadsDataIntoASnowflakeDatabase {
   defaultTargetSchema?: TheDefaultTargetDatabaseSchemaNameToUseForAllStreams;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead57;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   flatteningEnabled?: TrueToEnableSchemaFlatteningAndAutomaticallyExpandNestedProperties;
   flatteningMaxDepth?: TheMaxDepthToFlattenSchemas;
   from: TheRawDataFromATap;
@@ -24840,22 +23358,13 @@ export interface ASingerTargetLoadsDataIntoASnowflakeDatabase {
   schema: TheDatabaseSchema;
   stateName?: TheNameOfSingerStateFile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse144)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse145);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.MeltanoSnowflake';
   username: TheDatabaseUser;
   warehouse: SnowflakeVirtualWarehouseName;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead57 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse144 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse145 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetThatLoadsDataIntoAnOracleDatabase {
@@ -24865,7 +23374,7 @@ export interface ASingerTargetThatLoadsDataIntoAnOracleDatabase {
   database?: TheDatabaseName;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead58;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   driverName?: SQLAlchemyDriverName;
   flatteningEnabled?: EnableSchemaFlatteningAndAutomaticallyExpandNestedProperties;
   flatteningMaxDepth?: TheMaxDepthToFlattenSchemas;
@@ -24885,21 +23394,12 @@ export interface ASingerTargetThatLoadsDataIntoAnOracleDatabase {
   streamMapConfig?: UserDefinedConfigValuesToBeUsedWithinMapExpressions1;
   streamMaps?: ConfigObjectForStreamMapsCapability;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse146)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse147);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.Oracle';
   username: TheDatabaseUser;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead58 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse146 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse147 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetLoadsDataIntoAPostgresDatabase1 {
@@ -24914,7 +23414,7 @@ export interface ASingerTargetLoadsDataIntoAPostgresDatabase1 {
   defaultTargetSchemaSelectPermission?: GrantUSAGEPrivilegeOnNewlyCreatedSchemasAndGrantSELECTPrivilegeOnNewlyCreated;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead59;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   flushAllStreams?: FlushAndLoadEveryStreamIntoPostgresWhenOneBatchIsFull;
   from: TheRawDataFromATap;
   hardDelete?: DeleteRowsOnPostgres;
@@ -24933,22 +23433,13 @@ export interface ASingerTargetLoadsDataIntoAPostgresDatabase1 {
     | IoKestraCoreModelsTasksRetrysRandom2;
   stateName?: TheNameOfSingerStateFile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse148)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse149);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.PipelinewisePostgres';
   username: TheDatabaseUser;
   validateRecords?: ValidateEverySingleRecordMessageToTheCorrespondingJSONSchema;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead59 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse148 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse149 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetLoadsDataIntoARedshiftDatabase {
@@ -24967,7 +23458,7 @@ export interface ASingerTargetLoadsDataIntoARedshiftDatabase {
   description?: string;
   disableTableCache?: DisableTableCache;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead60;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   flushAllStreams?: FlushAndLoadEveryStreamIntoRedshiftWhenOneBatchIsFull;
   from: TheRawDataFromATap;
   hardDelete?: DeleteRowsOnRedshift;
@@ -24995,22 +23486,13 @@ export interface ASingerTargetLoadsDataIntoARedshiftDatabase {
   slices?: NumberOfSlicesToSplitFilesIntoPriorToRunningCOPYOnRedshift;
   stateName?: TheNameOfSingerStateFile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse150)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse151);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.PipelinewiseRedshift';
   username: TheDatabaseUser;
   validateRecords?: ValidateEverySingleRecordMessageToTheCorrespondingJSONSchema;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead60 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse150 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse151 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetLoadsDataIntoASnowflakeDatabase1 {
@@ -25036,7 +23518,7 @@ export interface ASingerTargetLoadsDataIntoASnowflakeDatabase1 {
   description?: string;
   disableTableCache?: ByDefaultTheConnectorCachesTheAvailableTableStructuresInSnowflakeAtStartupInThisWayItDoesnTNeedToRunAdditionalQueriesWhenIngestingDataToCheckIfAlteringTheTargetTablesIsRequiredWithDisableTableCacheOptionYouCanTurnOffThisCachingYouWillAlwaysSeeTheMostRecentTableStructuresButWillCauseAnExtraQueryRuntime;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead61;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   fileFormat?: NamedFileFormatNameCreatedAtPreRequirementsSectionHasToBeAFullyQualifiedNameIncludingTheSchemaName;
   flushAllStreams?: FlushAndLoadEveryStreamIntoSnowflakeWhenOneBatchIsFullWarningThisMayTriggerTheCOPYCommandToUseFilesWithLowNumberOfRecordsAndMayCausePerformanceProblems;
   from: TheRawDataFromATap;
@@ -25064,23 +23546,14 @@ export interface ASingerTargetLoadsDataIntoASnowflakeDatabase1 {
   stage?: NamedExternalStageNameCreatedAtPreRequirementsSectionHasToBeAFullyQualifiedNameIncludingTheSchemaNameIfNotSpecifiedTableInternalStageAreUsedWhenThisIsDefinedThenS3BucketHasToBeDefinedAsWell;
   stateName?: TheNameOfSingerStateFile;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse152)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse153);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.PipelinewiseSnowflake';
   username: TheDatabaseUser;
   validateRecords?: ValidateEverySingleRecordMessageToTheCorrespondingJSONSchemaThisOptionIsDisabledByDefaultAndInvalidRECORDMessagesWillFailOnlyAtLoadTimeBySnowflakeEnablingThisOptionWillDetectInvalidRecordsEarlierButCouldCausePerformanceDegradation;
   warehouse: SnowflakeVirtualWarehouseName;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead61 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse152 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse153 {
   [k: string]: unknown | undefined;
 }
 export interface ASingerTargetThatLoadsDataIntoAMicrosoftSQLServerDatabase {
@@ -25091,7 +23564,7 @@ export interface ASingerTargetThatLoadsDataIntoAMicrosoftSQLServerDatabase {
   defaultTargetSchema?: DefaultTargetSchemaToWriteTo;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead62;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTaskRunnerInstead;
   flatteningEnabled?: EnableSchemaFlatteningAndAutomaticallyExpandNestedProperties;
   flatteningMaxDepth?: TheMaxDepthToFlattenSchemas;
   from: TheRawDataFromATap;
@@ -25107,25 +23580,16 @@ export interface ASingerTargetThatLoadsDataIntoAMicrosoftSQLServerDatabase {
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
   stateName?: TheNameOfSingerStateFile;
-  streamMapConfig?: UserDefinedConfigValuesToBeUsedWithinMapExpressions2;
+  streamMapConfig?: UserDefinedConfigValuesToBeUsedWithinMapExpressions1;
   streamMaps?: ConfigObjectForStreamMapsCapability;
   tablePrefix?: PrefixToAddToTableNameUsefulIfRetrievingDataFromMultipleTapsForEasierFiltering;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse154)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse155);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.singer.targets.SqlServer';
   username: TheDatabaseUser;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTaskRunnerInstead62 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse154 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse155 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteABatchQueryToAMySQLServer {
@@ -25460,7 +23924,7 @@ export interface DatabricksAuthenticationConfiguration {
 export interface DeleteADatabricksCluster {
   accountId?: DatabricksAccountIdentifier;
   allowFailure?: boolean;
-  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration1;
+  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration;
   clusterId: TheClusterIdentifier;
   configFile?: DatabricksConfigurationFileUseThisIfYouDonTWantToConfigureEachDatabricksAccountPropertiesOneByOne;
   description?: string;
@@ -25477,13 +23941,10 @@ export interface DeleteADatabricksCluster {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DatabricksAuthenticationConfiguration1 {
-  [k: string]: unknown | undefined;
-}
 export interface DownloadAFileFromDatabricksFileSystem {
   accountId?: DatabricksAccountIdentifier;
   allowFailure?: boolean;
-  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration2;
+  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration;
   configFile?: DatabricksConfigurationFileUseThisIfYouDonTWantToConfigureEachDatabricksAccountPropertiesOneByOne;
   description?: string;
   disabled?: boolean;
@@ -25500,13 +23961,10 @@ export interface DownloadAFileFromDatabricksFileSystem {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DatabricksAuthenticationConfiguration2 {
-  [k: string]: unknown | undefined;
-}
 export interface UploadAFileToTheDatabricksFileSystem {
   accountId?: DatabricksAccountIdentifier;
   allowFailure?: boolean;
-  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration3;
+  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration;
   configFile?: DatabricksConfigurationFileUseThisIfYouDonTWantToConfigureEachDatabricksAccountPropertiesOneByOne;
   description?: string;
   disabled?: boolean;
@@ -25524,13 +23982,10 @@ export interface UploadAFileToTheDatabricksFileSystem {
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DatabricksAuthenticationConfiguration3 {
-  [k: string]: unknown | undefined;
-}
 export interface CreateADatabricksJobAndRunItSetWaitForCompletionToTheDesiredMaximumDurationIfYouWantTheTaskToWaitForTheJobCompletionEGPT1HToWaitUpToOneHour {
   accountId?: DatabricksAccountIdentifier;
   allowFailure?: boolean;
-  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration4;
+  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration;
   configFile?: DatabricksConfigurationFileUseThisIfYouDonTWantToConfigureEachDatabricksAccountPropertiesOneByOne;
   description?: string;
   disabled?: boolean;
@@ -25547,9 +24002,6 @@ export interface CreateADatabricksJobAndRunItSetWaitForCompletionToTheDesiredMax
   type: 'io.kestra.plugin.databricks.job.CreateJob';
   waitForCompletion?: IfSetTheTaskWillWaitForTheJobRunCompletionForUpToTheWaitForCompletionDurationBeforeTimingOut;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DatabricksAuthenticationConfiguration4 {
   [k: string]: unknown | undefined;
 }
 export interface IoKestraPluginDatabricksJobCreateJobJobTaskSetting {
@@ -25668,7 +24120,7 @@ export interface SQLTaskSettings {
 export interface SubmitADatabricksRunOptionallySetWaitForCompletionToADesiredMaximumDurationToWaitForTheRunCompletion {
   accountId?: DatabricksAccountIdentifier;
   allowFailure?: boolean;
-  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration5;
+  authentication?: IoKestraPluginDatabricksAbstractTaskAuthenticationConfig & DatabricksAuthenticationConfiguration;
   configFile?: DatabricksConfigurationFileUseThisIfYouDonTWantToConfigureEachDatabricksAccountPropertiesOneByOne;
   description?: string;
   disabled?: boolean;
@@ -25687,39 +24139,18 @@ export interface SubmitADatabricksRunOptionallySetWaitForCompletionToADesiredMax
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface DatabricksAuthenticationConfiguration5 {
-  [k: string]: unknown | undefined;
-}
 export interface IoKestraPluginDatabricksJobSubmitRunRunSubmitTaskSetting {
   dependsOn?: TaskDependenciesSetThisIfMultipleTasksAreDefinedOnTheRun;
   existingClusterId?: string;
   libraries?: TaskLibraries;
-  notebookTask?: IoKestraPluginDatabricksJobTaskNotebookTaskSetting & NotebookTaskSettings1;
-  pipelineTask?: IoKestraPluginDatabricksJobTaskPipelineTaskSetting & PipelineTaskSettings1;
-  pythonWheelTask?: IoKestraPluginDatabricksJobTaskPythonWheelTaskSetting & PythonWheelTaskSettings1;
-  sparkJarTask?: IoKestraPluginDatabricksJobTaskSparkJarTaskSetting & SparkJARTaskSettings1;
-  sparkPythonTask?: IoKestraPluginDatabricksJobTaskSparkPythonTaskSetting & SparkPythonTaskSettings1;
-  sparkSubmitTask?: IoKestraPluginDatabricksJobTaskSparkSubmitTaskSetting & SparkSubmitTaskSettings1;
+  notebookTask?: IoKestraPluginDatabricksJobTaskNotebookTaskSetting & NotebookTaskSettings;
+  pipelineTask?: IoKestraPluginDatabricksJobTaskPipelineTaskSetting & PipelineTaskSettings;
+  pythonWheelTask?: IoKestraPluginDatabricksJobTaskPythonWheelTaskSetting & PythonWheelTaskSettings;
+  sparkJarTask?: IoKestraPluginDatabricksJobTaskSparkJarTaskSetting & SparkJARTaskSettings;
+  sparkPythonTask?: IoKestraPluginDatabricksJobTaskSparkPythonTaskSetting & SparkPythonTaskSettings;
+  sparkSubmitTask?: IoKestraPluginDatabricksJobTaskSparkSubmitTaskSetting & SparkSubmitTaskSettings;
   taskKey?: string;
   timeoutSeconds?: number;
-  [k: string]: unknown | undefined;
-}
-export interface NotebookTaskSettings1 {
-  [k: string]: unknown | undefined;
-}
-export interface PipelineTaskSettings1 {
-  [k: string]: unknown | undefined;
-}
-export interface PythonWheelTaskSettings1 {
-  [k: string]: unknown | undefined;
-}
-export interface SparkJARTaskSettings1 {
-  [k: string]: unknown | undefined;
-}
-export interface SparkPythonTaskSettings1 {
-  [k: string]: unknown | undefined;
-}
-export interface SparkSubmitTaskSettings1 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteASQLQueryOnADatabricksCluster {
@@ -25837,48 +24268,33 @@ export interface TopicWhereToConsumeMessage {
 export interface ExecuteOneOrMoreMalloyCommandsFromTheCommandLineInterface {
   allowFailure?: boolean;
   beforeCommands?: AListOfCommandsThatWillRunBeforeTheCommandsAllowingToSetUpTheEnvironmentEGPipInstallRRequirementsTxt;
-  commands?: TheCommandsToRun13;
+  commands?: TheCommandsToRun3;
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead30;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess35;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles37;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead31;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse156)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse157);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.malloy.CLI';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead30 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess35 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles37 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse156 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse157 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeMessagesFromPulsarTopicS {
@@ -25948,7 +24364,7 @@ export interface ProduceMessageToAPulsarTopic {
   schemaType?: TheSchemaTypeOfTheTopic;
   serializer?: SerializerDeserializerUsedForTheValue & SerializerUsedForTheValue;
   timeout?: string;
-  tlsOptions?: IoKestraPluginPulsarAbstractPulsarConnectionTlsOptions & TLSAuthenticationOptions1;
+  tlsOptions?: IoKestraPluginPulsarAbstractPulsarConnectionTlsOptions & TLSAuthenticationOptions;
   topic: PulsarTopicToSendAMessageTo;
   type: 'io.kestra.plugin.pulsar.Produce';
   uri: ConnectionURLs;
@@ -25960,9 +24376,6 @@ export interface SourceOfTheSentMessage {
 }
 export interface AddAllThePropertiesInTheProvidedMapToTheProducer {
   [k: string]: string | undefined;
-}
-export interface TLSAuthenticationOptions1 {
-  [k: string]: unknown | undefined;
 }
 export interface ReadMessagesFromPulsarTopicSWithoutSubscription {
   allowFailure?: boolean;
@@ -25984,17 +24397,11 @@ export interface ReadMessagesFromPulsarTopicSWithoutSubscription {
   schemaType?: TheSchemaTypeOfTheTopic;
   since?: TheInitialReaderPositioningCanBeSetAtSpecificTimestampByProvidingTotalRollbackDuration;
   timeout?: string;
-  tlsOptions?: IoKestraPluginPulsarAbstractPulsarConnectionTlsOptions & TLSAuthenticationOptions2;
-  topic: PulsarTopicSWhereToConsumeMessagesFrom1;
+  tlsOptions?: IoKestraPluginPulsarAbstractPulsarConnectionTlsOptions & TLSAuthenticationOptions;
+  topic: PulsarTopicSWhereToConsumeMessagesFrom;
   type: 'io.kestra.plugin.pulsar.Reader';
   uri: ConnectionURLs;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TLSAuthenticationOptions2 {
-  [k: string]: unknown | undefined;
-}
-export interface PulsarTopicSWhereToConsumeMessagesFrom1 {
   [k: string]: unknown | undefined;
 }
 export interface ReadAProvidedAvroFileAndConvertItToIonSerializedDataFile {
@@ -26332,44 +24739,29 @@ export interface ExecuteOneOrMorePowerShellCommandsNoteThatInsteadOfAddingTheScr
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead32;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess36;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles38;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead33;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse158)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse159);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.powershell.Commands';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead32 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess36 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles38 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse158 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse159 {
   [k: string]: unknown | undefined;
 }
 export interface ExecuteAPowerShellScript {
@@ -26378,45 +24770,30 @@ export interface ExecuteAPowerShellScript {
   containerImage?: TheTaskRunnerContainerImageOnlyUsedIfTheTaskRunnerIsContainerBased;
   description?: string;
   disabled?: boolean;
-  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead34;
-  env?: AdditionalEnvironmentVariablesForTheCurrentProcess37;
+  docker?: IoKestraPluginScriptsExecScriptsModelsDockerOptions & DeprecatedUseTheTaskRunnerPropertyInstead;
+  env?: AdditionalEnvironmentVariablesForTheCurrentProcess;
   failFast?: FailTheTaskOnTheFirstCommandWithANonZeroStatus;
   id: string;
   inputFiles?: TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject;
   interpreter?: WhichInterpreterToUse;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles39;
+  namespaceFiles?: IoKestraCoreModelsTasksNamespaceFiles & InjectNamespaceFiles;
   outputDirectory?: WhetherToSetupTheOutputDirectoryMechanism;
   outputFiles?: TheFilesFromTheLocalFilesystemToSendToKestraSInternalStorage;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
     | IoKestraCoreModelsTasksRetrysExponential2
     | IoKestraCoreModelsTasksRetrysRandom2;
-  runner?: DeprecatedUseTheTaskRunnerPropertyInstead35;
+  runner?: DeprecatedUseTheTaskRunnerPropertyInstead1;
   script: TheInlineScriptContentThisPropertyIsIntendedForTheScriptFileSContentAsAMultilineStringNotAPathToAFileToRunACommandFromAFileSuchAsBashMyscriptShOrPythonMyscriptPyUseTheCommandsTaskInstead;
   targetOS?: TheTargetOperatingSystemWhereTheScriptWillRun;
   taskRunner?:
-    | (RunATaskInADockerContainer & TheTaskRunnerToUse160)
-    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse161);
+    | (RunATaskInADockerContainer & TheTaskRunnerToUse)
+    | (TaskRunnerThatExecutesATaskAsASubprocessOnTheKestraHost & TheTaskRunnerToUse);
   timeout?: string;
   type: 'io.kestra.plugin.scripts.powershell.Script';
   warningOnStdErr?: WhetherToSetTheTaskStateToWARNINGIfAnyStdErrIsEmitted;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface DeprecatedUseTheTaskRunnerPropertyInstead34 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalEnvironmentVariablesForTheCurrentProcess37 {
-  [k: string]: string | undefined;
-}
-export interface InjectNamespaceFiles39 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse160 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskRunnerToUse161 {
   [k: string]: unknown | undefined;
 }
 export interface CreateAFileOrAFolder {
@@ -26530,7 +24907,7 @@ export interface UploadAFileInADriveFolder {
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   mimeType?: TheMIMETypeOfTheFile;
   name?: TheNameOfTheFile;
-  parents?: TheDestinationPath5;
+  parents?: TheDestinationPath4;
   readTimeout?: TheReadTimeoutForTheRequestInSeconds;
   retry?:
     | IoKestraCoreModelsTasksRetrysConstant2
@@ -26571,7 +24948,7 @@ export interface ReadAllSheetsFromAGoogleSheets {
 }
 export interface ReadARangeFromAGoogleSheets {
   allowFailure?: boolean;
-  dateTimeRender?: HowDatesTimesAndDurationsShouldBeRepresentedInTheOutput2;
+  dateTimeRender?: HowDatesTimesAndDurationsShouldBeRepresentedInTheOutput1;
   description?: string;
   disabled?: boolean;
   fetch?: WhetherToFetchTheDataFromTheQueryResultToTheTaskOutput;
@@ -26601,7 +24978,7 @@ export interface ResetAJob {
   disabled?: boolean;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  maxDuration?: TheMaximumTotalWaitDuration3;
+  maxDuration?: TheMaximumTotalWaitDuration1;
   password?: BasicAuthAuthenticationPassword;
   pollFrequency?: SpecifyFrequencyForStateCheckAPICall;
   retry?:
@@ -26623,7 +25000,7 @@ export interface SyncAJob {
   disabled?: boolean;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  maxDuration?: TheMaximumTotalWaitDuration4;
+  maxDuration?: TheMaximumTotalWaitDuration1;
   password?: BasicAuthAuthenticationPassword;
   pollFrequency?: SpecifyFrequencyForStateCheckAPICall;
   retry?:
@@ -26646,7 +25023,7 @@ export interface CheckJobStatusOfARunningSyncConnection {
   id: string;
   jobId?: TheJobIDToCheckStatusFor;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  maxDuration?: TheMaximumTotalWaitDuration5;
+  maxDuration?: TheMaximumTotalWaitDuration1;
   password?: BasicAuthenticationPassword;
   pollFrequency?: SpecifyHowOftenTheTaskShouldPollForTheSyncStatus;
   retry?:
@@ -26670,7 +25047,7 @@ export interface RunASyncOnAConnection {
   httpTimeout?: HTTPConnectionTimeout;
   id: string;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  maxDuration?: TheMaximumTotalWaitDuration6;
+  maxDuration?: TheMaximumTotalWaitDuration1;
   password?: BasicAuthenticationPassword;
   pollFrequency?: SpecifyFrequencyForSyncAttemptStateCheckAPICall;
   retry?:
@@ -26710,22 +25087,10 @@ export interface RunASyncOnAConnection1 {
 export interface OauthTokenProvider {
   [k: string]: unknown | undefined;
 }
-export interface TheConnectionParametersToTheKubernetesCluster1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheConfigurationOfTheFileSidecarContainerThatHandleDownloadAndUploadOfFiles1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheFilesToCreateOnTheLocalFilesystemItCanBeAMapOrAJSONObject40 {
-  [k: string]: string | undefined;
-}
 export interface TheYAMLMetadataOfThePod {
   [k: string]: unknown | undefined;
 }
 export interface TheYAMLSpecOfThePod {
-  [k: string]: unknown | undefined;
-}
-export interface InjectNamespaceFiles40 {
   [k: string]: unknown | undefined;
 }
 export interface IoKestraCoreModelsFlowsInputArrayInput1 {
@@ -26917,8 +25282,8 @@ export interface IoKestraCoreModelsFlowsInputIntInput1 {
   defaults?: unknown;
   description?: string;
   id: string;
-  max?: MaximalValue4;
-  min?: MinimalValue4;
+  max?: MaximalValue3;
+  min?: MinimalValue3;
   name?: string;
   required?: boolean;
   type:
@@ -27149,1822 +25514,478 @@ export interface IoKestraCoreModelsFlowsInputMultiselectInput1 {
   values?: ListOfValuesAvailable;
   [k: string]: unknown | undefined;
 }
-export interface TheInputsToPassToTheSubflowToBeExecuted1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheLabelsToPassToTheSubflowToBeExecuted1 {
-  [k: string]: unknown | undefined;
-}
 export interface IoKestraPluginCoreFlowDagDagTask {
   dependsOn?: TheListOfTaskIDsThatShouldHaveBeenSuccessfullyExecutedBeforeStartingThisTask;
   task:
     | (LogAMessageInTheTaskLogs & TheTaskWithinTheDAG)
-    | (ReturnAValueForDebuggingPurposes & TheTaskWithinTheDAG1)
-    | (ListExecutionCountsForAListOfFlow & TheTaskWithinTheDAG2)
-    | (FailTheExecution & TheTaskWithinTheDAG3)
-    | (AllowToAddOrOverwriteLabelsForTheCurrentExecutionAtRuntime & TheTaskWithinTheDAG4)
-    | (PurgeExecutionsLogsMetricsAndStorageFiles & TheTaskWithinTheDAG5)
+    | (ReturnAValueForDebuggingPurposes & TheTaskWithinTheDAG)
+    | (ListExecutionCountsForAListOfFlow & TheTaskWithinTheDAG)
+    | (FailTheExecution & TheTaskWithinTheDAG)
+    | (AllowToAddOrOverwriteLabelsForTheCurrentExecutionAtRuntime & TheTaskWithinTheDAG)
+    | (PurgeExecutionsLogsMetricsAndStorageFiles & TheTaskWithinTheDAG)
     | (ResumeAPausedExecutionByDefaultTheTaskAssumesThatYouWantToResumeTheCurrentExecutionIdIfYouWantToProgrammaticallyResumeAnExecutionOfAnotherFlowMakeSureToDefineTheExecutionIdFlowIdAndNamespacePropertiesExplicitlyUsingTheInputsPropertyYouCanAdditionallyPassCustomOnResumeInputValuesToTheExecution &
-        TheTaskWithinTheDAG6)
-    | (AllowAListOfTasksToFailWithoutStoppingTheExecutionOfDownstreamTasksInTheFlow & TheTaskWithinTheDAG7)
+        TheTaskWithinTheDAG)
+    | (AllowAListOfTasksToFailWithoutStoppingTheExecutionOfDownstreamTasksInTheFlow & TheTaskWithinTheDAG)
     | (CreateADirectedAcyclicGraphDAGOfTasksWithoutExplicitlySpecifyingTheOrderInWhichTheTasksNeedToRun &
-        TheTaskWithinTheDAG8)
-    | (ForEachValueInTheListExecuteOneOrMoreTasksInParallel & TheTaskWithinTheDAG9)
-    | (ForEachValueInTheListExecuteOneOrMoreTasksSequentially & TheTaskWithinTheDAG10)
-    | (ExecuteAGroupOfTasksForEachValueInTheList & TheTaskWithinTheDAG11)
-    | (ExecuteASubflowForEachBatchOfItems & TheTaskWithinTheDAG12)
-    | (ProcessTasksConditionallyDependingOnAContextualValue & TheTaskWithinTheDAG13)
-    | (RunTasksInParallel & TheTaskWithinTheDAG14)
+        TheTaskWithinTheDAG)
+    | (ForEachValueInTheListExecuteOneOrMoreTasksInParallel & TheTaskWithinTheDAG)
+    | (ForEachValueInTheListExecuteOneOrMoreTasksSequentially & TheTaskWithinTheDAG)
+    | (ExecuteAGroupOfTasksForEachValueInTheList & TheTaskWithinTheDAG)
+    | (ExecuteASubflowForEachBatchOfItems & TheTaskWithinTheDAG)
+    | (ProcessTasksConditionallyDependingOnAContextualValue & TheTaskWithinTheDAG)
+    | (RunTasksInParallel & TheTaskWithinTheDAG)
     | (PauseTheCurrentExecutionAndWaitForAManualApprovalEitherByHumansOrOtherAutomatedProcessesAllTasksDownstreamFromThePauseTaskWillBePutOnHoldUntilTheExecutionIsManuallyResumedFromTheUITheExecutionWillBeInAPausedStateMarkedInPurple_AndYouCanManuallyResumeItByClickingOnTheResumeButtonInTheUIOrByCallingThePOSTAPIEndpointApiV1ExecutionsExecutionIdResumeTheExecutionCanAlsoBeResumedAutomaticallyAfterATimeout &
-        TheTaskWithinTheDAG15)
-    | (RunTasksSequentiallyOneAfterTheOtherInTheOrderTheyAreDefined & TheTaskWithinTheDAG16)
+        TheTaskWithinTheDAG)
+    | (RunTasksSequentiallyOneAfterTheOtherInTheOrderTheyAreDefined & TheTaskWithinTheDAG)
     | (CreateASubflowExecutionSubflowsOfferAModularWayToReuseWorkflowLogicByCallingOtherFlowsJustLikeCallingAFunctionInAProgrammingLanguage &
-        TheTaskWithinTheDAG17)
-    | (RunTasksConditionallyIEDecideWhichBranchOfTasksShouldBeExecutedBasedOnAGivenValue & TheTaskWithinTheDAG18)
-    | (IncludeAReusableTemplateInsideAFlow & TheTaskWithinTheDAG19)
-    | (RunAListOfTasksRepeatedlyUntilTheExpectedConditionIsMet & TheTaskWithinTheDAG20)
-    | (RunTasksSequentiallyInTheSameWorkingDirectory & TheTaskWithinTheDAG21)
-    | (DownloadAFileFromAHTTPServer & TheTaskWithinTheDAG22)
-    | (MakeAnHTTPAPIRequestToASpecifiedURLAndStoreTheResponseAsOutput & TheTaskWithinTheDAG23)
-    | (DeletesAKVPair & TheTaskWithinTheDAG24)
-    | (GetsValueLinkedToAKey & TheTaskWithinTheDAG25)
-    | (GetsKeysMatchingAGivenPrefix & TheTaskWithinTheDAG26)
-    | (SetsOrModifiesAKVPair & TheTaskWithinTheDAG27)
-    | (FetchExecutionLogsAndStoreThemInAFile & TheTaskWithinTheDAG28)
-    | (LogAMessageToTheConsole & TheTaskWithinTheDAG29)
-    | (PurgeFlowExecutionAndTriggerLogs & TheTaskWithinTheDAG30)
-    | (DeleteOneOrMultipleFilesFromYourNamespaceFiles & TheTaskWithinTheDAG31)
-    | (DownloadOneOrMultipleFilesFromYourNamespaceFiles & TheTaskWithinTheDAG32)
-    | (UploadOneOrMultipleFilesToASpecificNamespace & TheTaskWithinTheDAG33)
-    | (OutputOneOrMoreValues & TheTaskWithinTheDAG34)
-    | (DeleteAStateFromTheStateStore & TheTaskWithinTheDAG35)
-    | (GetAStateFromTheStateStore & TheTaskWithinTheDAG36)
-    | (SetAStateInTheStateStore & TheTaskWithinTheDAG37)
-    | (ConcatFilesFromTheInternalStorage & TheTaskWithinTheDAG38)
-    | (DeduplicateAFileByRetainingOnlyTheLatestItemForEachExtractedKey & TheTaskWithinTheDAG39)
-    | (DeleteAFileFromTheKestraSInternalStorage & TheTaskWithinTheDAG40)
-    | (FilterAFileByRetainingOnlyTheItemsThatMatchAGivenExpression & TheTaskWithinTheDAG41)
+        TheTaskWithinTheDAG)
+    | (RunTasksConditionallyIEDecideWhichBranchOfTasksShouldBeExecutedBasedOnAGivenValue & TheTaskWithinTheDAG)
+    | (IncludeAReusableTemplateInsideAFlow & TheTaskWithinTheDAG)
+    | (RunAListOfTasksRepeatedlyUntilTheExpectedConditionIsMet & TheTaskWithinTheDAG)
+    | (RunTasksSequentiallyInTheSameWorkingDirectory & TheTaskWithinTheDAG)
+    | (DownloadAFileFromAHTTPServer & TheTaskWithinTheDAG)
+    | (MakeAnHTTPAPIRequestToASpecifiedURLAndStoreTheResponseAsOutput & TheTaskWithinTheDAG)
+    | (DeletesAKVPair & TheTaskWithinTheDAG)
+    | (GetsValueLinkedToAKey & TheTaskWithinTheDAG)
+    | (GetsKeysMatchingAGivenPrefix & TheTaskWithinTheDAG)
+    | (SetsOrModifiesAKVPair & TheTaskWithinTheDAG)
+    | (FetchExecutionLogsAndStoreThemInAFile & TheTaskWithinTheDAG)
+    | (LogAMessageToTheConsole & TheTaskWithinTheDAG)
+    | (PurgeFlowExecutionAndTriggerLogs & TheTaskWithinTheDAG)
+    | (DeleteOneOrMultipleFilesFromYourNamespaceFiles & TheTaskWithinTheDAG)
+    | (DownloadOneOrMultipleFilesFromYourNamespaceFiles & TheTaskWithinTheDAG)
+    | (UploadOneOrMultipleFilesToASpecificNamespace & TheTaskWithinTheDAG)
+    | (OutputOneOrMoreValues & TheTaskWithinTheDAG)
+    | (DeleteAStateFromTheStateStore & TheTaskWithinTheDAG)
+    | (GetAStateFromTheStateStore & TheTaskWithinTheDAG)
+    | (SetAStateInTheStateStore & TheTaskWithinTheDAG)
+    | (ConcatFilesFromTheInternalStorage & TheTaskWithinTheDAG)
+    | (DeduplicateAFileByRetainingOnlyTheLatestItemForEachExtractedKey & TheTaskWithinTheDAG)
+    | (DeleteAFileFromTheKestraSInternalStorage & TheTaskWithinTheDAG)
+    | (FilterAFileByRetainingOnlyTheItemsThatMatchAGivenExpression & TheTaskWithinTheDAG)
     | (AllowToCreateFilesInTheLocalFilesystemOrToSendFilesFromTheLocalFilesystemToTheKestraSInternalStorage &
-        TheTaskWithinTheDAG42)
-    | (PurgeAllFilesFromKestraSInternalStorageCreatedByThisExecution & TheTaskWithinTheDAG43)
-    | (ReserveAFileFromTheKestraSInternalStorageLastLineFirst & TheTaskWithinTheDAG44)
-    | (GetTheSizeOfAFileFromTheKestraSInternalStorage & TheTaskWithinTheDAG45)
-    | (SplitAFileFromTheKestraSInternalStorageIntoMultipleFiles & TheTaskWithinTheDAG46)
+        TheTaskWithinTheDAG)
+    | (PurgeAllFilesFromKestraSInternalStorageCreatedByThisExecution & TheTaskWithinTheDAG)
+    | (ReserveAFileFromTheKestraSInternalStorageLastLineFirst & TheTaskWithinTheDAG)
+    | (GetTheSizeOfAFileFromTheKestraSInternalStorage & TheTaskWithinTheDAG)
+    | (SplitAFileFromTheKestraSInternalStorageIntoMultipleFiles & TheTaskWithinTheDAG)
     | (ThisTaskSSpecPropertyAllowsYouToFullyTemplateAllTaskPropertiesUsingKestraSPebbleTemplatingThisWayAllTaskPropertiesAndTheirValuesCanBeDynamicallyRenderedBasedOnYourCustomInputsVariablesAndOutputsFromOtherTasks &
-        TheTaskWithinTheDAG47)
-    | (ToggleATriggerEnableOrDisableIt & TheTaskWithinTheDAG48)
-    | (TriggerAHightouchSyncAndOptionallyWaitForItsCompletion & TheTaskWithinTheDAG49)
-    | (QueryAApacheDruidDatabase & TheTaskWithinTheDAG50)
-    | (SearchForGitHubCode & TheTaskWithinTheDAG51)
-    | (SearchForGitHubCommits & TheTaskWithinTheDAG52)
-    | (CreateGitHubIssueComment & TheTaskWithinTheDAG53)
-    | (CreateAGitHubIssue & TheTaskWithinTheDAG54)
-    | (SearchForGitHubIssues & TheTaskWithinTheDAG55)
-    | (CreateAPullRequest & TheTaskWithinTheDAG56)
-    | (SearchForGitHubPullRequests & TheTaskWithinTheDAG57)
-    | (SearchForGitHubRepositories & TheTaskWithinTheDAG58)
-    | (SearchForGitHubTopics & TheTaskWithinTheDAG59)
-    | (SearchForGitHubUsers & TheTaskWithinTheDAG60)
-    | (BatchInsertDataToAWeaviateDatabase & TheTaskWithinTheDAG61)
-    | (DeleteSpecificObjectsInAWeaviateDatabase & TheTaskWithinTheDAG62)
-    | (QueryWeaviateDatabaseWithGraphQL & TheTaskWithinTheDAG63)
-    | (CreateAClassSchemaInAWeaviateDatabase & TheTaskWithinTheDAG64)
-    | (QueryADB2Database & TheTaskWithinTheDAG65)
-    | (CopyAFileBetweenBuckets & TheTaskWithinTheDAG66)
-    | (CreateABucket & TheTaskWithinTheDAG67)
-    | (DeleteAFileFromABucket & TheTaskWithinTheDAG68)
-    | (DeleteAListOfKeysOnABucket & TheTaskWithinTheDAG69)
-    | (DownloadAFileFromABucket & TheTaskWithinTheDAG70)
-    | (DownloadsMultipleFilesFromABucket & TheTaskWithinTheDAG71)
-    | (ListKeysOnABucket & TheTaskWithinTheDAG72)
-    | (UploadAFileToABucket & TheTaskWithinTheDAG73)
-    | (RunASodaScan & TheTaskWithinTheDAG74)
-    | (ExecuteModalCommandsFromTheCommandLineInterface & TheTaskWithinTheDAG75)
-    | (QueryARocksetServer & TheTaskWithinTheDAG76)
-    | (ExecuteABashScriptCommandOrSetOfCommands & TheTaskWithinTheDAG77)
-    | (ExecuteOneOrMoreShellCommands & TheTaskWithinTheDAG78)
-    | (ExecuteAShellScript & TheTaskWithinTheDAG79)
-    | (ExecuteBulkHttpsWwwMongodbComDocsManualReferenceMethodBulkRequestInMongoDB & TheTaskWithinTheDAG80)
-    | (DeleteOneOrManyDocumentsFromAMongoDBCollection & TheTaskWithinTheDAG81)
-    | (FindDocumentsFromAMongoDBCollection & TheTaskWithinTheDAG82)
-    | (InsertADocumentIntoAMongoDBCollection & TheTaskWithinTheDAG83)
-    | (BulkLoadDocumentsInMongoDBUsingKestraInternalStorageFile & TheTaskWithinTheDAG84)
-    | (UpdateOrReplaceOneOrManyDocumentsInAMongoDBCollection & TheTaskWithinTheDAG85)
-    | (WaitForChangeDataCaptureEventOnPostgreSQLServer & TheTaskWithinTheDAG86)
+        TheTaskWithinTheDAG)
+    | (ToggleATriggerEnableOrDisableIt & TheTaskWithinTheDAG)
+    | (TriggerAHightouchSyncAndOptionallyWaitForItsCompletion & TheTaskWithinTheDAG)
+    | (QueryAApacheDruidDatabase & TheTaskWithinTheDAG)
+    | (SearchForGitHubCode & TheTaskWithinTheDAG)
+    | (SearchForGitHubCommits & TheTaskWithinTheDAG)
+    | (CreateGitHubIssueComment & TheTaskWithinTheDAG)
+    | (CreateAGitHubIssue & TheTaskWithinTheDAG)
+    | (SearchForGitHubIssues & TheTaskWithinTheDAG)
+    | (CreateAPullRequest & TheTaskWithinTheDAG)
+    | (SearchForGitHubPullRequests & TheTaskWithinTheDAG)
+    | (SearchForGitHubRepositories & TheTaskWithinTheDAG)
+    | (SearchForGitHubTopics & TheTaskWithinTheDAG)
+    | (SearchForGitHubUsers & TheTaskWithinTheDAG)
+    | (BatchInsertDataToAWeaviateDatabase & TheTaskWithinTheDAG)
+    | (DeleteSpecificObjectsInAWeaviateDatabase & TheTaskWithinTheDAG)
+    | (QueryWeaviateDatabaseWithGraphQL & TheTaskWithinTheDAG)
+    | (CreateAClassSchemaInAWeaviateDatabase & TheTaskWithinTheDAG)
+    | (QueryADB2Database & TheTaskWithinTheDAG)
+    | (CopyAFileBetweenBuckets & TheTaskWithinTheDAG)
+    | (CreateABucket & TheTaskWithinTheDAG)
+    | (DeleteAFileFromABucket & TheTaskWithinTheDAG)
+    | (DeleteAListOfKeysOnABucket & TheTaskWithinTheDAG)
+    | (DownloadAFileFromABucket & TheTaskWithinTheDAG)
+    | (DownloadsMultipleFilesFromABucket & TheTaskWithinTheDAG)
+    | (ListKeysOnABucket & TheTaskWithinTheDAG)
+    | (UploadAFileToABucket & TheTaskWithinTheDAG)
+    | (RunASodaScan & TheTaskWithinTheDAG)
+    | (ExecuteModalCommandsFromTheCommandLineInterface & TheTaskWithinTheDAG)
+    | (QueryARocksetServer & TheTaskWithinTheDAG)
+    | (ExecuteABashScriptCommandOrSetOfCommands & TheTaskWithinTheDAG)
+    | (ExecuteOneOrMoreShellCommands & TheTaskWithinTheDAG)
+    | (ExecuteAShellScript & TheTaskWithinTheDAG)
+    | (ExecuteBulkHttpsWwwMongodbComDocsManualReferenceMethodBulkRequestInMongoDB & TheTaskWithinTheDAG)
+    | (DeleteOneOrManyDocumentsFromAMongoDBCollection & TheTaskWithinTheDAG)
+    | (FindDocumentsFromAMongoDBCollection & TheTaskWithinTheDAG)
+    | (InsertADocumentIntoAMongoDBCollection & TheTaskWithinTheDAG)
+    | (BulkLoadDocumentsInMongoDBUsingKestraInternalStorageFile & TheTaskWithinTheDAG)
+    | (UpdateOrReplaceOneOrManyDocumentsInAMongoDBCollection & TheTaskWithinTheDAG)
+    | (WaitForChangeDataCaptureEventOnPostgreSQLServer & TheTaskWithinTheDAG)
     | (QueryDataUsingTrinoQueryEngineMakeSureNOTToIncludeSemicolonAtTheEndOfYourSQLQueryAddingSemicolonAtTheEndWillResultInAnErrorIfYouWantToTestThisIntegrationSearchForTrinoInBlueprintsYouLlFindDetailedInstructionsThere &
-        TheTaskWithinTheDAG87)
-    | (CompressAnArchiveFile & TheTaskWithinTheDAG88)
-    | (DecompressAnArchiveFile & TheTaskWithinTheDAG89)
-    | (CompressAFile & TheTaskWithinTheDAG90)
-    | (DecompressAFile & TheTaskWithinTheDAG91)
-    | (QueryADuckDbDatabase & TheTaskWithinTheDAG92)
-    | (OrchestrateADataformProject & TheTaskWithinTheDAG93)
-    | (QueryACouchbaseDatabaseWithN1QL & TheTaskWithinTheDAG94)
-    | (ExecuteABatchQueryOnAMicrosoftSQLServer & TheTaskWithinTheDAG95)
-    | (QueryAMicrosoftSQLServer & TheTaskWithinTheDAG96)
-    | (TriggersARefreshForTheSpecifiedDatasetFromTheSpecifiedWorkspace & TheTaskWithinTheDAG97)
-    | (BuildADockerImageAndPushItToARemoteContainerRegistry & TheTaskWithinTheDAG98)
-    | (RunADockerContainer & TheTaskWithinTheDAG99)
-    | (ExecuteABatchQueryToAOracleServer & TheTaskWithinTheDAG100)
-    | (QueryAnOracleDatabase & TheTaskWithinTheDAG101)
-    | (OpensNewTicketAtZendesk & TheTaskWithinTheDAG102)
-    | (WaitForChangeDataCaptureEventOnMySQLServer & TheTaskWithinTheDAG103)
-    | (DeleteAFileToAFTPServer & TheTaskWithinTheDAG104)
-    | (DownloadFileFromFTPServer & TheTaskWithinTheDAG105)
-    | (DownloadMultipleFilesFromFTPServer & TheTaskWithinTheDAG106)
-    | (ListFilesFromFTPServerDirectory & TheTaskWithinTheDAG107)
-    | (MoveAFileToAFTPServer & TheTaskWithinTheDAG108)
-    | (UploadAFileToAFTPServer & TheTaskWithinTheDAG109)
-    | (UploadFilesToAFTPServerSDirectory & TheTaskWithinTheDAG110)
-    | (DeleteAFileToAFTPSServer & TheTaskWithinTheDAG111)
-    | (DownloadFileFromFTPSServer & TheTaskWithinTheDAG112)
-    | (DownloadMultipleFilesFromFTPSServer & TheTaskWithinTheDAG113)
-    | (ListFilesFromFTPSServerDirectory & TheTaskWithinTheDAG114)
-    | (MoveAFileToAFTPSServer & TheTaskWithinTheDAG115)
-    | (UploadAFileToAFTPSServer & TheTaskWithinTheDAG116)
-    | (UploadFilesToAFTPSServerSDirectory & TheTaskWithinTheDAG117)
-    | (DeleteAFileToASFTPServer & TheTaskWithinTheDAG118)
-    | (DownloadFileFromSFTPServer & TheTaskWithinTheDAG119)
-    | (DownloadMultipleFilesFromSFTPServer & TheTaskWithinTheDAG120)
-    | (ListFilesFromASFTPServerDirectory & TheTaskWithinTheDAG121)
-    | (MoveAFileToASFTPServer & TheTaskWithinTheDAG122)
-    | (UploadAFileToASftpServer & TheTaskWithinTheDAG123)
-    | (UploadFilesToASFTPServerSDirectory & TheTaskWithinTheDAG124)
-    | (DeleteAFileFromASMBSambaForEgServer & TheTaskWithinTheDAG125)
-    | (DownloadFileFromSMBSambaForEgServer & TheTaskWithinTheDAG126)
-    | (DownloadMultipleFilesFromASMBSambaForEgServer & TheTaskWithinTheDAG127)
-    | (ListFilesFromASMBSambaForEgServerDirectory & TheTaskWithinTheDAG128)
-    | (MoveAFileToADifferentShareFolderOnASMBSambaForEgServer & TheTaskWithinTheDAG129)
-    | (UploadAFileToASMBSambaForEgServer & TheTaskWithinTheDAG130)
-    | (UploadFilesToASMBSambaForEgServerSDirectory & TheTaskWithinTheDAG131)
-    | (SendACommandToARemoteServerUsingSSH & TheTaskWithinTheDAG132)
-    | (WaitForChangeDataCaptureEventOnMicrosoftSQLServer & TheTaskWithinTheDAG133)
-    | (ExecuteABatchQueryToAPostgreSQLServer & TheTaskWithinTheDAG134)
-    | (CopyAPostgreSQLTableOrAQueryToAFile & TheTaskWithinTheDAG135)
-    | (CopyTabularDataFromAPostgreSQLTableToAFile & TheTaskWithinTheDAG136)
-    | (QueryAPostgreSQLServer & TheTaskWithinTheDAG137)
+        TheTaskWithinTheDAG)
+    | (CompressAnArchiveFile & TheTaskWithinTheDAG)
+    | (DecompressAnArchiveFile & TheTaskWithinTheDAG)
+    | (CompressAFile & TheTaskWithinTheDAG)
+    | (DecompressAFile & TheTaskWithinTheDAG)
+    | (QueryADuckDbDatabase & TheTaskWithinTheDAG)
+    | (OrchestrateADataformProject & TheTaskWithinTheDAG)
+    | (QueryACouchbaseDatabaseWithN1QL & TheTaskWithinTheDAG)
+    | (ExecuteABatchQueryOnAMicrosoftSQLServer & TheTaskWithinTheDAG)
+    | (QueryAMicrosoftSQLServer & TheTaskWithinTheDAG)
+    | (TriggersARefreshForTheSpecifiedDatasetFromTheSpecifiedWorkspace & TheTaskWithinTheDAG)
+    | (BuildADockerImageAndPushItToARemoteContainerRegistry & TheTaskWithinTheDAG)
+    | (RunADockerContainer & TheTaskWithinTheDAG)
+    | (ExecuteABatchQueryToAOracleServer & TheTaskWithinTheDAG)
+    | (QueryAnOracleDatabase & TheTaskWithinTheDAG)
+    | (OpensNewTicketAtZendesk & TheTaskWithinTheDAG)
+    | (WaitForChangeDataCaptureEventOnMySQLServer & TheTaskWithinTheDAG)
+    | (DeleteAFileToAFTPServer & TheTaskWithinTheDAG)
+    | (DownloadFileFromFTPServer & TheTaskWithinTheDAG)
+    | (DownloadMultipleFilesFromFTPServer & TheTaskWithinTheDAG)
+    | (ListFilesFromFTPServerDirectory & TheTaskWithinTheDAG)
+    | (MoveAFileToAFTPServer & TheTaskWithinTheDAG)
+    | (UploadAFileToAFTPServer & TheTaskWithinTheDAG)
+    | (UploadFilesToAFTPServerSDirectory & TheTaskWithinTheDAG)
+    | (DeleteAFileToAFTPSServer & TheTaskWithinTheDAG)
+    | (DownloadFileFromFTPSServer & TheTaskWithinTheDAG)
+    | (DownloadMultipleFilesFromFTPSServer & TheTaskWithinTheDAG)
+    | (ListFilesFromFTPSServerDirectory & TheTaskWithinTheDAG)
+    | (MoveAFileToAFTPSServer & TheTaskWithinTheDAG)
+    | (UploadAFileToAFTPSServer & TheTaskWithinTheDAG)
+    | (UploadFilesToAFTPSServerSDirectory & TheTaskWithinTheDAG)
+    | (DeleteAFileToASFTPServer & TheTaskWithinTheDAG)
+    | (DownloadFileFromSFTPServer & TheTaskWithinTheDAG)
+    | (DownloadMultipleFilesFromSFTPServer & TheTaskWithinTheDAG)
+    | (ListFilesFromASFTPServerDirectory & TheTaskWithinTheDAG)
+    | (MoveAFileToASFTPServer & TheTaskWithinTheDAG)
+    | (UploadAFileToASftpServer & TheTaskWithinTheDAG)
+    | (UploadFilesToASFTPServerSDirectory & TheTaskWithinTheDAG)
+    | (DeleteAFileFromASMBSambaForEgServer & TheTaskWithinTheDAG)
+    | (DownloadFileFromSMBSambaForEgServer & TheTaskWithinTheDAG)
+    | (DownloadMultipleFilesFromASMBSambaForEgServer & TheTaskWithinTheDAG)
+    | (ListFilesFromASMBSambaForEgServerDirectory & TheTaskWithinTheDAG)
+    | (MoveAFileToADifferentShareFolderOnASMBSambaForEgServer & TheTaskWithinTheDAG)
+    | (UploadAFileToASMBSambaForEgServer & TheTaskWithinTheDAG)
+    | (UploadFilesToASMBSambaForEgServerSDirectory & TheTaskWithinTheDAG)
+    | (SendACommandToARemoteServerUsingSSH & TheTaskWithinTheDAG)
+    | (WaitForChangeDataCaptureEventOnMicrosoftSQLServer & TheTaskWithinTheDAG)
+    | (ExecuteABatchQueryToAPostgreSQLServer & TheTaskWithinTheDAG)
+    | (CopyAPostgreSQLTableOrAQueryToAFile & TheTaskWithinTheDAG)
+    | (CopyTabularDataFromAPostgreSQLTableToAFile & TheTaskWithinTheDAG)
+    | (QueryAPostgreSQLServer & TheTaskWithinTheDAG)
     | (GivenAPromptGetAResponseFromAnLLMUsingTheOpenAISChatCompletionsAPIHttpsPlatformOpenaiComDocsApiReferenceChatCreate &
-        TheTaskWithinTheDAG138)
-    | (GivenAPromptCreateAnImage & TheTaskWithinTheDAG139)
-    | (WaitForChangeDataCaptureEventOnDb2Server & TheTaskWithinTheDAG140)
-    | (CreateAJiraTicketBasedOnWorkflowExecutionStatus & TheTaskWithinTheDAG141)
-    | (CommentOnAJiraTicketBasedOnWorkflowExecutionStatus & TheTaskWithinTheDAG142)
-    | (ExecuteAPythonScript & TheTaskWithinTheDAG143)
-    | (ExecuteOneOrMorePythonScriptsFromACommandLineInterface & TheTaskWithinTheDAG144)
-    | (ExecuteAPythonScript1 & TheTaskWithinTheDAG145)
-    | (ParseADocumentAndExtractItsContentAndMetadata & TheTaskWithinTheDAG146)
-    | (ExecuteAJythonScript & TheTaskWithinTheDAG147)
-    | (TransformIonFormatFileFromKestraWithAGroovyScript & TheTaskWithinTheDAG148)
-    | (SubmitASparkJobToARemoteClusterUsingAJARFile & TheTaskWithinTheDAG149)
-    | (SubmitAPySparkJobToARemoteCluster & TheTaskWithinTheDAG150)
-    | (SubmitAnRJobToARemoteCluster & TheTaskWithinTheDAG151)
-    | (ExecuteSparkCLICommands & TheTaskWithinTheDAG152)
-    | (CloneARepository & TheTaskWithinTheDAG153)
-    | (CommitAndPushFilesToAGitRepository & TheTaskWithinTheDAG154)
-    | (CommitAndPushYourSavedFlowsToAGitRepository & TheTaskWithinTheDAG155)
-    | (CommitAndPushNamespaceFilesCreatedFromKestraUIToGit & TheTaskWithinTheDAG156)
-    | (SynchronizesTheCodeForNamespaceFilesAndFlowsBasedOnTheCurrentStateInGit & TheTaskWithinTheDAG157)
-    | (SyncFlowsFromGitToKestra & TheTaskWithinTheDAG158)
-    | (SyncNamespaceFilesFromGitToKestra & TheTaskWithinTheDAG159)
-    | (WaitForChangeDataCaptureEventOnOracleServer & TheTaskWithinTheDAG160)
-    | (InsertDataInsideAServiceNowTable & TheTaskWithinTheDAG161)
-    | (QueryASybaseDatabase & TheTaskWithinTheDAG162)
-    | (QueryAAS400Database & TheTaskWithinTheDAG163)
-    | (BulkInsertNewRowsIntoAClickHouseDatabase & TheTaskWithinTheDAG164)
-    | (QueryAClickhouseDatabase & TheTaskWithinTheDAG165)
-    | (RemovesAndReturnsAnElementFromTheHeadOfAList & TheTaskWithinTheDAG166)
-    | (AddsANewElementToTheHeadOfAList & TheTaskWithinTheDAG167)
-    | (PublishOneOrMultipleValuesToAChannel & TheTaskWithinTheDAG168)
-    | (DeleteOneOrMoreKeys & TheTaskWithinTheDAG169)
-    | (GetAKey & TheTaskWithinTheDAG170)
-    | (SetTheStringValueOfAKey & TheTaskWithinTheDAG171)
-    | (OpensIssueInLinear & TheTaskWithinTheDAG172)
-    | (ExecuteABatchQueryToANeo4JDatabase & TheTaskWithinTheDAG173)
-    | (ExecuteAQueryToANeo4JDatabase & TheTaskWithinTheDAG174)
-    | (CreatesTicketInHubspot & TheTaskWithinTheDAG175)
-    | (ExecuteCloudQueryCommandsFromACLI & TheTaskWithinTheDAG176)
-    | (ExecuteACloudQuerySync & TheTaskWithinTheDAG177)
-    | (ConsumeMessagesFromANATSSubjectOnAJetStreamEnabledNATSServer & TheTaskWithinTheDAG178)
-    | (ProduceMessagesToANATSSubjectOnANATSServer & TheTaskWithinTheDAG179)
-    | (ConsumeMessagesFromAnAMQPQueue & TheTaskWithinTheDAG180)
-    | (CreateAQueue & TheTaskWithinTheDAG181)
-    | (CreateAnExchange & TheTaskWithinTheDAG182)
-    | (PublishAMessageToAnAMQPExchange & TheTaskWithinTheDAG183)
-    | (BindAQueueToAnExchange & TheTaskWithinTheDAG184)
-    | (SendADiscordMessageWithTheExecutionInformation & TheTaskWithinTheDAG185)
-    | (SendADiscordMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG186)
-    | (SendAGoogleChatMessageWithTheExecutionInformation & TheTaskWithinTheDAG187)
-    | (SendAGoogleChatMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG188)
-    | (SendAnEmailWithTheExecutionInformation & TheTaskWithinTheDAG189)
-    | (SendAnAutomatedEmailFromAWorkflow & TheTaskWithinTheDAG190)
-    | (SendAnAlertToOpsgenie & TheTaskWithinTheDAG191)
-    | (SendANotificationWithTheExecutionInformationViaOpsgenie & TheTaskWithinTheDAG192)
-    | (SendAPagerDutyAlert & TheTaskWithinTheDAG193)
-    | (SendAPagerDutyMessageWithTheExecutionInformation & TheTaskWithinTheDAG194)
-    | (SendAnSendGridEmailWithTheExecutionInformation & TheTaskWithinTheDAG195)
-    | (SendAnAutomatedSendGridEmailFromAWorkflow & TheTaskWithinTheDAG196)
-    | (SendASentryAlertWhenASpecificFlowOrTaskFails & TheTaskWithinTheDAG197)
-    | (SendASentryAlertWithTheExecutionInformation & TheTaskWithinTheDAG198)
-    | (SendASlackMessageWithTheExecutionInformation & TheTaskWithinTheDAG199)
-    | (SendASlackMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG200)
-    | (SendAMicrosoftTeamsMessageWithTheExecutionInformation & TheTaskWithinTheDAG201)
-    | (SendAMicrosoftTeamsMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG202)
-    | (SendATelegramMessageWithTheExecutionInformation & TheTaskWithinTheDAG203)
-    | (IoKestraPluginNotificationsTelegramTelegramSend & TheTaskWithinTheDAG204)
-    | (SendATwilioMessageUsingAnNotificationAPI & TheTaskWithinTheDAG205)
-    | (SendATwilioMessageWithTheExecutionInformation & TheTaskWithinTheDAG206)
-    | (SendAWhatsAppMessageWithTheExecutionInformation & TheTaskWithinTheDAG207)
-    | (SendAWhatsAppMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG208)
-    | (SendAZendutyAlert & TheTaskWithinTheDAG209)
-    | (SendAZendutyMessageWithTheExecutionInformation & TheTaskWithinTheDAG210)
-    | (CreateAAzureBatchJobWithTasks & TheTaskWithinTheDAG211)
-    | (ResizeAAzureBatchPool & TheTaskWithinTheDAG212)
+        TheTaskWithinTheDAG)
+    | (GivenAPromptCreateAnImage & TheTaskWithinTheDAG)
+    | (WaitForChangeDataCaptureEventOnDb2Server & TheTaskWithinTheDAG)
+    | (CreateAJiraTicketBasedOnWorkflowExecutionStatus & TheTaskWithinTheDAG)
+    | (CommentOnAJiraTicketBasedOnWorkflowExecutionStatus & TheTaskWithinTheDAG)
+    | (ExecuteAPythonScript & TheTaskWithinTheDAG)
+    | (ExecuteOneOrMorePythonScriptsFromACommandLineInterface & TheTaskWithinTheDAG)
+    | (ExecuteAPythonScript1 & TheTaskWithinTheDAG)
+    | (ParseADocumentAndExtractItsContentAndMetadata & TheTaskWithinTheDAG)
+    | (ExecuteAJythonScript & TheTaskWithinTheDAG)
+    | (TransformIonFormatFileFromKestraWithAGroovyScript & TheTaskWithinTheDAG)
+    | (SubmitASparkJobToARemoteClusterUsingAJARFile & TheTaskWithinTheDAG)
+    | (SubmitAPySparkJobToARemoteCluster & TheTaskWithinTheDAG)
+    | (SubmitAnRJobToARemoteCluster & TheTaskWithinTheDAG)
+    | (ExecuteSparkCLICommands & TheTaskWithinTheDAG)
+    | (CloneARepository & TheTaskWithinTheDAG)
+    | (CommitAndPushFilesToAGitRepository & TheTaskWithinTheDAG)
+    | (CommitAndPushYourSavedFlowsToAGitRepository & TheTaskWithinTheDAG)
+    | (CommitAndPushNamespaceFilesCreatedFromKestraUIToGit & TheTaskWithinTheDAG)
+    | (SynchronizesTheCodeForNamespaceFilesAndFlowsBasedOnTheCurrentStateInGit & TheTaskWithinTheDAG)
+    | (SyncFlowsFromGitToKestra & TheTaskWithinTheDAG)
+    | (SyncNamespaceFilesFromGitToKestra & TheTaskWithinTheDAG)
+    | (WaitForChangeDataCaptureEventOnOracleServer & TheTaskWithinTheDAG)
+    | (InsertDataInsideAServiceNowTable & TheTaskWithinTheDAG)
+    | (QueryASybaseDatabase & TheTaskWithinTheDAG)
+    | (QueryAAS400Database & TheTaskWithinTheDAG)
+    | (BulkInsertNewRowsIntoAClickHouseDatabase & TheTaskWithinTheDAG)
+    | (QueryAClickhouseDatabase & TheTaskWithinTheDAG)
+    | (RemovesAndReturnsAnElementFromTheHeadOfAList & TheTaskWithinTheDAG)
+    | (AddsANewElementToTheHeadOfAList & TheTaskWithinTheDAG)
+    | (PublishOneOrMultipleValuesToAChannel & TheTaskWithinTheDAG)
+    | (DeleteOneOrMoreKeys & TheTaskWithinTheDAG)
+    | (GetAKey & TheTaskWithinTheDAG)
+    | (SetTheStringValueOfAKey & TheTaskWithinTheDAG)
+    | (OpensIssueInLinear & TheTaskWithinTheDAG)
+    | (ExecuteABatchQueryToANeo4JDatabase & TheTaskWithinTheDAG)
+    | (ExecuteAQueryToANeo4JDatabase & TheTaskWithinTheDAG)
+    | (CreatesTicketInHubspot & TheTaskWithinTheDAG)
+    | (ExecuteCloudQueryCommandsFromACLI & TheTaskWithinTheDAG)
+    | (ExecuteACloudQuerySync & TheTaskWithinTheDAG)
+    | (ConsumeMessagesFromANATSSubjectOnAJetStreamEnabledNATSServer & TheTaskWithinTheDAG)
+    | (ProduceMessagesToANATSSubjectOnANATSServer & TheTaskWithinTheDAG)
+    | (ConsumeMessagesFromAnAMQPQueue & TheTaskWithinTheDAG)
+    | (CreateAQueue & TheTaskWithinTheDAG)
+    | (CreateAnExchange & TheTaskWithinTheDAG)
+    | (PublishAMessageToAnAMQPExchange & TheTaskWithinTheDAG)
+    | (BindAQueueToAnExchange & TheTaskWithinTheDAG)
+    | (SendADiscordMessageWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendADiscordMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG)
+    | (SendAGoogleChatMessageWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendAGoogleChatMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG)
+    | (SendAnEmailWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendAnAutomatedEmailFromAWorkflow & TheTaskWithinTheDAG)
+    | (SendAnAlertToOpsgenie & TheTaskWithinTheDAG)
+    | (SendANotificationWithTheExecutionInformationViaOpsgenie & TheTaskWithinTheDAG)
+    | (SendAPagerDutyAlert & TheTaskWithinTheDAG)
+    | (SendAPagerDutyMessageWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendAnSendGridEmailWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendAnAutomatedSendGridEmailFromAWorkflow & TheTaskWithinTheDAG)
+    | (SendASentryAlertWhenASpecificFlowOrTaskFails & TheTaskWithinTheDAG)
+    | (SendASentryAlertWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendASlackMessageWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendASlackMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG)
+    | (SendAMicrosoftTeamsMessageWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendAMicrosoftTeamsMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG)
+    | (SendATelegramMessageWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (IoKestraPluginNotificationsTelegramTelegramSend & TheTaskWithinTheDAG)
+    | (SendATwilioMessageUsingAnNotificationAPI & TheTaskWithinTheDAG)
+    | (SendATwilioMessageWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendAWhatsAppMessageWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (SendAWhatsAppMessageUsingAnIncomingWebhook & TheTaskWithinTheDAG)
+    | (SendAZendutyAlert & TheTaskWithinTheDAG)
+    | (SendAZendutyMessageWithTheExecutionInformation & TheTaskWithinTheDAG)
+    | (CreateAAzureBatchJobWithTasks & TheTaskWithinTheDAG)
+    | (ResizeAAzureBatchPool & TheTaskWithinTheDAG)
     | (ExecuteOneOrMoreAzCommandsFromACommandLineInterfaceWeRecommendUsingAServicePrincipalAndAClientSecretForAuthenticationToCreateAServicePrincipalAndClientSecretYouCanUseTheFollowingDocumentationHttpsRegistryTerraformIoProvidersHashicorpAzurermLatestDocsGuidesServicePrincipalClientSecretThenUseTheGeneratedAppIdAsTheUsernameAndTheGeneratedPasswordAsThePasswordInTheKestraTaskConfigurationFinallyPassTheReturnedTenantIdToTheTenantFieldInTheKestraTaskConfigurationAndSetServicePrincipalToTrue &
-        TheTaskWithinTheDAG213)
-    | (ConsumeEventsFromAzureEventHubs & TheTaskWithinTheDAG214)
-    | (PublishEventsToAzureEventHubs & TheTaskWithinTheDAG215)
-    | (CopyAFileBetweenAzureBlobStorage & TheTaskWithinTheDAG216)
-    | (DeleteAFileFromTheAzureBlobStorage & TheTaskWithinTheDAG217)
-    | (DeleteAListOfKeysFromTheAzureBlobStorage & TheTaskWithinTheDAG218)
-    | (DownloadAFileFromTheAzureBlobStorage & TheTaskWithinTheDAG219)
-    | (DownloadsFilesFromTheAzureBlobStorage & TheTaskWithinTheDAG220)
-    | (ListBlobsOnTheAzureBlobStorage & TheTaskWithinTheDAG221)
-    | (SharedAccessOnTheAzureBlobStorage & TheTaskWithinTheDAG222)
-    | (UploadAFileToTheAzureBlobStorage & TheTaskWithinTheDAG223)
+        TheTaskWithinTheDAG)
+    | (ConsumeEventsFromAzureEventHubs & TheTaskWithinTheDAG)
+    | (PublishEventsToAzureEventHubs & TheTaskWithinTheDAG)
+    | (CopyAFileBetweenAzureBlobStorage & TheTaskWithinTheDAG)
+    | (DeleteAFileFromTheAzureBlobStorage & TheTaskWithinTheDAG)
+    | (DeleteAListOfKeysFromTheAzureBlobStorage & TheTaskWithinTheDAG)
+    | (DownloadAFileFromTheAzureBlobStorage & TheTaskWithinTheDAG)
+    | (DownloadsFilesFromTheAzureBlobStorage & TheTaskWithinTheDAG)
+    | (ListBlobsOnTheAzureBlobStorage & TheTaskWithinTheDAG)
+    | (SharedAccessOnTheAzureBlobStorage & TheTaskWithinTheDAG)
+    | (UploadAFileToTheAzureBlobStorage & TheTaskWithinTheDAG)
     | (InsertsOrUpdatesEntitiesIntoTheAzureStorageTableMakeSureToPassEitherAListOfEntitiesOrAFileWithAListOfEntities &
-        TheTaskWithinTheDAG224)
-    | (DeleteAnEntityOnTheAzureStorageTable & TheTaskWithinTheDAG225)
-    | (GetsAnEntityFromTheAzureStorageTable & TheTaskWithinTheDAG226)
-    | (ListsEntitiesFromTheAzureStorageTableUsingTheParametersInTheProvidedOptions & TheTaskWithinTheDAG227)
-    | (ParseArbitraryTextAndStructureItUsingGrokExpressions & TheTaskWithinTheDAG228)
-    | (ParseArbitraryTextAndStructureItUsingGrokExpressions1 & TheTaskWithinTheDAG229)
-    | (CreateAPodOnAKubernetesClusterWaitUntilThePodStopsAndCollectItsLogs & TheTaskWithinTheDAG230)
-    | (ApplyAKubernetesResource & TheTaskWithinTheDAG231)
-    | (ExecuteABatchQueryOnAVerticaServer & TheTaskWithinTheDAG232)
-    | (QueryAVerticaServer & TheTaskWithinTheDAG233)
-    | (TransformOrQueryAJSONDataUsingJSONataLanguage & TheTaskWithinTheDAG234)
-    | (TransformOrQueryAJSONDataUsingJSONataLanguage1 & TheTaskWithinTheDAG235)
-    | (QueryAnAstraDBWithCQL & TheTaskWithinTheDAG236)
-    | (QueryACassandraDatabaseWithCQL & TheTaskWithinTheDAG237)
-    | (ExecuteJuliaScriptsFromTheCommandLineInterface & TheTaskWithinTheDAG238)
-    | (ExecuteAJuliaScript & TheTaskWithinTheDAG239)
-    | (ConsumeMessagesFromASolaceBroker & TheTaskWithinTheDAG240)
-    | (PublishMessagesToASolaceBroker & TheTaskWithinTheDAG241)
-    | (ExecuteAnsibleCommand & TheTaskWithinTheDAG242)
+        TheTaskWithinTheDAG)
+    | (DeleteAnEntityOnTheAzureStorageTable & TheTaskWithinTheDAG)
+    | (GetsAnEntityFromTheAzureStorageTable & TheTaskWithinTheDAG)
+    | (ListsEntitiesFromTheAzureStorageTableUsingTheParametersInTheProvidedOptions & TheTaskWithinTheDAG)
+    | (ParseArbitraryTextAndStructureItUsingGrokExpressions & TheTaskWithinTheDAG)
+    | (ParseArbitraryTextAndStructureItUsingGrokExpressions1 & TheTaskWithinTheDAG)
+    | (CreateAPodOnAKubernetesClusterWaitUntilThePodStopsAndCollectItsLogs & TheTaskWithinTheDAG)
+    | (ApplyAKubernetesResource & TheTaskWithinTheDAG)
+    | (ExecuteABatchQueryOnAVerticaServer & TheTaskWithinTheDAG)
+    | (QueryAVerticaServer & TheTaskWithinTheDAG)
+    | (TransformOrQueryAJSONDataUsingJSONataLanguage & TheTaskWithinTheDAG)
+    | (TransformOrQueryAJSONDataUsingJSONataLanguage1 & TheTaskWithinTheDAG)
+    | (QueryAnAstraDBWithCQL & TheTaskWithinTheDAG)
+    | (QueryACassandraDatabaseWithCQL & TheTaskWithinTheDAG)
+    | (ExecuteJuliaScriptsFromTheCommandLineInterface & TheTaskWithinTheDAG)
+    | (ExecuteAJuliaScript & TheTaskWithinTheDAG)
+    | (ConsumeMessagesFromASolaceBroker & TheTaskWithinTheDAG)
+    | (PublishMessagesToASolaceBroker & TheTaskWithinTheDAG)
+    | (ExecuteAnsibleCommand & TheTaskWithinTheDAG)
     | (BulkLoadDocumentsInElasticSearchUsingBulkFilesHttpsWwwElasticCoGuideEnElasticsearchReferenceCurrentDocsBulkHtmlElasticFiles &
-        TheTaskWithinTheDAG243)
-    | (GetAnElasticSearchDocument & TheTaskWithinTheDAG244)
-    | (BulkLoadDocumentsInElasticSearchUsingKestraInternalStorageFile & TheTaskWithinTheDAG245)
-    | (PutAnElasticSearchDocument & TheTaskWithinTheDAG246)
-    | (SendAGenericElasticSearchRequest & TheTaskWithinTheDAG247)
-    | (ScrollOverSearchRequest & TheTaskWithinTheDAG248)
-    | (SendASearchRequest & TheTaskWithinTheDAG249)
-    | (QueryAApachePinotServer & TheTaskWithinTheDAG250)
-    | (ExecuteANashornJavaScriptScript & TheTaskWithinTheDAG251)
-    | (TransformIonFormatFileFromKestraSInternalStorageWithANashornJavaScriptScript & TheTaskWithinTheDAG252)
-    | (ExecuteARubyScriptFromTheCommandLineInterface & TheTaskWithinTheDAG253)
-    | (ExecuteARubyScript & TheTaskWithinTheDAG254)
-    | (OrchestrateASQLMeshProjectFromTheCommandLineInterface & TheTaskWithinTheDAG255)
-    | (QueryASurrealDBDatabaseWithSurrealQL & TheTaskWithinTheDAG256)
-    | (ExecuteABatchQueryOnAVectorwiseServer & TheTaskWithinTheDAG257)
-    | (QueryAVectorwiseDatabase & TheTaskWithinTheDAG258)
-    | (FetchAnOAuthAccessToken & TheTaskWithinTheDAG259)
-    | (CopyABigQueryTableOrPartitionToOtherOne & TheTaskWithinTheDAG260)
-    | (CopyPartitionsBetweenIntervalToAnotherTable & TheTaskWithinTheDAG261)
-    | (CreateADatasetOrUpdateIfItAlreadyExists & TheTaskWithinTheDAG262)
-    | (CreateATable & TheTaskWithinTheDAG263)
-    | (DeleteADataset & TheTaskWithinTheDAG264)
-    | (DeletePartitionsBetweenInterval & TheTaskWithinTheDAG265)
-    | (DeleteATableOrAPartition & TheTaskWithinTheDAG266)
-    | (ExtractDataFromBigQueryTableToGCSGoogleCloudStorage & TheTaskWithinTheDAG267)
-    | (LoadDataFromLocalFileToBigQuery & TheTaskWithinTheDAG268)
-    | (LoadDataFromGCSGoogleCloudStorageToBigQuery & TheTaskWithinTheDAG269)
-    | (ExecuteBigQuerySQLQueryInASpecificBigQueryDatabase & TheTaskWithinTheDAG270)
+        TheTaskWithinTheDAG)
+    | (GetAnElasticSearchDocument & TheTaskWithinTheDAG)
+    | (BulkLoadDocumentsInElasticSearchUsingKestraInternalStorageFile & TheTaskWithinTheDAG)
+    | (PutAnElasticSearchDocument & TheTaskWithinTheDAG)
+    | (SendAGenericElasticSearchRequest & TheTaskWithinTheDAG)
+    | (ScrollOverSearchRequest & TheTaskWithinTheDAG)
+    | (SendASearchRequest & TheTaskWithinTheDAG)
+    | (QueryAApachePinotServer & TheTaskWithinTheDAG)
+    | (ExecuteANashornJavaScriptScript & TheTaskWithinTheDAG)
+    | (TransformIonFormatFileFromKestraSInternalStorageWithANashornJavaScriptScript & TheTaskWithinTheDAG)
+    | (ExecuteARubyScriptFromTheCommandLineInterface & TheTaskWithinTheDAG)
+    | (ExecuteARubyScript & TheTaskWithinTheDAG)
+    | (OrchestrateASQLMeshProjectFromTheCommandLineInterface & TheTaskWithinTheDAG)
+    | (QueryASurrealDBDatabaseWithSurrealQL & TheTaskWithinTheDAG)
+    | (ExecuteABatchQueryOnAVectorwiseServer & TheTaskWithinTheDAG)
+    | (QueryAVectorwiseDatabase & TheTaskWithinTheDAG)
+    | (FetchAnOAuthAccessToken & TheTaskWithinTheDAG)
+    | (CopyABigQueryTableOrPartitionToOtherOne & TheTaskWithinTheDAG)
+    | (CopyPartitionsBetweenIntervalToAnotherTable & TheTaskWithinTheDAG)
+    | (CreateADatasetOrUpdateIfItAlreadyExists & TheTaskWithinTheDAG)
+    | (CreateATable & TheTaskWithinTheDAG)
+    | (DeleteADataset & TheTaskWithinTheDAG)
+    | (DeletePartitionsBetweenInterval & TheTaskWithinTheDAG)
+    | (DeleteATableOrAPartition & TheTaskWithinTheDAG)
+    | (ExtractDataFromBigQueryTableToGCSGoogleCloudStorage & TheTaskWithinTheDAG)
+    | (LoadDataFromLocalFileToBigQuery & TheTaskWithinTheDAG)
+    | (LoadDataFromGCSGoogleCloudStorageToBigQuery & TheTaskWithinTheDAG)
+    | (ExecuteBigQuerySQLQueryInASpecificBigQueryDatabase & TheTaskWithinTheDAG)
     | (LoadAnKestraInternalStorageFileOnBigqueryUsingBigQueryStorageAPIHttpsCloudGoogleComBigqueryDocsWriteApiWriteToAStreamInCommittedMode &
-        TheTaskWithinTheDAG271)
-    | (GetTableMetadata & TheTaskWithinTheDAG272)
-    | (UpdateADataset & TheTaskWithinTheDAG273)
-    | (UpdateTableMetadata & TheTaskWithinTheDAG274)
-    | (ExecuteGcloudCommands & TheTaskWithinTheDAG275)
-    | (SubmitAnApachePySparkHttpsSparkApacheOrgDocsLatestApiPythonGettingStartedBatchWorkload & TheTaskWithinTheDAG276)
-    | (SubmitAnApacheSparkRHttpsSparkApacheOrgDocsLatestSparkrHtmlBatchWorkload & TheTaskWithinTheDAG277)
-    | (ApacheSparkSQLHttpsSparkApacheOrgSqlQueriesAsABatchWorkload & TheTaskWithinTheDAG278)
-    | (SubmitAnApacheSparkHttpsSparkApacheOrgBatchWorkload & TheTaskWithinTheDAG279)
-    | (DeleteADocumentFromACollection & TheTaskWithinTheDAG280)
-    | (GetADocumentFromACollection & TheTaskWithinTheDAG281)
-    | (QueryDocumentsOfACollection & TheTaskWithinTheDAG282)
-    | (SetADocumentInACollection & TheTaskWithinTheDAG283)
-    | (ListFileOnAGCSBucket & TheTaskWithinTheDAG284)
-    | (CopyAFileBetweenBucket & TheTaskWithinTheDAG285)
-    | (CreateABucketOrUpdateIfItAlreadyExists & TheTaskWithinTheDAG286)
-    | (AddRoleOnAnExistingBucket & TheTaskWithinTheDAG287)
-    | (DeleteAFileToAGCSBucket & TheTaskWithinTheDAG288)
-    | (DeleteABucket & TheTaskWithinTheDAG289)
-    | (DeleteAllFileToAGCSBucket & TheTaskWithinTheDAG290)
-    | (DownloadAFileFromAGCSBucket & TheTaskWithinTheDAG291)
-    | (DownloadMultipleFilesFromAGCSBucket & TheTaskWithinTheDAG292)
-    | (ListFileOnAGCSBucket1 & TheTaskWithinTheDAG293)
-    | (UpdateABucket & TheTaskWithinTheDAG294)
-    | (UploadAFileToAGCSBucket & TheTaskWithinTheDAG295)
-    | (GetGKEClusterSMetadata & TheTaskWithinTheDAG296)
-    | (ConsumeMessagesFromAPubSubTopic & TheTaskWithinTheDAG297)
-    | (PublishAMessageToAPubSubTopic & TheTaskWithinTheDAG298)
-    | (ChatCompletionUsingTheVertexAIForGoogleSGeminiLargeLanguageModelsLLM & TheTaskWithinTheDAG299)
-    | (StartAVertexAICustomJobHttpsCloudGoogleComVertexAiDocsTrainingCreateCustomJob & TheTaskWithinTheDAG300)
-    | (MultimodalCompletionUsingTheVertexAIGeminiLargeLanguageModelsLLM & TheTaskWithinTheDAG301)
-    | (TextCompletionUsingTheVertexAIAPIForGoogleSGeminiLargeLanguageModelsLLM & TheTaskWithinTheDAG302)
-    | (QueryADatabaseThroughApacheArrowFlightSQLDriver & TheTaskWithinTheDAG303)
+        TheTaskWithinTheDAG)
+    | (GetTableMetadata & TheTaskWithinTheDAG)
+    | (UpdateADataset & TheTaskWithinTheDAG)
+    | (UpdateTableMetadata & TheTaskWithinTheDAG)
+    | (ExecuteGcloudCommands & TheTaskWithinTheDAG)
+    | (SubmitAnApachePySparkHttpsSparkApacheOrgDocsLatestApiPythonGettingStartedBatchWorkload & TheTaskWithinTheDAG)
+    | (SubmitAnApacheSparkRHttpsSparkApacheOrgDocsLatestSparkrHtmlBatchWorkload & TheTaskWithinTheDAG)
+    | (ApacheSparkSQLHttpsSparkApacheOrgSqlQueriesAsABatchWorkload & TheTaskWithinTheDAG)
+    | (SubmitAnApacheSparkHttpsSparkApacheOrgBatchWorkload & TheTaskWithinTheDAG)
+    | (DeleteADocumentFromACollection & TheTaskWithinTheDAG)
+    | (GetADocumentFromACollection & TheTaskWithinTheDAG)
+    | (QueryDocumentsOfACollection & TheTaskWithinTheDAG)
+    | (SetADocumentInACollection & TheTaskWithinTheDAG)
+    | (ListFileOnAGCSBucket & TheTaskWithinTheDAG)
+    | (CopyAFileBetweenBucket & TheTaskWithinTheDAG)
+    | (CreateABucketOrUpdateIfItAlreadyExists & TheTaskWithinTheDAG)
+    | (AddRoleOnAnExistingBucket & TheTaskWithinTheDAG)
+    | (DeleteAFileToAGCSBucket & TheTaskWithinTheDAG)
+    | (DeleteABucket & TheTaskWithinTheDAG)
+    | (DeleteAllFileToAGCSBucket & TheTaskWithinTheDAG)
+    | (DownloadAFileFromAGCSBucket & TheTaskWithinTheDAG)
+    | (DownloadMultipleFilesFromAGCSBucket & TheTaskWithinTheDAG)
+    | (ListFileOnAGCSBucket1 & TheTaskWithinTheDAG)
+    | (UpdateABucket & TheTaskWithinTheDAG)
+    | (UploadAFileToAGCSBucket & TheTaskWithinTheDAG)
+    | (GetGKEClusterSMetadata & TheTaskWithinTheDAG)
+    | (ConsumeMessagesFromAPubSubTopic & TheTaskWithinTheDAG)
+    | (PublishAMessageToAPubSubTopic & TheTaskWithinTheDAG)
+    | (ChatCompletionUsingTheVertexAIForGoogleSGeminiLargeLanguageModelsLLM & TheTaskWithinTheDAG)
+    | (StartAVertexAICustomJobHttpsCloudGoogleComVertexAiDocsTrainingCreateCustomJob & TheTaskWithinTheDAG)
+    | (MultimodalCompletionUsingTheVertexAIGeminiLargeLanguageModelsLLM & TheTaskWithinTheDAG)
+    | (TextCompletionUsingTheVertexAIAPIForGoogleSGeminiLargeLanguageModelsLLM & TheTaskWithinTheDAG)
+    | (QueryADatabaseThroughApacheArrowFlightSQLDriver & TheTaskWithinTheDAG)
     | (OrchestrateInfrastructureAsCodeByExecutingTerraformCLICommandsInADockerContainerThisTaskAssumesThatYouUseARemoteBackendForStoringTerraformStateFilesSuchAsAWSS3GCSOrTerraformCloud &
-        TheTaskWithinTheDAG304)
-    | (TriggerAnAirflowDAGWithCustomInputsAndWaitForItsCompletion & TheTaskWithinTheDAG305)
-    | (WaitForChangeDataCaptureEventOnMongoDBServer & TheTaskWithinTheDAG306)
-    | (ConsumeMessagesFromOneOrMoreKafkaTopics & TheTaskWithinTheDAG307)
-    | (SendAMessageToAKafkaTopic & TheTaskWithinTheDAG308)
-    | (ExecuteRScriptsFromTheCommandLineInterface & TheTaskWithinTheDAG309)
-    | (ExecuteAnRScript & TheTaskWithinTheDAG310)
-    | (InvokeDbtBuildCommand & TheTaskWithinTheDAG311)
-    | (InvokeDbtCompileCommand & TheTaskWithinTheDAG312)
-    | (ExecuteDbtCLICommands & TheTaskWithinTheDAG313)
-    | (InvokeDbtDepsCommand & TheTaskWithinTheDAG314)
-    | (InvokeDbtSourceFreshnessCommand & TheTaskWithinTheDAG315)
-    | (InvokeDbtListCommand & TheTaskWithinTheDAG316)
-    | (InvokeDbtRunCommand & TheTaskWithinTheDAG317)
-    | (InvokeDbtSeedCommand & TheTaskWithinTheDAG318)
-    | (SetupDbtInAPythonVirtualenv & TheTaskWithinTheDAG319)
-    | (InvokeDbtSnapshotCommand & TheTaskWithinTheDAG320)
-    | (InvokeDbtTestCommand & TheTaskWithinTheDAG321)
-    | (CheckTheStatusOfADbtCloudJob & TheTaskWithinTheDAG322)
-    | (TriggerJobToRun & TheTaskWithinTheDAG323)
-    | (QueryAnAthenaTable & TheTaskWithinTheDAG324)
-    | (ExecuteAWSCommands & TheTaskWithinTheDAG325)
-    | (DeleteAnItemFromATable & TheTaskWithinTheDAG326)
-    | (GetAnItemFromATable & TheTaskWithinTheDAG327)
-    | (PutAnItemIntoADynamoDBTableIfAnItemWithTheSameKeyAlreadyExistsTheElementWillBeUpdated & TheTaskWithinTheDAG328)
-    | (QueryItemsFromATable & TheTaskWithinTheDAG329)
-    | (ScanItemsFromATable & TheTaskWithinTheDAG330)
+        TheTaskWithinTheDAG)
+    | (TriggerAnAirflowDAGWithCustomInputsAndWaitForItsCompletion & TheTaskWithinTheDAG)
+    | (WaitForChangeDataCaptureEventOnMongoDBServer & TheTaskWithinTheDAG)
+    | (ConsumeMessagesFromOneOrMoreKafkaTopics & TheTaskWithinTheDAG)
+    | (SendAMessageToAKafkaTopic & TheTaskWithinTheDAG)
+    | (ExecuteRScriptsFromTheCommandLineInterface & TheTaskWithinTheDAG)
+    | (ExecuteAnRScript & TheTaskWithinTheDAG)
+    | (InvokeDbtBuildCommand & TheTaskWithinTheDAG)
+    | (InvokeDbtCompileCommand & TheTaskWithinTheDAG)
+    | (ExecuteDbtCLICommands & TheTaskWithinTheDAG)
+    | (InvokeDbtDepsCommand & TheTaskWithinTheDAG)
+    | (InvokeDbtSourceFreshnessCommand & TheTaskWithinTheDAG)
+    | (InvokeDbtListCommand & TheTaskWithinTheDAG)
+    | (InvokeDbtRunCommand & TheTaskWithinTheDAG)
+    | (InvokeDbtSeedCommand & TheTaskWithinTheDAG)
+    | (SetupDbtInAPythonVirtualenv & TheTaskWithinTheDAG)
+    | (InvokeDbtSnapshotCommand & TheTaskWithinTheDAG)
+    | (InvokeDbtTestCommand & TheTaskWithinTheDAG)
+    | (CheckTheStatusOfADbtCloudJob & TheTaskWithinTheDAG)
+    | (TriggerJobToRun & TheTaskWithinTheDAG)
+    | (QueryAnAthenaTable & TheTaskWithinTheDAG)
+    | (ExecuteAWSCommands & TheTaskWithinTheDAG)
+    | (DeleteAnItemFromATable & TheTaskWithinTheDAG)
+    | (GetAnItemFromATable & TheTaskWithinTheDAG)
+    | (PutAnItemIntoADynamoDBTableIfAnItemWithTheSameKeyAlreadyExistsTheElementWillBeUpdated & TheTaskWithinTheDAG)
+    | (QueryItemsFromATable & TheTaskWithinTheDAG)
+    | (ScanItemsFromATable & TheTaskWithinTheDAG)
     | (RetrieveAWSECRAuthorizationTokenToPushDockerImagesToAmazonECROrPullImagesFromThatContainerRegistry &
-        TheTaskWithinTheDAG331)
-    | (SendMultipleCustomEventsToAmazonEventBridgeSoThatTheyCanBeMatchedToRules & TheTaskWithinTheDAG332)
-    | (SendMultipleRecordsToAmazonKinesisDataStreams & TheTaskWithinTheDAG333)
-    | (InvokeLambdaFunctionAndWaitForItsCompletion & TheTaskWithinTheDAG334)
-    | (CopyAFileBetweenS3Buckets & TheTaskWithinTheDAG335)
-    | (CreateABucket1 & TheTaskWithinTheDAG336)
-    | (DeleteAFileInAS3Bucket & TheTaskWithinTheDAG337)
-    | (DeleteAListOfKeysOnAS3Bucket & TheTaskWithinTheDAG338)
-    | (DownloadAFileFromAnS3Bucket & TheTaskWithinTheDAG339)
-    | (DownloadsMultipleFilesFromAS3Bucket & TheTaskWithinTheDAG340)
-    | (ListKeysOnAS3Bucket & TheTaskWithinTheDAG341)
-    | (UploadAFileToAS3Bucket & TheTaskWithinTheDAG342)
-    | (PublishAMessageToASNSTopic & TheTaskWithinTheDAG343)
-    | (ConsumeMessagesFromASQSQueue & TheTaskWithinTheDAG344)
-    | (PublishAMessageToAnSQSQueue & TheTaskWithinTheDAG345)
-    | (DecryptAFileEncryptedWithPGP & TheTaskWithinTheDAG346)
-    | (EncryptAFileWithPGP & TheTaskWithinTheDAG347)
-    | (ExecuteANodeJsScript & TheTaskWithinTheDAG348)
+        TheTaskWithinTheDAG)
+    | (SendMultipleCustomEventsToAmazonEventBridgeSoThatTheyCanBeMatchedToRules & TheTaskWithinTheDAG)
+    | (SendMultipleRecordsToAmazonKinesisDataStreams & TheTaskWithinTheDAG)
+    | (InvokeLambdaFunctionAndWaitForItsCompletion & TheTaskWithinTheDAG)
+    | (CopyAFileBetweenS3Buckets & TheTaskWithinTheDAG)
+    | (CreateABucket1 & TheTaskWithinTheDAG)
+    | (DeleteAFileInAS3Bucket & TheTaskWithinTheDAG)
+    | (DeleteAListOfKeysOnAS3Bucket & TheTaskWithinTheDAG)
+    | (DownloadAFileFromAnS3Bucket & TheTaskWithinTheDAG)
+    | (DownloadsMultipleFilesFromAS3Bucket & TheTaskWithinTheDAG)
+    | (ListKeysOnAS3Bucket & TheTaskWithinTheDAG)
+    | (UploadAFileToAS3Bucket & TheTaskWithinTheDAG)
+    | (PublishAMessageToASNSTopic & TheTaskWithinTheDAG)
+    | (ConsumeMessagesFromASQSQueue & TheTaskWithinTheDAG)
+    | (PublishAMessageToAnSQSQueue & TheTaskWithinTheDAG)
+    | (DecryptAFileEncryptedWithPGP & TheTaskWithinTheDAG)
+    | (EncryptAFileWithPGP & TheTaskWithinTheDAG)
+    | (ExecuteANodeJsScript & TheTaskWithinTheDAG)
     | (ExecuteOneOrMoreNodeJsCommandsFromTheCommandLineInterfaceNoteThatInsteadOfAddingTheScriptUsingTheInputFilesPropertyYouCouldAlsoAddTheScriptFromTheEmbeddedVSCodeEditorAndPointToItsLocationByPathIfYouDoSoMakeSureToEnableNamespaceFilesBySettingTheEnabledFlagOfTheNamespaceFilesPropertyToTrue &
-        TheTaskWithinTheDAG349)
-    | (ExecuteANodeJsScript1 & TheTaskWithinTheDAG350)
-    | (ASingerTapToFetchDataFromABigQuery & TheTaskWithinTheDAG351)
-    | (ASingerTapToFetchDataFromBingAds & TheTaskWithinTheDAG352)
-    | (ASingerTapToFetchDataFromAChargeBeeAccount & TheTaskWithinTheDAG353)
-    | (ASingerTapToFetchDataFromAExchangerateHostAPI & TheTaskWithinTheDAG354)
-    | (ASingerTapToFetchDataFromAFacebookAds & TheTaskWithinTheDAG355)
-    | (ASingerTapToFetchDataFromAFastlyAccount & TheTaskWithinTheDAG356)
-    | (AGenericSingerTap & TheTaskWithinTheDAG357)
-    | (ASingerTapToFetchDataFromAGitHubAPI & TheTaskWithinTheDAG358)
-    | (ASingerTapToFetchDataFromAGitLabAccount & TheTaskWithinTheDAG359)
-    | (ASingerTapToFetchDataFromGoogleAdwords & TheTaskWithinTheDAG360)
-    | (ASingerTapToFetchDataFromFromTheGoogleAnalyticsReportingAPI & TheTaskWithinTheDAG361)
-    | (ASingerTapToFetchDataFromTheGoogleSearchConsole & TheTaskWithinTheDAG362)
-    | (ASingerTapToFetchDataFromAHubSpotAPI & TheTaskWithinTheDAG363)
-    | (ASingerTapToFetchDataFromAMarketoAccount & TheTaskWithinTheDAG364)
-    | (ASingerTapToFetchDataFromANetsuiteAccount & TheTaskWithinTheDAG365)
-    | (ASingerTapToFetchDataFromAMongoDBDatabase & TheTaskWithinTheDAG366)
-    | (ASingerTapToFetchDataFromAMySQLDatabase & TheTaskWithinTheDAG367)
-    | (ASingerTapToFetchDataFromAOracleDatabase & TheTaskWithinTheDAG368)
-    | (ASingerTapToFetchDataFromAPostgresDatabase & TheTaskWithinTheDAG369)
-    | (ASingerTapToFetchDataFromAMicrosoftSQLServerDatabase & TheTaskWithinTheDAG370)
-    | (ASingerTapToFetchDataFromAQuickbooksAccount & TheTaskWithinTheDAG371)
-    | (ASingerTapToFetchDataFromARechargeAccount & TheTaskWithinTheDAG372)
-    | (ASingerTapToFetchDataFromASageIntacctAccount & TheTaskWithinTheDAG373)
-    | (ASingerTapToFetchDataFromASalesforceAccount & TheTaskWithinTheDAG374)
-    | (ASingerTapToFetchDataFromAShopifyAccount & TheTaskWithinTheDAG375)
-    | (ASingerTapToFetchDataFromSlack & TheTaskWithinTheDAG376)
-    | (ASingerTapToFetchDataFromAStripeAccount & TheTaskWithinTheDAG377)
-    | (ASingerTapToFetchDataFromAZendeskAccount & TheTaskWithinTheDAG378)
-    | (ASingerTapToFetchDataFromAZoomAccount & TheTaskWithinTheDAG379)
-    | (ASingerTargetLoadsDataIntoABigQuery & TheTaskWithinTheDAG380)
-    | (ASingerTargetLoadsDataIntoACSVFiles & TheTaskWithinTheDAG381)
-    | (ASingerTargetLoadsDataIntoAPostgresDatabase & TheTaskWithinTheDAG382)
-    | (AGenericSingerTarget & TheTaskWithinTheDAG383)
-    | (ASingerTargetLoadsDataIntoJSONFiles & TheTaskWithinTheDAG384)
-    | (ASingerTargetLoadsDataIntoASnowflakeDatabase & TheTaskWithinTheDAG385)
-    | (ASingerTargetThatLoadsDataIntoAnOracleDatabase & TheTaskWithinTheDAG386)
-    | (ASingerTargetLoadsDataIntoAPostgresDatabase1 & TheTaskWithinTheDAG387)
-    | (ASingerTargetLoadsDataIntoARedshiftDatabase & TheTaskWithinTheDAG388)
-    | (ASingerTargetLoadsDataIntoASnowflakeDatabase1 & TheTaskWithinTheDAG389)
-    | (ASingerTargetThatLoadsDataIntoAMicrosoftSQLServerDatabase & TheTaskWithinTheDAG390)
-    | (ExecuteABatchQueryToAMySQLServer & TheTaskWithinTheDAG391)
-    | (QueryAMySQLDatabase & TheTaskWithinTheDAG392)
-    | (DownloadDataFromSnowflakeStageToKestraSInternalStorage & TheTaskWithinTheDAG393)
-    | (QueryASnowflakeServer & TheTaskWithinTheDAG394)
+        TheTaskWithinTheDAG)
+    | (ExecuteANodeJsScript1 & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromABigQuery & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromBingAds & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAChargeBeeAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAExchangerateHostAPI & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAFacebookAds & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAFastlyAccount & TheTaskWithinTheDAG)
+    | (AGenericSingerTap & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAGitHubAPI & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAGitLabAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromGoogleAdwords & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromFromTheGoogleAnalyticsReportingAPI & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromTheGoogleSearchConsole & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAHubSpotAPI & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAMarketoAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromANetsuiteAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAMongoDBDatabase & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAMySQLDatabase & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAOracleDatabase & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAPostgresDatabase & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAMicrosoftSQLServerDatabase & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAQuickbooksAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromARechargeAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromASageIntacctAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromASalesforceAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAShopifyAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromSlack & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAStripeAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAZendeskAccount & TheTaskWithinTheDAG)
+    | (ASingerTapToFetchDataFromAZoomAccount & TheTaskWithinTheDAG)
+    | (ASingerTargetLoadsDataIntoABigQuery & TheTaskWithinTheDAG)
+    | (ASingerTargetLoadsDataIntoACSVFiles & TheTaskWithinTheDAG)
+    | (ASingerTargetLoadsDataIntoAPostgresDatabase & TheTaskWithinTheDAG)
+    | (AGenericSingerTarget & TheTaskWithinTheDAG)
+    | (ASingerTargetLoadsDataIntoJSONFiles & TheTaskWithinTheDAG)
+    | (ASingerTargetLoadsDataIntoASnowflakeDatabase & TheTaskWithinTheDAG)
+    | (ASingerTargetThatLoadsDataIntoAnOracleDatabase & TheTaskWithinTheDAG)
+    | (ASingerTargetLoadsDataIntoAPostgresDatabase1 & TheTaskWithinTheDAG)
+    | (ASingerTargetLoadsDataIntoARedshiftDatabase & TheTaskWithinTheDAG)
+    | (ASingerTargetLoadsDataIntoASnowflakeDatabase1 & TheTaskWithinTheDAG)
+    | (ASingerTargetThatLoadsDataIntoAMicrosoftSQLServerDatabase & TheTaskWithinTheDAG)
+    | (ExecuteABatchQueryToAMySQLServer & TheTaskWithinTheDAG)
+    | (QueryAMySQLDatabase & TheTaskWithinTheDAG)
+    | (DownloadDataFromSnowflakeStageToKestraSInternalStorage & TheTaskWithinTheDAG)
+    | (QueryASnowflakeServer & TheTaskWithinTheDAG)
     | (UploadDataFromAnInternalStorageFileToSnowflakeStageMakeSureThatTheStageNameFollowsTheNamingConventionOfDatabaseNameSchemaNameStageOrTableNameForUsageExamplesCheckTheBlueprintsTaggedWithSnowflake &
-        TheTaskWithinTheDAG395)
-    | (QueryARedshiftServer & TheTaskWithinTheDAG396)
-    | (InsertEntriesInLDAP & TheTaskWithinTheDAG397)
-    | (RemoveEntriesInLDAP & TheTaskWithinTheDAG398)
-    | (UnionisesIONEntries & TheTaskWithinTheDAG399)
-    | (IoniseLDIFEntries & TheTaskWithinTheDAG400)
-    | (ModifyEntriesInLDAP & TheTaskWithinTheDAG401)
-    | (RetrievesEntriesInLDAP & TheTaskWithinTheDAG402)
-    | (CreateADatabricksCluster & TheTaskWithinTheDAG403)
-    | (DeleteADatabricksCluster & TheTaskWithinTheDAG404)
-    | (DownloadAFileFromDatabricksFileSystem & TheTaskWithinTheDAG405)
-    | (UploadAFileToTheDatabricksFileSystem & TheTaskWithinTheDAG406)
+        TheTaskWithinTheDAG)
+    | (QueryARedshiftServer & TheTaskWithinTheDAG)
+    | (InsertEntriesInLDAP & TheTaskWithinTheDAG)
+    | (RemoveEntriesInLDAP & TheTaskWithinTheDAG)
+    | (UnionisesIONEntries & TheTaskWithinTheDAG)
+    | (IoniseLDIFEntries & TheTaskWithinTheDAG)
+    | (ModifyEntriesInLDAP & TheTaskWithinTheDAG)
+    | (RetrievesEntriesInLDAP & TheTaskWithinTheDAG)
+    | (CreateADatabricksCluster & TheTaskWithinTheDAG)
+    | (DeleteADatabricksCluster & TheTaskWithinTheDAG)
+    | (DownloadAFileFromDatabricksFileSystem & TheTaskWithinTheDAG)
+    | (UploadAFileToTheDatabricksFileSystem & TheTaskWithinTheDAG)
     | (CreateADatabricksJobAndRunItSetWaitForCompletionToTheDesiredMaximumDurationIfYouWantTheTaskToWaitForTheJobCompletionEGPT1HToWaitUpToOneHour &
-        TheTaskWithinTheDAG407)
+        TheTaskWithinTheDAG)
     | (SubmitADatabricksRunOptionallySetWaitForCompletionToADesiredMaximumDurationToWaitForTheRunCompletion &
-        TheTaskWithinTheDAG408)
-    | (ExecuteASQLQueryOnADatabricksCluster & TheTaskWithinTheDAG409)
-    | (QueryASQLiteServer & TheTaskWithinTheDAG410)
-    | (ProduceMessageInAMQTTTopic & TheTaskWithinTheDAG411)
-    | (SubscribeMessageInAMQTTTopic & TheTaskWithinTheDAG412)
-    | (ExecuteOneOrMoreMalloyCommandsFromTheCommandLineInterface & TheTaskWithinTheDAG413)
-    | (ConsumeMessagesFromPulsarTopicS & TheTaskWithinTheDAG414)
-    | (ProduceMessageToAPulsarTopic & TheTaskWithinTheDAG415)
-    | (ReadMessagesFromPulsarTopicSWithoutSubscription & TheTaskWithinTheDAG416)
-    | (ReadAProvidedAvroFileAndConvertItToIonSerializedDataFile & TheTaskWithinTheDAG417)
-    | (ReadAProvidedFileContainingIonSerializedDataAndConvertItToAvro & TheTaskWithinTheDAG418)
-    | (ReadACsvFileAndWriteItToAnIonSerializedDataFile & TheTaskWithinTheDAG419)
-    | (ReadAnIonSerializedDataFileAndWriteItToACsvFile & TheTaskWithinTheDAG420)
-    | (ReadDataFromExcelIntoARowWiseIONSerializedFormat & TheTaskWithinTheDAG421)
-    | (ReadAnIONSerializedFileAndTransformItToAnExcelFile & TheTaskWithinTheDAG422)
-    | (ReadAnIonSerializedDataFileAndWriteItToANewLineDelimitedJsonFile & TheTaskWithinTheDAG423)
-    | (ReadAJSONFileAndWriteItToAnIONSerializedDataFile & TheTaskWithinTheDAG424)
-    | (ReadAProvidedFileContainingIonSerializedDataAndConvertItToParquet & TheTaskWithinTheDAG425)
-    | (ReadAProvidedParquetFileAndConvertItToIonSerializedDataFile & TheTaskWithinTheDAG426)
-    | (ReadAnIonSerializedDataFileAndWriteItToAXMLFile & TheTaskWithinTheDAG427)
-    | (ReadAXMLFileAndWriteItToAnIonSerializedDataFile & TheTaskWithinTheDAG428)
-    | (ExecuteAGroovyScript & TheTaskWithinTheDAG429)
-    | (TransformIonFormatFileFromKestraWithAGroovyScript1 & TheTaskWithinTheDAG430)
-    | (QueryADremioDatabase & TheTaskWithinTheDAG431)
+        TheTaskWithinTheDAG)
+    | (ExecuteASQLQueryOnADatabricksCluster & TheTaskWithinTheDAG)
+    | (QueryASQLiteServer & TheTaskWithinTheDAG)
+    | (ProduceMessageInAMQTTTopic & TheTaskWithinTheDAG)
+    | (SubscribeMessageInAMQTTTopic & TheTaskWithinTheDAG)
+    | (ExecuteOneOrMoreMalloyCommandsFromTheCommandLineInterface & TheTaskWithinTheDAG)
+    | (ConsumeMessagesFromPulsarTopicS & TheTaskWithinTheDAG)
+    | (ProduceMessageToAPulsarTopic & TheTaskWithinTheDAG)
+    | (ReadMessagesFromPulsarTopicSWithoutSubscription & TheTaskWithinTheDAG)
+    | (ReadAProvidedAvroFileAndConvertItToIonSerializedDataFile & TheTaskWithinTheDAG)
+    | (ReadAProvidedFileContainingIonSerializedDataAndConvertItToAvro & TheTaskWithinTheDAG)
+    | (ReadACsvFileAndWriteItToAnIonSerializedDataFile & TheTaskWithinTheDAG)
+    | (ReadAnIonSerializedDataFileAndWriteItToACsvFile & TheTaskWithinTheDAG)
+    | (ReadDataFromExcelIntoARowWiseIONSerializedFormat & TheTaskWithinTheDAG)
+    | (ReadAnIONSerializedFileAndTransformItToAnExcelFile & TheTaskWithinTheDAG)
+    | (ReadAnIonSerializedDataFileAndWriteItToANewLineDelimitedJsonFile & TheTaskWithinTheDAG)
+    | (ReadAJSONFileAndWriteItToAnIONSerializedDataFile & TheTaskWithinTheDAG)
+    | (ReadAProvidedFileContainingIonSerializedDataAndConvertItToParquet & TheTaskWithinTheDAG)
+    | (ReadAProvidedParquetFileAndConvertItToIonSerializedDataFile & TheTaskWithinTheDAG)
+    | (ReadAnIonSerializedDataFileAndWriteItToAXMLFile & TheTaskWithinTheDAG)
+    | (ReadAXMLFileAndWriteItToAnIonSerializedDataFile & TheTaskWithinTheDAG)
+    | (ExecuteAGroovyScript & TheTaskWithinTheDAG)
+    | (TransformIonFormatFileFromKestraWithAGroovyScript1 & TheTaskWithinTheDAG)
+    | (QueryADremioDatabase & TheTaskWithinTheDAG)
     | (ExecuteOneOrMorePowerShellCommandsNoteThatInsteadOfAddingTheScriptUsingTheInputFilesPropertyYouCouldAlsoAddTheScriptFromTheEmbeddedVSCodeEditorAndPointToItsLocationByPathIfYouDoSoMakeSureToEnableNamespaceFilesBySettingTheEnabledFlagOfTheNamespaceFilesPropertyToTrue &
-        TheTaskWithinTheDAG432)
-    | (ExecuteAPowerShellScript & TheTaskWithinTheDAG433)
-    | (CreateAFileOrAFolder & TheTaskWithinTheDAG434)
-    | (DeleteAFileOnADriveFolder & TheTaskWithinTheDAG435)
-    | (DownloadAFileInADriveFolder & TheTaskWithinTheDAG436)
-    | (ExportAFileInADriveFolder & TheTaskWithinTheDAG437)
-    | (ListFileOnADriveFolder & TheTaskWithinTheDAG438)
-    | (UploadAFileInADriveFolder & TheTaskWithinTheDAG439)
-    | (ReadAllSheetsFromAGoogleSheets & TheTaskWithinTheDAG440)
-    | (ReadARangeFromAGoogleSheets & TheTaskWithinTheDAG441)
-    | (ResetAJob & TheTaskWithinTheDAG442)
-    | (SyncAJob & TheTaskWithinTheDAG443)
-    | (CheckJobStatusOfARunningSyncConnection & TheTaskWithinTheDAG444)
-    | (RunASyncOnAConnection & TheTaskWithinTheDAG445)
-    | (RunASyncOnAConnection1 & TheTaskWithinTheDAG446);
+        TheTaskWithinTheDAG)
+    | (ExecuteAPowerShellScript & TheTaskWithinTheDAG)
+    | (CreateAFileOrAFolder & TheTaskWithinTheDAG)
+    | (DeleteAFileOnADriveFolder & TheTaskWithinTheDAG)
+    | (DownloadAFileInADriveFolder & TheTaskWithinTheDAG)
+    | (ExportAFileInADriveFolder & TheTaskWithinTheDAG)
+    | (ListFileOnADriveFolder & TheTaskWithinTheDAG)
+    | (UploadAFileInADriveFolder & TheTaskWithinTheDAG)
+    | (ReadAllSheetsFromAGoogleSheets & TheTaskWithinTheDAG)
+    | (ReadARangeFromAGoogleSheets & TheTaskWithinTheDAG)
+    | (ResetAJob & TheTaskWithinTheDAG)
+    | (SyncAJob & TheTaskWithinTheDAG)
+    | (CheckJobStatusOfARunningSyncConnection & TheTaskWithinTheDAG)
+    | (RunASyncOnAConnection & TheTaskWithinTheDAG)
+    | (RunASyncOnAConnection1 & TheTaskWithinTheDAG);
   [k: string]: unknown | undefined;
 }
 export interface TheTaskWithinTheDAG {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG1 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG2 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG3 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG4 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG5 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG6 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG7 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG8 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG9 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG10 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG11 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG12 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG13 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG14 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG15 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG16 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG17 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG18 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG19 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG20 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG21 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG22 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG23 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG24 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG25 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG26 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG27 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG28 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG29 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG30 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG31 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG32 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG33 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG34 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG35 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG36 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG37 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG38 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG39 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG40 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG41 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG42 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG43 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG44 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG45 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG46 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG47 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG48 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG49 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG50 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG51 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG52 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG53 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG54 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG55 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG56 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG57 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG58 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG59 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG60 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG61 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG62 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG63 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG64 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG65 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG66 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG67 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG68 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG69 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG70 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG71 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG72 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG73 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG74 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG75 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG76 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG77 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG78 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG79 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG80 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG81 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG82 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG83 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG84 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG85 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG86 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG87 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG88 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG89 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG90 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG91 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG92 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG93 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG94 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG95 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG96 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG97 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG98 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG99 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG100 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG101 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG102 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG103 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG104 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG105 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG106 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG107 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG108 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG109 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG110 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG111 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG112 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG113 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG114 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG115 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG116 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG117 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG118 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG119 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG120 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG121 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG122 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG123 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG124 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG125 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG126 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG127 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG128 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG129 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG130 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG131 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG132 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG133 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG134 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG135 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG136 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG137 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG138 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG139 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG140 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG141 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG142 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG143 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG144 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG145 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG146 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG147 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG148 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG149 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG150 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG151 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG152 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG153 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG154 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG155 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG156 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG157 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG158 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG159 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG160 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG161 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG162 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG163 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG164 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG165 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG166 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG167 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG168 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG169 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG170 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG171 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG172 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG173 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG174 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG175 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG176 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG177 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG178 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG179 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG180 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG181 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG182 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG183 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG184 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG185 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG186 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG187 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG188 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG189 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG190 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG191 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG192 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG193 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG194 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG195 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG196 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG197 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG198 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG199 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG200 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG201 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG202 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG203 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG204 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG205 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG206 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG207 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG208 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG209 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG210 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG211 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG212 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG213 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG214 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG215 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG216 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG217 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG218 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG219 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG220 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG221 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG222 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG223 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG224 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG225 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG226 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG227 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG228 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG229 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG230 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG231 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG232 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG233 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG234 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG235 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG236 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG237 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG238 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG239 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG240 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG241 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG242 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG243 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG244 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG245 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG246 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG247 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG248 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG249 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG250 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG251 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG252 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG253 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG254 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG255 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG256 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG257 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG258 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG259 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG260 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG261 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG262 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG263 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG264 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG265 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG266 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG267 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG268 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG269 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG270 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG271 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG272 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG273 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG274 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG275 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG276 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG277 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG278 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG279 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG280 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG281 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG282 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG283 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG284 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG285 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG286 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG287 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG288 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG289 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG290 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG291 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG292 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG293 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG294 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG295 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG296 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG297 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG298 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG299 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG300 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG301 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG302 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG303 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG304 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG305 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG306 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG307 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG308 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG309 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG310 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG311 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG312 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG313 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG314 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG315 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG316 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG317 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG318 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG319 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG320 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG321 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG322 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG323 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG324 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG325 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG326 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG327 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG328 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG329 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG330 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG331 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG332 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG333 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG334 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG335 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG336 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG337 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG338 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG339 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG340 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG341 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG342 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG343 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG344 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG345 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG346 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG347 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG348 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG349 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG350 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG351 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG352 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG353 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG354 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG355 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG356 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG357 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG358 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG359 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG360 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG361 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG362 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG363 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG364 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG365 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG366 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG367 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG368 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG369 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG370 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG371 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG372 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG373 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG374 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG375 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG376 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG377 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG378 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG379 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG380 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG381 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG382 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG383 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG384 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG385 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG386 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG387 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG388 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG389 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG390 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG391 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG392 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG393 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG394 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG395 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG396 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG397 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG398 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG399 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG400 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG401 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG402 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG403 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG404 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG405 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG406 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG407 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG408 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG409 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG410 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG411 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG412 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG413 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG414 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG415 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG416 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG417 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG418 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG419 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG420 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG421 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG422 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG423 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG424 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG425 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG426 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG427 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG428 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG429 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG430 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG431 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG432 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG433 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG434 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG435 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG436 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG437 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG438 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG439 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG440 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG441 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG442 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG443 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG444 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG445 {
-  [k: string]: unknown | undefined;
-}
-export interface TheTaskWithinTheDAG446 {
   [k: string]: unknown | undefined;
 }
 export interface IoKestraCoreModelsListenersListener {
@@ -30048,32 +27069,20 @@ export interface TriggerAFlowBasedOnAnHTTPResponse {
   description?: string;
   disabled?: boolean;
   encryptBody?: IfTrueTheHTTPResponseBodyWillBeAutomaticallyEncryptedAndDecryptedInTheOutputsIfEncryptionIsConfigured;
-  formData?: TheFormDataToBeSend2;
-  headers?: TheHeadersToPassToTheRequest3;
+  formData?: TheFormDataToBeSend;
+  headers?: TheHeadersToPassToTheRequest;
   id: AUniqueIDForTheWholeFlow;
   interval?: IntervalBetweenPolling;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   method?: TheHTTPMethodToUse;
-  options?: IoKestraPluginCoreHttpHttpInterfaceRequestOptions & TheHTTPRequestOptions2;
+  options?: IoKestraPluginCoreHttpHttpInterfaceRequestOptions & TheHTTPRequestOptions;
   responseCondition?: TheConditionOnTheHTTPResponseToTriggerAFlowWhichCanBeAnyExpressionThatEvaluatesToABooleanValue;
-  sslOptions?: IoKestraPluginCoreHttpHttpInterfaceSslOptions & TheSSLRequestOptions2;
+  sslOptions?: IoKestraPluginCoreHttpHttpInterfaceSslOptions & TheSSLRequestOptions;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   type: 'io.kestra.plugin.core.http.Trigger';
   uri: TheFullyQualifiedURIThatPointsToTheHTTPDestination;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheFormDataToBeSend2 {
-  [k: string]: unknown | undefined;
-}
-export interface TheHeadersToPassToTheRequest3 {
-  [k: string]: unknown | undefined;
-}
-export interface TheHTTPRequestOptions2 {
-  [k: string]: unknown | undefined;
-}
-export interface TheSSLRequestOptions2 {
   [k: string]: unknown | undefined;
 }
 export interface KestraIsAbleToTriggerFlowAfterAnotherOneThisAllowsChainingFlowsWithoutNeedToUpdateTheBaseFlowsWithThatYouCanBreakTheResponsibilityBetweenDifferentFlowsAndThusToDifferentTeams {
@@ -30232,16 +27241,16 @@ export interface ConsumeAMessageInRealTimeFromAPostgreSQLDatabaseViaChangeDataCa
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues6;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges6;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture6;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues6;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges6;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture6;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -30251,7 +27260,7 @@ export interface ConsumeAMessageInRealTimeFromAPostgreSQLDatabaseViaChangeDataCa
   password?: PasswordOnTheRemoteServer;
   pluginName?: TheNameOfThePostgreSQLLogicalDecodingHttpsDebeziumIoDocumentationReferenceStableConnectorsPostgresqlHtmlPostgresqlOutputPluginPlugInInstalledOnThePostgreSQLServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties6;
+  properties?: AdditionalConfigurationProperties;
   publicationName?: TheNameOfThePostgreSQLPublicationCreatedForStreamingChangesWhenUsingPGOUTPUT;
   slotName?: TheNameOfThePostgreSQLLogicalDecodingSlotThatWasCreatedForStreamingChangesFromAParticularPlugInForAParticularDatabaseSchema;
   snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts;
@@ -30268,27 +27277,6 @@ export interface ConsumeAMessageInRealTimeFromAPostgreSQLDatabaseViaChangeDataCa
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues6 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges6 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture6 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues6 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges6 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture6 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties6 {
-  [k: string]: unknown | undefined;
-}
 export interface ConsumeMessagesPeriodicallyFromAPostgreSQLDatabaseViaChangeDataCaptureAndCreateOneExecutionPerBatch {
   conditions?: ListOfConditionsInOrderToLimitTheFlowTrigger;
   database: TheNameOfThePostgreSQLDatabaseFromWhichToStreamTheChanges;
@@ -30296,16 +27284,16 @@ export interface ConsumeMessagesPeriodicallyFromAPostgreSQLDatabaseViaChangeData
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues7;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges7;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture7;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues7;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges7;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture7;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   interval?: IntervalBetweenPolling;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
@@ -30319,7 +27307,7 @@ export interface ConsumeMessagesPeriodicallyFromAPostgreSQLDatabaseViaChangeData
   password?: PasswordOnTheRemoteServer;
   pluginName?: TheNameOfThePostgreSQLLogicalDecodingHttpsDebeziumIoDocumentationReferenceStableConnectorsPostgresqlHtmlPostgresqlOutputPluginPlugInInstalledOnThePostgreSQLServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties7;
+  properties?: AdditionalConfigurationProperties;
   publicationName?: TheNameOfThePostgreSQLPublicationCreatedForStreamingChangesWhenUsingPGOUTPUT;
   slotName?: TheNameOfThePostgreSQLLogicalDecodingSlotThatWasCreatedForStreamingChangesFromAParticularPlugInForAParticularDatabaseSchema;
   snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts;
@@ -30334,27 +27322,6 @@ export interface ConsumeMessagesPeriodicallyFromAPostgreSQLDatabaseViaChangeData
   type: 'io.kestra.plugin.debezium.postgres.Trigger';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues7 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges7 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture7 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues7 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges7 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture7 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties7 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForQueryOnATrinoDatabase {
@@ -30470,16 +27437,16 @@ export interface ConsumeAMessageInRealTimeFromAMySQLDatabaseViaChangeDataCapture
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues8;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges8;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture8;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues8;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges8;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture8;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -30488,9 +27455,9 @@ export interface ConsumeAMessageInRealTimeFromAMySQLDatabaseViaChangeDataCapture
   offsetsCommitMode?: HowToCommitTheOffsetsToTheStateStore;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties8;
+  properties?: AdditionalConfigurationProperties;
   serverId?: ANumericIDOfThisDatabaseClient;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts8;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts1;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
@@ -30499,43 +27466,22 @@ export interface ConsumeAMessageInRealTimeFromAMySQLDatabaseViaChangeDataCapture
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues8 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges8 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture8 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues8 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges8 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture8 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties8 {
-  [k: string]: unknown | undefined;
-}
 export interface ConsumeMessagesPeriodicallyFromAMySQLDatabaseViaChangeDataCaptureAndCreateOneExecutionPerBatch {
   conditions?: ListOfConditionsInOrderToLimitTheFlowTrigger;
   deleted?: SpecifyHowToHandleDeletedRows;
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues9;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges9;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture9;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues9;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges9;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture9;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   interval?: IntervalBetweenPolling;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
@@ -30548,36 +27494,15 @@ export interface ConsumeMessagesPeriodicallyFromAMySQLDatabaseViaChangeDataCaptu
   metadataFieldName?: TheNameOfMetadataFieldIfMetadataIsADD_FIELD;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties9;
+  properties?: AdditionalConfigurationProperties;
   serverId?: ANumericIDOfThisDatabaseClient;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts9;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts1;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   type: 'io.kestra.plugin.debezium.mysql.Trigger';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues9 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges9 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture9 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues9 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges9 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture9 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties9 {
   [k: string]: unknown | undefined;
 }
 export interface TriggerAFlowAsSoonAsNewFilesAreDetectedInAGivenFTPServerSDirectory {
@@ -30698,16 +27623,16 @@ export interface ConsumeAMessageInRealTimeFromASQLServerDatabaseViaChangeDataCap
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues10;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges10;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture10;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues10;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges10;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture10;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -30716,36 +27641,15 @@ export interface ConsumeAMessageInRealTimeFromASQLServerDatabaseViaChangeDataCap
   offsetsCommitMode?: HowToCommitTheOffsetsToTheStateStore;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties10;
+  properties?: AdditionalConfigurationProperties;
   serverId?: string;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts10;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts2;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   type: 'io.kestra.plugin.debezium.sqlserver.RealtimeTrigger';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues10 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges10 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture10 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues10 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges10 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture10 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties10 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeMessagesPeriodicallyFromASQLServerDatabaseViaChangeDataCaptureAndCreateOneExecutionPerBatch {
@@ -30755,16 +27659,16 @@ export interface ConsumeMessagesPeriodicallyFromASQLServerDatabaseViaChangeDataC
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues11;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges11;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture11;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues11;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges11;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture11;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   interval?: IntervalBetweenPolling;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
@@ -30777,36 +27681,15 @@ export interface ConsumeMessagesPeriodicallyFromASQLServerDatabaseViaChangeDataC
   metadataFieldName?: TheNameOfMetadataFieldIfMetadataIsADD_FIELD;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties11;
+  properties?: AdditionalConfigurationProperties;
   serverId?: string;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts11;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts2;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   type: 'io.kestra.plugin.debezium.sqlserver.Trigger';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues11 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges11 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture11 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues11 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges11 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture11 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties11 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForQueryOnAPostgreSQLDatabase {
@@ -30844,16 +27727,16 @@ export interface ConsumeAMessageInRealTimeFromADB2DatabaseViaChangeDataCaptureAn
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues12;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges12;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture12;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues12;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges12;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture12;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -30862,35 +27745,14 @@ export interface ConsumeAMessageInRealTimeFromADB2DatabaseViaChangeDataCaptureAn
   offsetsCommitMode?: HowToCommitTheOffsetsToTheStateStore;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties12;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts12;
+  properties?: AdditionalConfigurationProperties;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts3;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   type: 'io.kestra.plugin.debezium.db2.RealtimeTrigger';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues12 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges12 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture12 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues12 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges12 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture12 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties12 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeMessagesPeriodicallyFromADB2DatabaseViaChangeDataCaptureAndCreateOneExecutionPerBatch {
@@ -30900,16 +27762,16 @@ export interface ConsumeMessagesPeriodicallyFromADB2DatabaseViaChangeDataCapture
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues13;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges13;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture13;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues13;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges13;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture13;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   interval?: IntervalBetweenPolling;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
@@ -30922,8 +27784,8 @@ export interface ConsumeMessagesPeriodicallyFromADB2DatabaseViaChangeDataCapture
   metadataFieldName?: TheNameOfMetadataFieldIfMetadataIsADD_FIELD;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties13;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts13;
+  properties?: AdditionalConfigurationProperties;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts3;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
@@ -30932,43 +27794,22 @@ export interface ConsumeMessagesPeriodicallyFromADB2DatabaseViaChangeDataCapture
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues13 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges13 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture13 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues13 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges13 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture13 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties13 {
-  [k: string]: unknown | undefined;
-}
 export interface ConsumeAMessageInRealTimeFromAOracleDatabaseViaChangeDataCaptureAndCreateOneExecutionPerRow {
   conditions?: ListOfConditionsInOrderToLimitTheFlowTrigger;
   deleted?: SpecifyHowToHandleDeletedRows;
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues14;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges14;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture14;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues14;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges14;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture14;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -30978,9 +27819,9 @@ export interface ConsumeAMessageInRealTimeFromAOracleDatabaseViaChangeDataCaptur
   password?: PasswordOnTheRemoteServer;
   pluggableDatabase?: TheNameOfTheOraclePluggableDatabaseThatTheConnectorCapturesChangesFromUsedInContainerDatabaseCDBInstallationsOnly;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties14;
+  properties?: AdditionalConfigurationProperties;
   sid: TheNameOfTheDatabaseToCaptureChangesFrom;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts14;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts3;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
@@ -30989,43 +27830,22 @@ export interface ConsumeAMessageInRealTimeFromAOracleDatabaseViaChangeDataCaptur
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues14 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges14 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture14 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues14 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges14 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture14 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties14 {
-  [k: string]: unknown | undefined;
-}
 export interface ConsumeMessagesPeriodicallyFromAOracleDatabaseViaChangeDataCaptureAndCreateOneExecutionPerBatch {
   conditions?: ListOfConditionsInOrderToLimitTheFlowTrigger;
   deleted?: SpecifyHowToHandleDeletedRows;
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues15;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges15;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture15;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues15;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges15;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture15;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   interval?: IntervalBetweenPolling;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
@@ -31039,36 +27859,15 @@ export interface ConsumeMessagesPeriodicallyFromAOracleDatabaseViaChangeDataCapt
   password?: PasswordOnTheRemoteServer;
   pluggableDatabase?: TheNameOfTheOraclePluggableDatabaseThatTheConnectorCapturesChangesFromUsedInContainerDatabaseCDBInstallationsOnly;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties15;
+  properties?: AdditionalConfigurationProperties;
   sid: TheNameOfTheDatabaseToCaptureChangesFrom;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts15;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts3;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   type: 'io.kestra.plugin.debezium.oracle.Trigger';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues15 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges15 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture15 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues15 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges15 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture15 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties15 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForQueryOnASybaseDatabase {
@@ -31260,8 +28059,8 @@ export interface ConsumeMessagesPeriodicallyFromAAMQPQueueAndCreateOneExecutionP
 }
 export interface ConsumeAMessageInRealTimeFromAAzureEventHubsAndCreateOneExecutionPerMessage {
   bodyDeserializer?: TheDeserializerToBeUsedForSerializingTheEventValue;
-  bodyDeserializerProperties?: TheConfigPropertiesToBePassedToTheDeserializer2;
-  checkpointStoreProperties?: TheConfigPropertiesToBeUsedForConfiguringTheBlobCheckpointStore1;
+  bodyDeserializerProperties?: TheConfigPropertiesToBePassedToTheDeserializer;
+  checkpointStoreProperties?: TheConfigPropertiesToBeUsedForConfiguringTheBlobCheckpointStore;
   clientMaxRetries?: TheMaximumNumberOfRetryAttemptsBeforeConsideringAClientOperationToHaveFailed;
   clientRetryDelay?: TheMaximumPermissibleDelayBetweenRetryAttemptsInMilliseconds;
   conditions?: ListOfConditionsInOrderToLimitTheFlowTrigger;
@@ -31285,16 +28084,10 @@ export interface ConsumeAMessageInRealTimeFromAAzureEventHubsAndCreateOneExecuti
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface TheConfigPropertiesToBePassedToTheDeserializer2 {
-  [k: string]: unknown | undefined;
-}
-export interface TheConfigPropertiesToBeUsedForConfiguringTheBlobCheckpointStore1 {
-  [k: string]: unknown | undefined;
-}
 export interface ConsumeMessagesPeriodicallyFromAzureEventHubsAndCreateOneExecutionPerBatch {
   bodyDeserializer?: TheDeserializerToBeUsedForSerializingTheEventValue;
-  bodyDeserializerProperties?: TheConfigPropertiesToBePassedToTheDeserializer3;
-  checkpointStoreProperties?: TheConfigPropertiesToBeUsedForConfiguringTheBlobCheckpointStore2;
+  bodyDeserializerProperties?: TheConfigPropertiesToBePassedToTheDeserializer;
+  checkpointStoreProperties?: TheConfigPropertiesToBeUsedForConfiguringTheBlobCheckpointStore;
   clientMaxRetries?: TheMaximumNumberOfRetryAttemptsBeforeConsideringAClientOperationToHaveFailed;
   clientRetryDelay?: TheMaximumPermissibleDelayBetweenRetryAttemptsInMilliseconds;
   conditions?: ListOfConditionsInOrderToLimitTheFlowTrigger;
@@ -31322,12 +28115,6 @@ export interface ConsumeMessagesPeriodicallyFromAzureEventHubsAndCreateOneExecut
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface TheConfigPropertiesToBePassedToTheDeserializer3 {
-  [k: string]: unknown | undefined;
-}
-export interface TheConfigPropertiesToBeUsedForConfiguringTheBlobCheckpointStore2 {
-  [k: string]: unknown | undefined;
-}
 export interface WaitForFilesOnTheAzureBlobStorage {
   action: TheActionToPerformOnTheRetrievedFilesIfUsingNONEMakeSureToHandleTheFilesInsideYourFlowToAvoidInfiniteTriggering;
   conditions?: ListOfConditionsInOrderToLimitTheFlowTrigger;
@@ -31342,7 +28129,7 @@ export interface WaitForFilesOnTheAzureBlobStorage {
   interval?: IntervalBetweenPolling;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  moveTo?: IoKestraPluginAzureStorageBlobCopyCopyObject & TheDestinationContainerAndKey1;
+  moveTo?: IoKestraPluginAzureStorageBlobCopyCopyObject & TheDestinationContainerAndKey;
   prefix?: LimitsTheResponseToKeysThatBeginWithTheSpecifiedPrefix;
   regexp?: ARegularExpressionToFilterOnTheFullKey;
   sasToken?: TheSASTokenToUseForAuthenticatingRequests;
@@ -31351,9 +28138,6 @@ export interface WaitForFilesOnTheAzureBlobStorage {
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   type: 'io.kestra.plugin.azure.storage.blob.Trigger';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheDestinationContainerAndKey1 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForQueryOnAVerticaDatabase {
@@ -31389,15 +28173,12 @@ export interface WaitForAQueryToReturnResultsOnAstraDB {
   interval?: IntervalBetweenPolling;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  session: IoKestraPluginCassandraAstradbAstraDbSession & TheSessionConnectionProperties2;
+  session: IoKestraPluginCassandraAstradbAstraDbSession & TheSessionConnectionProperties;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   store?: WhetherToStoreTheDataFromTheQueryResultIntoAnIonSerializedDataFile;
   timeZoneId?: string;
   type: 'io.kestra.plugin.cassandra.astradb.Trigger';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheSessionConnectionProperties2 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForAQueryToReturnResultsOnACassandraDatabase {
@@ -31411,15 +28192,12 @@ export interface WaitForAQueryToReturnResultsOnACassandraDatabase {
   interval?: IntervalBetweenPolling;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
-  session: IoKestraPluginCassandraStandardCassandraDbSession & TheSessionConnectionProperties3;
+  session: IoKestraPluginCassandraStandardCassandraDbSession & TheSessionConnectionProperties;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   store?: WhetherToStoreTheDataFromTheQueryResultIntoAnIonSerializedDataFile;
   timeZoneId?: string;
   type: 'io.kestra.plugin.cassandra.standard.Trigger';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheSessionConnectionProperties3 {
   [k: string]: unknown | undefined;
 }
 export interface TriggerFlowBasedOnMessagesReceivedFromASolaceBroker {
@@ -31434,10 +28212,10 @@ export interface TriggerFlowBasedOnMessagesReceivedFromASolaceBroker {
   maxDuration?: TheMaximumTimeToWaitForReceivingANumberOfMessagesUpToMaxMessages;
   maxMessages?: TheMaximumNumberOfMessagesToBeReceivedPerPoll;
   messageDeserializer?: TheDeserializerToBeUsedForDeserializingMessages;
-  messageDeserializerProperties?: TheConfigPropertiesToBePassedToTheDeserializer4;
+  messageDeserializerProperties?: TheConfigPropertiesToBePassedToTheDeserializer;
   messageSelector?: TheMessageSelectorToBeUsedForReceivingMessages;
   password?: TheSolacePassword;
-  properties?: TheSolacePropertiesToBeUsedForConnectingToTheBroker2;
+  properties?: TheSolacePropertiesToBeUsedForConnectingToTheBroker;
   queueName: TheNameOfTheSolaceQueueToConsumeFrom;
   queueType: TheTypeOfTheQueueToBeConsumed;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
@@ -31445,12 +28223,6 @@ export interface TriggerFlowBasedOnMessagesReceivedFromASolaceBroker {
   username?: TheSolaceUsername;
   vpn?: TheSolaceVPNToConnectWith;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheConfigPropertiesToBePassedToTheDeserializer4 {
-  [k: string]: unknown | undefined;
-}
-export interface TheSolacePropertiesToBeUsedForConnectingToTheBroker2 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForQueryOnAPinotDatabase {
@@ -31488,7 +28260,7 @@ export interface QueryASurrealDBDatabaseOnARegularIntervalToTriggerFlowOnResults
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   namespace: ConnectionNamespace;
-  parameters?: QueryParametersCanBeNamedParameters1;
+  parameters?: QueryParametersCanBeNamedParameters;
   password?: PlaintextAuthenticationPassword;
   port?: ConnectionPortDefaultValueIs80001;
   query: SurrealQLQueryToExecute;
@@ -31497,9 +28269,6 @@ export interface QueryASurrealDBDatabaseOnARegularIntervalToTriggerFlowOnResults
   useTls?: SpecifyWhetherToUseTLSForConnectionDefaultIsFalse;
   username?: PlaintextAuthenticationUsername;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface QueryParametersCanBeNamedParameters1 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForQueryOnAVectorwiseDatabase {
@@ -31639,18 +28408,18 @@ export interface ConsumeAMessageInRealTimeFromAMongoDBDatabaseViaChangeDataCaptu
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedCollections?: TheNameOfTheMongoDBDatabaseCollectionExcludedFromWhichToStreamTheChanges1;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues16;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges16;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture16;
+  excludedCollections?: TheNameOfTheMongoDBDatabaseCollectionExcludedFromWhichToStreamTheChanges;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedCollections?: TheNameOfTheMongoDBDatabaseCollectionIncludedFromWhichToStreamTheChanges1;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues16;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges16;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture16;
+  includedCollections?: TheNameOfTheMongoDBDatabaseCollectionIncludedFromWhichToStreamTheChanges;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
@@ -31659,41 +28428,14 @@ export interface ConsumeAMessageInRealTimeFromAMongoDBDatabaseViaChangeDataCaptu
   offsetsCommitMode?: HowToCommitTheOffsetsToTheStateStore;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties16;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts16;
+  properties?: AdditionalConfigurationProperties;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts5;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   type: 'io.kestra.plugin.debezium.mongodb.RealtimeTrigger';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheNameOfTheMongoDBDatabaseCollectionExcludedFromWhichToStreamTheChanges1 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues16 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges16 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture16 {
-  [k: string]: unknown | undefined;
-}
-export interface TheNameOfTheMongoDBDatabaseCollectionIncludedFromWhichToStreamTheChanges1 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues16 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges16 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture16 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties16 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForChangeDataCaptureEventOnMongoDBServerAndCreateNewExecution {
@@ -31703,18 +28445,18 @@ export interface WaitForChangeDataCaptureEventOnMongoDBServerAndCreateNewExecuti
   deletedFieldName?: TheNameOfDeletedFieldIfDeletedIsADD_FIELD;
   description?: string;
   disabled?: boolean;
-  excludedCollections?: TheNameOfTheMongoDBDatabaseCollectionExcludedFromWhichToStreamTheChanges2;
-  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues17;
-  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges17;
-  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture17;
+  excludedCollections?: TheNameOfTheMongoDBDatabaseCollectionExcludedFromWhichToStreamTheChanges;
+  excludedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues;
+  excludedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges;
+  excludedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture;
   format?: TheFormatOfTheOutput;
   hostname: HostnameOfTheRemoteServer;
   id: AUniqueIDForTheWholeFlow;
   ignoreDdl?: IgnoreDDLStatement;
-  includedCollections?: TheNameOfTheMongoDBDatabaseCollectionIncludedFromWhichToStreamTheChanges2;
-  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues17;
-  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges17;
-  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture17;
+  includedCollections?: TheNameOfTheMongoDBDatabaseCollectionIncludedFromWhichToStreamTheChanges;
+  includedColumns?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues;
+  includedDatabases?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges;
+  includedTables?: AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture;
   interval?: IntervalBetweenPolling;
   key?: SpecifyHowToHandleKey;
   labels?: TheLabelsToPassToTheExecutionCreated;
@@ -31726,41 +28468,14 @@ export interface WaitForChangeDataCaptureEventOnMongoDBServerAndCreateNewExecuti
   metadataFieldName?: TheNameOfMetadataFieldIfMetadataIsADD_FIELD;
   password?: PasswordOnTheRemoteServer;
   port: PortOfTheRemoteServer;
-  properties?: AdditionalConfigurationProperties17;
-  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts17;
+  properties?: AdditionalConfigurationProperties;
+  snapshotMode?: SpecifiesTheCriteriaForRunningASnapshotWhenTheConnectorStarts5;
   splitTable?: SplitTableOnSeparateOutputUris;
   stateName?: TheNameOfDebeziumStateFile;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   type: 'io.kestra.plugin.debezium.mongodb.Trigger';
   username?: UsernameOnTheRemoteServer;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheNameOfTheMongoDBDatabaseCollectionExcludedFromWhichToStreamTheChanges2 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToIncludeInChangeEventRecordValues17 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfDatabasesForWhichYouDoNotWantToCaptureChanges17 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersForTablesWhoseChangesYouDoNotWantToCapture17 {
-  [k: string]: unknown | undefined;
-}
-export interface TheNameOfTheMongoDBDatabaseCollectionIncludedFromWhichToStreamTheChanges2 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheFullyQualifiedNamesOfColumnsToExcludeFromChangeEventRecordValues17 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchTheNamesOfTheDatabasesForWhichToCaptureChanges17 {
-  [k: string]: unknown | undefined;
-}
-export interface AnOptionalCommaSeparatedListOfRegularExpressionsThatMatchFullyQualifiedTableIdentifiersOfTablesWhoseChangesYouWantToCapture17 {
-  [k: string]: unknown | undefined;
-}
-export interface AdditionalConfigurationProperties17 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeAMessageInRealTimeFromAKafkaTopicAndCreateOneExecutionPerMessage {
@@ -31773,24 +28488,15 @@ export interface ConsumeAMessageInRealTimeFromAKafkaTopicAndCreateOneExecutionPe
   labels?: TheLabelsToPassToTheExecutionCreated;
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   partitions?: TopicPartitionsToConsumeMessagesFrom;
-  properties: KafkaConnectionProperties2;
-  serdeProperties?: SerializerConfiguration2;
+  properties: KafkaConnectionProperties;
+  serdeProperties?: SerializerConfiguration;
   since?: TimestampOfAMessageToStartConsumingMessagesFrom;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
-  topic?: KafkaTopicSToConsumeMessagesFrom1;
+  topic?: KafkaTopicSToConsumeMessagesFrom;
   topicPattern?: KafkaTopicPatternToConsumeMessagesFrom;
   type: 'io.kestra.plugin.kafka.RealtimeTrigger';
   valueDeserializer?: SerializerDeserializerToUseForTheValue & TheDeserializerUsedForTheValue;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface KafkaConnectionProperties2 {
-  [k: string]: unknown | undefined;
-}
-export interface SerializerConfiguration2 {
-  [k: string]: unknown | undefined;
-}
-export interface KafkaTopicSToConsumeMessagesFrom1 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeMessagesPeriodicallyFromKafkaTopicsAndCreateOneExecutionPerBatch {
@@ -31807,24 +28513,15 @@ export interface ConsumeMessagesPeriodicallyFromKafkaTopicsAndCreateOneExecution
   maxRecords?: TheMaximumNumberOfRecordsToFetchBeforeStoppingTheConsumptionProcess;
   partitions?: TopicPartitionsToConsumeMessagesFrom;
   pollDuration?: HowOftenToPollForARecord;
-  properties: KafkaConnectionProperties3;
-  serdeProperties?: SerializerConfiguration3;
+  properties: KafkaConnectionProperties;
+  serdeProperties?: SerializerConfiguration;
   since?: TimestampOfAMessageToStartConsumingMessagesFrom;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
-  topic?: KafkaTopicSToConsumeMessagesFrom2;
+  topic?: KafkaTopicSToConsumeMessagesFrom;
   topicPattern?: KafkaTopicPatternToConsumeMessagesFrom;
   type: 'io.kestra.plugin.kafka.Trigger';
   valueDeserializer?: SerializerDeserializerToUseForTheValue & TheDeserializerUsedForTheValue;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface KafkaConnectionProperties3 {
-  [k: string]: unknown | undefined;
-}
-export interface SerializerConfiguration3 {
-  [k: string]: unknown | undefined;
-}
-export interface KafkaTopicSToConsumeMessagesFrom2 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForFilesOnS3Bucket {
@@ -31845,7 +28542,7 @@ export interface WaitForFilesOnS3Bucket {
   logLevel?: 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
   marker?: MarkerIsWhereYouWantAmazonS3ToStartListingFrom;
   maxKeys?: SetsTheMaximumNumberOfKeysReturnedInTheResponse;
-  moveTo?: IoKestraPluginAwsS3CopyCopyObject & TheDestinationBucketAndKeyForMOVEAction2;
+  moveTo?: IoKestraPluginAwsS3CopyCopyObject & TheDestinationBucketAndKeyForMOVEAction;
   prefix?: LimitsTheResponseToKeysThatBeginWithTheSpecifiedPrefix;
   regexp?: ARegexpToFilterOnFullKey;
   region?: AWSRegionWithWhichTheSDKShouldCommunicate;
@@ -31860,9 +28557,6 @@ export interface WaitForFilesOnS3Bucket {
   stsRoleSessionName?: AWSSTSSessionName;
   type: 'io.kestra.plugin.aws.s3.Trigger';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TheDestinationBucketAndKeyForMOVEAction2 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeAMessageInRealTimeFromAnSQSQueueAndCreateOneExecutionPerMessage {
@@ -32031,14 +28725,11 @@ export interface ConsumeAMessageInRealTimeFromMQTTTopicsAndCreateOneExecutionPer
   serdeType?: SerializerDeserializerUsedForThePayload;
   server?: string;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
-  topic: TopicWhereToConsumeMessage1;
+  topic: TopicWhereToConsumeMessage;
   type: 'io.kestra.plugin.mqtt.RealtimeTrigger';
   username?: string;
   version?: 'V3' | 'V5';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface TopicWhereToConsumeMessage1 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeMessagesPeriodicallyFromMQTTTopicsAndCreateOneExecutionPerBatch {
@@ -32061,21 +28752,18 @@ export interface ConsumeMessagesPeriodicallyFromMQTTTopicsAndCreateOneExecutionP
   serdeType?: SerializerDeserializerUsedForThePayload;
   server?: string;
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
-  topic: TopicWhereToConsumeMessage2;
+  topic: TopicWhereToConsumeMessage;
   type: 'io.kestra.plugin.mqtt.Trigger';
   username?: string;
   version?: 'V3' | 'V5';
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
   [k: string]: unknown | undefined;
 }
-export interface TopicWhereToConsumeMessage2 {
-  [k: string]: unknown | undefined;
-}
 export interface ConsumeAMessageInRealTimeFromPulsarTopicsAndCreateOneExecutionPerMessage {
   authenticationToken?: AuthenticationToken;
   conditions?: ListOfConditionsInOrderToLimitTheFlowTrigger;
   consumerName?: TheConsumerName;
-  consumerProperties?: AddAllThePropertiesInTheProvidedMapToTheConsumer1;
+  consumerProperties?: AddAllThePropertiesInTheProvidedMapToTheConsumer;
   description?: string;
   deserializer?: SerializerDeserializerUsedForTheValue & DeserializerUsedForTheValue;
   disabled?: boolean;
@@ -32089,27 +28777,18 @@ export interface ConsumeAMessageInRealTimeFromPulsarTopicsAndCreateOneExecutionP
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   subscriptionName: TheSubscriptionName;
   subscriptionType?: TheSubscriptionType;
-  tlsOptions?: IoKestraPluginPulsarAbstractPulsarConnectionTlsOptions & TLSAuthenticationOptions3;
-  topic: PulsarTopicSWhereToConsumeMessagesFrom2;
+  tlsOptions?: IoKestraPluginPulsarAbstractPulsarConnectionTlsOptions & TLSAuthenticationOptions;
+  topic: PulsarTopicSWhereToConsumeMessagesFrom;
   type: 'io.kestra.plugin.pulsar.RealtimeTrigger';
   uri: ConnectionURLs;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AddAllThePropertiesInTheProvidedMapToTheConsumer1 {
-  [k: string]: string | undefined;
-}
-export interface TLSAuthenticationOptions3 {
-  [k: string]: unknown | undefined;
-}
-export interface PulsarTopicSWhereToConsumeMessagesFrom2 {
   [k: string]: unknown | undefined;
 }
 export interface ConsumeMessagesPeriodicallyFromPulsarTopicsAndCreateOneExecutionPerBatch {
   authenticationToken?: AuthenticationToken;
   conditions?: ListOfConditionsInOrderToLimitTheFlowTrigger;
   consumerName?: TheConsumerName;
-  consumerProperties?: AddAllThePropertiesInTheProvidedMapToTheConsumer2;
+  consumerProperties?: AddAllThePropertiesInTheProvidedMapToTheConsumer;
   description?: string;
   deserializer?: SerializerDeserializerUsedForTheValue & DeserializerUsedForTheValue;
   disabled?: boolean;
@@ -32127,20 +28806,11 @@ export interface ConsumeMessagesPeriodicallyFromPulsarTopicsAndCreateOneExecutio
   stopAfter?: ListOfExecutionStatesAfterWhichATriggerShouldBeStoppedAKADisabled;
   subscriptionName: TheSubscriptionName;
   subscriptionType?: TheSubscriptionType;
-  tlsOptions?: IoKestraPluginPulsarAbstractPulsarConnectionTlsOptions & TLSAuthenticationOptions4;
-  topic: PulsarTopicSWhereToConsumeMessagesFrom3;
+  tlsOptions?: IoKestraPluginPulsarAbstractPulsarConnectionTlsOptions & TLSAuthenticationOptions;
+  topic: PulsarTopicSWhereToConsumeMessagesFrom;
   type: 'io.kestra.plugin.pulsar.Trigger';
   uri: ConnectionURLs;
   workerGroup?: IoKestraCoreModelsTasksWorkerGroup;
-  [k: string]: unknown | undefined;
-}
-export interface AddAllThePropertiesInTheProvidedMapToTheConsumer2 {
-  [k: string]: string | undefined;
-}
-export interface TLSAuthenticationOptions4 {
-  [k: string]: unknown | undefined;
-}
-export interface PulsarTopicSWhereToConsumeMessagesFrom3 {
   [k: string]: unknown | undefined;
 }
 export interface WaitForQueryOnADremioDatabase {

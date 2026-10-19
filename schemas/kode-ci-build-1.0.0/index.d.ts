@@ -2,6 +2,8 @@
 
 /**
  * artifact로 지정된 .apk/.ipa 파일을 appcenter로 릴리즈
+ *
+ * Items: appcenter release 설정
  */
 export type AppCenterReleases = {
   /**
@@ -10,6 +12,8 @@ export type AppCenterReleases = {
   'app-id': string;
   /**
    * 릴리즈 그룹에 대한 Tag들을 지정
+   *
+   * Items: 릴리즈 그룹에 대한 Tag 값
    */
   tags?: string[];
 }[];

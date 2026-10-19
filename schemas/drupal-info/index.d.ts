@@ -1,8 +1,6 @@
 /* eslint-disable */
 
 export type JSONSchemaForDrupalExtensionInfoFile = {
-  [k: string]: unknown | undefined;
-} & {
   name: TheHumanReadableName;
   type: 'module' | 'theme' | 'profile' | 'theme_engine';
   core?: string;

@@ -19,7 +19,7 @@ export type StylesPropertiesAndElementsComplete = StylesProperties & {
   color?: unknown;
   spacing?: unknown;
   typography?: unknown;
-  elements?: StylesElementsPropertiesComplete1;
+  elements?: StylesElementsPropertiesComplete;
 };
 
 export interface JSONSchemaForWordPressBlockThemeGlobalSettingsAndStyles {
@@ -174,6 +174,9 @@ export interface SettingsProperties {
       slug: string;
       /**
        * List of colors from dark to light.
+       * Since 5.8.
+       *
+       * Items: CSS hex or rgb string.
        * Since 5.8.
        */
       colors: string[];
@@ -374,10 +377,7 @@ export interface SettingsProperties {
  * Since 5.8.
  */
 export interface SettingsCustomAdditionalProperties {
-  [k: string]: (string | number | SettingsCustomAdditionalProperties1) | undefined;
-}
-export interface SettingsCustomAdditionalProperties1 {
-  [k: string]: (string | number | SettingsCustomAdditionalProperties1) | undefined;
+  [k: string]: string | number | SettingsCustomAdditionalProperties | undefined;
 }
 /**
  * Settings defined on a per-block basis.
@@ -719,13 +719,4 @@ export interface StylesBlocksPropertiesComplete {
   'core/widget-area'?: StylesPropertiesAndElementsComplete;
   'core/legacy-widget'?: StylesPropertiesAndElementsComplete;
   'core/widget-group'?: StylesPropertiesAndElementsComplete;
-}
-export interface StylesElementsPropertiesComplete1 {
-  link?: StylesPropertiesComplete;
-  h1?: StylesPropertiesComplete;
-  h2?: StylesPropertiesComplete;
-  h3?: StylesPropertiesComplete;
-  h4?: StylesPropertiesComplete;
-  h5?: StylesPropertiesComplete;
-  h6?: StylesPropertiesComplete;
 }

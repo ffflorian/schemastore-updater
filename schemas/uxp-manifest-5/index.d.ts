@@ -43,8 +43,7 @@ export type AvailableIconScales = [number, ...number[]];
  * A list of user interface themes that contrast well enough with this icon
  */
 export type SupportedThemes =
-  | ['lightest' | 'light' | 'dark' | 'darkest', ...('lightest' | 'light' | 'dark' | 'darkest')[]]
-  | unknown[];
+  ['lightest' | 'light' | 'dark' | 'darkest', ...('lightest' | 'light' | 'dark' | 'darkest')[]] | unknown[];
 /**
  * Specifies the contexts in which this icon should be displayed
  */
@@ -59,7 +58,7 @@ export type PlugInIcons = (IconDefinition & {
 /**
  * The host program(s) this plug-in is intended to run on. An array may only be provided during development; a single host must be specified when submitting to the plug-in marketplace
  */
-export type HostProgram = HostDefinition | HostDefinition1[];
+export type HostProgram = HostDefinition | HostDefinition[];
 /**
  * The host program
  */
@@ -75,10 +74,27 @@ export type MinimumVersion = string;
  * The maximum host version supported by this plug-in. At least two segments ("x.y") must be specified
  */
 export type MaximumVersion = string;
+export type EntryPointType = 'command' | 'panel';
+/**
+ * A unique identifier associated with this entry point
+ */
+export type EntryPointID = string;
+/**
+ * A textual label associated with this entry point that will be displayed to the user
+ */
+export type EntryPointLabel = string | LocalizedString;
+/**
+ * The default string in case the user's language is unsupported
+ */
+export type DefaultString = string;
+/**
+ * The string as translated to a language
+ */
+export type Translation = string;
 /**
  * A list of commands and panels that this plug-in provides
  */
-export type EntryPoints = (
+export type EntryPoints = ((
   | {
       [k: string]: unknown | undefined;
     }
@@ -88,7 +104,12 @@ export type EntryPoints = (
       };
       [k: string]: unknown | undefined;
     }
-)[];
+) & {
+  type: EntryPointType;
+  id: EntryPointID;
+  label: EntryPointLabel;
+  [k: string]: unknown | undefined;
+})[];
 /**
  * A list of host names that the plug-in may send requests to, or "all"
  */
@@ -131,14 +152,6 @@ export type EnableSpectrumWebComponents = boolean;
  * Enables the usage of CSS variables (custom attributes) for the "fill" attribute in SVG elements
  */
 export type EnableCSSVariablesForFillAttribute = boolean;
-/**
- * The default string in case the user's language is unsupported
- */
-export type DefaultString = string;
-/**
- * The string as translated to a language
- */
-export type Translation = string | undefined;
 
 export interface AdobeUXPPlugInManifest {
   id: PlugInID;
@@ -176,11 +189,12 @@ export interface HostDefinition {
   maxVersion?: MaximumVersion;
   [k: string]: unknown | undefined;
 }
-export interface HostDefinition1 {
-  app: App;
-  minVersion: MinimumVersion;
-  maxVersion?: MaximumVersion;
-  [k: string]: unknown | undefined;
+/**
+ * Specifies a localized text string
+ */
+export interface LocalizedString {
+  default: DefaultString;
+  [k: string]: Translation | undefined;
 }
 /**
  * Allows the plug-in to access the network
@@ -230,11 +244,4 @@ export interface ExperimentalFeatureFlags {
  */
 export interface LocalizedStrings {
   [k: string]: LocalizedString | undefined;
-}
-/**
- * Specifies a localized text string
- */
-export interface LocalizedString {
-  default: DefaultString;
-  [k: string]: Translation | undefined;
 }

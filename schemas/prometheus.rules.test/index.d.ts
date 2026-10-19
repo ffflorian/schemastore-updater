@@ -1,29 +1,6 @@
 /* eslint-disable */
 
 /**
- * Expanded annotations of the expected alert
- */
-export type Labels = {
-  [k: string]: LabelValue;
-} & ({
-  [k: string]: LabelValue;
-} | null);
-/**
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
- * This interface was referenced by `undefined`'s JSON-Schema definition
- * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
- *
  * This interface was referenced by `undefined`'s JSON-Schema definition
  * via the `patternProperty` "^[a-zA-Z_][a-zA-Z0-9_]*$".
  */
@@ -55,7 +32,12 @@ export interface TestGroup {
    * Unit tests for alerting rules. We only consider the alerting rules from the input files.
    */
   alert_rule_test?: AlertTestCase[];
-  external_labels?: Labels;
+  /**
+   * External labels accessible to the alert template.
+   */
+  external_labels?: {
+    [k: string]: LabelValue | undefined;
+  } | null;
   /**
    * External URL accessible to the alert template. Usually set using --web.external-url.
    */
@@ -92,8 +74,18 @@ export interface AlertTestCase {
   exp_alerts?: Alert[];
 }
 export interface Alert {
-  exp_annotations?: Labels;
-  exp_labels: Labels;
+  /**
+   * Expanded annotations of the expected alert
+   */
+  exp_annotations?: {
+    [k: string]: LabelValue | undefined;
+  } | null;
+  /**
+   * Expanded labels and annotations of the expected alert. This also include the labels of the sample associated with the alert (same as what you see in `/alerts`, without series `__name__` and `alertname`).
+   */
+  exp_labels: {
+    [k: string]: LabelValue | undefined;
+  } | null;
   [k: string]: unknown | undefined;
 }
 export interface Series {

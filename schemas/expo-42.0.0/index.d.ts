@@ -200,12 +200,10 @@ export interface JSONSchemaForExpoSDK42AppManifest {
      */
     locales?: {
       [k: string]:
-        | (
-            | string
-            | {
-                [k: string]: unknown | undefined;
-              }
-          )
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
         | undefined;
     };
     /**
