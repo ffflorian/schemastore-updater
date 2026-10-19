@@ -21,7 +21,7 @@
     "oxlint": "1.87.0",
     "semantic-release": "25.0.9",
     "tsx": "4.23.15",
-    "vite": "8.3.3",
+    "vite": "8.3.4",
     "vitest": "5.0.4"
   },
   "engines": {
