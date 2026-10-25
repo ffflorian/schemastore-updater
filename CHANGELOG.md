@@ -1,3 +1,10 @@
+## [3.8.14](https://github.com/ffflorian/schemastore-updater/compare/v3.8.13...v3.8.14) (2026-10-25)
+
+
+### Bug Fixes
+
+* **deps:** bump undici from 6.29.0 to 6.29.1 ([#1709](https://github.com/ffflorian/schemastore-updater/issues/1709)) ([712f345](https://github.com/ffflorian/schemastore-updater/commit/712f345bb6b1f1a7787189831a52b0f74f1a82e5))
+
 ## [3.8.13](https://github.com/ffflorian/schemastore-updater/compare/v3.8.12...v3.8.13) (2026-10-11)
 
 
