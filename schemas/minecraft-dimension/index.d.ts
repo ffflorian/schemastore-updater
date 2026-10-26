@@ -4,8 +4,7 @@
  * The namespaced ID of the dimension type.
  */
 export type Type =
-  | ('minecraft:overworld' | 'minecraft:overworld_caves' | 'minecraft:the_nether' | 'minecraft:the_end')
-  | DimensionType;
+  ('minecraft:overworld' | 'minecraft:overworld_caves' | 'minecraft:the_nether' | 'minecraft:the_end') | DimensionType;
 /**
  * The resource location used for the dimension type.
  */
@@ -78,8 +77,13 @@ export type Effects = 'minecraft:overworld' | 'minecraft:the_nether' | 'minecraf
  * Generation settings used for that dimension.
  */
 export type Generator = {
+  type?: Type1;
   [k: string]: unknown | undefined;
 };
+/**
+ * The ID of the generator.
+ */
+export type Type1 = 'minecraft:flat' | 'minecraft:noise' | 'minecraft:debug';
 
 /**
  * Configuration file defining a dimension for a data pack for Minecraft.

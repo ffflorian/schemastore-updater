@@ -1,5 +1,8 @@
 /* eslint-disable */
 
+/**
+ * Schema for GitHub dependabot.yml configuration files using the v2 format.
+ */
 export type GitHubDependabotV2Config = {
   version: ConfigFileVersion;
   /**
@@ -245,15 +248,7 @@ export type PackageEcosystem = (
       }
   ) &
     string;
-  /**
-   * Pull request branch name preferences
-   */
-  'pull-request-branch-name'?: {
-    /**
-     * Change separator for PR branch name
-     */
-    separator: '-' | '_' | '/';
-  };
+  'pull-request-branch-name'?: PullRequestBranchName;
   /**
    * Disable automatic rebasing. 'auto' is the default and Dependabot will rebase open pull requests when changes are detected. 'disabled' will disable automatic rebasing.
    */
@@ -951,6 +946,37 @@ export type Schedule = {
 };
 export type ScheduleInterval = 'daily' | 'weekly' | 'monthly' | 'quarterly' | 'semiannually' | 'yearly' | 'cron';
 
+/**
+ * How Dependabot generates branch names for pull requests
+ */
+export interface PullRequestBranchName {
+  /**
+   * Specify a character to use in place of / between branch name segments.
+   */
+  separator?: '-' | '_' | '/';
+  /**
+   * A custom string to use at the start of the branch name instead of the default.
+   */
+  prefix?: string;
+  /**
+   * The maximum allowed length for generated branch names. When a branch name exceeds this limit, it is truncated and a hash suffix is appended to preserve uniqueness
+   */
+  'max-length'?: number;
+  /**
+   * A character to replace underscores (_) in all branch name content after the prefix—including package manager names, dependency names, group names, and directory paths.
+   */
+  'word-separator'?: string;
+  /**
+   * The case to use for all branch name content after the prefix—including package manager names, dependency names, group names, and directory paths.
+   */
+  'branch-name-case'?: 'lowercase' | 'uppercase';
+  /**
+   * A custom branch name format using placeholders.
+   */
+  template?: {
+    [k: string]: unknown | undefined;
+  } & string;
+}
 /**
  * The top-level registries key is optional. It allows you to specify authentication details that Dependabot can use to access private package registries.
  */
@@ -1734,15 +1760,7 @@ export interface MultiEcosystemGroup {
      */
     include?: 'scope';
   };
-  /**
-   * Pull request branch name preferences for the group
-   */
-  'pull-request-branch-name'?: {
-    /**
-     * Change separator for PR branch name
-     */
-    separator: '-' | '_' | '/';
-  };
+  'pull-request-branch-name'?: PullRequestBranchName;
   /**
    * Limit number of open pull requests for version updates.
    */

@@ -1416,6 +1416,7 @@ export type RuleSelector =
   | 'UP05'
   | 'UP050'
   | 'UP051'
+  | 'UP052'
   | 'W'
   | 'W1'
   | 'W19'
@@ -1575,6 +1576,7 @@ export type RuleSelector =
   | 'complex-structure'
   | 'complexity'
   | 'constant-imported-as-non-constant'
+  | 'context-manager-iterator'
   | 'continue-in-finally'
   | 'continue-outside-loop'
   | 'convert-named-tuple-functional-to-class'
@@ -2339,6 +2341,7 @@ export type RuleSelector =
   | 'unnecessary-placeholder'
   | 'unnecessary-range-start'
   | 'unnecessary-regular-expression'
+  | 'unnecessary-regular-expression-compile'
   | 'unnecessary-return-none'
   | 'unnecessary-round'
   | 'unnecessary-spread'
@@ -2451,6 +2454,21 @@ export type ImportSelector = ImportSelection | ImportSelectorSettings;
 export type ImportSelection = AllImports | string[];
 export type AllImports = 'all';
 export type Strictness = 'parents' | 'all';
+export type AnnotationSemanticsSelection =
+  | {
+      [k: string]: RuntimeSemantics | undefined;
+    }
+  | string[];
+/**
+ * Represents the desired runtime semantics for a set of type definitions
+ *
+ * Note that the order of variants is important here. `Required` has the
+ * highest precedence when calling `RuntimeSemantics::combine` on two
+ * separate targeting sources. (E.g. classes can be targeted both via
+ * their decorators, but also via their base classes, so this determines
+ * what happens when two sources disagree)
+ */
+export type RuntimeSemantics = 'required' | 'ambiguous';
 export type DocstringCodeLineWidth = LineWidth | 'dynamic';
 /**
  * The maximum visual width to which the formatter should try to limit a line.
@@ -2476,6 +2494,8 @@ export type NameImports = string;
 export type LineLength = number;
 export type Convention = 'google' | 'numpy' | 'pep257';
 export type ConstantType = 'bytes' | 'complex' | 'float' | 'int' | 'str';
+export type AllowedValue = string | number | AllowedFloatValue;
+export type AllowedFloatValue = number;
 export type OutputFormat =
   | 'concise'
   | 'full'
@@ -2525,7 +2545,8 @@ export interface Options {
    * @deprecated
    * A regular expression used to identify "dummy" variables, or those which
    * should be ignored when enforcing (e.g.) unused-variable rules. The
-   * default expression matches `_`, `__`, and `_var`, but not `_var_`.
+   * default expression matches `_`, `__`, `_var`, and `_次`, but not `_var_`
+   * or `_次_`.
    */
   'dummy-variable-rgx'?: string | null;
   /**
@@ -3078,8 +3099,8 @@ export interface Options {
    * code upgrades, like rewriting type annotations. Ruff will not propose
    * changes using features that are not available in the given version.
    *
-   * For example, to represent supporting Python >=3.11 or ==3.11
-   * specify `target-version = "py311"`.
+   * For example, to represent supporting Python >=3.12 or ==3.12
+   * specify `target-version = "py312"`.
    *
    * If you're already using a `pyproject.toml` file, we recommend
    * `project.requires-python` instead, as it's based on Python packaging
@@ -3634,6 +3655,9 @@ export interface Flake8TidyImportsOptions {
   'ban-relative-imports'?: Strictness | null;
   /**
    * Specific modules or module members that may not be imported or accessed.
+   * These can be extended by the
+   * [`extend-banned-api`](#lint_flake8-tidy-imports_extend-banned-api) option.
+   *
    * Note that this rule is only meant to flag accidental uses,
    * and can be circumvented via `eval` or `importlib`.
    */
@@ -3647,6 +3671,15 @@ export interface Flake8TidyImportsOptions {
    * if `banned-module-level-imports` is enabled.
    */
   'banned-module-level-imports'?: string[] | null;
+  /**
+   * Additional modules or module members that may not be imported or accessed.
+   * These entries will be added to the
+   * [`banned-api`](#lint_flake8-tidy-imports_banned-api) mapping and will override
+   * any existing entries if the two settings overlap.
+   */
+  'extend-banned-api'?: {
+    [k: string]: ApiBan | undefined;
+  } | null;
   /**
    * Specific modules that must be imported lazily in contexts where `lazy import` is legal, or
    * `"all"` to require every lazily-convertible import to use the `lazy` keyword. Ruff ignores
@@ -3723,15 +3756,41 @@ export interface Flake8TypeCheckingOptions {
    * Exempt classes that list any of the enumerated classes as a base class
    * from needing to be moved into type-checking blocks.
    *
-   * Common examples include Pydantic's `pydantic.BaseModel` and SQLAlchemy's
-   * `sqlalchemy.orm.DeclarativeBase`, but can also support user-defined
-   * classes that inherit from those base classes. For example, if you define
-   * a common `DeclarativeBase` subclass that's used throughout your project
-   * (e.g., `class Base(DeclarativeBase) ...` in `base.py`), you can add it to
-   * this list (`runtime-evaluated-base-classes = ["base.Base"]`) to exempt
+   * This can either be configured as a list, if all entries share the same
+   * runtime semantics of being runtime required. Or a table where each entry
+   * is assigned to its desired runtime semantics.
+   *
+   * A common example for `"runtime"` required semantics is Pydantic's `pydantic.BaseModel`
+   * but can also support user-defined classes that inherit from those base classes.
+   * For example, if you define a common `BaseModel` subclass that's used throughout
+   * your project (e.g., `class Base(BaseModel) ...` in `base.py`), you can add it to
+   * this list/table (`runtime-evaluated-base-classes = ["base.Base"]`) to exempt
    * models from being moved into type-checking blocks.
+   *
+   * ```toml
+   * [tool.ruff.lint.flake8-type-checking]
+   * runtime-evaluated-base-classes = ["pydantic.BaseModel"]
+   * ```
+   *
+   * Or
+   *
+   * ```toml
+   * [tool.ruff.lint.flake8-type-checking.runtime-evaluated-base-classes]
+   * "pydantic.BaseModel" = "required"
+   * ```
+   *
+   * For some use-cases like SQLAlchemy's `sqlalchemy.orm.DeclarativeBase` it makes more
+   * sense to mark the class as runtime `"ambiguous"`, since references to other models do
+   * not need to resolve at runtime. With these semantics ruff will assume the annotations
+   * already contain all of the correct forward references, and will not attempt to move
+   * related imports and/or quote annotations.
+   *
+   * ```toml
+   * [tool.ruff.lint.flake8-type-checking.runtime-evaluated-base-classes]
+   * "sqlalchemy.orm.DeclarativeBase" = "ambiguous"
+   * ```
    */
-  'runtime-evaluated-base-classes'?: string[] | null;
+  'runtime-evaluated-base-classes'?: AnnotationSemanticsSelection | null;
   /**
    * Exempt classes and functions decorated with any of the enumerated
    * decorators from being moved into type-checking blocks.
@@ -3753,8 +3812,11 @@ export interface Flake8TypeCheckingOptions {
    * ```
    *
    * Here `app.get` will correctly be identified as `fastapi.FastAPI.get`.
+   *
+   * Just like with `runtime-evaluated-base-classes` it's possible to mark
+   * decorators as runtime `"ambiguous"`.
    */
-  'runtime-evaluated-decorators'?: string[] | null;
+  'runtime-evaluated-decorators'?: AnnotationSemanticsSelection | null;
   /**
    * Enforce `TC001`, `TC002`, and `TC003` rules even when valid runtime imports
    * are present for the same module.
@@ -4348,7 +4410,8 @@ export interface LintOptions {
   /**
    * A regular expression used to identify "dummy" variables, or those which
    * should be ignored when enforcing (e.g.) unused-variable rules. The
-   * default expression matches `_`, `__`, and `_var`, but not `_var_`.
+   * default expression matches `_`, `__`, `_var`, and `_次`, but not `_var_`
+   * or `_次_`.
    */
   'dummy-variable-rgx'?: string | null;
   /**
@@ -4935,6 +4998,15 @@ export interface PylintOptions {
    */
   'allow-magic-value-types'?: ConstantType[] | null;
   /**
+   * Specific literal values to ignore when used as "magic values" (see `PLR2004`).
+   */
+  'allow-magic-values'?: AllowedValue[] | null;
+  /**
+   * Literal values to ignore when used as "magic values" (see `PLR2004`),
+   * in addition to those included in [`allow-magic-values`](#lint_pylint_allow-magic-values).
+   */
+  'extend-allow-magic-values'?: AllowedValue[] | null;
+  /**
    * Maximum number of arguments allowed for a function or method definition
    * (see `PLR0913`).
    */
@@ -5067,7 +5139,7 @@ export interface RuffOptions {
   'parenthesize-tuple-in-subscript'?: boolean | null;
   /**
    * Whether to require `__init__.py` files to contain no code at all, including imports and
-   * docstrings (see `RUF067`).
+   * `__all__` assignments (see `RUF067`). Module and attribute docstrings are still allowed.
    */
   'strictly-empty-init-modules'?: boolean | null;
 }

@@ -26,7 +26,9 @@ export interface JSONSchemaForPubliccodeYml {
     | '0.6'
     | '0.6.0'
     | '0.7'
-    | '0.7.0';
+    | '0.7.0'
+    | '0.8'
+    | '0.8.0';
   /**
    * The (short) public name of the software, as most people usually refer to it. If the software has both an internal code name and a commercial name, use the commercial name. It can be localised in the description section.
    */
@@ -46,9 +48,9 @@ export interface JSONSchemaForPubliccodeYml {
    */
   landingURL?: string;
   /**
-   * The URL(s) of the original project(s), if this software is a variant or fork of another software. Its presence identifies this software as descending from the specified repositories.
+   * The URLs of the original projects, if this software is a variant or fork of another software. Its presence identifies this software as descending from the specified repositories.
    */
-  isBasedOn?: string | string[];
+  isBasedOn?: string[] | string;
   /**
    * The latest stable version number of the software. It is a display only string; parsers should not assume semantic versioning or any other specific format.
    */
@@ -58,7 +60,7 @@ export interface JSONSchemaForPubliccodeYml {
    */
   releaseDate?: string;
   /**
-   * The path to the logo of the software. Vector formats (SVG or SVGZ) are preferred, but PNG is also accepted. It can be a relative path from the repository root or an absolute URL to the raw file, but the file must reside in the same repository as this publiccode.yml.
+   * The path to the logo of the software. Vector formats (SVG or SVGZ) are preferred, but PNG, JPEG, WebP and AVIF are also accepted. It can be a relative path from the repository root or an absolute URL to the raw file, but the file must reside in the same repository as this publiccode.yml.
    */
   logo?: string;
   /**
@@ -196,7 +198,8 @@ export interface JSONSchemaForPubliccodeYml {
     | 'other'
   )[];
   /**
-   * The names of prominent public administrations known to be using this software, serving as testimonials. Parsers are encouraged to enrich this list with independently obtained signals of usage, such as forks owned by an administration.
+   * @deprecated
+   * DEPRECATED. The names of prominent public administrations known to be using this software, serving as testimonials. Parsers are encouraged to enrich this list with independently obtained signals of usage, such as forks owned by an administration.
    */
   usedBy?: string[];
   /**
@@ -247,6 +250,9 @@ export interface JSONSchemaForPubliccodeYml {
       [k: string]: unknown | undefined;
     } & string)[];
     /**
+     * @deprecated
+     * DEPRECATED. Use countries to list the countries the software explicitly targets instead.
+     *
      * Countries explicitly marked as NOT supported, for instance when the software conflicts with a specific law, process or technology. Uses uppercase ISO 3166-1 alpha-2 codes; lowercase codes are deprecated but still accepted.
      */
     unsupportedCountries?: ({
@@ -256,30 +262,32 @@ export interface JSONSchemaForPubliccodeYml {
      * Tags related to the field of application of the software.
      */
     scope?: (
-      | 'agriculture'
-      | 'culture'
-      | 'defence'
-      | 'education'
-      | 'emergency-services'
-      | 'employment'
-      | 'energy'
-      | 'environment'
-      | 'finance-and-economic-development'
-      | 'foreign-affairs'
+      | (
+          | 'agriculture'
+          | 'culture'
+          | 'defence'
+          | 'education'
+          | 'emergency-services'
+          | 'employment'
+          | 'energy'
+          | 'environment'
+          | 'finance-and-economic-development'
+          | 'foreign-affairs'
+          | 'healthcare'
+          | 'infrastructures'
+          | 'justice'
+          | 'local-authorities'
+          | 'manufacturing'
+          | 'research'
+          | 'science-and-technology'
+          | 'security'
+          | 'society'
+          | 'sport'
+          | 'tourism'
+          | 'transportation'
+          | 'welfare'
+        )
       | 'government'
-      | 'healthcare'
-      | 'infrastructures'
-      | 'justice'
-      | 'local-authorities'
-      | 'manufacturing'
-      | 'research'
-      | 'science-and-technology'
-      | 'security'
-      | 'society'
-      | 'sport'
-      | 'tourism'
-      | 'transportation'
-      | 'welfare'
     )[];
   };
   /**
@@ -312,7 +320,24 @@ export interface JSONSchemaForPubliccodeYml {
    * Information on the maintenance status of the software, useful to evaluate whether it is actively developed.
    */
   maintenance: {
-    [k: string]: unknown | undefined;
+    /**
+     * How the software is currently maintained.
+     */
+    type: 'internal' | 'contract' | 'community' | 'none';
+    /**
+     * The entity or entities currently contracted for maintaining the software. Mandatory when maintenance/type is contract, and must not be present otherwise.
+     *
+     * @minItems 1
+     */
+    contractors?: [Contractor, ...Contractor[]];
+    /**
+     * One or more contacts maintaining this software. This key is mandatory when maintenance/type is internal or community and optional otherwise.
+     *
+     * All contacts need to be a physical person, not a company or an organisation. If somebody is acting as a representative of an institution, it must be listed within the affiliation of the contact.
+     *
+     * @minItems 1
+     */
+    contacts?: [Contact, ...Contact[]];
   };
   /**
    * An overview of the localisation features of the software.
@@ -334,6 +359,9 @@ export interface JSONSchemaForPubliccodeYml {
    */
   dependsOn?: {
     /**
+     * @deprecated
+     * DEPRECATED. Open source runtime dependencies are already declared in the SBOM or in the package manager manifests, and what needs to be installed belongs in the documentation and in the deployment scripts.
+     *
      * Runtime dependencies distributed under an open source license.
      */
     open?: Dependency[];
@@ -357,6 +385,42 @@ export interface JSONSchemaForPubliccodeYml {
    * DEPRECATED. Use the uppercase IT country code. The entire country-specific section will be removed in publiccode.yml 1.0.
    */
   it?: IT;
+}
+export interface Contractor {
+  /**
+   * The name of the contractor, whether it's a company or a physical person.
+   */
+  name: string;
+  /**
+   * The date (YYYY-MM-DD) at which the maintenance is going to end. For community maintenance, this should not be more than 2 years in the future, and needs to be updated regularly as the project continues.
+   */
+  until: string;
+  /**
+   * The e-mail address of the technical contact. It must be an address where the contact can be reached directly; do NOT use mailing lists or generic contact points like "info@acme.inc".
+   */
+  email?: string;
+  /**
+   * The maintainer website: either the main institutional website or a more project-specific page.
+   */
+  website?: string;
+}
+export interface Contact {
+  /**
+   * The full name of one of the technical contacts. It must be a real person; do NOT use generic contact information, company departments, associations, etc.
+   */
+  name: string;
+  /**
+   * The e-mail address of the technical contact. It must be an address where the contact can be reached directly; do NOT use mailing lists or generic contact points like "info@acme.inc".
+   */
+  email?: string;
+  /**
+   * Phone number of the technical contact. It should include the international prefix, following the E.164 format (e.g. +3923113215112). This has to be a string.
+   */
+  phone?: string;
+  /**
+   * Explicit affiliation of the technical contact, such as a company or association name. Useful with multiple maintainers, to relate each contact to a maintainer entity.
+   */
+  affiliation?: string;
 }
 export interface Dependency {
   /**
