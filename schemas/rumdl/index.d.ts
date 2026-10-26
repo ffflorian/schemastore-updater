@@ -29,6 +29,14 @@ export type MarkdownFlavor =
   | 'markdown_with_gherkin'
   | 'gh-aw';
 /**
+ * Preference for resolving an external executable. Explicit paths bypass this.
+ */
+export type BinaryPreference = 'project' | 'system' | 'only-project' | 'only-system';
+/**
+ * Behavior when a configured coverage or availability condition is unmet.
+ */
+export type OnMissing = 'ignore' | 'warn' | 'fail' | 'fail-fast';
+/**
  * Error handling strategy for tool execution failures.
  */
 export type OnError = 'fail' | 'skip' | 'warn';
@@ -105,7 +113,9 @@ export interface GlobalConfig {
    */
   include?: string[];
   /**
-   * Respect .gitignore files when scanning directories
+   * Respect .gitignore, .ignore and git exclude files when scanning
+   * directories. .markdownlintignore applies regardless, and explicitly
+   * named files bypass both.
    */
   'respect-gitignore'?: boolean;
   /**
@@ -210,16 +220,37 @@ export interface CodeBlockToolsConfig {
    */
   'on-error'?: 'fail' | 'skip' | 'warn';
   /**
-   * Behavior when a code block language has no tools configured for the current mode
-   * (e.g., no lint tools for `rumdl check`, no format tools for `rumdl check --fix`)
+   * Behavior when a recognized language has no tools configured in either mode.
    */
   'on-missing-language-definition'?: 'ignore' | 'warn' | 'fail' | 'fail-fast';
   /**
-   * Behavior when a configured tool's binary cannot be found (e.g., not in PATH).
+   * Behavior when a configured tool's binary is absent from the allowed lookup locations.
    * Defaults to `warn`: the tools rumdl drives are installed separately from
    * rumdl, so an absent one is common enough that silence about it is a trap.
    */
   'on-missing-tool-binary'?: 'ignore' | 'warn' | 'fail' | 'fail-fast';
+  /**
+   * Select already-installed project/PATH executables per underlying binary.
+   */
+  'binary-preferences'?: {
+    [k: string]: BinaryPreference | undefined;
+  };
+  /**
+   * Policy for unlabeled fenced code blocks.
+   */
+  'on-missing-language-tag'?: 'ignore' | 'warn' | 'fail' | 'fail-fast';
+  /**
+   * Policy for unknown tags. When omitted, inherits on-missing-language-definition.
+   */
+  'on-unknown-language-tag'?: OnMissing | null;
+  /**
+   * Behavior when a configured coverage or availability condition is unmet.
+   */
+  'on-missing-mode-definition'?: 'ignore' | 'warn' | 'fail' | 'fail-fast';
+  /**
+   * Behavior when a configured coverage or availability condition is unmet.
+   */
+  'on-no-tools-run'?: 'ignore' | 'warn' | 'fail' | 'fail-fast';
   /**
    * Timeout per tool execution in milliseconds (default: 30000)
    */
@@ -263,6 +294,10 @@ export interface LanguageToolConfig {
    * Tools to run in format mode (rumdl check --fix / rumdl fmt)
    */
   format?: string[];
+  /**
+   * How the `format` list is applied: as fallbacks (default) or as a pipeline
+   */
+  'format-mode'?: 'fallback' | 'pipeline';
   /**
    * Override global on-error setting for this language
    */

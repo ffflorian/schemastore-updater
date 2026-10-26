@@ -38,16 +38,27 @@ export interface CrucibleConfiguration {
     when?: 'full' | 'never';
   };
   /**
-   * Environment variables for the commands crucible runs. A file under the working directory may set only crucible's own CRUCIBLE_CODE_ names
+   * What you have said about vendors that may use what is sent to them
+   */
+  contentUse?: {
+    $schema?: string;
+    $comment?: string;
+    /**
+     * Routes you have said yes to sending on, though their vendor says it may use what is sent to train or improve its models; crucible writes this when you choose Use it anyway. Read only from the configuration file in your home directory
+     */
+    accepted?: string[];
+  };
+  /**
+   * Environment variables for the commands crucible runs, and crucible's own settings under CRUCIBLE_CODE_ names. A file under the working directory may set only those
    */
   env?: {
     $schema?: string;
     $comment?: string;
     /**
-     * How many rows of the transcript one notch of the wheel moves
+     * How many rows or list entries one notch of the wheel moves, wherever the wheel scrolls
      */
-    CRUCIBLE_CODE_MOUSE_SCROLL_SPEED?: string;
-    [k: string]: string | undefined;
+    CRUCIBLE_CODE_MOUSE_SCROLL_SPEED?: number | string;
+    [k: string]: string | number | undefined;
   };
   /**
    * Per-extension settings, keyed by the identifier the extension's manifest states
@@ -78,13 +89,59 @@ export interface CrucibleConfiguration {
       | undefined;
   };
   /**
+   * Installed coding agents a provider's access may name, keyed by the name access.instance uses. Nothing is started by being written here. Read only from the configuration file in your home directory
+   */
+  externalAgents?: {
+    $schema?: string;
+    $comment?: string;
+    [k: string]:
+      | {
+          $schema?: string;
+          $comment?: string;
+          /**
+           * How the agent signs in: account, its own account login, with no API key from crucible's environment. Read only from the configuration file in your home directory
+           */
+          authentication?: 'account';
+          /**
+           * For a claude agent: an absolute path to the configuration directory it signs in and keeps its state under. Left off, its usual one. Read only from the configuration file in your home directory
+           */
+          configDir?: string;
+          /**
+           * Which agent this is, and so how crucible speaks to it. Read only from the configuration file in your home directory
+           */
+          driver: 'claude' | 'antigravity';
+          /**
+           * For a claude agent: how hard it thinks before answering, chosen with /effort. Left off, the default rung of the model it is started with. Read only from the configuration file in your home directory
+           */
+          effort?: 'low' | 'medium' | 'high' | 'xhigh' | 'max';
+          /**
+           * Whether new work may be sent through this agent. false keeps the entry and the providers that name it, and sends them nothing. Read only from the configuration file in your home directory
+           */
+          enabled?: boolean;
+          /**
+           * The agent's program. An absolute path, or a bare program name for PATH to answer. Read only from the configuration file in your home directory
+           */
+          executable: string;
+          /**
+           * For a claude agent: the model it is started with, as its provider names it, chosen with /model from that provider's list. Left off, the provider's default model. Letters, digits and . _ - : @ / [ ] only, not starting with -. Read only from the configuration file in your home directory
+           */
+          model?: string;
+          /**
+           * For an antigravity agent, and required for one: an absolute path to the profile directory it signs in and keeps its state under. Read only from the configuration file in your home directory
+           */
+          profileDir?: string;
+        }
+      | string
+      | undefined;
+  };
+  /**
    * What the keyboard does
    */
   input?: {
     $schema?: string;
     $comment?: string;
     /**
-     * Which press sends a prompt: enter sends and Shift+Enter, Alt+Enter or Ctrl+J opens a line; altEnter swaps the two, for a terminal that keeps Enter for itself
+     * Which press sends a prompt: enter sends and Shift+Enter, Alt+Enter or Ctrl+J opens a line; altEnter swaps the two, for a terminal that keeps Shift+Enter for itself
      */
     send?: 'enter' | 'altEnter';
   };
@@ -135,7 +192,7 @@ export interface CrucibleConfiguration {
               [k: string]: string | undefined;
             };
             /**
-             * How long to wait for the server to agree a protocol version before giving up on it. Read only from the configuration file in your home directory
+             * How long to wait for the server to agree a protocol version, and for each step of starting its sandbox, before giving up on it. Read only from the configuration file in your home directory
              */
             handshakeSeconds?: number;
             /**
@@ -166,13 +223,25 @@ export interface CrucibleConfiguration {
     $schema?: string;
     $comment?: string;
     /**
-     * Whether to write colour: auto follows the terminal and NO_COLOR, always and never override it
+     * Whether a terminal is written in colour: auto follows NO_COLOR, always and never override it; a file or pipe gets none
      */
     color?: 'auto' | 'always' | 'never';
     /**
      * Which characters crucible draws with: unicode for box drawing, ascii for a font that lacks it
      */
     glyphs?: 'unicode' | 'ascii';
+    /**
+     * How many seconds a running tool call waits before it is drawn above the working row with its output and ctrl+b; one that finishes sooner is only written to the transcript, and 0 draws every call at once
+     */
+    pinAfterSeconds?: number;
+    /**
+     * Where crucible draws, read at start: fullscreen takes a screen of its own with its own scrollback, rail and selection; native draws in the terminal's own buffer and leaves scrolling, selection and copy to the terminal
+     */
+    screen?: 'fullscreen' | 'native';
+    /**
+     * Whether the transcript has a one-column rail on its right edge showing where the screen is and where each prompt was; a click or a drag on it scrolls there
+     */
+    scrollRail?: boolean;
     /**
      * Which theme fenced code is drawn in — a name from /theme, such as Monokai Extended, GitHub, Dracula or Nord
      */
@@ -185,6 +254,10 @@ export interface CrucibleConfiguration {
      * How much of a tool call and its result one line shows
      */
     toolDetail?: 'compact' | 'full';
+    /**
+     * How many of the theme's colours the transcript spends: calm on code, paths and links, balanced on versions and a call's path or address too, rich on headings, lists, quotes and figures as well
+     */
+    transcriptColours?: 'calm' | 'balanced' | 'rich';
   };
   /**
    * What runs without being put to you, what is refused outright, and where tools may reach
@@ -234,7 +307,7 @@ export interface CrucibleConfiguration {
      */
     mode?: 'observeOnly' | 'prefer' | 'require' | 'prohibit';
     /**
-     * Bounded opaque user-owned label included in cache scope identity; never a provider cache key
+     * Opaque user-owned label of 1 to 64 ASCII letters, digits, '.', '-' or '_', included in cache scope identity; never a provider cache key. Read only from the configuration file in your home directory
      */
     namespace?: string;
     /**
@@ -259,7 +332,7 @@ export interface CrucibleConfiguration {
        */
       class?: 'providerDefault' | 'ephemeral' | 'extended';
       /**
-       * Hard maximum provider retention in seconds; required for ephemeral and extended retention
+       * Hard maximum provider retention in seconds, at most a year; required for ephemeral and extended retention, and refused with providerDefault
        */
       maxSeconds?: number;
     };
@@ -279,15 +352,30 @@ export interface CrucibleConfiguration {
           $schema?: string;
           $comment?: string;
           /**
-           * Name of the environment variable holding this provider's API key — the name, never the key
+           * How this provider is reached: a subscription signed in with /login, an API key, or an installed coding agent named under externalAgents. Left off, a subscription where one is signed in and no baseUrl is set, then the API key. Read only from the configuration file in your home directory
+           */
+          access?: {
+            $schema?: string;
+            $comment?: string;
+            /**
+             * The externalAgents entry this provider is reached through; written with externalAgent and only with it
+             */
+            instance?: string;
+            /**
+             * subscription for the account /login signed in, apiKey for the API key, externalAgent for the installed agent named by instance. Nothing falls back from one to another
+             */
+            type: 'subscription' | 'apiKey' | 'externalAgent';
+          };
+          /**
+           * Name of the environment variable holding this provider's API key — the name, never the key. Read only from the configuration file in your home directory
            */
           apiKeyEnv?: string;
           /**
-           * Address to send this provider's requests to instead of the vendor's, for a gateway or a proxy
+           * Address to send this provider's requests to instead of the vendor's, for a gateway or a proxy. Read only from the configuration file in your home directory
            */
           baseUrl?: string;
           /**
-           * The context-window size in tokens, keyed by model name; an explicit value may opt into a larger native window
+           * The context-window size in tokens, keyed by model name; an explicit value replaces the model's native window, lower or higher
            */
           contextWindow?: {
             $schema?: string;
@@ -302,6 +390,10 @@ export interface CrucibleConfiguration {
            * How hard to think before answering, when --effort does not say. Left off, the vendor's own default for whichever model is being asked
            */
           effort?: 'low' | 'medium' | 'high' | 'xhigh' | 'max';
+          /**
+           * Whether to ask the model named beside it to answer fast, where its vendor serves a fast form at a higher price. Read only with that model in force; left off, standard speed. Read only from the configuration file in your home directory
+           */
+          fast?: boolean;
           /**
            * The model to ask when --model does not name one
            */

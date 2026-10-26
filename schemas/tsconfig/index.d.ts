@@ -3222,6 +3222,14 @@ export interface CompilerOptionsDefinition {
      */
     extendedDiagnostics?: boolean | null;
     /**
+     * Print files read during the compilation including why it was included.
+     */
+    explainFiles?: boolean | null;
+    /**
+     * Generates an event trace and a list of types in the given directory.
+     */
+    generateTrace?: string | null;
+    /**
      * Print names of files that are part of the compilation and then stop processing.
      */
     listFilesOnly?: boolean | null;
@@ -3448,6 +3456,10 @@ export interface CompilerOptionsDefinition {
      * Built-in iterators are instantiated with a `TReturn` type of undefined instead of `any`.
      */
     strictBuiltinIteratorReturn?: boolean | null;
+    /**
+     * Ensure types are ordered stably and deterministically across compilations.
+     */
+    stableTypeOrdering?: boolean | null;
     [k: string]: unknown | undefined;
   } | null;
   [k: string]: unknown | undefined;

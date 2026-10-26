@@ -20,8 +20,6 @@ export type InputPropertyConstraints =
  * via the `patternProperty` "".
  */
 export type NodeTemplate = {
-  [k: string]: unknown | undefined;
-} & {
   /**
    * The node-type of this node template.
    */
@@ -339,7 +337,7 @@ export interface Blueprint {
     aws_region_zone1?: InputProperty;
     aws_region_zone2?: InputProperty;
     aws_cloudwatch_log_arn?: InputProperty;
-    [k: string]: InputProperty;
+    [k: string]: InputProperty | undefined;
   };
   dsl_definitions?: {
     [k: string]: unknown | undefined;
@@ -352,7 +350,7 @@ export interface Blueprint {
  * To use data_types, the definitions version must be cloudify_dsl_1_2 or higher.
  */
 export interface DataTypes {
-  [k: string]: DataType;
+  [k: string]: DataType | undefined;
 }
 /**
  * This interface was referenced by `DataTypes`'s JSON-Schema definition
@@ -402,7 +400,7 @@ export interface InputProperty {
   required?: boolean;
 }
 export interface NodeTypes {
-  [k: string]: NodeType;
+  [k: string]: NodeType | undefined;
 }
 /**
  * This interface was referenced by `NodeTypes`'s JSON-Schema definition
@@ -431,13 +429,13 @@ export interface NodeType {
  * node_templates represent the actual instances of node types that eventually represent the running application/service, as described in the blueprint. node_templates are more commonly referred to as nodes. Nodes can comprise more than one instance. For example, you might define a node that contains two VMs. Each VM is a node_instance.
  */
 export interface NodeTemplates {
-  [k: string]: NodeTemplate;
+  [k: string]: NodeTemplate | undefined;
 }
 /**
  * Used for a mapping plugins to interfaces operation, or for specifying inputs for already-mapped node type operations.
  */
 export interface NodeTemplateInterfaces {
-  [k: string]: NodeTemplateInterface;
+  [k: string]: NodeTemplateInterface | undefined;
 }
 /**
  * This interface was referenced by `NodeTemplateInterfaces`'s JSON-Schema definition
@@ -446,7 +444,7 @@ export interface NodeTemplateInterfaces {
 export interface NodeTemplateInterface {
   configure?: NodeTemplateInterfaceAction;
   delete?: NodeTemplateInterfaceAction;
-  [k: string]: NodeTemplateInterfaceAction;
+  [k: string]: NodeTemplateInterfaceAction | undefined;
 }
 export interface NodeTemplateRelationship {
   /**
