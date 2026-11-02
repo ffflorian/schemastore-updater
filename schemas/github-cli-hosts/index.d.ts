@@ -4,28 +4,26 @@
  * Configuration for a GitHub.com or GitHub Enterprise host.
  * https://github.com/cli/cli/blob/v2.96.0/docs/multiple-accounts.md
  */
-export type Host =
-  | (ConfigOptions & {
-      /**
-       * Username of the active account for this host.
-       * https://cli.github.com/manual/gh_auth_switch
-       */
-      user?: string;
-      /**
-       * Sensitive plaintext authentication token used when secure credential storage is unavailable. Prefer storing credentials with gh auth login.
-       * https://cli.github.com/manual/gh_auth_login
-       */
-      oauth_token?: string;
-      /**
-       * Accounts known for this host. A null value indicates that the account token is stored in the operating system credential store.
-       * https://github.com/cli/cli/blob/v2.96.0/docs/multiple-accounts.md
-       */
-      users?: {
-        [k: string]: (null | User) | undefined;
-      };
-      [k: string]: unknown | undefined;
-    })
-  | undefined;
+export type Host = ConfigOptions & {
+  /**
+   * Username of the active account for this host.
+   * https://cli.github.com/manual/gh_auth_switch
+   */
+  user?: string;
+  /**
+   * Sensitive plaintext authentication token used when secure credential storage is unavailable. Prefer storing credentials with gh auth login.
+   * https://cli.github.com/manual/gh_auth_login
+   */
+  oauth_token?: string;
+  /**
+   * Accounts known for this host. A null value indicates that the account token is stored in the operating system credential store.
+   * https://github.com/cli/cli/blob/v2.96.0/docs/multiple-accounts.md
+   */
+  users?: {
+    [k: string]: null | User | undefined;
+  };
+  [k: string]: unknown | undefined;
+};
 /**
  * Per-account configuration stored for a host.
  * https://github.com/cli/cli/blob/v2.96.0/docs/multiple-accounts.md

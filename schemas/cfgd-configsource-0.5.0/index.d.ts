@@ -30,8 +30,8 @@ export interface ConfigSourceSpec {
 export interface ConfigSourcePolicy {
   constraints?: SourceConstraints;
   locked?: PolicyItems;
-  optional?: PolicyItems1;
-  recommended?: PolicyItems2;
+  optional?: PolicyItems;
+  recommended?: PolicyItems;
   required?: {
     aliases?: ShellAlias[];
     env?: EnvVar[];
@@ -200,30 +200,6 @@ export interface SecretSpec {
   source: string;
   target?: string | null;
   template?: string | null;
-}
-export interface PolicyItems1 {
-  aliases?: ShellAlias[];
-  env?: EnvVar[];
-  files?: ManagedFileSpec[];
-  modules?: string[];
-  packages?: PackagesSpec | null;
-  profiles?: string[];
-  secrets?: SecretSpec[];
-  system?: {
-    [k: string]: unknown | undefined;
-  };
-}
-export interface PolicyItems2 {
-  aliases?: ShellAlias[];
-  env?: EnvVar[];
-  files?: ManagedFileSpec[];
-  modules?: string[];
-  packages?: PackagesSpec | null;
-  profiles?: string[];
-  secrets?: SecretSpec[];
-  system?: {
-    [k: string]: unknown | undefined;
-  };
 }
 export interface ConfigSourceProvides {
   modules?: string[];

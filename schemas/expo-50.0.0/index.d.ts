@@ -221,12 +221,10 @@ export interface JSONSchemaForExpoSDK50AppManifest {
      */
     locales?: {
       [k: string]:
-        | (
-            | string
-            | {
-                [k: string]: unknown | undefined;
-              }
-          )
+        | string
+        | {
+            [k: string]: unknown | undefined;
+          }
         | undefined;
     };
     /**
@@ -236,7 +234,19 @@ export interface JSONSchemaForExpoSDK50AppManifest {
     /**
      * Config plugins for adding extra functionality to your project. [Learn more](https://docs.expo.dev/guides/config-plugins/).
      */
-    plugins?: (string | [] | [string] | [string, unknown])[];
+    plugins?: (
+      | string
+      | [string]
+      | [
+          string,
+          (
+            | string
+            | {
+                [k: string]: unknown | undefined;
+              }
+          )
+        ]
+    )[];
     /**
      * Configuration for loading and splash screen for standalone apps.
      */

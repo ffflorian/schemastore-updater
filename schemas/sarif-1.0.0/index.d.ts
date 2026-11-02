@@ -350,6 +350,9 @@ export interface Result {
    * @minItems 1
    */
   relatedLocations?: [AnnotatedCodeLocation, ...AnnotatedCodeLocation[]];
+  /**
+   * Items: A flag value indicating one or more suppression conditions.
+   */
   suppressionStates?: ('suppressedInSource' | 'suppressedExternally')[];
   /**
    * The state of a result relative to a baseline of a previous run.
@@ -390,7 +393,7 @@ export interface FormattedRuleMessage {
  */
 export interface Location {
   analysisTarget?: PhysicalLocation;
-  resultFile?: PhysicalLocation1;
+  resultFile?: PhysicalLocation;
   /**
    * The human-readable fully qualified name of the logical location where the analysis tool produced the result. If 'logicalLocationKey' is not specified, this member is can used to retrieve the location logicalLocation from the logicalLocations dictionary, if one exists.
    */
@@ -456,20 +459,6 @@ export interface Region {
    * The length of the region in bytes or characters.
    */
   length?: number;
-}
-/**
- * A physical location relevant to a result. Specifies a reference to a programming artifact together with a range of bytes or characters within that artifact.
- */
-export interface PhysicalLocation1 {
-  /**
-   * The location of the file as a valid URI.
-   */
-  uri?: string;
-  /**
-   * A string that identifies the conceptual base for the 'uri' property (if it is relative), e.g.,'$(SolutionDir)' or '%SRCROOT%'.
-   */
-  uriBaseId?: string;
-  region?: Region;
 }
 /**
  * A call stack that is relevant to a result.
@@ -594,7 +583,7 @@ export interface AnnotatedCodeLocation {
    * The 0-based sequence number of the location in the code flow within which it occurs.
    */
   step?: number;
-  physicalLocation?: PhysicalLocation2;
+  physicalLocation?: PhysicalLocation;
   /**
    * The fully qualified name of the method or function that is executing.
    */
@@ -681,20 +670,6 @@ export interface AnnotatedCodeLocation {
     [k: string]: unknown | undefined;
   };
 }
-/**
- * A file location to which this annotation refers.
- */
-export interface PhysicalLocation2 {
-  /**
-   * The location of the file as a valid URI.
-   */
-  uri?: string;
-  /**
-   * A string that identifies the conceptual base for the 'uri' property (if it is relative), e.g.,'$(SolutionDir)' or '%SRCROOT%'.
-   */
-  uriBaseId?: string;
-  region?: Region;
-}
 export interface Annotation {
   /**
    * A message relevant to a code location
@@ -705,22 +680,8 @@ export interface Annotation {
    *
    * @minItems 1
    */
-  locations: [PhysicalLocation3, ...PhysicalLocation3[]];
+  locations: [PhysicalLocation, ...PhysicalLocation[]];
   [k: string]: unknown | undefined;
-}
-/**
- * A physical location relevant to a result. Specifies a reference to a programming artifact together with a range of bytes or characters within that artifact.
- */
-export interface PhysicalLocation3 {
-  /**
-   * The location of the file as a valid URI.
-   */
-  uri?: string;
-  /**
-   * A string that identifies the conceptual base for the 'uri' property (if it is relative), e.g.,'$(SolutionDir)' or '%SRCROOT%'.
-   */
-  uriBaseId?: string;
-  region?: Region;
 }
 /**
  * A proposed fix for the problem represented by a result object. A fix specifies a set of file to modify. For each file, it specifies a set of bytes to remove, and provides a set of new bytes to replace them.
@@ -787,7 +748,7 @@ export interface Notification {
    * A key used to retrieve the rule metadata from the rules dictionary that is relevant to the notification.
    */
   ruleKey?: string;
-  physicalLocation?: PhysicalLocation4;
+  physicalLocation?: PhysicalLocation;
   /**
    * A string that describes the condition that was encountered.
    */
@@ -817,20 +778,6 @@ export interface Notification {
   };
 }
 /**
- * A physical location relevant to a result. Specifies a reference to a programming artifact together with a range of bytes or characters within that artifact.
- */
-export interface PhysicalLocation4 {
-  /**
-   * The location of the file as a valid URI.
-   */
-  uri?: string;
-  /**
-   * A string that identifies the conceptual base for the 'uri' property (if it is relative), e.g.,'$(SolutionDir)' or '%SRCROOT%'.
-   */
-  uriBaseId?: string;
-  region?: Region;
-}
-/**
  * The runtime exception, if any, relevant to this notification.
  */
 export interface Exception {
@@ -842,52 +789,11 @@ export interface Exception {
    * A string that describes the exception.
    */
   message?: string;
-  stack?: Stack1;
+  stack?: Stack;
   /**
    * An array of exception objects each of which is considered a cause of this exception.
    */
-  innerExceptions?: Exception1[];
-  [k: string]: unknown | undefined;
-}
-/**
- * The sequence of function calls leading to the exception.
- */
-export interface Stack1 {
-  /**
-   * A message relevant to this call stack.
-   */
-  message?: string;
-  /**
-   * An array of stack frames that represent a sequence of calls, rendered in reverse chronological order, that comprise the call stack.
-   *
-   * @minItems 1
-   */
-  frames: [StackFrame, ...StackFrame[]];
-  /**
-   * Key/value pairs that provide additional information about the stack.
-   */
-  properties?: {
-    /**
-     * A set of distinct strings that provide additional information.
-     */
-    tags?: string[];
-    [k: string]: unknown | undefined;
-  };
-}
-export interface Exception1 {
-  /**
-   * A string that identifies the kind of exception, for example, the fully qualified type name of an object that was thrown, or the symbolic name of a signal.
-   */
-  kind?: string;
-  /**
-   * A string that describes the exception.
-   */
-  message?: string;
-  stack?: Stack1;
-  /**
-   * An array of exception objects each of which is considered a cause of this exception.
-   */
-  innerExceptions?: Exception1[];
+  innerExceptions?: Exception[];
   [k: string]: unknown | undefined;
 }
 /**

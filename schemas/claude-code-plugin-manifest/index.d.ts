@@ -529,6 +529,10 @@ export interface ClaudeCodePluginManifest {
              */
             default?: string | number | boolean | string[];
             /**
+             * For string type: the values the field accepts, shown as a picker. Not allowed with multiple or sensitive. Requires Claude Code v2.1.271 or later
+             */
+            options?: string[];
+            /**
              * For string type: allow an array of strings
              */
             multiple?: boolean;
@@ -552,7 +556,64 @@ export interface ClaudeCodePluginManifest {
     | string
     | {
         [k: string]:
-          | (
+          | {
+              type?: 'stdio';
+              command: string;
+              args?: string[];
+              env?: {
+                [k: string]: string | undefined;
+              };
+              [k: string]: unknown | undefined;
+            }
+          | {
+              type: 'sse';
+              url: string;
+              headers?: {
+                [k: string]: string | undefined;
+              };
+              headersHelper?: string;
+              oauth?: {
+                clientId?: string;
+                callbackPort?: number;
+                authServerMetadataUrl?: string;
+                scopes?: string;
+                xaa?: boolean;
+                [k: string]: unknown | undefined;
+              };
+              [k: string]: unknown | undefined;
+            }
+          | {
+              type: 'http';
+              url: string;
+              headers?: {
+                [k: string]: string | undefined;
+              };
+              headersHelper?: string;
+              oauth?: {
+                clientId?: string;
+                callbackPort?: number;
+                authServerMetadataUrl?: string;
+                scopes?: string;
+                xaa?: boolean;
+                [k: string]: unknown | undefined;
+              };
+              [k: string]: unknown | undefined;
+            }
+          | {
+              type: 'ws';
+              url: string;
+              headers?: {
+                [k: string]: string | undefined;
+              };
+              headersHelper?: string;
+              [k: string]: unknown | undefined;
+            }
+          | undefined;
+      }
+    | (
+        | string
+        | {
+            [k: string]:
               | {
                   type?: 'stdio';
                   command: string;
@@ -605,67 +666,6 @@ export interface ClaudeCodePluginManifest {
                   headersHelper?: string;
                   [k: string]: unknown | undefined;
                 }
-            )
-          | undefined;
-      }
-    | (
-        | string
-        | {
-            [k: string]:
-              | (
-                  | {
-                      type?: 'stdio';
-                      command: string;
-                      args?: string[];
-                      env?: {
-                        [k: string]: string | undefined;
-                      };
-                      [k: string]: unknown | undefined;
-                    }
-                  | {
-                      type: 'sse';
-                      url: string;
-                      headers?: {
-                        [k: string]: string | undefined;
-                      };
-                      headersHelper?: string;
-                      oauth?: {
-                        clientId?: string;
-                        callbackPort?: number;
-                        authServerMetadataUrl?: string;
-                        scopes?: string;
-                        xaa?: boolean;
-                        [k: string]: unknown | undefined;
-                      };
-                      [k: string]: unknown | undefined;
-                    }
-                  | {
-                      type: 'http';
-                      url: string;
-                      headers?: {
-                        [k: string]: string | undefined;
-                      };
-                      headersHelper?: string;
-                      oauth?: {
-                        clientId?: string;
-                        callbackPort?: number;
-                        authServerMetadataUrl?: string;
-                        scopes?: string;
-                        xaa?: boolean;
-                        [k: string]: unknown | undefined;
-                      };
-                      [k: string]: unknown | undefined;
-                    }
-                  | {
-                      type: 'ws';
-                      url: string;
-                      headers?: {
-                        [k: string]: string | undefined;
-                      };
-                      headersHelper?: string;
-                      [k: string]: unknown | undefined;
-                    }
-                )
               | undefined;
           }
       )[];
@@ -853,6 +853,10 @@ export interface ClaudeCodePluginManifest {
            * Default value used when the user provides nothing
            */
           default?: string | number | boolean | string[];
+          /**
+           * For string type: the values the field accepts, shown as a picker. Not allowed with multiple or sensitive. Requires Claude Code v2.1.271 or later
+           */
+          options?: string[];
           /**
            * For string type: allow an array of strings
            */

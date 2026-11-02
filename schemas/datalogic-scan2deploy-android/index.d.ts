@@ -45,7 +45,7 @@ export type DownloadPreinstalledSchema = boolean;
 /**
  * A string specifying the absolute/relative path of a file, or a JSON array of strings describing the file content line-by-line. The script file will be interpreted last in staging process.
  */
-export type ScriptSchema = string | ItemsSchema[];
+export type ScriptSchema = (string | unknown[]) & ItemsSchema[];
 export type ItemsSchema = string;
 /**
  * Specifies the final action performed by the application at the end of the staging process.

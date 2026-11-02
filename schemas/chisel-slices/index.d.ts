@@ -15,22 +15,30 @@ export interface CanonicalChiselSliceDefinition {
   /**
    * A list of slices that are a dependency for all slices of this package. Each slice item is formatted as '<slice_name>_<slice_part>'.
    */
-  essential?:
-    | string[]
+  essential?: (
+    | unknown[]
     | {
-        /**
-         * The name of the dependency slice part.
-         *
-         * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` "^.+$".
-         */
-        [k: string]: {
-          /**
-           * Only include this dependency on specific architectures.
-           */
-          arch?: string[];
-        } | null;
-      };
+        [k: string]: unknown | undefined;
+      }
+  ) &
+    string[] & {
+      /**
+       * The name of the dependency slice part.
+       *
+       * This interface was referenced by `undefined`'s JSON-Schema definition
+       * via the `patternProperty` "^.+$".
+       */
+      [k: string]:
+        | (({
+            [k: string]: unknown | undefined;
+          } | null) & {
+            /**
+             * Only include this dependency on specific architectures.
+             */
+            arch?: string[];
+          })
+        | undefined;
+    };
   /**
    * Slice definitions for this package.
    */
@@ -41,79 +49,93 @@ export interface CanonicalChiselSliceDefinition {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[_a-zA-Z][a-zA-Z0-9_-]*$".
      */
-    [k: string]: {
-      /**
-       * The name of the dependency slice part. The slice part is formatted as '<slice_name>_<slice_part>'.
-       */
-      essential?:
-        | string[]
-        | {
+    [k: string]:
+      | {
+          /**
+           * The name of the dependency slice part. The slice part is formatted as '<slice_name>_<slice_part>'.
+           */
+          essential?: (
+            | unknown[]
+            | {
+                [k: string]: unknown | undefined;
+              }
+          ) &
+            string[] & {
+              /**
+               * The name of the dependency slice part.
+               *
+               * This interface was referenced by `undefined`'s JSON-Schema definition
+               * via the `patternProperty` "^.+$".
+               */
+              [k: string]:
+                | (({
+                    [k: string]: unknown | undefined;
+                  } | null) & {
+                    /**
+                     * Only include this dependency on specific architectures.
+                     */
+                    arch?: string[];
+                  })
+                | undefined;
+            };
+          /**
+           * A Starlark expression to modify the file contents.
+           */
+          mutate?: string;
+          /**
+           * Concise and unopinionated discriminator to describe the slice. No special chars, trailing punctuation, and it must be sentence case.
+           */
+          hint?: string;
+          /**
+           * Files to include in the slice. Supports glob patterns.
+           */
+          contents?: {
             /**
-             * The name of the dependency slice part.
+             * Path description.
              *
              * This interface was referenced by `undefined`'s JSON-Schema definition
              * via the `patternProperty` "^.+$".
              */
-            [k: string]: {
-              /**
-               * Only include this dependency on specific architectures.
-               */
-              arch?: string[];
-            } | null;
+            [k: string]:
+              | (({
+                  [k: string]: unknown | undefined;
+                } | null) & {
+                  /**
+                   * Make this file or directory if it does not already exist.
+                   */
+                  make?: boolean;
+                  /**
+                   * File permissions to use.
+                   */
+                  mode?: number;
+                  /**
+                   * Copy this file or directory from this location.
+                   */
+                  copy?: string;
+                  /**
+                   * The contents of the file.
+                   */
+                  text?: string;
+                  /**
+                   * Make a symlink to this file or directory.
+                   */
+                  symlink?: string;
+                  /**
+                   * If true, the file is mutable.
+                   */
+                  mutable?: boolean;
+                  /**
+                   * Only keep this file until this stage.
+                   */
+                  until?: '' | 'mutate';
+                  /**
+                   * Only include this file on specific architectures.
+                   */
+                  arch?: string[];
+                })
+              | undefined;
           };
-      /**
-       * A Starlark expression to modify the file contents.
-       */
-      mutate?: string;
-      /**
-       * Concise and unopinionated discriminator to describe the slice. No special chars, trailing punctuation, and it must be sentence case.
-       */
-      hint?: string;
-      /**
-       * Files to include in the slice. Supports glob patterns.
-       */
-      contents?: {
-        /**
-         * Path description.
-         *
-         * This interface was referenced by `undefined`'s JSON-Schema definition
-         * via the `patternProperty` "^.+$".
-         */
-        [k: string]: {
-          /**
-           * Make this file or directory if it does not already exist.
-           */
-          make?: boolean;
-          /**
-           * File permissions to use.
-           */
-          mode?: number;
-          /**
-           * Copy this file or directory from this location.
-           */
-          copy?: string;
-          /**
-           * The contents of the file.
-           */
-          text?: string;
-          /**
-           * Make a symlink to this file or directory.
-           */
-          symlink?: string;
-          /**
-           * If true, the file is mutable.
-           */
-          mutable?: boolean;
-          /**
-           * Only keep this file until this stage.
-           */
-          until?: '' | 'mutate';
-          /**
-           * Only include this file on specific architectures.
-           */
-          arch?: string[];
-        } | null;
-      };
-    };
+        }
+      | undefined;
   };
 }
