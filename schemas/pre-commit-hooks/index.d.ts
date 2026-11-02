@@ -30,6 +30,8 @@ export type HttpsJsonSchemastoreOrgPreCommitHooksJson = [
           | 'dotnet'
           | 'fail'
           | 'golang'
+          | 'haskell'
+          | 'julia'
           | 'lua'
           | 'node'
           | 'perl'
@@ -70,7 +72,7 @@ export type HttpsJsonSchemastoreOrgPreCommitHooksJson = [
      */
     always_run?: boolean;
     /**
-     * (optional) if true this hook will run even if there are no matching files.
+     * (optional) if true pre-commit will stop running hooks if this hook fails.
      */
     fail_fast?: boolean;
     /**
@@ -133,6 +135,8 @@ export type HttpsJsonSchemastoreOrgPreCommitHooksJson = [
           | 'dotnet'
           | 'fail'
           | 'golang'
+          | 'haskell'
+          | 'julia'
           | 'lua'
           | 'node'
           | 'perl'
@@ -173,7 +177,7 @@ export type HttpsJsonSchemastoreOrgPreCommitHooksJson = [
      */
     always_run?: boolean;
     /**
-     * (optional) if true this hook will run even if there are no matching files.
+     * (optional) if true pre-commit will stop running hooks if this hook fails.
      */
     fail_fast?: boolean;
     /**

@@ -25,12 +25,15 @@ export type MetaHooks = 'check-hooks-apply' | 'check-useless-excludes' | 'identi
 export type BuiltinHooks =
   | 'check-added-large-files'
   | 'check-case-conflict'
+  | 'check-commit-trailers'
   | 'check-executables-have-shebangs'
   | 'check-illegal-windows-names'
   | 'check-json'
   | 'check-json5'
+  | 'check-jsonc'
   | 'check-merge-conflict'
   | 'check-shebang-scripts-are-executable'
+  | 'check-signed-commit'
   | 'check-symlinks'
   | 'check-toml'
   | 'check-vcs-permalinks'
@@ -74,6 +77,7 @@ export type LanguageVersion =
        */
       preference?: 'only-managed' | 'managed' | 'system' | 'only-system';
     };
+export type HideStatus = 'passed' | 'failed' | 'skipped';
 
 /**
  * The configuration file for prek, a git hook manager written in Rust.
@@ -88,7 +92,7 @@ export interface PrekToml {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^\S+$".
      */
-    [k: string]: number;
+    [k: string]: number | undefined;
   };
   repos: Repo[];
   /**
@@ -132,7 +136,7 @@ export interface PrekToml {
    */
   default_stages?: Stage[];
   /**
-   * Default runtime environment variables for hooks.
+   * Default environment variables for preparing and running hooks.
    */
   default_env?: {
     [k: string]: string | undefined;
@@ -160,6 +164,10 @@ export interface PrekToml {
    * Default is false.
    */
   fail_fast?: boolean;
+  /**
+   * Hide hook reports with these final statuses. An empty list shows all reports.
+   */
+  hide_status?: HideStatus[];
   /**
    * The minimum version of prek required to run this configuration.
    */
@@ -288,6 +296,11 @@ export interface RemoteHook {
         [k: string]: unknown | undefined;
       };
   /**
+   * Include deleted paths when selecting staged changes or a commit range.
+   * Default is false.
+   */
+  include_deleted?: boolean;
+  /**
    * List of file types to run on (AND).
    * Default is `[file]`, which matches all files.
    */
@@ -311,7 +324,7 @@ export interface RemoteHook {
    */
   args?: string[];
   /**
-   * Environment variables to set for the hook.
+   * Environment variables to set while preparing and running the hook.
    */
   env?: {
     [k: string]: string | undefined;
@@ -472,6 +485,11 @@ export interface LocalHook {
         [k: string]: unknown | undefined;
       };
   /**
+   * Include deleted paths when selecting staged changes or a commit range.
+   * Default is false.
+   */
+  include_deleted?: boolean;
+  /**
    * List of file types to run on (AND).
    * Default is `[file]`, which matches all files.
    */
@@ -495,7 +513,7 @@ export interface LocalHook {
    */
   args?: string[];
   /**
-   * Environment variables to set for the hook.
+   * Environment variables to set while preparing and running the hook.
    */
   env?: {
     [k: string]: string | undefined;
@@ -629,6 +647,11 @@ export interface MetaHook {
         [k: string]: unknown | undefined;
       };
   /**
+   * Include deleted paths when selecting staged changes or a commit range.
+   * Default is false.
+   */
+  include_deleted?: boolean;
+  /**
    * List of file types to run on (AND).
    * Default is `[file]`, which matches all files.
    */
@@ -652,7 +675,7 @@ export interface MetaHook {
    */
   args?: string[];
   /**
-   * Environment variables to set for the hook.
+   * Environment variables to set while preparing and running the hook.
    */
   env?: {
     [k: string]: string | undefined;
@@ -786,6 +809,11 @@ export interface BuiltinHook {
         [k: string]: unknown | undefined;
       };
   /**
+   * Include deleted paths when selecting staged changes or a commit range.
+   * Default is false.
+   */
+  include_deleted?: boolean;
+  /**
    * List of file types to run on (AND).
    * Default is `[file]`, which matches all files.
    */
@@ -809,7 +837,7 @@ export interface BuiltinHook {
    */
   args?: string[];
   /**
-   * Environment variables to set for the hook.
+   * Environment variables to set while preparing and running the hook.
    */
   env?: {
     [k: string]: string | undefined;

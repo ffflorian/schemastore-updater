@@ -184,7 +184,15 @@ export interface StaticHTTPConfig {
   middlewares?: string[] | null;
   redirections?: StaticRedirections;
   tls?: StaticTLSConfig;
-  underscoreHeadersStrategy?: string;
+  /**
+   * Defines how request headers whose names alias other header names are handled.
+   */
+  aliasHeadersStrategy?: 'keep' | 'delete' | 'reject';
+  /**
+   * @deprecated
+   * DEPRECATED. Defines how request headers with underscores are handled. Use aliasHeadersStrategy instead.
+   */
+  underscoreHeadersStrategy?: 'keep' | 'delete' | 'reject';
 }
 export interface StaticEncodedCharacters {
   allowEncodedSlash?: boolean;

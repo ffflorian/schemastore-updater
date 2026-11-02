@@ -407,268 +407,7 @@ export type Step = {
    * @minItems 1
    */
   parallel?: [Step, ...Step[]];
-} & Step1 & {
-    /**
-     * A unique identifier for the step. You can use the id to reference the step in contexts. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions.
-     */
-    id?: string;
-    /**
-     * You can use the if conditional to prevent a step from running unless a condition is met. You can use any supported context and expression to create a conditional.
-     * Expressions in an if conditional do not require the ${{ }} syntax. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions.
-     */
-    if?: boolean | number | string;
-    /**
-     * A name for your step to display on GitHub.
-     */
-    name?: string;
-    /**
-     * Selects an action to run as part of a step in your job. An action is a reusable unit of code. You can use an action defined in the same repository as the workflow, a public repository, or in a published Docker container image (https://hub.docker.com/).
-     * We strongly recommend that you include the version of the action you are using by specifying a Git ref, SHA, or Docker tag number. If you don't specify a version, it could break your workflows or cause unexpected behavior when the action owner publishes an update.
-     * - Using the commit SHA of a released action version is the safest for stability and security.
-     * - Using the specific major action version allows you to receive critical fixes and security patches while still maintaining compatibility. It also assures that your workflow should still work.
-     * - Using the master branch of an action may be convenient, but if someone releases a new major version with a breaking change, your workflow could break.
-     * Some actions require inputs that you must set using the with keyword. Review the action's README file to determine the inputs required.
-     * Actions are either JavaScript files or Docker containers. If the action you're using is a Docker container you must run the job in a Linux virtual environment. For more details, see https://help.github.com/en/articles/virtual-environments-for-github-actions.
-     */
-    uses?: string;
-    /**
-     * Runs command-line programs using the operating system's shell. If you do not provide a name, the step name will default to the text specified in the run command.
-     * Commands run using non-login shells by default. You can choose a different shell and customize the shell used to run commands. For more information, see https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#using-a-specific-shell.
-     * Each run keyword represents a new process and shell in the virtual environment. When you provide multi-line commands, each line runs in the same shell.
-     */
-    run?: string;
-    'working-directory'?: WorkingDirectory;
-    shell?: Shell;
-    /**
-     * A map of the input parameters defined by the action. Each input parameter is a key/value pair. Input parameters are set as environment variables. The variable is prefixed with INPUT_ and converted to upper case.
-     */
-    with?: (
-      | Env
-      | {
-          args?: string;
-          entrypoint?: string;
-          [k: string]: unknown | undefined;
-        }
-    ) &
-      (
-        | {
-            [k: string]: string | number | boolean | undefined;
-          }
-        | StringContainingExpressionSyntax
-      );
-    /**
-     * To set custom environment variables, you need to specify the variables in the workflow file. You can define environment variables for a step, job, or entire workflow using the jobs.<job_id>.steps[*].env, jobs.<job_id>.env, and env keywords. For more information, see https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv
-     */
-    env?:
-      | {
-          [k: string]: string | number | boolean | undefined;
-        }
-      | StringContainingExpressionSyntax;
-    /**
-     * Prevents a job from failing when a step fails. Set to true to allow a job to pass when this step fails.
-     */
-    'continue-on-error'?: boolean | ExpressionSyntax;
-    /**
-     * The maximum number of minutes to run the step before killing the process.
-     */
-    'timeout-minutes'?: number | ExpressionSyntax;
-    /**
-     * Runs a step asynchronously so the job continues to the next step without waiting for it to finish. You can use background on steps that use run or uses. To reference a background step from wait or cancel, give it an id. A maximum of 10 background steps can run concurrently in a single job.
-     */
-    background?: boolean;
-    /**
-     * Pauses the job until one or more background steps complete. Provide a single step id as a string, or multiple step ids as an array. After a wait step completes, the outputs of the referenced background steps become available to subsequent steps.
-     */
-    wait?: string | [string, ...string[]];
-    /**
-     * Pauses the job until all active background steps complete. The wait-all keyword takes no arguments.
-     */
-    'wait-all'?: boolean | null;
-    /**
-     * Gracefully terminates a running background step. The runner sends the step's process a termination signal (SIGTERM) so it can clean up. The cancel keyword targets a single background step by its id.
-     */
-    cancel?: string;
-    /**
-     * Runs a group of steps concurrently, then waits for all of them to finish before continuing. Every step in the group runs as a background step, with an implicit wait at the end of the group.
-     *
-     * @minItems 1
-     */
-    parallel?: [Step, ...Step[]];
-  } & Step1 & {
-    /**
-     * A unique identifier for the step. You can use the id to reference the step in contexts. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions.
-     */
-    id?: string;
-    /**
-     * You can use the if conditional to prevent a step from running unless a condition is met. You can use any supported context and expression to create a conditional.
-     * Expressions in an if conditional do not require the ${{ }} syntax. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions.
-     */
-    if?: boolean | number | string;
-    /**
-     * A name for your step to display on GitHub.
-     */
-    name?: string;
-    /**
-     * Selects an action to run as part of a step in your job. An action is a reusable unit of code. You can use an action defined in the same repository as the workflow, a public repository, or in a published Docker container image (https://hub.docker.com/).
-     * We strongly recommend that you include the version of the action you are using by specifying a Git ref, SHA, or Docker tag number. If you don't specify a version, it could break your workflows or cause unexpected behavior when the action owner publishes an update.
-     * - Using the commit SHA of a released action version is the safest for stability and security.
-     * - Using the specific major action version allows you to receive critical fixes and security patches while still maintaining compatibility. It also assures that your workflow should still work.
-     * - Using the master branch of an action may be convenient, but if someone releases a new major version with a breaking change, your workflow could break.
-     * Some actions require inputs that you must set using the with keyword. Review the action's README file to determine the inputs required.
-     * Actions are either JavaScript files or Docker containers. If the action you're using is a Docker container you must run the job in a Linux virtual environment. For more details, see https://help.github.com/en/articles/virtual-environments-for-github-actions.
-     */
-    uses?: string;
-    /**
-     * Runs command-line programs using the operating system's shell. If you do not provide a name, the step name will default to the text specified in the run command.
-     * Commands run using non-login shells by default. You can choose a different shell and customize the shell used to run commands. For more information, see https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#using-a-specific-shell.
-     * Each run keyword represents a new process and shell in the virtual environment. When you provide multi-line commands, each line runs in the same shell.
-     */
-    run?: string;
-    'working-directory'?: WorkingDirectory;
-    shell?: Shell;
-    /**
-     * A map of the input parameters defined by the action. Each input parameter is a key/value pair. Input parameters are set as environment variables. The variable is prefixed with INPUT_ and converted to upper case.
-     */
-    with?: (
-      | Env
-      | {
-          args?: string;
-          entrypoint?: string;
-          [k: string]: unknown | undefined;
-        }
-    ) &
-      (
-        | {
-            [k: string]: string | number | boolean | undefined;
-          }
-        | StringContainingExpressionSyntax
-      );
-    /**
-     * To set custom environment variables, you need to specify the variables in the workflow file. You can define environment variables for a step, job, or entire workflow using the jobs.<job_id>.steps[*].env, jobs.<job_id>.env, and env keywords. For more information, see https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv
-     */
-    env?:
-      | {
-          [k: string]: string | number | boolean | undefined;
-        }
-      | StringContainingExpressionSyntax;
-    /**
-     * Prevents a job from failing when a step fails. Set to true to allow a job to pass when this step fails.
-     */
-    'continue-on-error'?: boolean | ExpressionSyntax;
-    /**
-     * The maximum number of minutes to run the step before killing the process.
-     */
-    'timeout-minutes'?: number | ExpressionSyntax;
-    /**
-     * Runs a step asynchronously so the job continues to the next step without waiting for it to finish. You can use background on steps that use run or uses. To reference a background step from wait or cancel, give it an id. A maximum of 10 background steps can run concurrently in a single job.
-     */
-    background?: boolean;
-    /**
-     * Pauses the job until one or more background steps complete. Provide a single step id as a string, or multiple step ids as an array. After a wait step completes, the outputs of the referenced background steps become available to subsequent steps.
-     */
-    wait?: string | [string, ...string[]];
-    /**
-     * Pauses the job until all active background steps complete. The wait-all keyword takes no arguments.
-     */
-    'wait-all'?: boolean | null;
-    /**
-     * Gracefully terminates a running background step. The runner sends the step's process a termination signal (SIGTERM) so it can clean up. The cancel keyword targets a single background step by its id.
-     */
-    cancel?: string;
-    /**
-     * Runs a group of steps concurrently, then waits for all of them to finish before continuing. Every step in the group runs as a background step, with an implicit wait at the end of the group.
-     *
-     * @minItems 1
-     */
-    parallel?: [Step, ...Step[]];
-  } & Step1 & {
-    /**
-     * A unique identifier for the step. You can use the id to reference the step in contexts. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions.
-     */
-    id?: string;
-    /**
-     * You can use the if conditional to prevent a step from running unless a condition is met. You can use any supported context and expression to create a conditional.
-     * Expressions in an if conditional do not require the ${{ }} syntax. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions.
-     */
-    if?: boolean | number | string;
-    /**
-     * A name for your step to display on GitHub.
-     */
-    name?: string;
-    /**
-     * Selects an action to run as part of a step in your job. An action is a reusable unit of code. You can use an action defined in the same repository as the workflow, a public repository, or in a published Docker container image (https://hub.docker.com/).
-     * We strongly recommend that you include the version of the action you are using by specifying a Git ref, SHA, or Docker tag number. If you don't specify a version, it could break your workflows or cause unexpected behavior when the action owner publishes an update.
-     * - Using the commit SHA of a released action version is the safest for stability and security.
-     * - Using the specific major action version allows you to receive critical fixes and security patches while still maintaining compatibility. It also assures that your workflow should still work.
-     * - Using the master branch of an action may be convenient, but if someone releases a new major version with a breaking change, your workflow could break.
-     * Some actions require inputs that you must set using the with keyword. Review the action's README file to determine the inputs required.
-     * Actions are either JavaScript files or Docker containers. If the action you're using is a Docker container you must run the job in a Linux virtual environment. For more details, see https://help.github.com/en/articles/virtual-environments-for-github-actions.
-     */
-    uses?: string;
-    /**
-     * Runs command-line programs using the operating system's shell. If you do not provide a name, the step name will default to the text specified in the run command.
-     * Commands run using non-login shells by default. You can choose a different shell and customize the shell used to run commands. For more information, see https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#using-a-specific-shell.
-     * Each run keyword represents a new process and shell in the virtual environment. When you provide multi-line commands, each line runs in the same shell.
-     */
-    run?: string;
-    'working-directory'?: WorkingDirectory;
-    shell?: Shell;
-    /**
-     * A map of the input parameters defined by the action. Each input parameter is a key/value pair. Input parameters are set as environment variables. The variable is prefixed with INPUT_ and converted to upper case.
-     */
-    with?: (
-      | Env
-      | {
-          args?: string;
-          entrypoint?: string;
-          [k: string]: unknown | undefined;
-        }
-    ) &
-      (
-        | {
-            [k: string]: string | number | boolean | undefined;
-          }
-        | StringContainingExpressionSyntax
-      );
-    /**
-     * To set custom environment variables, you need to specify the variables in the workflow file. You can define environment variables for a step, job, or entire workflow using the jobs.<job_id>.steps[*].env, jobs.<job_id>.env, and env keywords. For more information, see https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv
-     */
-    env?:
-      | {
-          [k: string]: string | number | boolean | undefined;
-        }
-      | StringContainingExpressionSyntax;
-    /**
-     * Prevents a job from failing when a step fails. Set to true to allow a job to pass when this step fails.
-     */
-    'continue-on-error'?: boolean | ExpressionSyntax;
-    /**
-     * The maximum number of minutes to run the step before killing the process.
-     */
-    'timeout-minutes'?: number | ExpressionSyntax;
-    /**
-     * Runs a step asynchronously so the job continues to the next step without waiting for it to finish. You can use background on steps that use run or uses. To reference a background step from wait or cancel, give it an id. A maximum of 10 background steps can run concurrently in a single job.
-     */
-    background?: boolean;
-    /**
-     * Pauses the job until one or more background steps complete. Provide a single step id as a string, or multiple step ids as an array. After a wait step completes, the outputs of the referenced background steps become available to subsequent steps.
-     */
-    wait?: string | [string, ...string[]];
-    /**
-     * Pauses the job until all active background steps complete. The wait-all keyword takes no arguments.
-     */
-    'wait-all'?: boolean | null;
-    /**
-     * Gracefully terminates a running background step. The runner sends the step's process a termination signal (SIGTERM) so it can clean up. The cancel keyword targets a single background step by its id.
-     */
-    cancel?: string;
-    /**
-     * Runs a group of steps concurrently, then waits for all of them to finish before continuing. Every step in the group runs as a background step, with an implicit wait at the end of the group.
-     *
-     * @minItems 1
-     */
-    parallel?: [Step, ...Step[]];
-  } & Step1;
+} & Step1;
 /**
  * To set custom environment variables, you need to specify the variables in the workflow file. You can define environment variables for a step, job, or entire workflow using the jobs.<job_id>.steps[*].env, jobs.<job_id>.env, and env keywords. For more information, see https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv
  */
@@ -1221,7 +960,7 @@ export interface NormalJob {
         [k: string]: string | number | boolean | undefined;
       }
     | StringContainingExpressionSyntax;
-  defaults?: Defaults1;
+  defaults?: Defaults;
   /**
    * You can use the if conditional to prevent a job from running unless a condition is met. You can use any supported context and expression to create a conditional.
    * Expressions in an if conditional do not require the ${{ }} syntax. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions.
@@ -1287,7 +1026,7 @@ export interface PermissionsEvent {
   contents?: PermissionsLevel;
   deployments?: PermissionsLevel;
   discussions?: PermissionsLevel;
-  'id-token'?: PermissionsLevel;
+  'id-token'?: 'write' | 'none';
   issues?: PermissionsLevel;
   models?: 'read' | 'none';
   packages?: PermissionsLevel;
@@ -1315,15 +1054,6 @@ export interface Environment {
    * Whether to create a deployment for this job. Setting to false lets the job use environment secrets and variables without creating a deployment record. Wait timers and required reviewers still apply.
    */
   deployment?: boolean | ExpressionSyntax;
-}
-/**
- * A map of default settings that will apply to all steps in the job.
- */
-export interface Defaults1 {
-  run?: {
-    shell?: Shell;
-    'working-directory'?: WorkingDirectory;
-  };
 }
 export interface JobContainer {
   /**

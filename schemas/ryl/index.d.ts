@@ -1,46 +1,55 @@
 /* eslint-disable */
 
 /**
- * A rule selector accepted by `fix.fixable`.
+ * A TOML field that accepts either one string or a list of strings.
+ */
+export type StringOrVec = string | string[];
+/**
+ * A rule selector accepted by `lint.fixable`.
  */
 export type FixableRuleSelector =
   | 'ALL'
   | 'braces'
   | 'brackets'
+  | 'colons'
   | 'commas'
   | 'comments'
   | 'comments-indentation'
   | 'document-end'
   | 'document-start'
   | 'empty-lines'
+  | 'hyphens'
+  | 'key-ordering'
   | 'new-line-at-end-of-file'
   | 'new-lines'
   | 'quoted-strings'
-  | 'trailing-spaces';
+  | 'trailing-spaces'
+  | 'truthy';
 /**
- * A fixable rule name accepted by `fix.unfixable`.
+ * A fixable rule name accepted by `lint.unfixable`.
  */
 export type FixRuleName =
   | 'braces'
   | 'brackets'
+  | 'colons'
   | 'commas'
   | 'comments'
   | 'comments-indentation'
   | 'document-end'
   | 'document-start'
   | 'empty-lines'
+  | 'hyphens'
+  | 'key-ordering'
   | 'new-line-at-end-of-file'
   | 'new-lines'
   | 'quoted-strings'
-  | 'trailing-spaces';
+  | 'trailing-spaces'
+  | 'truthy';
 /**
- * A TOML field that accepts either one string or a list of strings.
+ * A rule id, or `ALL` for every rule.
  */
-export type StringOrVec = string | string[];
-/**
- * A built-in lint rule name.
- */
-export type RuleName =
+export type RuleSelector =
+  | 'ALL'
   | 'anchors'
   | 'block-scalar-chomping'
   | 'braces'
@@ -69,22 +78,13 @@ export type RuleName =
   | 'truthy'
   | 'unicode-line-breaks';
 /**
- * A `per-line-ignores` rule selector: a built-in rule name, or `ALL` to suppress
- * every rule on a matching line. Untagged so `"ALL"` and rule names share one list.
+ * Shorthand rule enable/disable syntax.
  */
-export type PerLineRule = AllRulesSelector | RuleName;
-/**
- * The `ALL` keyword accepted in a `per-line-ignores` `rules` list.
- */
-export type AllRulesSelector = 'ALL';
+export type RuleSwitch = 'enable' | 'disable';
 /**
  * Common rule entry shape used by TOML config.
  */
 export type RuleEntryForTomlAnchorsOptions = boolean | RuleSwitch | RuleOptionsForTomlAnchorsOptions;
-/**
- * Shorthand rule enable/disable syntax.
- */
-export type RuleSwitch = 'enable' | 'disable';
 /**
  * Rule severity override.
  */
@@ -110,7 +110,7 @@ export type RuleEntryForCommasOptions = boolean | RuleSwitch | RuleOptionsForCom
 /**
  * Common rule entry shape used by TOML config.
  */
-export type RuleEntryForCommentsOptions = boolean | RuleSwitch | RuleOptionsForCommentsOptions;
+export type RuleEntryForTomlCommentsOptions = boolean | RuleSwitch | RuleOptionsForTomlCommentsOptions;
 /**
  * Common rule entry shape used by TOML config.
  */
@@ -150,7 +150,11 @@ export type RuleEntryForTomlKeyDuplicatesOptions = boolean | RuleSwitch | RuleOp
 /**
  * Common rule entry shape used by TOML config.
  */
-export type RuleEntryForKeyOrderingOptions = boolean | RuleSwitch | RuleOptionsForKeyOrderingOptions;
+export type RuleEntryForTomlKeyOrderingOptions = boolean | RuleSwitch | RuleOptionsForTomlKeyOrderingOptions;
+/**
+ * Where keys missing from `keys` go: sorted after the listed keys, or kept in place.
+ */
+export type Unlisted = 'sort' | 'keep';
 /**
  * Common rule entry shape used by TOML config.
  */
@@ -204,21 +208,52 @@ export type TruthyAllowedValue =
  */
 export interface RylTOMLConfig {
   /**
+   * Directory for the on-disk result cache.
+   */
+  'cache-dir'?: string | null;
+  /**
+   * Files to skip, as one multi-line string or a list of gitignore-style patterns.
+   */
+  exclude?: StringOrVec | null;
+  /**
+   * Paths to files that contain exclude patterns, such as `.gitignore`.
+   */
+  'exclude-from-file'?: StringOrVec | null;
+  /**
    * Glob patterns assigning files to source kinds (`yaml`, `markdown`).
    */
   files?: FilesTable | null;
   /**
-   * Native fix policy.
+   * @deprecated
+   * Deprecated: use `lint.fixable` and `lint.unfixable`.
    */
   fix?: FixTable | null;
   /**
-   * Ignore patterns, either as one multi-line string or a list of patterns.
+   * Formatter settings.
+   */
+  format?: FormatTable | null;
+  /**
+   * @deprecated
+   * Deprecated: use `exclude`.
    */
   ignore?: StringOrVec | null;
   /**
-   * Paths to files that contain ignore patterns.
+   * @deprecated
+   * Deprecated: use `exclude-from-file`.
    */
   'ignore-from-file'?: StringOrVec | null;
+  /**
+   * The formatter's indent width, and the default for `[lint.rules.indentation] spaces`.
+   */
+  'indent-width'?: number | null;
+  /**
+   * The formatter's line length, and the default for `[lint.rules.line-length] max`.
+   */
+  'line-length'?: number | null;
+  /**
+   * Linter settings: rule configuration, fix policy, and rule ignores.
+   */
+  lint?: LintTable | null;
   /**
    * Locale identifier used by diagnostics.
    */
@@ -232,17 +267,20 @@ export interface RylTOMLConfig {
    */
   output?: OutputTable | null;
   /**
-   * Per-file rule ignores.
+   * @deprecated
+   * Deprecated: use `lint.per-file-ignores`.
    */
   'per-file-ignores'?: {
-    [k: string]: RuleName[] | undefined;
+    [k: string]: RuleSelector[] | undefined;
   } | null;
   /**
-   * Per-line rule ignores: suppress rules on lines/files matching a pattern.
+   * @deprecated
+   * Deprecated: use `lint.per-line-ignores`.
    */
   'per-line-ignores'?: PerLineIgnore[] | null;
   /**
-   * Rule configuration table.
+   * @deprecated
+   * Deprecated: use `lint.rules`.
    */
   rules?: RulesTable | null;
 }
@@ -261,68 +299,103 @@ export interface FilesTable {
   yaml?: string[] | null;
 }
 /**
- * TOML `[fix]` table.
+ * The deprecated `[fix]` table; its keys now live in `[lint]`.
  */
 export interface FixTable {
   fixable?: FixableRuleSelector[] | null;
   unfixable?: FixRuleName[] | null;
 }
 /**
- * Markdown embedding behaviour. ryl-only (TOML); yamllint has no equivalent.
+ * The `[format]` table: `ryl format`'s targets.
  */
-export interface MarkdownTable {
+export interface FormatTable {
   /**
-   * Lint fenced `yaml`/`yml` code blocks. Defaults to `true`.
+   * Whether to pad the inside of a non-empty flow mapping's braces with one space.
    */
-  'fenced-blocks'?: boolean | null;
+  'brace-spacing'?: boolean;
   /**
-   * Lint the leading YAML front matter block. Defaults to `true`.
+   * Exact number of spaces between content and an inline comment.
    */
-  'front-matter'?: boolean | null;
+  'comment-spacing'?: number;
+  /**
+   * Whether to add a missing space after a comment's `#`.
+   */
+  'comment-starting-space'?: 'add' | 'preserve';
+  /**
+   * Whether a block mapping in a block sequence starts on the line after its `-`.
+   */
+  'dash-on-own-line'?: boolean;
+  /**
+   * Whether to add a missing `...` document end marker.
+   */
+  'document-end'?: 'add' | 'preserve';
+  /**
+   * Whether to add a missing `---` document start marker.
+   */
+  'document-start'?: 'add' | 'preserve';
+  /**
+   * Whether to split plain, quoted and `>` scalar lines longer than `line-length` at spaces.
+   */
+  'fold-long-lines'?: boolean;
+  /**
+   * Whether a block sequence under a mapping key is indented past the key.
+   */
+  'indent-sequences'?: boolean;
+  /**
+   * Line ending; `native` is the platform's, `auto` the one most of the file uses.
+   */
+  'line-ending'?: 'lf' | 'cr-lf' | 'native' | 'auto';
+  /**
+   * Collection style for mappings; `preserve` leaves each as written.
+   */
+  'mapping-style'?: 'preserve' | 'block' | 'flow';
+  /**
+   * Most consecutive blank lines kept between content lines.
+   */
+  'max-blank-lines'?: number;
+  /**
+   * Opt in to unstable style changes before a minor release promotes them to stable.
+   */
+  preview?: boolean;
+  /**
+   * Preferred quote for strings that need quoting; `preserve` leaves quoting alone.
+   */
+  'quote-style'?: 'single' | 'double' | 'preserve';
+  /**
+   * Collection style for sequences; `preserve` leaves each as written.
+   */
+  'sequence-style'?: 'preserve' | 'block' | 'flow';
 }
 /**
- * Output targets (ryl-only; TOML). Each format present is rendered to its destination,
- * so several formats produce several outputs in one run (e.g. console plus a report
- * file). A CLI `--format` overrides this table wholesale. yamllint has no equivalent;
- * see `docs/output-formats.md`.
+ * The `[lint]` table.
  */
-export interface OutputTable {
+export interface LintTable {
   /**
-   * Auto-detected console format (GitHub annotations in CI, otherwise colored/plain).
+   * Rules `--fix` may fix (default `["ALL"]`).
    */
-  auto?: OutputDestination | null;
+  fixable?: FixableRuleSelector[] | null;
   /**
-   * Plain text with ANSI colors.
+   * Per-file rule ignores.
    */
-  colored?: OutputDestination | null;
+  'per-file-ignores'?: {
+    [k: string]: RuleSelector[] | undefined;
+  } | null;
   /**
-   * GitHub Actions workflow commands.
+   * Per-line rule ignores: suppress rules on lines/files matching a pattern.
    */
-  github?: OutputDestination | null;
+  'per-line-ignores'?: PerLineIgnore[] | null;
   /**
-   * `GitLab` Code Quality JSON report.
+   * Rule configuration table.
    */
-  gitlab?: OutputDestination | null;
+  rules?: RulesTable | null;
   /**
-   * `JUnit` XML test report.
+   * Return exit code 2 when only warnings (no errors) are found (default false).
    */
-  junit?: OutputDestination | null;
+  strict?: boolean | null;
   /**
-   * One `path:line:col: [level] message (rule)` line per diagnostic.
+   * Rules `--fix` must not fix, overriding `fixable`.
    */
-  parsable?: OutputDestination | null;
-  /**
-   * Plain text grouped per file.
-   */
-  standard?: OutputDestination | null;
-}
-/**
- * Where one format's output goes. An absent `path` means the format's default stream
- * (stderr for the console formats, stdout for `junit`/`gitlab`); `"-"` means stdout; any
- * other value is a file path.
- */
-export interface OutputDestination {
-  path?: string | null;
+  unfixable?: FixRuleName[] | null;
 }
 /**
  * A single `per-line-ignores` entry. Suppresses `rules` on source lines matching
@@ -334,19 +407,20 @@ export interface OutputDestination {
 export interface PerLineIgnore {
   path?: string | null;
   regex?: string | null;
-  rules: PerLineRule[];
+  rules: RuleSelector[];
 }
 /**
  * Built-in rule table for TOML config.
  */
 export interface RulesTable {
+  ALL?: RuleSwitch | null;
   anchors?: RuleEntryForTomlAnchorsOptions | null;
   'block-scalar-chomping'?: RuleEntryForNoOptions | null;
   braces?: RuleEntryForBraceLikeOptions | null;
   brackets?: RuleEntryForBraceLikeOptions | null;
   colons?: RuleEntryForColonsOptions | null;
   commas?: RuleEntryForCommasOptions | null;
-  comments?: RuleEntryForCommentsOptions | null;
+  comments?: RuleEntryForTomlCommentsOptions | null;
   'comments-indentation'?: RuleEntryForCommentsIndentationOptions | null;
   'document-end'?: RuleEntryForDocumentPresenceOptions | null;
   'document-start'?: RuleEntryForDocumentPresenceOptions | null;
@@ -356,7 +430,7 @@ export interface RulesTable {
   hyphens?: RuleEntryForTomlHyphensOptions | null;
   indentation?: RuleEntryForIndentationOptions | null;
   'key-duplicates'?: RuleEntryForTomlKeyDuplicatesOptions | null;
-  'key-ordering'?: RuleEntryForKeyOrderingOptions | null;
+  'key-ordering'?: RuleEntryForTomlKeyOrderingOptions | null;
   'line-length'?: RuleEntryForLineLengthOptions | null;
   'merge-keys'?: RuleEntryForNoOptions | null;
   'new-line-at-end-of-file'?: RuleEntryForNoOptions | null;
@@ -374,6 +448,7 @@ export interface RulesTable {
  */
 export interface RuleOptionsForTomlAnchorsOptions {
   'forbid-ambiguous-anchor-alias-names'?: boolean | null;
+  'forbid-anchors-and-aliases'?: boolean | null;
   'forbid-duplicated-anchors'?: boolean | null;
   'forbid-undeclared-aliases'?: boolean | null;
   'forbid-unused-anchors'?: boolean | null;
@@ -426,11 +501,12 @@ export interface RuleOptionsForCommasOptions {
 /**
  * Common rule fields plus rule-specific options.
  */
-export interface RuleOptionsForCommentsOptions {
+export interface RuleOptionsForTomlCommentsOptions {
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   'ignore-shebangs'?: boolean | null;
   level?: RuleLevel | null;
+  'max-spaces-from-content'?: number | null;
   'min-spaces-from-content'?: number | null;
   'require-starting-space'?: boolean | null;
 }
@@ -521,11 +597,27 @@ export interface RuleOptionsForTomlKeyDuplicatesOptions {
 /**
  * Common rule fields plus rule-specific options.
  */
-export interface RuleOptionsForKeyOrderingOptions {
+export interface RuleOptionsForTomlKeyOrderingOptions {
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   'ignored-keys'?: string[] | null;
   level?: RuleLevel | null;
+  orders?: KeyOrderEntry[] | null;
+}
+/**
+ * A configured key order for the mappings that both `files` and `path` select.
+ */
+export interface KeyOrderEntry {
+  /**
+   * Globs matched like `per-file-ignores` keys; `!` excludes.
+   */
+  files: string[];
+  keys: string[];
+  /**
+   * `JSONPath` subset: `$`, `.name`, `['name']`, `[*]`, `.*`.
+   */
+  path: string;
+  unlisted?: Unlisted | null;
 }
 /**
  * Common rule fields plus rule-specific options.
@@ -592,4 +684,61 @@ export interface RuleOptionsForTruthyOptions {
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   level?: RuleLevel | null;
+}
+/**
+ * Markdown embedding behaviour. ryl-only (TOML); yamllint has no equivalent.
+ */
+export interface MarkdownTable {
+  /**
+   * Lint fenced `yaml`/`yml` code blocks. Defaults to `true`.
+   */
+  'fenced-blocks'?: boolean | null;
+  /**
+   * Lint the leading YAML front matter block. Defaults to `true`.
+   */
+  'front-matter'?: boolean | null;
+}
+/**
+ * Output targets (ryl-only; TOML). Each format present is rendered to its destination,
+ * so several formats produce several outputs in one run (e.g. console plus a report
+ * file). A CLI `--format` overrides this table wholesale. yamllint has no equivalent;
+ * see `docs/output-formats.md`.
+ */
+export interface OutputTable {
+  /**
+   * Auto-detected console format (GitHub annotations in CI, otherwise colored/plain).
+   */
+  auto?: OutputDestination | null;
+  /**
+   * Plain text with ANSI colors.
+   */
+  colored?: OutputDestination | null;
+  /**
+   * GitHub Actions workflow commands.
+   */
+  github?: OutputDestination | null;
+  /**
+   * `GitLab` Code Quality JSON report.
+   */
+  gitlab?: OutputDestination | null;
+  /**
+   * `JUnit` XML test report.
+   */
+  junit?: OutputDestination | null;
+  /**
+   * One `path:line:col: [level] message (rule)` line per diagnostic.
+   */
+  parsable?: OutputDestination | null;
+  /**
+   * Plain text grouped per file.
+   */
+  standard?: OutputDestination | null;
+}
+/**
+ * Where one format's output goes. An absent `path` means the format's default stream
+ * (stderr for the console formats, stdout for `junit`/`gitlab`); `"-"` means stdout; any
+ * other value is a file path.
+ */
+export interface OutputDestination {
+  path?: string | null;
 }

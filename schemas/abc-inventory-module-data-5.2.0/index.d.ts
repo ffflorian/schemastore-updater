@@ -12,14 +12,7 @@ export type ABCInventoryTransaction =
   | ABCInventoryChangeExpiryTransaction
   | ABCInventoryChangeAttributesTransaction;
 export type ABCStatus =
-  | 'RELEASED'
-  | 'CONDITIONAL_RELEASED'
-  | 'QUARANTINE'
-  | 'IN_TRANSIT'
-  | 'ON_HOLD'
-  | 'EXPIRED'
-  | 'DAMAGED'
-  | 'REJECTED';
+  'RELEASED' | 'CONDITIONAL_RELEASED' | 'QUARANTINE' | 'IN_TRANSIT' | 'ON_HOLD' | 'EXPIRED' | 'DAMAGED' | 'REJECTED';
 /**
  * This interface was referenced by `undefined`'s JSON-Schema definition
  * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
@@ -39,82 +32,96 @@ export interface ABCInventoryModuleDataJSONSchema {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
      */
-    [k: string]: {
-      name: string;
-      isActive: boolean;
-    };
+    [k: string]:
+      | {
+          name: string;
+          isActive: boolean;
+        }
+      | undefined;
   };
   ABCVendors: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
      */
-    [k: string]: {
-      name: string;
-      isActive: boolean;
-    };
+    [k: string]:
+      | {
+          name: string;
+          isActive: boolean;
+        }
+      | undefined;
   };
   ABCMaterialCategories: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
      */
-    [k: string]: {
-      name: string;
-      prefix: string;
-      isActive: boolean;
-    };
+    [k: string]:
+      | {
+          name: string;
+          prefix: string;
+          isActive: boolean;
+        }
+      | undefined;
   };
   ABCMaterialNumbers: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
      */
-    [k: string]: {
-      productID: string | null;
-      vendorID: string | null;
-      materialCategoryID: string;
-      number: number;
-      name: string;
-      description: string;
-      unitOfMeasure: string;
-      isActive: boolean;
-    };
+    [k: string]:
+      | {
+          productID: string | null;
+          vendorID: string | null;
+          materialCategoryID: string;
+          number: number;
+          name: string;
+          description: string;
+          unitOfMeasure: string;
+          isActive: boolean;
+        }
+      | undefined;
   };
   ABCLocations: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
      */
-    [k: string]: {
-      name: string;
-      isActive: boolean;
-    };
+    [k: string]:
+      | {
+          name: string;
+          isActive: boolean;
+        }
+      | undefined;
   };
   ABCTags: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
      */
-    [k: string]: {
-      name: string;
-      isActive: boolean;
-    };
+    [k: string]:
+      | {
+          name: string;
+          isActive: boolean;
+        }
+      | undefined;
   };
   ABCReasonCodes: {
     /**
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[a-zA-Z0-9_-]+$".
      */
-    [k: string]: {
-      code: string;
-      description: string;
-      isActive: boolean;
-    };
+    [k: string]:
+      | {
+          code: string;
+          description: string;
+          isActive: boolean;
+        }
+      | undefined;
   };
   ABCTransactions: ABCInventoryTransaction[];
   ABCInventoryEntries: {
-    [k: string]: ABCInventoryEntry;
+    [k: string]: ABCInventoryEntry | undefined;
   };
 }
 export interface ABCInventoryReceiveTransaction {

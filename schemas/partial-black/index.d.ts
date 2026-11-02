@@ -25,6 +25,7 @@ export interface HttpsJsonSchemastoreOrgPartialBlackJson {
     | 'py312'
     | 'py313'
     | 'py314'
+    | 'py315'
   )[];
   /**
    * Format all input files like typing stubs regardless of file extension. This is useful when piping source on standard input.
