@@ -28,8 +28,8 @@ afterEach(async () => {
   trackedTempDirectories.length = 0;
 });
 
-describe('stagePackageDirectory (default publishPackage)', () => {
-  it('invokes `npm stage publish` relying only on the ambient OIDC environment', async () => {
+describe('publishPackageDirectory (default publishPackage)', () => {
+  it('invokes `npm publish` relying only on the ambient OIDC environment', async () => {
     delete process.env.NPM_TOKEN;
     execFileMock.mockImplementation((_command, _args, _options, callback) => {
       (callback as (error: null, result: {stderr: string; stdout: string}) => void)(null, {
@@ -48,7 +48,7 @@ describe('stagePackageDirectory (default publishPackage)', () => {
     expect(execFileMock).toHaveBeenCalledTimes(1);
     expect(execFileMock).toHaveBeenCalledWith(
       'npm',
-      ['stage', 'publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/'],
+      ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/'],
       expect.objectContaining({cwd: expect.stringContaining('alpha')}),
       expect.any(Function)
     );
@@ -78,7 +78,7 @@ describe('stagePackageDirectory (default publishPackage)', () => {
     expect(execFileMock).toHaveBeenNthCalledWith(
       1,
       'npm',
-      ['stage', 'publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/'],
+      ['publish', '--access', 'public', '--registry', 'https://registry.npmjs.org/'],
       expect.anything(),
       expect.any(Function)
     );
@@ -86,7 +86,6 @@ describe('stagePackageDirectory (default publishPackage)', () => {
       2,
       'npm',
       [
-        'stage',
         'publish',
         '--access',
         'public',
@@ -119,7 +118,7 @@ describe('stagePackageDirectory (default publishPackage)', () => {
 });
 
 async function createWorkspace(schemaPackageFiles: Record<string, string>): Promise<string> {
-  const workspaceDirectory = await mkdtemp(path.join(os.tmpdir(), 'schemastore-updater-stage-publish-tests-'));
+  const workspaceDirectory = await mkdtemp(path.join(os.tmpdir(), 'schemastore-updater-npm-publish-tests-'));
   trackedTempDirectories.push(workspaceDirectory);
 
   await writeFile(path.join(workspaceDirectory, 'schema-blocklist.json'), JSON.stringify([]), 'utf-8');
