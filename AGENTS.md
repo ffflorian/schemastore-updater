@@ -120,7 +120,7 @@ Each generated schema package must contain:
 
 - Release publishing is handled inside `.github/workflows/lint_test_build.yml` via `yarn release` (semantic-release).
   - Runs on every push to `main` as part of the CI job.
-  - Configuration lives in `.releaserc.json`; uses commit-analyzer, release-notes-generator, changelog, github (PR/issue commenting disabled), and git plugins.
+  - Configuration lives in `.releaserc.json`; uses commit-analyzer, release-notes-generator (conventionalcommits preset, so release notes list all commit types, not only feat/fix), changelog, github (PR/issue commenting disabled), and git plugins.
   - The git plugin commits updated `package.json` and `CHANGELOG.md` back to `main` with a `chore(release): <version> [skip ci]` message.
   - Requires `GITHUB_TOKEN` (GitHub release + git push).
 - Weekly schema refresh is defined in `.github/workflows/weekly_schema_update.yml`.
