@@ -9,9 +9,59 @@ export type AddBoundsKind = 'lower' | 'major' | 'minor' | 'exact';
  */
 export type TrustedHost = string;
 /**
+ * A [`Url`] wrapper that redacts credentials and sensitive query parameters when displaying the URL.
+ *
+ * `DisplaySafeUrl` wraps the standard [`url::Url`] type, providing functionality to mask
+ * secrets by default when the URL is displayed or logged. This helps prevent accidental
+ * exposure of sensitive information in logs and debug output.
+ *
+ * # Examples
+ *
+ * ```
+ * use uv_redacted::DisplaySafeUrl;
+ * use std::str::FromStr;
+ *
+ * // Create a `DisplaySafeUrl` from a `&str`
+ * let mut url = DisplaySafeUrl::parse("https://user:password@example.com").unwrap();
+ *
+ * // Display will mask secrets
+ * assert_eq!(url.to_string(), "https://user:****@example.com/");
+ *
+ * // You can still access the username and password
+ * assert_eq!(url.username(), "user");
+ * assert_eq!(url.password(), Some("password"));
+ *
+ * // And you can still update the username and password
+ * let _ = url.set_username("new_user");
+ * let _ = url.set_password(Some("new_password"));
+ * assert_eq!(url.username(), "new_user");
+ * assert_eq!(url.password(), Some("new_password"));
+ *
+ * // It is also possible to remove the credentials entirely
+ * url.remove_credentials();
+ * assert_eq!(url.username(), "");
+ * assert_eq!(url.password(), None);
+ * ```
+ */
+export type DisplaySafeUrl = string;
+/**
  * Whether to include a single module or multiple modules.
  */
 export type ModuleName = string | string[];
+/**
+ * A build constraint, optionally accompanied by archive hashes.
+ */
+export type BuildConstraintDependency =
+  | Requirement
+  | {
+      hashes: string[];
+      requirement: Requirement;
+      [k: string]: unknown | undefined;
+    };
+/**
+ * A PEP 508 dependency specifier, e.g., `ruff >= 0.6.0`
+ */
+export type Requirement = string;
 export type CacheKey =
   | string
   | {
@@ -31,7 +81,7 @@ export type GitPattern = boolean | GitSet;
  * The URL of an index to use for fetching packages (e.g., `https://pypi.org/simple`), or a local path.
  */
 export type IndexUrl = string;
-export type ConfigSettingValue = (string | string[]) | undefined;
+export type ConfigSettingValue = string | string[];
 /**
  * The normalized name of an extra dependency.
  *
@@ -86,10 +136,6 @@ export type SchemaConflicts = SchemaConflictSet[];
  */
 export type DefaultGroups = 'all' | GroupName[];
 /**
- * A PEP 508 dependency specifier, e.g., `ruff >= 0.6.0`
- */
-export type Requirement = string;
-/**
  * An exclusion, either global or scoped to a specific package version.
  */
 export type ExcludeDependency = PackageExclusion | PackageName;
@@ -118,6 +164,10 @@ export type ProxyUrl = string;
 export type AuthPolicy = 'auto' | 'always' | 'never';
 export type IndexFormat = 'simple' | 'flat';
 /**
+ * A hash algorithm that can be required for distributions resolved from an index.
+ */
+export type IndexHashAlgorithm = 'md5' | 'sha256' | 'sha384' | 'sha512' | 'blake2b';
+/**
  * HTTP status code (100-599)
  */
 export type StatusCode = number;
@@ -127,42 +177,6 @@ export type StatusCode = number;
  * Index names may contain letters, digits, hyphens, underscores, and periods, and must be ASCII.
  */
 export type IndexName = string;
-/**
- * A [`Url`] wrapper that redacts credentials and sensitive query parameters when displaying the URL.
- *
- * `DisplaySafeUrl` wraps the standard [`url::Url`] type, providing functionality to mask
- * secrets by default when the URL is displayed or logged. This helps prevent accidental
- * exposure of sensitive information in logs and debug output.
- *
- * # Examples
- *
- * ```
- * use uv_redacted::DisplaySafeUrl;
- * use std::str::FromStr;
- *
- * // Create a `DisplaySafeUrl` from a `&str`
- * let mut url = DisplaySafeUrl::parse("https://user:password@example.com").unwrap();
- *
- * // Display will mask secrets
- * assert_eq!(url.to_string(), "https://user:****@example.com/");
- *
- * // You can still access the username and password
- * assert_eq!(url.username(), "user");
- * assert_eq!(url.password(), Some("password"));
- *
- * // And you can still update the username and password
- * let _ = url.set_username("new_user");
- * let _ = url.set_password(Some("new_password"));
- * assert_eq!(url.username(), "new_user");
- * assert_eq!(url.password(), Some("new_password"));
- *
- * // It is also possible to remove the credentials entirely
- * url.remove_credentials();
- * assert_eq!(url.username(), "");
- * assert_eq!(url.password(), None);
- * ```
- */
-export type DisplaySafeUrl = string;
 export type IndexStrategy = 'first-index' | 'unsafe-first-match' | 'unsafe-best-match';
 /**
  * Keyring provider type to use for credential lookup.
@@ -209,6 +223,9 @@ export type TargetTriple =
   | 'aarch64-unknown-linux-gnu'
   | 'aarch64-unknown-linux-musl'
   | 'x86_64-unknown-linux-musl'
+  | 's390x-unknown-linux-gnu'
+  | 'powerpc64le-unknown-linux-gnu'
+  | 'loongarch64-unknown-linux-gnu'
   | 'riscv64-unknown-linux'
   | 'x86_64-manylinux2014'
   | 'x86_64-manylinux_2_17'
@@ -236,6 +253,37 @@ export type TargetTriple =
   | 'aarch64-manylinux_2_38'
   | 'aarch64-manylinux_2_39'
   | 'aarch64-manylinux_2_40'
+  | 's390x-manylinux2014'
+  | 's390x-manylinux_2_17'
+  | 's390x-manylinux_2_28'
+  | 's390x-manylinux_2_31'
+  | 's390x-manylinux_2_32'
+  | 's390x-manylinux_2_33'
+  | 's390x-manylinux_2_34'
+  | 's390x-manylinux_2_35'
+  | 's390x-manylinux_2_36'
+  | 's390x-manylinux_2_37'
+  | 's390x-manylinux_2_38'
+  | 's390x-manylinux_2_39'
+  | 's390x-manylinux_2_40'
+  | 'ppc64le-manylinux2014'
+  | 'ppc64le-manylinux_2_17'
+  | 'ppc64le-manylinux_2_28'
+  | 'ppc64le-manylinux_2_31'
+  | 'ppc64le-manylinux_2_32'
+  | 'ppc64le-manylinux_2_33'
+  | 'ppc64le-manylinux_2_34'
+  | 'ppc64le-manylinux_2_35'
+  | 'ppc64le-manylinux_2_36'
+  | 'ppc64le-manylinux_2_37'
+  | 'ppc64le-manylinux_2_38'
+  | 'ppc64le-manylinux_2_39'
+  | 'ppc64le-manylinux_2_40'
+  | 'loongarch64-manylinux_2_36'
+  | 'loongarch64-manylinux_2_37'
+  | 'loongarch64-manylinux_2_38'
+  | 'loongarch64-manylinux_2_39'
+  | 'loongarch64-manylinux_2_40'
   | 'aarch64-linux-android'
   | 'x86_64-linux-android'
   | 'wasm32-pyodide2024'
@@ -309,7 +357,6 @@ export type PreviewFeaturesOption = boolean | (PreviewFeature & PreviewFeature1)
 export type PreviewFeature =
   | (
       | 'python-install-default'
-      | 'python-upgrade'
       | 'json-output'
       | 'pylock'
       | 'add-bounds'
@@ -320,13 +367,13 @@ export type PreviewFeature =
       | 'native-auth'
       | 's3-endpoint'
       | 'cache-size'
+      | 'cache-physical-space'
       | 'init-project-flag'
       | 'workspace-metadata'
       | 'workspace-dir'
       | 'workspace-list'
       | 'sbom-export'
       | 'auth-helper'
-      | 'direct-publish'
       | 'target-workspace-discovery'
       | 'metadata-json'
       | 'gcs-endpoint'
@@ -346,7 +393,21 @@ export type PreviewFeature =
       | 'centralized-project-envs'
       | 'tool-install-locks'
       | 'workspace-list-scripts'
-      | 'no-distutils-patch'
+      | 'index-hash-algorithm'
+      | 'lockfile-format-check'
+      | 'lockfile-normalization'
+      | 'lock-without-metadata'
+      | 'index-by-name'
+      | 'artifact-hash-filtering'
+      | 'content-addressed-cache'
+      | 'missing-exclude-newer-package-lock'
+      | 'resolution-inputs'
+      | 'batch-export'
+      | 'frozen-lockfile'
+      | 'minimum-libc-version'
+      | 'build-dependency-check'
+      | 'build-lazy-imports'
+      | 'build-dependency-hashes'
     )
   | {
       [k: string]: unknown | undefined;
@@ -358,7 +419,7 @@ export type PythonPreference = 'only-managed' | 'managed' | 'system' | 'only-sys
  * A version specifier, e.g. `>=0.5.0` or `==0.5.0`.
  */
 export type RequiredVersion = string;
-export type Sources = (Source | Source[]) | undefined;
+export type Sources = Source | Source[];
 /**
  * A `tool.uv.sources` value.
  */
@@ -432,16 +493,23 @@ export type Source =
       group?: GroupName | null;
       marker?: MarkerTree;
       /**
+       * `true` selects the current workspace. A string selects another workspace discovered
+       * from the given path.
+       *
        * When set to `false`, the package will be fetched from the remote index, rather than
        * included as a workspace package.
        */
-      workspace: boolean;
+      workspace: WorkspaceReference;
     };
 /**
  * A PEP 508-compliant marker expression, e.g., `sys_platform == 'Darwin'`
  */
 export type MarkerTree = string;
 export type PortablePathBuf = string;
+/**
+ * A reference to either the current workspace or a workspace discovered from a path.
+ */
+export type WorkspaceReference = boolean | PortablePathBuf;
 export type TrustedPublishing = ('always' | 'never') | 'automatic';
 export type SerdePattern = string;
 
@@ -482,9 +550,24 @@ export interface CombinedOptions {
    */
   'build-backend'?: BuildBackendSettings | null;
   /**
-   * PEP 508-style requirements, e.g., `ruff==0.5.0`, or `ruff @ https://...`.
+   * Constraints to apply when solving build dependencies.
+   *
+   * Build constraints are used to restrict the versions of build dependencies that are selected
+   * when building a package during resolution or installation.
+   *
+   * Including a package as a constraint will _not_ trigger installation of the package during
+   * a build; instead, the package must be requested elsewhere in the project's build dependency
+   * graph.
+   *
+   * !!! note
+   *     In `uv lock`, `uv sync`, and `uv run`, uv will only read `build-constraint-dependencies` from
+   *     the `pyproject.toml` at the workspace root, and will ignore any declarations in other
+   *     workspace members or `uv.toml` files.
+   *
+   * Hashes can be included to verify downloaded build dependency archives. To provide hashes,
+   * use a table with `requirement` and `hashes`. uv records these hashes in `uv.lock`.
    */
-  'build-constraint-dependencies'?: string[] | null;
+  'build-constraint-dependencies'?: BuildConstraintDependency[] | null;
   /**
    * Path to the cache directory.
    *
@@ -750,6 +833,16 @@ export interface CombinedOptions {
    */
   'fork-strategy'?: ForkStrategy | null;
   /**
+   * Mirror URL to use for downloading managed GraalPy installations.
+   *
+   * By default, managed GraalPy installations are downloaded from [GitHub](https://github.com/oracle/graalpython/releases).
+   * This variable can be set to a mirror URL to use a different source for GraalPy installations.
+   * The provided URL will replace `https://github.com/oracle/graalpython/releases/download` in, e.g., `https://github.com/oracle/graalpython/releases/download/graal-24.2.2/graalpy-24.2.2-macos-aarch64.tar.gz`.
+   *
+   * Distributions can be read from a local directory by using the `file://` URL scheme.
+   */
+  'graalpy-install-mirror'?: string | null;
+  /**
    * The URL of the HTTP proxy to use.
    */
   'http-proxy'?: ProxyUrl | null;
@@ -833,6 +926,26 @@ export interface CombinedOptions {
    */
   managed?: boolean | null;
   /**
+   * The minimum libc versions to support when resolving for Linux.
+   *
+   * During universal resolution, wheels must support the configured libc versions to satisfy
+   * `required-environments`. For example, `{ glibc = "2.31" }` accepts `manylinux_2_17` wheels
+   * as coverage, but not `manylinux_2_34` wheels. Both are retained in the lockfile so installation
+   * can select the best wheel for the current machine. An omitted libc is not required.
+   *
+   * Use `required-environments` to specify the Linux architectures to support. Each configured
+   * libc version needs compatible wheels for those environments. Generic Linux wheels do not
+   * constrain libc and can satisfy either implementation. Packages with a usable source
+   * distribution can still be selected.
+   *
+   * This setting is respected by `uv lock` and `uv pip compile --universal`.
+   *
+   * This option is in preview and may change in any future release. Use
+   * `--preview-features minimum-libc-version` or configure
+   * `preview-features = ["minimum-libc-version"]` to disable the warning.
+   */
+  'minimum-libc-version'?: MinimumLibcVersion | null;
+  /**
    * @deprecated
    * Whether to load TLS certificates from the platform's native certificate store.
    *
@@ -857,8 +970,9 @@ export interface CombinedOptions {
    * Don't build source distributions.
    *
    * When enabled, uv will reuse cached wheels from previously built source distributions, but
-   * operations that require building a source distribution will exit with an error. uv may
-   * still build editable requirements, and their build backends may run arbitrary Python code.
+   * operations that require building a source distribution will exit with an error. First-party
+   * packages, such as projects in the workspace, will still be built. uv will also still build
+   * editable requirements, and their build backends may run arbitrary Python code.
    */
   'no-build'?: boolean | null;
   /**
@@ -877,6 +991,8 @@ export interface CombinedOptions {
   'no-build-isolation-package'?: PackageName[] | null;
   /**
    * Don't build source distributions for a specific package.
+   *
+   * First-party packages, such as projects in the workspace, will still be built.
    */
   'no-build-package'?: PackageName[] | null;
   /**
@@ -955,11 +1071,18 @@ export interface CombinedOptions {
   /**
    * The strategy to use when considering pre-release versions.
    *
-   * By default, uv will accept pre-releases for packages that _only_ publish pre-releases,
-   * along with first-party requirements that contain an explicit pre-release marker in the
-   * declared specifiers (`if-necessary-or-explicit`).
+   * By default, uv will prefer stable candidates, falling back to pre-releases only after every
+   * stable candidate that satisfies the active constraints is rejected
+   * (`if-necessary`).
    */
   prerelease?: PrereleaseMode | null;
+  /**
+   * The strategy to use when considering pre-release versions for specific packages.
+   *
+   * Package-specific modes take precedence over the global [`prerelease`](#prerelease) mode.
+   * Accepts a dictionary mapping package names to any supported pre-release mode.
+   */
+  'prerelease-package'?: PrereleasePackage | null;
   /**
    * @deprecated
    * Whether to enable all experimental, preview features.
@@ -978,6 +1101,16 @@ export interface CombinedOptions {
    * <https://upload.pypi.org/legacy/>).
    */
   'publish-url'?: DisplaySafeUrl | null;
+  /**
+   * Mirror URL to use for downloading managed Pyodide installations.
+   *
+   * By default, managed Pyodide installations are downloaded from [GitHub](https://github.com/pyodide/pyodide/releases).
+   * This variable can be set to a mirror URL to use a different source for Pyodide installations.
+   * The provided URL will replace `https://github.com/pyodide/pyodide/releases/download` in, e.g., `https://github.com/pyodide/pyodide/releases/download/0.29.5/xbuildenv-0.29.5.tar.gz`.
+   *
+   * Distributions can be read from a local directory by using the `file://` URL scheme.
+   */
+  'pyodide-install-mirror'?: string | null;
   /**
    * Mirror URL to use for downloading managed PyPy installations.
    *
@@ -1021,6 +1154,21 @@ export interface CombinedOptions {
    * `refresh-package`.
    */
   'reinstall-package'?: PackageName[] | null;
+  /**
+   * Require hashes for all build dependencies.
+   *
+   * uv checks hashes provided in `build-constraint-dependencies` when downloading build
+   * dependencies. Enable this setting to require a hash for every build dependency, including
+   * transitive dependencies. You can also provide hashes as URL fragments in
+   * `build-system.requires`. Hashes returned by a build backend do not count.
+   *
+   * Hashes are not required for the `uv_build` backend bundled in uv. When build isolation is
+   * disabled, build dependencies must already be installed and their hashes are not checked.
+   * Already-installed packages and previously built wheels are not checked.
+   *
+   * This setting also applies to `uv pip` commands, where it can be overridden in `[tool.uv.pip]`.
+   */
+  'require-build-hashes'?: boolean | null;
   /**
    * A list of environment markers, e.g., `sys_platform == 'darwin'.
    */
@@ -1116,6 +1264,14 @@ export interface AuditOptions {
    * available, the vulnerability will be reported again.
    */
   'ignore-until-fixed'?: string[] | null;
+  /**
+   * Whether to run the automatic malware check during sync operations.
+   */
+  'malware-check'?: boolean | null;
+  /**
+   * The vulnerability service URL to use for automatic malware checks.
+   */
+  'malware-check-url'?: DisplaySafeUrl | null;
   [k: string]: unknown | undefined;
 }
 /**
@@ -1280,7 +1436,7 @@ export interface ConfigSettings {
  * Settings to pass to PEP 517 build backends on a per-package basis.
  */
 export interface PackageConfigSettings {
-  [k: string]: ConfigSettings;
+  [k: string]: ConfigSettings | undefined;
 }
 /**
  * A single item in a conflicting set.
@@ -1337,8 +1493,13 @@ export interface PackageExclusionTarget {
    */
   version?: string | null;
 }
+/**
+ * Package-specific `exclude-newer` settings.
+ *
+ * Entries are stored in package-name order for deterministic serialization.
+ */
 export interface ExcludeNewerPackage {
-  [k: string]: ExcludeNewerOverride;
+  [k: string]: ExcludeNewerOverride | undefined;
 }
 export interface ExtraBuildDependencies {
   [k: string]: ExtraBuildDependency[] | undefined;
@@ -1440,6 +1601,22 @@ export interface Index {
    */
   format?: IndexFormat & string;
   /**
+   * The hash algorithm that must be used for distributions resolved from this index.
+   *
+   * If a distribution does not advertise a hash using this algorithm, lockfile generation
+   * will fail.
+   *
+   * This option is in preview and may change in any future release.
+   *
+   * ```toml
+   * [[tool.uv.index]]
+   * name = "my-index"
+   * url = "https://<omitted>/simple"
+   * hash-algorithm = "sha256"
+   * ```
+   */
+  'hash-algorithm'?: IndexHashAlgorithm | null;
+  /**
    * Status codes that uv should ignore when deciding whether to continue resolution after a
    * request to this index fails.
    *
@@ -1503,6 +1680,13 @@ export interface IndexCacheControl {
    */
   files?: string | null;
   [k: string]: unknown | undefined;
+}
+/**
+ * The oldest required release of each Linux libc.
+ */
+export interface MinimumLibcVersion {
+  glibc?: string | null;
+  musl?: string | null;
 }
 /**
  * An override that applies to the dependencies of a specific package version.
@@ -1879,9 +2063,9 @@ export interface PipOptions {
   /**
    * The strategy to use when considering pre-release versions.
    *
-   * By default, uv will accept pre-releases for packages that _only_ publish pre-releases,
-   * along with first-party requirements that contain an explicit pre-release marker in the
-   * declared specifiers (`if-necessary-or-explicit`).
+   * By default, uv will prefer stable candidates, falling back to pre-releases only after every
+   * stable candidate that satisfies the active constraints is rejected
+   * (`if-necessary`).
    */
   prerelease?: PrereleaseMode | null;
   /**
@@ -1924,6 +2108,13 @@ export interface PipOptions {
    * `refresh-package`.
    */
   'reinstall-package'?: PackageName[] | null;
+  /**
+   * Require hashes for all build dependencies in `uv pip` commands.
+   *
+   * Overrides `require-build-hashes` in `[tool.uv]`. This does not require hashes for runtime
+   * dependencies; use `require-hashes` for those.
+   */
+  'require-build-hashes'?: boolean | null;
   /**
    * Require a matching hash for each requirement.
    *
@@ -2024,6 +2215,12 @@ export interface PipGroupName {
   name: GroupName;
   path?: string | null;
   [k: string]: unknown | undefined;
+}
+/**
+ * Pre-release selection policies that apply to individual packages.
+ */
+export interface PrereleasePackage {
+  [k: string]: PrereleaseMode | undefined;
 }
 export interface ToolUvSources {
   [k: string]: Sources | undefined;

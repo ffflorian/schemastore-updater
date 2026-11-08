@@ -44,7 +44,7 @@ export interface AJSONSchemaForLernaJsonFiles {
       /**
        * An array of globs that won't be included in "lerna changed/publish". Use this to prevent publishing of a new version unnecessarily for changes, such as fixing a README.md typo.
        */
-      ignoreChanges?: string | string[];
+      ignoreChanges?: (string | unknown[]) & string[];
       /**
        * A custom commit message when performing version updates for publication. See https://github.com/lerna/lerna/tree/master/commands/version#--message-msg for more information.
        */
@@ -58,7 +58,7 @@ export interface AJSONSchemaForLernaJsonFiles {
       /**
        * An array of globs that won't be bootstrapped when running "lerna bootstrap" command.
        */
-      ignore?: string | string[];
+      ignore?: (string | unknown[]) & string[];
       /**
        * Array of strings that will be passed as arguments directly to "npm install" during the "lerna bootstrap" command.
        */
@@ -92,7 +92,7 @@ export interface AJSONSchemaForLernaJsonFiles {
       /**
        * A whitelist of globs that match git branches where "lerna version" is enabled.
        */
-      allowBranch?: string | string[];
+      allowBranch?: (string | unknown[]) & string[];
       /**
        * A custom commit message when performing version updates for publication. See https://github.com/lerna/lerna/tree/master/commands/version#--message-msg for more information.
        */

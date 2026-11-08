@@ -1,26 +1,58 @@
 /* eslint-disable */
 
 /**
- * Operations to be excluded from the module
+ * Layers the operation is excluded from
+ *
+ * @minItems 1
+ */
+export type LayersDefinition = [
+  'api' | 'rest' | 'graphql' | 'app' | 'ui',
+  ...('api' | 'rest' | 'graphql' | 'app' | 'ui')[]
+];
+/**
+ * Operations to be excluded from the module. A plain string excludes the operation from every layer it has; the object form { operation, layers } excludes it only from the listed layers: rest (@api REST controller and its DTO), graphql (@api resolver and its SDL field), api (shorthand for rest plus graphql), app (@app handler and service), ui (frontend route, button and GraphQL document). A layer the operation does not have is a generation error
  */
 export type ExcludedOperationDefinition = (
-  | 'count'
-  | 'create'
-  | 'createBatch'
-  | 'deleteById'
-  | 'delete'
-  | 'findById'
-  | 'find'
-  | 'get'
-  | 'max'
-  | 'min'
-  | 'paginate'
-  | 'getRaw'
-  | 'sum'
-  | 'updateAndIncrement'
-  | 'updateById'
-  | 'update'
-  | 'upsert'
+  | (
+      | 'count'
+      | 'create'
+      | 'createBatch'
+      | 'deleteById'
+      | 'delete'
+      | 'findById'
+      | 'find'
+      | 'get'
+      | 'max'
+      | 'min'
+      | 'paginate'
+      | 'getRaw'
+      | 'sum'
+      | 'updateAndIncrement'
+      | 'updateById'
+      | 'update'
+      | 'upsert'
+    )
+  | {
+      operation:
+        | 'count'
+        | 'create'
+        | 'createBatch'
+        | 'deleteById'
+        | 'delete'
+        | 'findById'
+        | 'find'
+        | 'get'
+        | 'max'
+        | 'min'
+        | 'paginate'
+        | 'getRaw'
+        | 'sum'
+        | 'updateAndIncrement'
+        | 'updateById'
+        | 'update'
+        | 'upsert';
+      layers: LayersDefinition;
+    }
 )[];
 /**
  * Fields to display in the grid-select-element widget
@@ -65,6 +97,10 @@ export interface AuroraAgileMetaFramework {
    * Enabled auditing for this module
    */
   hasAuditing?: boolean;
+  /**
+   * Strategy the generator uses to persist translations for properties marked with isI18n. 'embedded' stores per-locale JSON in a <property>_i18n jsonb column alongside a <property>_i18n_search_text column on the same table (best for 1-2 translatable fields); 'table' derives a companion <aggregate>_i18n table with a FK to the parent (best for many translatable fields or fields expected to grow). Ignored when no property sets isI18n.
+   */
+  i18nStrategy?: 'embedded' | 'table';
   /**
    * Description of the module and its function and interaction with the other modules in the package
    */
@@ -139,6 +175,10 @@ export interface FrontDefinition {
    */
   detailMode?: 'view' | 'dialog';
   /**
+   * Width of the create/edit dialog when detailMode is 'dialog'. Named size tokens that map to a definite, responsive width (min(92vw, cap)) so the dialog never resizes with its selected content: sm=28rem, md=42rem, lg=56rem, xl=72rem, full=min(95vw,90rem). Use larger tokens for forms with more fields that need more screen from the start. Ignored when detailMode is 'view'. Defaults to 'md'.
+   */
+  dialogWidth?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  /**
    * When true, the module generates embed-mode artifacts (form-embed component, embed columns config, list mode embed). Required when another module references this one via widget.type: grid-elements-manager. Default: false.
    */
   embedSupport?: boolean;
@@ -181,6 +221,7 @@ export interface PropertyDefinition {
     | 'manyToMany'
     | 'password'
     | 'relationship'
+    | 'secret'
     | 'smallint'
     | 'text'
     | 'timestamp'
@@ -268,9 +309,17 @@ export interface PropertyDefinition {
    */
   autoIncrement?: boolean;
   /**
-   * Set property as read only
+   * The system computes this property's value; the client never writes it, on any operation (create or update). Mutually exclusive with createOnly on the same property.
+   */
+  readOnly?: boolean;
+  /**
+   * Deprecated alias for readOnly. core-back no longer reads it; the CLI loader still accepts it and normalises it to readOnly when loading a YAML schema. Use readOnly instead.
    */
   readonly?: boolean;
+  /**
+   * The client chooses this property's value at creation and it is frozen afterwards: accepted on create, rejected on update. Does NOT belong here: a UI-only lock (use widget instead), a system-computed value (use readOnly instead), or a freeze conditioned on the record's state or a state machine (implement those by hand). Mutually exclusive with readOnly on the same property.
+   */
+  createOnly?: boolean;
   /**
    * Apply timezone to date property, by default is true
    */
@@ -315,6 +364,14 @@ export interface RelationshipDefinition {
    */
   avoidConstraint?: boolean;
   /**
+   * Referential action when the referenced row is deleted: cascade, restrict, no-action, set-null or set-default. Takes effect only when avoidConstraint is false; it is never inferred. When omitted, the database default (NO ACTION) applies
+   */
+  onDelete?: 'cascade' | 'restrict' | 'no-action' | 'set-null' | 'set-default';
+  /**
+   * Referential action when the referenced key is updated: cascade, restrict, no-action, set-null or set-default. Takes effect only when avoidConstraint is false; it is never inferred. When omitted, the database default (NO ACTION) applies
+   */
+  onUpdate?: 'cascade' | 'restrict' | 'no-action' | 'set-null' | 'set-default';
+  /**
    * Path to packageName where is the relationship, example: @aurora-ts/core
    */
   packageName?: string;
@@ -322,6 +379,10 @@ export interface RelationshipDefinition {
    * Set many-to-many relationship as denormalized, creating a field to store the selected ids
    */
   isDenormalized?: boolean;
+  /**
+   * Declares that a tenant-scoped read (hasTenant: true) of this aggregate may cross this relation, one hop only. Deny by default: a relation without this key is rejected in where, relations, order and aggregation. It does not scope the target aggregate by tenant: the target's rows are reachable as the target defines them, so declare it only when that is acceptable. Applies to the FK side or the navigation side of the relationship
+   */
+  traversableInTenantScope?: boolean;
   pivot?: PivotTableDefinition;
 }
 /**
@@ -367,9 +428,11 @@ export interface WidgetDefinition {
     | 'async-multiple-search-select'
     | 'async-search-select'
     | 'color-picker'
+    | 'dialog-string-list'
     | 'grid-elements-manager'
     | 'grid-select-element'
     | 'grid-select-multiple-elements'
+    | 'inline-string-list'
     | 'multiple-search-select'
     | 'multiple-select'
     | 'search-select'
@@ -407,6 +470,19 @@ export interface WidgetDefinition {
    * Per-property column span override on the form's 12-column grid. Integer 1-12. When omitted, the codegen picks a default by type (and by maxLength for varchar)
    */
   span?: number;
+  /**
+   * Field help shown in a tooltip beside the form label. Both values are seeds of the module translation files: once seeded, the translation JSON owns them
+   */
+  hint?: {
+    /**
+     * Help text of the field
+     */
+    text: string;
+    /**
+     * Optional example value, shown as an extra line in the tooltip
+     */
+    example?: string;
+  };
 }
 export interface AdditionalApisDefinition {
   /**
@@ -421,5 +497,6 @@ export interface AdditionalApisDefinition {
    * Verb of api rest
    */
   httpMethod: 'get' | 'post' | 'put' | 'delete' | 'patch';
+  excludedLayers?: LayersDefinition;
   [k: string]: unknown | undefined;
 }

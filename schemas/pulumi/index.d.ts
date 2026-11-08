@@ -87,7 +87,7 @@ export interface PulumiProject {
      * If true this configuration value should be encrypted.
      */
     secret?: boolean;
-    [k: string]: (string | number | boolean | unknown[] | ConfigTypeDeclaration) | undefined;
+    [k: string]: string | number | boolean | unknown[] | ConfigTypeDeclaration | undefined;
   } | null;
   /**
    * Config directory location relative to the location of Pulumi.yaml.

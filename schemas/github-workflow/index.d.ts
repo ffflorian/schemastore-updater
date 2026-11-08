@@ -1221,7 +1221,7 @@ export interface NormalJob {
         [k: string]: string | number | boolean | undefined;
       }
     | StringContainingExpressionSyntax;
-  defaults?: Defaults1;
+  defaults?: Defaults;
   /**
    * You can use the if conditional to prevent a job from running unless a condition is met. You can use any supported context and expression to create a conditional.
    * Expressions in an if conditional do not require the ${{ }} syntax. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions.
@@ -1287,7 +1287,7 @@ export interface PermissionsEvent {
   contents?: PermissionsLevel;
   deployments?: PermissionsLevel;
   discussions?: PermissionsLevel;
-  'id-token'?: PermissionsLevel;
+  'id-token'?: 'write' | 'none';
   issues?: PermissionsLevel;
   models?: 'read' | 'none';
   packages?: PermissionsLevel;
@@ -1315,15 +1315,6 @@ export interface Environment {
    * Whether to create a deployment for this job. Setting to false lets the job use environment secrets and variables without creating a deployment record. Wait timers and required reviewers still apply.
    */
   deployment?: boolean | ExpressionSyntax;
-}
-/**
- * A map of default settings that will apply to all steps in the job.
- */
-export interface Defaults1 {
-  run?: {
-    shell?: Shell;
-    'working-directory'?: WorkingDirectory;
-  };
 }
 export interface JobContainer {
   /**

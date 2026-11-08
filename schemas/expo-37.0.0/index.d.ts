@@ -23,10 +23,12 @@ export interface JSONSchemaForExpoSDK37AppManifest {
      */
     privacy?:
       | unknown[]
-      | ('public' | 'unlisted')
+      | boolean
+      | number
       | {
           [k: string]: unknown | undefined;
         }
+      | ('public' | 'unlisted')
       | null;
     /**
      * The Expo sdkVersion to run the project on. This should line up with the version specified in your package.json.
@@ -47,13 +49,17 @@ export interface JSONSchemaForExpoSDK37AppManifest {
     /**
      * Lock your app to a specific orientation with `portrait` or `landscape`. Defaults to no lock.
      */
-    orientation?:
+    orientation?: (
       | unknown[]
-      | ('default' | 'portrait' | 'landscape')
+      | boolean
+      | number
       | {
           [k: string]: unknown | undefined;
         }
-      | null;
+      | string
+      | null
+    ) &
+      ('default' | 'portrait' | 'landscape');
     /**
      * Configuration to force the app to always use the light or dark user-interface appearance, such as "dark mode", or make it automatically adapt to the system preferences. If not provided, defaults to `light`.
      */
@@ -91,10 +97,12 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        */
       androidMode?:
         | unknown[]
-        | ('default' | 'collapse')
+        | boolean
+        | number
         | {
             [k: string]: unknown | undefined;
           }
+        | ('default' | 'collapse')
         | null;
       /**
        * If `androidMode` is set to `collapse`, this title is used for the collapsed notification message. eg: `'#{unread_notifications} new interactions'`.
@@ -114,10 +122,12 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        */
       exponentIconColor?:
         | unknown[]
-        | ('white' | 'blue')
+        | boolean
+        | number
         | {
             [k: string]: unknown | undefined;
           }
+        | ('white' | 'blue')
         | null;
       /**
        * Similar to `exponentIconColor` but instead indicate if it should be grayscale (`1`) or not (`0`).
@@ -217,10 +227,12 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        */
       checkAutomatically?:
         | unknown[]
-        | ('ON_ERROR_RECOVERY' | 'ON_LOAD')
+        | boolean
+        | number
         | {
             [k: string]: unknown | undefined;
           }
+        | ('ON_ERROR_RECOVERY' | 'ON_LOAD')
         | null;
       /**
        * How long (in ms) to allow for fetching OTA updates before falling back to a cached version of the app. Defaults to 30000 (30 sec).
@@ -374,10 +386,12 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          */
         resizeMode?:
           | unknown[]
-          | ('cover' | 'contain')
+          | boolean
+          | number
           | {
               [k: string]: unknown | undefined;
             }
+          | ('cover' | 'contain')
           | null;
         /**
          * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
@@ -544,10 +558,12 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          */
         resizeMode?:
           | unknown[]
-          | ('cover' | 'contain' | 'native')
+          | boolean
+          | number
           | {
               [k: string]: unknown | undefined;
             }
+          | ('cover' | 'contain' | 'native')
           | null;
         /**
          * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
@@ -776,10 +792,12 @@ export interface JSONSchemaForExpoSDK37AppManifest {
          */
         resizeMode?:
           | unknown[]
-          | ('cover' | 'contain')
+          | boolean
+          | number
           | {
               [k: string]: unknown | undefined;
             }
+          | ('cover' | 'contain')
           | null;
         /**
          * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.
@@ -836,10 +854,12 @@ export interface JSONSchemaForExpoSDK37AppManifest {
        */
       resizeMode?:
         | unknown[]
-        | ('cover' | 'contain')
+        | boolean
+        | number
         | {
             [k: string]: unknown | undefined;
           }
+        | ('cover' | 'contain')
         | null;
       /**
        * Local path or remote url to an image to fill the background of the loading screen. Image size and aspect ratio are up to you. Must be a .png.

@@ -124,7 +124,7 @@ export interface HelmfileConfigSchema {
    * Reusable release templates, referenced by name via `inherit` or `defaultInherit`.
    */
   templates?: {
-    [k: string]: ReleaseSpec;
+    [k: string]: ReleaseSpec | undefined;
   };
   /**
    * DefaultValues is the default values to be overrode by environment values and command-line overrides

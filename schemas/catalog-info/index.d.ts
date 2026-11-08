@@ -24,23 +24,26 @@ export type HttpsJsonSchemastoreOrgCatalogInfoJson =
         /**
          * The definition of the API, based on the format defined by the type.
          */
-        definition:
+        definition: (
           | string
           | {
-              /**
-               * Interprets the contents of the referenced file as JSON and embeds the parsed structure.
-               */
-              $json?: string;
-              /**
-               * Interprets the contents of the referenced file as plain text and embeds it as a string.
-               */
-              $text?: string;
-              /**
-               * Interprets the contents of the referenced file as YAML and embeds the parsed structure.
-               */
-              $yaml?: string;
               [k: string]: unknown | undefined;
-            };
+            }
+        ) & {
+          /**
+           * Interprets the contents of the referenced file as JSON and embeds the parsed structure.
+           */
+          $json?: string;
+          /**
+           * Interprets the contents of the referenced file as plain text and embeds it as a string.
+           */
+          $text?: string;
+          /**
+           * Interprets the contents of the referenced file as YAML and embeds the parsed structure.
+           */
+          $yaml?: string;
+          [k: string]: unknown | undefined;
+        };
         [k: string]: unknown | undefined;
       };
       [k: string]: unknown | undefined;

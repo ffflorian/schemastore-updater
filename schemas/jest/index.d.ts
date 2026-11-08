@@ -248,6 +248,10 @@ export interface HttpsJsonSchemastoreOrgJestJson {
    */
   runner?: string;
   /**
+   * This option allows the use of a custom runtime to execute test files. A custom runtime can be provided by specifying a path to a runtime implementation.
+   */
+  runtime?: string;
+  /**
    * @deprecated
    * DEPRECATED. Renamed to `sandboxInjectedGlobals` in Jest 28
    */
@@ -349,6 +353,10 @@ export interface HttpsJsonSchemastoreOrgJestJson {
    */
   verbose?: boolean;
   /**
+   * Gives one event loop turn to handle `rejectionHandled`, `uncaughtException` or `unhandledRejection`.
+   */
+  waitForUnhandledRejections?: boolean;
+  /**
    * An array of RegExp patterns that are matched against all source file paths before re-running tests in watch mode. If the file path matches any of the patterns, when it is updated, it will not trigger a re-run of tests.
    */
   watchPathIgnorePatterns?: string[];
@@ -360,6 +368,10 @@ export interface HttpsJsonSchemastoreOrgJestJson {
    * Whether to use `watchman` for file crawling.
    */
   watchman?: boolean;
+  /**
+   * Timeout in milliseconds for a worker process to exit gracefully after all tests have completed. If a worker does not exit within this timeout, it is force-killed.
+   */
+  workerGracefulExitTimeout?: number;
   /**
    * Specifies the memory limit for workers before they are recycled.
    */
