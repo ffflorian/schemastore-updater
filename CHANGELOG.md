@@ -1,3 +1,14 @@
+## [3.8.16](https://github.com/ffflorian/schemastore-updater/compare/v3.8.15...v3.8.16) (2026-11-08)
+
+### Bug Fixes
+
+* Revert simplifying types (a9e3806) ([bcb3565](https://github.com/ffflorian/schemastore-updater/commit/bcb35658c3a6d90a2fa6b881dcbebbbdb9b6ea6e))
+* TS2590 ([8f4f2c4](https://github.com/ffflorian/schemastore-updater/commit/8f4f2c413de259144b79407c337e29fb0e1e49c9))
+
+### Continuous Integration
+
+* include all commit types in release notes ([#1720](https://github.com/ffflorian/schemastore-updater/issues/1720)) ([ffd8be5](https://github.com/ffflorian/schemastore-updater/commit/ffd8be5b9ecd5d99ddc08ec386c41cf37b45474e))
+
 ## [3.8.15](https://github.com/ffflorian/schemastore-updater/compare/v3.8.14...v3.8.15) (2026-11-08)
 
 
