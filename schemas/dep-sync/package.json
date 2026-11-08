@@ -1,0 +1,13 @@
+{
+  "author": "Florian Imdahl <git@ffflorian.de>",
+  "description": "TypeScript definitions for dep-sync.",
+  "license": "GPL-3.0",
+  "name": "@schemastore/dep-sync",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ffflorian/schemastore-updater.git"
+  },
+  "types": "index.d.ts",
+  "version": "1.0.0"
+}

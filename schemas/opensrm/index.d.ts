@@ -43,9 +43,27 @@ export type LatencySLO = LatencySLO1 & {
    */
   window?: string;
 };
-export type LatencySLO1 = {
-  [k: string]: unknown | undefined;
-};
+export type LatencySLO1 =
+  | {
+      p50: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p90: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p95: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p99: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p999: unknown;
+      [k: string]: unknown | undefined;
+    };
 /**
  * Processing time SLO - job completion time for worker services
  */
@@ -75,9 +93,23 @@ export type ProcessingTimeSLO = ProcessingTimeSLO1 & {
    */
   window?: string;
 };
-export type ProcessingTimeSLO1 = {
-  [k: string]: unknown | undefined;
-};
+export type ProcessingTimeSLO1 =
+  | {
+      p50: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p90: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p95: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p99: unknown;
+      [k: string]: unknown | undefined;
+    };
 /**
  * Duration SLO - job execution time for batch services
  */
@@ -107,9 +139,23 @@ export type DurationSLO = DurationSLO1 & {
    */
   window?: string;
 };
-export type DurationSLO1 = {
-  [k: string]: unknown | undefined;
-};
+export type DurationSLO1 =
+  | {
+      p50: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p90: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p95: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p99: unknown;
+      [k: string]: unknown | undefined;
+    };
 /**
  * Query latency SLO - response time for database services
  */
@@ -143,9 +189,27 @@ export type QueryLatencySLO = QueryLatencySLO1 & {
    */
   window?: string;
 };
-export type QueryLatencySLO1 = {
-  [k: string]: unknown | undefined;
-};
+export type QueryLatencySLO1 =
+  | {
+      p50: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p90: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p95: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p99: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p999: unknown;
+      [k: string]: unknown | undefined;
+    };
 /**
  * Feedback latency SLO - measures time until decision quality is known
  * https://github.com/rsionnach/opensrm#judgment-slos
@@ -160,9 +224,15 @@ export type FeedbackLatencySLO = FeedbackLatencySLO1 & {
    */
   p90?: string;
 };
-export type FeedbackLatencySLO1 = {
-  [k: string]: unknown | undefined;
-};
+export type FeedbackLatencySLO1 =
+  | {
+      p50: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      p90: unknown;
+      [k: string]: unknown | undefined;
+    };
 /**
  * Duration format: number followed by ms, s, m, h, d, or w
  */

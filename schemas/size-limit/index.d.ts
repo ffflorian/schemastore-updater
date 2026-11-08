@@ -12,8 +12,6 @@ export type ConfigurationSection = {
   brotli?: WithTrueItWillUseBrotliCompressionAndDisableGzipCompression;
   ignore?: AnArrayOfFilesAndDependenciesToExcludeFromTheProjectSizeCalculation[];
   [k: string]: unknown | undefined;
-} & {
-  [k: string]: unknown | undefined;
 };
 export type RelativePathToFiles = string;
 export type PathOrGlobPattern = string;
@@ -25,7 +23,7 @@ export type PartialImportToTestTreeShaking =
        * This interface was referenced by `undefined`'s JSON-Schema definition
        * via the `patternProperty` "^/?([^/]+/)*[^/]+/?$".
        */
-      [k: string]: string;
+      [k: string]: string | undefined;
     };
 export type SizeOrTimeLimitForFilesFromThePathOptionItShouldBeAStringWithANumberAndUnitSeparatedByASpace = string;
 export type TheNameOfTheCurrentSectionItWillOnlyBeUsefulIfYouHaveMultipleSections = string;

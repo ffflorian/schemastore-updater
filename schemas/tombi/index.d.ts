@@ -8,8 +8,6 @@ export type TOMLVersion1 = ('v1.0.0' | 'v1.1.0') | 'v1.1.0-preview';
 /**
  * The file match pattern to include in formatting and linting.
  * Supports glob pattern.
- *
- * @minItems 1
  */
 export type FilePatternsToInclude = [GlobPattern, ...GlobPattern[]] | null;
 /**
@@ -356,6 +354,21 @@ export type EnableTheSchemaValidation = BoolDefaultTrue | null;
  * which is different from the JSON Schema specification.
  */
 export type EnableStrictSchemaValidation = BoolDefaultTrue | null;
+export type SchemaFormatOptions = GlobalSchemaFormatOptions | null;
+/**
+ * Used when neither a matching `[[schemas]]` entry nor a comment directive
+ * specifies the same rule.
+ */
+export type GlobalSchemaFormatRules = SchemaSpecificFormatRules | null;
+export type WhetherSchemaDefinedArrayValuesOrderingIsEnabled = SchemaDefinedArrayValuesOrdering | null;
+export type WhetherSchemaDefinedArrayValuesOrderingIsEnabled1 = BoolDefaultTrue | null;
+export type WhetherSchemaDefinedTableKeyOrderingIsEnabled = SchemaDefinedTableKeyOrdering | null;
+export type WhetherSchemaDefinedTableKeyOrderingIsEnabled1 = BoolDefaultTrue | null;
+export type SchemaLintOptions = SchemaOverviewLintOptions | null;
+/**
+ * Severity supported by the global schema deprecation rule.
+ */
+export type SchemaDeprecatedSeverity = 'warn' | 'error';
 export type SchemaCatalogOptions = SchemaCatalog | null;
 /**
  * The catalog is evaluated after the schemas specified by [[schemas]].\
@@ -383,11 +396,7 @@ export type TheFileMatchPatternOfTheSchema = [GlobPattern, ...GlobPattern[]];
  */
 export type TheFileMatchPatternToExcludeTheSchema = GlobPattern[] | null;
 export type SchemaSpecificFormatOptions = SchemaSpecificFormatOptions1 | null;
-export type SchemaSpecificFormatRules = SchemaSpecificFormatRules1 | null;
-export type WhetherSchemaDefinedArrayValuesOrderingIsEnabled = SchemaDefinedArrayValuesOrdering | null;
-export type WhetherSchemaDefinedArrayValuesOrderingIsEnabled1 = BoolDefaultTrue | null;
-export type WhetherSchemaDefinedTableKeyOrderingIsEnabled = SchemaDefinedTableKeyOrdering | null;
-export type WhetherSchemaDefinedTableKeyOrderingIsEnabled1 = BoolDefaultTrue | null;
+export type SchemaSpecificFormatRules1 = SchemaSpecificFormatRules | null;
 export type SchemaSpecificLintOptions = SchemaSpecificLintOptions1 | null;
 export type SchemaSpecificLintRules = SchemaSpecificLintRules1 | null;
 /**
@@ -785,7 +794,28 @@ export interface LspWorkspaceDiagnostic {
 export interface SchemaOverviewOptions {
   enabled?: EnableTheSchemaValidation;
   strict?: EnableStrictSchemaValidation;
+  format?: SchemaFormatOptions;
+  lint?: SchemaLintOptions;
   catalog?: SchemaCatalogOptions;
+}
+export interface GlobalSchemaFormatOptions {
+  rules?: GlobalSchemaFormatRules;
+}
+export interface SchemaSpecificFormatRules {
+  'array-values-order'?: WhetherSchemaDefinedArrayValuesOrderingIsEnabled;
+  'table-keys-order'?: WhetherSchemaDefinedTableKeyOrderingIsEnabled;
+}
+export interface SchemaDefinedArrayValuesOrdering {
+  enabled?: WhetherSchemaDefinedArrayValuesOrderingIsEnabled1;
+}
+export interface SchemaDefinedTableKeyOrdering {
+  enabled?: WhetherSchemaDefinedTableKeyOrderingIsEnabled1;
+}
+export interface SchemaOverviewLintOptions {
+  rules?: SchemaOverviewLintRules | null;
+}
+export interface SchemaOverviewLintRules {
+  deprecated?: SchemaDeprecatedSeverity | null;
 }
 export interface SchemaCatalog {
   paths?: TheSchemaCatalogPathUrlArray;
@@ -801,17 +831,7 @@ export interface TheSchemaForTheRootTable {
   overrides?: SchemaSpecificOverrides;
 }
 export interface SchemaSpecificFormatOptions1 {
-  rules?: SchemaSpecificFormatRules;
-}
-export interface SchemaSpecificFormatRules1 {
-  'array-values-order'?: WhetherSchemaDefinedArrayValuesOrderingIsEnabled;
-  'table-keys-order'?: WhetherSchemaDefinedTableKeyOrderingIsEnabled;
-}
-export interface SchemaDefinedArrayValuesOrdering {
-  enabled?: WhetherSchemaDefinedArrayValuesOrderingIsEnabled1;
-}
-export interface SchemaDefinedTableKeyOrdering {
-  enabled?: WhetherSchemaDefinedTableKeyOrderingIsEnabled1;
+  rules?: SchemaSpecificFormatRules1;
 }
 export interface SchemaSpecificLintOptions1 {
   rules?: SchemaSpecificLintRules;

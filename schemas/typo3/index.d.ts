@@ -1,688 +1,207 @@
 /* eslint-disable */
 
-export type ErrorHandling = {
+/**
+ * Other YAML files to include.
+ */
+export type TYPO3YAMLImports = {
+  /**
+   * Absolute, relative or "EXT:" path of the file.
+   */
+  resource: string;
+  /**
+   * Treats resource as a pattern like "*.yaml".
+   */
+  glob?: boolean;
+}[];
+/**
+ * Placeholder like %env(MY_VARIABLE)%.
+ */
+export type Placeholder = string;
+export type ErrorHandler = {
+  /**
+   * HTTP status code, 0 for all others.
+   */
+  errorCode: number | string;
+  /**
+   * How the error is handled.
+   */
+  errorHandler: 'Page' | 'Fluid' | 'PHP' | 'LoginRedirect';
   [k: string]: unknown | undefined;
-} & {
+};
+export type StaticRoute = {
   /**
-   * Make sure to have at least 0 (not defined otherwise) configured in order to serve helpful error messages to your visitors.
+   * Path of the route, for example "robots.txt".
    */
-  errorCode?: (0 | 404 | 403 | 500 | 503) | number;
+  route: string;
   /**
-   * How to handle Errors
+   * Type of the route.
    */
-  errorHandler?: 'Page' | 'Fluid' | 'PHP';
+  type: 'staticText' | 'uri' | 'asset';
+  [k: string]: unknown | undefined;
+};
+/**
+ * Route enhancers, keyed by identifier.
+ */
+export type TYPO3RouteEnhancers = {
+  [k: string]: Enhancer | undefined;
+} | null;
+export type Enhancer = {
+  /**
+   * Type of the enhancer.
+   */
+  type: ('Simple' | 'Plugin' | 'Extbase' | 'PageType') | string;
+  /**
+   * Pages the enhancer is used on, like 13 or 'page["doktype"] == 1'.
+   */
+  limitToPages?: (number | string)[];
+  /**
+   * Aspects, keyed by argument name.
+   */
+  aspects?: {
+    [k: string]: Aspect | undefined;
+  };
+  [k: string]: unknown | undefined;
+};
+export type Aspect = {
+  /**
+   * Type of the aspect.
+   */
+  type:
+    | ('LocaleModifier' | 'PersistedAliasMapper' | 'PersistedPatternMapper' | 'StaticRangeMapper' | 'StaticValueMapper')
+    | string;
   [k: string]: unknown | undefined;
 };
 
-export interface HttpsJsonSchemastoreOrgTypo3Json {
+export interface TYPO3SiteConfiguration {
+  imports?: TYPO3YAMLImports;
   /**
-   * Base URL. This is the URL under which this site is available
+   * ID of the root page.
    */
-  base: string;
+  rootPageId?: number | string | Placeholder;
   /**
-   * ID of the page where this site begins
+   * Entry point, for example "https://example.com/" or "/".
    */
-  rootPageId: number;
-  languages: Language[];
-  baseVariants?: BaseVariants[];
-  errorHandling?: ErrorHandling[];
-  routes?: StaticRoutes[];
+  base?: string;
   /**
-   * Default website title
+   * Other entry points, for example per environment.
+   */
+  baseVariants?:
+    | BaseVariant[]
+    | {
+        [k: string]: BaseVariant | undefined;
+      };
+  /**
+   * Title of the website.
    */
   websiteTitle?: string;
   /**
-   * routeEnhancers transform arguments into nice urls. Docs can be found at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Routing/Index.html
+   * Site sets used by the site.
    */
-  routeEnhancers?: {
-    /**
-     * Each enhancer must have a type
-     */
-    [k: string]:
-      | {
-          [k: string]: unknown | undefined;
-        }
-      | undefined;
-  };
+  dependencies?:
+    | string[]
+    | {
+        [k: string]: string | undefined;
+      };
+  /**
+   * Languages of the site.
+   */
+  languages?:
+    | Language[]
+    | {
+        [k: string]: Language | undefined;
+      };
+  /**
+   * Error handlers by HTTP status code.
+   */
+  errorHandling?:
+    | ErrorHandler[]
+    | {
+        [k: string]: ErrorHandler | undefined;
+      };
+  /**
+   * Static routes like robots.txt.
+   */
+  routes?:
+    | StaticRoute[]
+    | {
+        [k: string]: unknown | undefined;
+      };
+  routeEnhancers?: TYPO3RouteEnhancers;
+  /**
+   * Site settings, usually in settings.yaml.
+   */
   settings?: {
-    redirects?: Redirects;
     [k: string]: unknown | undefined;
   };
+  [k: string]: unknown | undefined;
+}
+export interface BaseVariant {
   /**
-   * Extension key for site setup (used by EXT:bolt)
+   * Entry point used if the condition matches.
    */
-  sitePackage?: string;
+  base: string;
   /**
-   * EXT:solr default core for read
+   * Expression, for example 'applicationContext == "Development"'.
    */
-  solr_core_read?: string;
-  /**
-   * EXT:solr enable default solr read
-   */
-  solr_enabled_read?: boolean;
-  /**
-   * EXT:solr default host for read
-   */
-  solr_host_read?: string;
-  /**
-   * EXT:solr password for read
-   */
-  solr_password_read?: string;
-  /**
-   * EXT:solr username for read
-   */
-  solr_username_read?: string;
-  /**
-   * EXT:solr port for read
-   */
-  solr_port_read?: string;
-  /**
-   * EXT:solr scheme for read
-   */
-  solr_scheme_read?: ('http' | 'https' | '%env(SOLR_SCHEME)%') & string;
-  /**
-   * EXT:solr use write connection
-   */
-  solr_use_write_connection?: boolean;
+  condition: string;
   [k: string]: unknown | undefined;
 }
 export interface Language {
   /**
-   * Title
+   * ID of the language, 0 for the default language.
    */
-  title: string;
+  languageId: number | string | Placeholder;
   /**
-   * Visible in Frontend
+   * Name of the language in the backend.
    */
-  enabled: boolean;
+  title?: string;
   /**
-   * ID of the related sys_language record
-   */
-  languageId: number;
-  /**
-   * Use a full qualified domain "https://www.mydomain.fr/" or "/fr/". Use "/" to keep the main URL for the default language. Add language specific suffixes to use those, or configure complete URLs for independent domains.
-   */
-  base: string;
-  baseVariants?: BaseVariants[];
-  /**
-   * Select the language to be used from translation files. Keep default if no translation files are available. Deprecated with TYPO3 12.3
-   */
-  typo3Language?:
-    | (
-        | 'default'
-        | 'af'
-        | 'ar'
-        | 'bs'
-        | 'bg'
-        | 'ca'
-        | 'ch'
-        | 'cs'
-        | 'da'
-        | 'de'
-        | 'el'
-        | 'eo'
-        | 'es'
-        | 'et'
-        | 'eu'
-        | 'fa'
-        | 'fi'
-        | 'fo'
-        | 'fr'
-        | 'fr_CA'
-        | 'gl'
-        | 'he'
-        | 'hi'
-        | 'hr'
-        | 'hu'
-        | 'is'
-        | 'it'
-        | 'ja'
-        | 'ka'
-        | 'kl'
-        | 'km'
-        | 'ko'
-        | 'lt'
-        | 'lv'
-        | 'mi'
-        | 'mk'
-        | 'ms'
-        | 'nl'
-        | 'no'
-        | 'pl'
-        | 'pt'
-        | 'pt_BR'
-        | 'ro'
-        | 'ru'
-        | 'rw'
-        | 'sk'
-        | 'sl'
-        | 'sq'
-        | 'sr'
-        | 'sv'
-        | 'th'
-        | 'tr'
-        | 'uk'
-        | 'vi'
-        | 'zh'
-      )
-    | string;
-  /**
-   * Used for localized date and currency formats. E.g. "de_DE" or "en_US.UTF-8".
-   */
-  locale: string;
-  /**
-   * ISO 639-1 code of the Language
-   */
-  'iso-639-1'?:
-    | 'ab'
-    | 'aa'
-    | 'af'
-    | 'ak'
-    | 'sq'
-    | 'am'
-    | 'ar'
-    | 'an'
-    | 'hy'
-    | 'as'
-    | 'av'
-    | 'ae'
-    | 'ay'
-    | 'az'
-    | 'bm'
-    | 'ba'
-    | 'eu'
-    | 'be'
-    | 'bn'
-    | 'bh'
-    | 'bi'
-    | 'bs'
-    | 'br'
-    | 'bg'
-    | 'my'
-    | 'ca'
-    | 'ch'
-    | 'ce'
-    | 'ny'
-    | 'zh'
-    | 'cv'
-    | 'kw'
-    | 'co'
-    | 'cr'
-    | 'hr'
-    | 'cs'
-    | 'da'
-    | 'dv'
-    | 'nl'
-    | 'dz'
-    | 'en'
-    | 'eo'
-    | 'et'
-    | 'ee'
-    | 'fo'
-    | 'fj'
-    | 'fi'
-    | 'fr'
-    | 'ff'
-    | 'gl'
-    | 'ka'
-    | 'de'
-    | 'el'
-    | 'gn'
-    | 'gu'
-    | 'ht'
-    | 'ha'
-    | 'he'
-    | 'hz'
-    | 'hi'
-    | 'ho'
-    | 'hu'
-    | 'ia'
-    | 'id'
-    | 'ie'
-    | 'ga'
-    | 'ig'
-    | 'ik'
-    | 'io'
-    | 'is'
-    | 'it'
-    | 'iu'
-    | 'ja'
-    | 'jv'
-    | 'kl'
-    | 'kn'
-    | 'kr'
-    | 'ks'
-    | 'kk'
-    | 'km'
-    | 'ki'
-    | 'rw'
-    | 'ky'
-    | 'kv'
-    | 'kg'
-    | 'ko'
-    | 'ku'
-    | 'kj'
-    | 'la'
-    | 'lb'
-    | 'lg'
-    | 'li'
-    | 'ln'
-    | 'lo'
-    | 'lt'
-    | 'lu'
-    | 'lv'
-    | 'gv'
-    | 'mk'
-    | 'mg'
-    | 'ms'
-    | 'ml'
-    | 'mt'
-    | 'mi'
-    | 'mr'
-    | 'mh'
-    | 'mn'
-    | 'na'
-    | 'nv'
-    | 'nd'
-    | 'ne'
-    | 'ng'
-    | 'nb'
-    | 'nn'
-    | 'no'
-    | 'ii'
-    | 'nr'
-    | 'oc'
-    | 'oj'
-    | 'cu'
-    | 'om'
-    | 'or'
-    | 'os'
-    | 'pa'
-    | 'pi'
-    | 'fa'
-    | 'pl'
-    | 'ps'
-    | 'pt'
-    | 'qu'
-    | 'rm'
-    | 'rn'
-    | 'ro'
-    | 'ru'
-    | 'sa'
-    | 'sc'
-    | 'sd'
-    | 'se'
-    | 'sm'
-    | 'sg'
-    | 'sr'
-    | 'gd'
-    | 'sn'
-    | 'si'
-    | 'sk'
-    | 'sl'
-    | 'so'
-    | 'st'
-    | 'es'
-    | 'su'
-    | 'sw'
-    | 'ss'
-    | 'sv'
-    | 'ta'
-    | 'te'
-    | 'tg'
-    | 'th'
-    | 'ti'
-    | 'bo'
-    | 'tk'
-    | 'tl'
-    | 'tn'
-    | 'to'
-    | 'tr'
-    | 'ts'
-    | 'tt'
-    | 'tw'
-    | 'ty'
-    | 'ug'
-    | 'uk'
-    | 'ur'
-    | 'uz'
-    | 've'
-    | 'vi'
-    | 'vo'
-    | 'wa'
-    | 'cy'
-    | 'wo'
-    | 'fy'
-    | 'xh'
-    | 'yi'
-    | 'yo'
-    | 'za'
-    | 'zu';
-  /**
-   * Used within language-related menus
+   * Name of the language in the frontend.
    */
   navigationTitle?: string;
   /**
-   * Used within for "lang" and "hreflang" attributes
-   */
-  hreflang?: string;
-  /**
-   * Language direction for "dir" attribute
-   */
-  direction?: '' | 'ltr' | 'rtl';
-  flag?:
-    | 'global'
-    | 'ad'
-    | 'ae'
-    | 'af'
-    | 'ag'
-    | 'ai'
-    | 'al'
-    | 'am'
-    | 'an'
-    | 'ao'
-    | 'aq'
-    | 'ar'
-    | 'as'
-    | 'at'
-    | 'au'
-    | 'aw'
-    | 'ax'
-    | 'az'
-    | 'ba'
-    | 'bb'
-    | 'bd'
-    | 'be'
-    | 'bf'
-    | 'bg'
-    | 'bh'
-    | 'bi'
-    | 'bj'
-    | 'bl'
-    | 'bm'
-    | 'bn'
-    | 'bo'
-    | 'bq'
-    | 'br'
-    | 'bs'
-    | 'bt'
-    | 'bv'
-    | 'bw'
-    | 'by'
-    | 'bz'
-    | 'ca'
-    | 'catalonia'
-    | 'cc'
-    | 'cd'
-    | 'cf'
-    | 'cg'
-    | 'ch'
-    | 'ci'
-    | 'ck'
-    | 'cl'
-    | 'cm'
-    | 'cn'
-    | 'co'
-    | 'cr'
-    | 'cs'
-    | 'cu'
-    | 'cv'
-    | 'cw'
-    | 'cx'
-    | 'cy'
-    | 'cz'
-    | 'de'
-    | 'dj'
-    | 'dk'
-    | 'dm'
-    | 'do'
-    | 'dz'
-    | 'ec'
-    | 'ee'
-    | 'eg'
-    | 'eh'
-    | 'en-us-gb'
-    | 'gb-eng'
-    | 'er'
-    | 'es'
-    | 'et'
-    | 'eu'
-    | 'fi'
-    | 'fj'
-    | 'fk'
-    | 'fm'
-    | 'fo'
-    | 'fr'
-    | 'ga'
-    | 'gb'
-    | 'gd'
-    | 'ge'
-    | 'gf'
-    | 'gg'
-    | 'gh'
-    | 'gi'
-    | 'gl'
-    | 'gm'
-    | 'gn'
-    | 'gp'
-    | 'gq'
-    | 'gr'
-    | 'gs'
-    | 'gt'
-    | 'gu'
-    | 'gw'
-    | 'gy'
-    | 'hk'
-    | 'hm'
-    | 'hn'
-    | 'hr'
-    | 'ht'
-    | 'hu'
-    | 'id'
-    | 'ie'
-    | 'il'
-    | 'im'
-    | 'in'
-    | 'io'
-    | 'iq'
-    | 'ir'
-    | 'is'
-    | 'it'
-    | 'jm'
-    | 'jo'
-    | 'jp'
-    | 'ke'
-    | 'kg'
-    | 'kh'
-    | 'ki'
-    | 'kl'
-    | 'km'
-    | 'kn'
-    | 'kp'
-    | 'kr'
-    | 'kw'
-    | 'ky'
-    | 'kz'
-    | 'la'
-    | 'lb'
-    | 'lc'
-    | 'li'
-    | 'lk'
-    | 'lr'
-    | 'ls'
-    | 'lt'
-    | 'lu'
-    | 'lv'
-    | 'ly'
-    | 'ma'
-    | 'mc'
-    | 'md'
-    | 'me'
-    | 'mf'
-    | 'mg'
-    | 'mh'
-    | 'mi'
-    | 'mk'
-    | 'ml'
-    | 'mm'
-    | 'mn'
-    | 'mo'
-    | 'mp'
-    | 'mq'
-    | 'mr'
-    | 'ms'
-    | 'mt'
-    | 'mu'
-    | 'mv'
-    | 'mw'
-    | 'mx'
-    | 'my'
-    | 'mz'
-    | 'na'
-    | 'nc'
-    | 'ne'
-    | 'nf'
-    | 'ng'
-    | 'ni'
-    | 'gb-nir'
-    | 'nl'
-    | 'no'
-    | 'np'
-    | 'nr'
-    | 'nu'
-    | 'nz'
-    | 'om'
-    | 'pa'
-    | 'pe'
-    | 'pf'
-    | 'pg'
-    | 'ph'
-    | 'pk'
-    | 'pl'
-    | 'pm'
-    | 'pn'
-    | 'pr'
-    | 'ps'
-    | 'pt'
-    | 'pw'
-    | 'py'
-    | 'qa'
-    | 'qc'
-    | 're'
-    | 'ro'
-    | 'rs'
-    | 'ru'
-    | 'rw'
-    | 'sa'
-    | 'sb'
-    | 'sc'
-    | 'gb-sct'
-    | 'sd'
-    | 'se'
-    | 'sg'
-    | 'sh'
-    | 'si'
-    | 'sj'
-    | 'sk'
-    | 'sl'
-    | 'sm'
-    | 'sn'
-    | 'so'
-    | 'sr'
-    | 'ss'
-    | 'st'
-    | 'sv'
-    | 'sx'
-    | 'sy'
-    | 'sz'
-    | 'tc'
-    | 'td'
-    | 'tf'
-    | 'tg'
-    | 'th'
-    | 'tj'
-    | 'tk'
-    | 'tl'
-    | 'tm'
-    | 'tn'
-    | 'to'
-    | 'tr'
-    | 'tt'
-    | 'tv'
-    | 'tw'
-    | 'tz'
-    | 'ua'
-    | 'ug'
-    | 'um'
-    | 'us'
-    | 'uy'
-    | 'uz'
-    | 'va'
-    | 'vc'
-    | 've'
-    | 'vg'
-    | 'vi'
-    | 'vn'
-    | 'vu'
-    | 'gb-wls'
-    | 'wf'
-    | 'ws'
-    | 'ye'
-    | 'yt'
-    | 'za'
-    | 'zm'
-    | 'zw';
-  /**
-   * With this language based Website title, you can override the Website title for this language
+   * Title of the website in this language.
    */
   websiteTitle?: string;
   /**
-   * Fallback Type
+   * Entry point of the language, for example "/de/".
    */
-  fallbackType?: 'strict' | 'fallback' | 'free';
+  base?: string;
   /**
-   * Fallback to other Language(s) - order is important! Comma separated list
+   * Other entry points of the language.
    */
-  fallbacks?: string;
+  baseVariants?:
+    | BaseVariant[]
+    | {
+        [k: string]: BaseVariant | undefined;
+      };
+  /**
+   * Locale, for example "de_DE.UTF-8" or "de-DE".
+   */
+  locale: string;
+  /**
+   * Value of the hreflang attribute.
+   */
+  hreflang?: string;
+  /**
+   * Makes the language available in the frontend.
+   */
+  enabled?: boolean | (0 | 1) | Placeholder;
+  /**
+   * Flag icon in the backend, for example "de" or "global".
+   */
+  flag?: string;
+  /**
+   * Behaviour for missing translations.
+   */
+  fallbackType?: ('strict' | 'fallback' | 'free') | Placeholder;
+  /**
+   * IDs of fallback languages.
+   */
+  fallbacks?: string | number | (number | string)[];
+  /**
+   * Deprecated since TYPO3 v12.3.
+   */
+  typo3Language?: string;
   [k: string]: unknown | undefined;
-}
-export interface BaseVariants {
-  base: string;
-  condition: string;
-}
-export interface StaticRoutes {
-  /**
-   * Static Route Name
-   */
-  route: string;
-  /**
-   * Route Type
-   */
-  type: 'uri' | 'staticText';
-  /**
-   * Page, File or URL
-   */
-  source?: string;
-  /**
-   * Static Text
-   */
-  content?: string;
-}
-export interface Redirects {
-  /**
-   * Automatically update slugs of all sub pages. Default: true
-   */
-  autoUpdateSlugs?: boolean;
-  /**
-   * Automatically create redirects for pages with a new slug (works only in LIVE workspace). Default: true
-   */
-  autoCreateRedirects?: boolean;
-  /**
-   * Time To Live in days for redirect records to be created - `0` disables TTL, no expiration. Default: 0
-   */
-  redirectTTL?: number;
-  /**
-   * HTTP status code for the redirect, see https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#Temporary_redirections. Default: 307
-   */
-  httpStatusCode?: (300 | 301 | 302 | 303 | 304 | 305 | 306 | 307 | 308) & number;
 }

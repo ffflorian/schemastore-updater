@@ -10,7 +10,7 @@ export interface JSONSchemaForAzureFunctionsProxiesProxiesJsonFiles {
    */
   proxies: {
     '<ProxyName>'?: ProxySchema;
-    [k: string]: ProxySchema1 | undefined;
+    [k: string]: ProxySchema | ProxySchema | undefined;
   };
 }
 /**
@@ -59,6 +59,18 @@ export interface RequestOverridesSchema {
    * A header which can be set for the call to the backend. Replace "<HeaderName>" with the name of the header you wish to set. If the empty string is provided, the header will not be included on the backend request.
    */
   'backend.request.headers.<HeaderName>'?: string;
+  /**
+   * A query string parameter which can be set for the call to the backend. Values can reference application settings and parameters from the original client request. If the empty string is provided, the parameter will not be included on the backend request
+   *
+   * This interface was referenced by `RequestOverridesSchema`'s JSON-Schema definition
+   * via the `patternProperty` "^backend\.request\.querystring\.(?!<ParameterName>).+$".
+   *
+   * A header which can be set for the call to the backend. Values can reference application settings, parameters from the original client request, and parameters from the backend response. If the empty string is provided, the header will not be included on the backend request.
+   *
+   * This interface was referenced by `RequestOverridesSchema`'s JSON-Schema definition
+   * via the `patternProperty` "^backend\.request\.headers\.(?!<HeaderName>).+$".
+   */
+  [k: string]: string | HttpMethodSchema | undefined;
 }
 /**
  * The responseOverrides object defines changes made to the response passed back to the client. You can make changes to the response's status code, reason phrase, headers, and body.
@@ -96,22 +108,20 @@ export interface ResponseOverridesSchema {
    * A header which can be set for the response to the client. Values can reference application settings, parameters from the original client request, and parameters from the backend response. If the empty string is provided, the header will not be included on the response.
    *
    * This interface was referenced by `ResponseOverridesSchema`'s JSON-Schema definition
-   * via the `patternProperty` "^response\.headers\..+$".
+   * via the `patternProperty` "^response\.headers\.(?!<HeaderName>).+$".
    */
-  [k: string]: string;
-}
-/**
- * A friendly name for the proxy
- */
-export interface ProxySchema1 {
-  desc?: string[];
-  matchCondition: MatchConditionSchema;
-  /**
-   * The URL of the backend resource to which the request should be proxied. This value may be templated. If this property is not included, Azure Functions will respond with an HTTP 200 OK
-   */
-  backendUri?: string;
-  requestOverrides?: RequestOverridesSchema;
-  responseOverrides?: ResponseOverridesSchema;
-  debug?: boolean;
-  disabled?: boolean;
+  [k: string]:
+    | string
+    | {
+        [k: string]: unknown | undefined;
+      }
+    | [
+        {
+          [k: string]: unknown | undefined;
+        },
+        ...{
+          [k: string]: unknown | undefined;
+        }[]
+      ]
+    | undefined;
 }
