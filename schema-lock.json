@@ -115,7 +115,7 @@
     "abc-inventory-module-data-5.4.0.json": {
       "generatedFile": "schemas/abc-inventory-module-data-5.4.0/index.d.ts",
       "generatedSha256": "c67d4bed5fce3d5e0a064fec1bc957b5ddfc040aad8c553833d785e94454359b",
-      "published": false,
+      "published": true,
       "sourceSha256": "e6bac0bde2c05441b1cc98e07a08d6184bd4325f2c504fc1e6496abde900edba",
       "updatedAt": "2026-11-08T20:06:30.890Z"
     },
@@ -780,7 +780,7 @@
     "aurora-2.0.json": {
       "generatedFile": "schemas/aurora-2.0/index.d.ts",
       "generatedSha256": "86b697e07ad72984c3bf19f5624780520906f029b04c09e514e71bee226d5cd0",
-      "published": false,
+      "published": true,
       "sourceSha256": "1e275abb589f8b53d4610902e529146ba7951c38217d38b891e368c4288fa24e",
       "updatedAt": "2026-11-08T20:06:36.091Z"
     },
@@ -1004,7 +1004,7 @@
     "bitrise-step.json": {
       "generatedFile": "schemas/bitrise-step/index.d.ts",
       "generatedSha256": "b49fbdb33fee723747f541371983d5e265e4482086c864099259ebfa1dbb4df4",
-      "published": false,
+      "published": true,
       "sourceSha256": "8c7e2898218b266575080f5c1603490a49505a155aa6b179ae002a7334b54dfb",
       "updatedAt": "2026-11-08T20:06:36.502Z"
     },
@@ -1277,7 +1277,7 @@
     "cargo.json": {
       "generatedFile": "schemas/cargo/index.d.ts",
       "generatedSha256": "13e7d988e08d0b10597a7050ba8fb94ef55791a2a1015f871a81103603a8544b",
-      "published": false,
+      "published": true,
       "sourceSha256": "87aa9556ae57ddec7ce9dc405a0e1b53eabd6d533a1fc385c5175028016d5afa",
       "updatedAt": "2026-11-08T20:06:38.259Z"
     },
@@ -1291,7 +1291,7 @@
     "catalog-info.json": {
       "generatedFile": "schemas/catalog-info/index.d.ts",
       "generatedSha256": "3c6396225fb65a5aa84d0cede4377e65c5dbe801df501c9ffab491a2992eab0f",
-      "published": false,
+      "published": true,
       "sourceSha256": "cac42454ef789ad39e3bd9131b6dff36a284fa3c3d1cf0d50a2bbdae1d1deb7a",
       "updatedAt": "2026-11-08T20:06:38.473Z"
     },
@@ -1354,7 +1354,7 @@
     "cfgd-configsource-0.5.0.json": {
       "generatedFile": "schemas/cfgd-configsource-0.5.0/index.d.ts",
       "generatedSha256": "d31cea8a03e3c2c4f58c47b396def2c602106a438b7634dc2cd707bb84dcc1ce",
-      "published": false,
+      "published": true,
       "sourceSha256": "0754298ab323a99aa2fc3ba4523b315fba7a9e0bda35cc4c99aebe6e758a4044",
       "updatedAt": "2026-11-08T20:06:39.489Z"
     },
@@ -1382,7 +1382,7 @@
     "cfgd-module-0.5.0.json": {
       "generatedFile": "schemas/cfgd-module-0.5.0/index.d.ts",
       "generatedSha256": "bf7daecfdad19752e84eb8e27eebb3b9c23c97c06f13a8b161c1e824c62db868",
-      "published": false,
+      "published": true,
       "sourceSha256": "b067d1827e536cb5de9d72e199340c220365a8b5c8d6c9153d17db44b0008662",
       "updatedAt": "2026-11-08T20:06:40.075Z"
     },
@@ -1410,7 +1410,7 @@
     "cfgd-profile-0.5.0.json": {
       "generatedFile": "schemas/cfgd-profile-0.5.0/index.d.ts",
       "generatedSha256": "749bf1f21c94b70d85ff71ef05e1f80f78d836c2f7f2b7d86b547b78b8fe31ba",
-      "published": false,
+      "published": true,
       "sourceSha256": "2410f73b66e3007c839b70b10338178e07eb9a94f0b2e711da8be7edf2d3d038",
       "updatedAt": "2026-11-08T20:06:40.567Z"
     },
@@ -1578,7 +1578,7 @@
     "claude-code-settings.json": {
       "generatedFile": "schemas/claude-code-settings/index.d.ts",
       "generatedSha256": "f6d22e52a9d2e66b707a4fb7db2a0de5077d0554102b6cd6ce9c0885802fc3f6",
-      "published": false,
+      "published": true,
       "sourceSha256": "f26f028ad94a1e2a28e9dad1f80832ab196a8e080bd3a7d7a32e6428a15e0611",
       "updatedAt": "2026-11-08T20:06:41.368Z"
     },
@@ -1774,7 +1774,7 @@
     "crucible-code-schema.json": {
       "generatedFile": "schemas/crucible-code-schema/index.d.ts",
       "generatedSha256": "a3468789c78fb70e36a16f3893d4e666ad73c97edca4c000f1623f4faaca0ec1",
-      "published": false,
+      "published": true,
       "sourceSha256": "a01d702e9855ade3173fc58a41c226d5ecd806efeee2e741836afd1a3ff01fd5",
       "updatedAt": "2026-11-08T20:06:42.046Z"
     },
@@ -1907,7 +1907,7 @@
     "dependabot-2.0.json": {
       "generatedFile": "schemas/dependabot-2.0/index.d.ts",
       "generatedSha256": "d8deda410f0d8f63ba68cf72506ab7ce777f26999dd371c2b6080b2822efc895",
-      "published": false,
+      "published": true,
       "sourceSha256": "f310bfb4960eea6a5fb7d75de54ab49ba36f947757c8f4d5de88d3ea8ac51d3f",
       "updatedAt": "2026-11-08T20:06:42.510Z"
     },
@@ -2047,7 +2047,7 @@
     "dotnet-tools.json": {
       "generatedFile": "schemas/dotnet-tools/index.d.ts",
       "generatedSha256": "32baf16deb5d4ff782d34a9645f8808ab854eba5e506a57823ad92424c50bfd8",
-      "published": false,
+      "published": true,
       "sourceSha256": "2e0416216f3855aaa7be7b9f1025220441afc6dc4eb5062b1b663be6d36e355a",
       "updatedAt": "2026-11-08T20:06:43.663Z"
     },
@@ -3069,7 +3069,7 @@
     "github-workflow.json": {
       "generatedFile": "schemas/github-workflow/index.d.ts",
       "generatedSha256": "ff5859f9df95ff41455e777e819ef41172deacf9491e68e3b384f7246efdb65b",
-      "published": false,
+      "published": true,
       "sourceSha256": "d10c9f4656e1bd5bc6727e9b35080e017dc167154726fca93da33c7a6bd1c4f3",
       "updatedAt": "2026-11-08T20:06:52.666Z"
     },
@@ -3272,7 +3272,7 @@
     "helmfile.json": {
       "generatedFile": "schemas/helmfile/index.d.ts",
       "generatedSha256": "2c5299d4da4fea8731334bc9057019cddc3460ebd0788101cd8c825b50b2da67",
-      "published": false,
+      "published": true,
       "sourceSha256": "1454decbbe08094274844c1e683146ce5630d5f0f5d5fb5c0ac833b335d129dd",
       "updatedAt": "2026-11-08T20:06:54.203Z"
     },
@@ -3335,7 +3335,7 @@
     "hugo.json": {
       "generatedFile": "schemas/hugo/index.d.ts",
       "generatedSha256": "57e4f6efebb6e3cec377feed335c71d9361a9d1bf4b917a43802c3a7b31bccd1",
-      "published": false,
+      "published": true,
       "sourceSha256": "69e739f185e809b4bfbebfc3e28ebf084fd403155a463bae9c220bf76baaabc9",
       "updatedAt": "2026-11-08T20:06:54.447Z"
     },
@@ -3811,7 +3811,7 @@
     "kustomization.json": {
       "generatedFile": "schemas/kustomization/index.d.ts",
       "generatedSha256": "867d625e3b9fe1a4a8ee53ee62c0697ac3394303e7af72faaa401f56f3291ede",
-      "published": false,
+      "published": true,
       "sourceSha256": "d3814c6203396fb1251f517fa33d1427f7468e25e639b270f692800b51b51cfb",
       "updatedAt": "2026-11-08T20:06:56.375Z"
     },
@@ -4168,7 +4168,7 @@
     "metaschema-draft-07-unofficial-strict.json": {
       "generatedFile": "schemas/metaschema-draft-07-unofficial-strict/index.d.ts",
       "generatedSha256": "f846f8ccd98069816aab0ce3fa7fe088e068d0d5a66574a9c66e83b606af46d1",
-      "published": false,
+      "published": true,
       "sourceSha256": "9c4f52bb59ba8037be0210f9ca1a23dedb571e586573850af011f85e3e434436",
       "updatedAt": "2026-11-08T20:06:58.052Z"
     },
@@ -4301,7 +4301,7 @@
     "minecraft-recipe.json": {
       "generatedFile": "schemas/minecraft-recipe/index.d.ts",
       "generatedSha256": "b3aa3b53d9104d3f63c17352073ba00cac9a8fae10fcfd17e2f7aa8e44017e33",
-      "published": false,
+      "published": true,
       "sourceSha256": "3f9d450571fe2982876466404e3a965bde0d86d6e4b10cd958b234022488979b",
       "updatedAt": "2026-11-08T20:06:59.722Z"
     },
@@ -5015,7 +5015,7 @@
     "partial-pyright.json": {
       "generatedFile": "schemas/partial-pyright/index.d.ts",
       "generatedSha256": "15259b961751d14e286fd2564c1d2f86ad7783cba951cde5be80a1c75756e441",
-      "published": false,
+      "published": true,
       "sourceSha256": "14384316b2b5d9892c771133fa9a0f925f08862eb4944ec5be9d5c7871c7ed69",
       "updatedAt": "2026-11-08T20:07:04.229Z"
     },
@@ -5183,7 +5183,7 @@
     "pnpm-workspace.json": {
       "generatedFile": "schemas/pnpm-workspace/index.d.ts",
       "generatedSha256": "2b679abb834a5170148fe34592ccb8acecb6cc2136dac27766794a37edfc5d57",
-      "published": false,
+      "published": true,
       "sourceSha256": "72db17a8debeeb61efb74ecb1b4ac34708347c04e23a4069e5069233959a5e4e",
       "updatedAt": "2026-11-08T20:07:05.230Z"
     },
@@ -5267,7 +5267,7 @@
     "prek.json": {
       "generatedFile": "schemas/prek/index.d.ts",
       "generatedSha256": "6a3f4c9badc12882fa3a1ec2bbf9ca3eb0900f933a521c6a5a6e26674bfb3b75",
-      "published": false,
+      "published": true,
       "sourceSha256": "984c913b41d71dfad955abf25b5a6e59838b945561e7e133b9980d56dc930d97",
       "updatedAt": "2026-11-08T20:07:08.118Z"
     },
@@ -5428,7 +5428,7 @@
     "publiccode.json": {
       "generatedFile": "schemas/publiccode/index.d.ts",
       "generatedSha256": "7bcc8d0237e56bb42952dc15f7ad70d5aeb30edad36a75b8c36f21ef981a739f",
-      "published": false,
+      "published": true,
       "sourceSha256": "77ecee0a03686418cb5537181a028cf96f09d57e6f27c9605d4c7a15ce38eb1c",
       "updatedAt": "2026-11-08T20:07:10.469Z"
     },
@@ -5512,7 +5512,7 @@
     "quikrun.json": {
       "generatedFile": "schemas/quikrun/index.d.ts",
       "generatedSha256": "ea681564abad53ec305383e4950f41f5733d5b4db199b8a0833eb9fc7662d8c0",
-      "published": false,
+      "published": true,
       "sourceSha256": "67cf4391e674bd17b77e893e97860d6d0c12f815a777251b65563c72e522b646",
       "updatedAt": "2026-11-08T20:07:13.132Z"
     },
@@ -5722,14 +5722,14 @@
     "ruff.json": {
       "generatedFile": "schemas/ruff/index.d.ts",
       "generatedSha256": "24921a444f5f639a756a48e29f6785152290294a184c5e757b4dcc78f860f897",
-      "published": false,
+      "published": true,
       "sourceSha256": "824f49644311ef477342dc9de8df6f90472fcae8427300993c4bddb7dd9bc722",
       "updatedAt": "2026-11-08T20:07:13.491Z"
     },
     "rumdl.json": {
       "generatedFile": "schemas/rumdl/index.d.ts",
       "generatedSha256": "edc40e3403d1c8c98f05c7e6cb5d60ea271f13d3226796ad14ce835c083eddfb",
-      "published": false,
+      "published": true,
       "sourceSha256": "b689ab68f38f04c4443b9cac1ae5236ae06bf46082fbfa584877531c5517cb7c",
       "updatedAt": "2026-11-08T20:07:13.658Z"
     },
@@ -6184,7 +6184,7 @@
     "specmatic.json": {
       "generatedFile": "schemas/specmatic/index.d.ts",
       "generatedSha256": "1f3eef820091e5545a60c12063223800f361d297881c02faf0740900e21100bf",
-      "published": false,
+      "published": true,
       "sourceSha256": "26f2c9ecfd9754f2711d1a61afda6263c8d589b4c32f5d85e0398f0cdfbfad35",
       "updatedAt": "2026-11-08T20:07:19.241Z"
     },
@@ -6226,7 +6226,7 @@
     "starlake.json": {
       "generatedFile": "schemas/starlake/index.d.ts",
       "generatedSha256": "b02ca9136f47bb2b1a1e1370de3db9f4bffdbb054d4dfab28cd151a4f267a1fc",
-      "published": false,
+      "published": true,
       "sourceSha256": "ef7ecf85dfd21d99566b17ddd1207baa4a186aace935857a6d74b99652dcba95",
       "updatedAt": "2026-11-08T20:07:19.464Z"
     },
@@ -6345,7 +6345,7 @@
     "tfpowershell-resource.json": {
       "generatedFile": "schemas/tfpowershell-resource/index.d.ts",
       "generatedSha256": "96e5ad6422c7c136f6c306635de1d3bda774c29ef75eb575f1b99f3a04584e2a",
-      "published": false,
+      "published": true,
       "sourceSha256": "771f76706f08e650e9178448a7f6f7e53114d1656608e7dc2403838e68d4b145",
       "updatedAt": "2026-11-08T20:07:20.282Z"
     },
@@ -6394,7 +6394,7 @@
     "tizen_workspace.json": {
       "generatedFile": "schemas/tizen_workspace/index.d.ts",
       "generatedSha256": "09e2350fdb0717d8afd943479d68d4e79c923fc977b882b27594b3b13a3bdc31",
-      "published": false,
+      "published": true,
       "sourceSha256": "244e4adf2dcff69aa3207cc66976859a8fa733e54749c80a0fd7deada9697538",
       "updatedAt": "2026-11-08T20:07:20.555Z"
     },
@@ -6408,7 +6408,7 @@
     "tmlanguage.json": {
       "generatedFile": "schemas/tmlanguage/index.d.ts",
       "generatedSha256": "393301d56940a35268804fc216b6cecb17845e58c67243a69db4c4063bd1f0f6",
-      "published": false,
+      "published": true,
       "sourceSha256": "d5ed6d2d5c0fbd480d5184079e13c835b3997c2b03f6d0096a4506db55367cb9",
       "updatedAt": "2026-11-08T20:07:20.684Z"
     },
@@ -6422,14 +6422,14 @@
     "tombi.json": {
       "generatedFile": "schemas/tombi/index.d.ts",
       "generatedSha256": "d2dcc2744e58bec3db702b8a445a87666c28c97f3027cd422f7290e18b53f6c8",
-      "published": false,
+      "published": true,
       "sourceSha256": "8a5fdf5254eaaa79e6a59c0c4ac0ace5cbc337201c06bd07813b27276432119c",
       "updatedAt": "2026-11-08T20:07:20.854Z"
     },
     "tox.json": {
       "generatedFile": "schemas/tox/index.d.ts",
       "generatedSha256": "ad2e9fdb791b229d2261fd526a68cc439f9c841c1bf835e44b8127c48130c615",
-      "published": false,
+      "published": true,
       "sourceSha256": "838187e7bef25fc54e6d761f3f20df263473e1fa7edfd3c46e4026b1eb00c072",
       "updatedAt": "2026-11-08T20:07:21.241Z"
     },
@@ -6506,7 +6506,7 @@
     "tsconfig.json": {
       "generatedFile": "schemas/tsconfig/index.d.ts",
       "generatedSha256": "1a4edbbe34b8a5776e0da3c0ee2ce3d23c2c9ddea6a4f49dde5998be42d06a7a",
-      "published": false,
+      "published": true,
       "sourceSha256": "9e9599c2e6021574483e3a802eb075c872be1f5b4185ad45da03d33edce3c2b1",
       "updatedAt": "2026-11-08T20:07:21.726Z"
     },
@@ -6583,7 +6583,7 @@
     "ty.json": {
       "generatedFile": "schemas/ty/index.d.ts",
       "generatedSha256": "3cb752a188eed154795c275646b546fe6713cd2d52396c8ba8fb0fe3a5f2af3e",
-      "published": false,
+      "published": true,
       "sourceSha256": "422e8af6ed3efaec0b07704bdaac498759b9417063a519566ac53088d1ac7bf8",
       "updatedAt": "2026-11-08T20:07:23.592Z"
     },
@@ -6954,7 +6954,7 @@
     "webjob-publish-settings.json": {
       "generatedFile": "schemas/webjob-publish-settings/index.d.ts",
       "generatedSha256": "900f41c4dde41fa23da01da9bcf0412a82ee72f9320655d9e04309e09db28f36",
-      "published": false,
+      "published": true,
       "sourceSha256": "d764f0b1c31e6826fb176580cf1cdc980c1bec382b9d213a368960c97db0b494",
       "updatedAt": "2026-11-08T20:07:28.066Z"
     },
@@ -7052,7 +7052,7 @@
     "yamllint.json": {
       "generatedFile": "schemas/yamllint/index.d.ts",
       "generatedSha256": "bf1cb736b2d8fa32de3c9497cf434450f37734a4d28386a0ee142de270d3d24f",
-      "published": false,
+      "published": true,
       "sourceSha256": "a47a5b49757f4202e8bcf218b929887236339e5e2604885ac36e5356d69b2010",
       "updatedAt": "2026-11-08T20:07:28.527Z"
     },
@@ -7066,7 +7066,7 @@
     "youtrack-app.json": {
       "generatedFile": "schemas/youtrack-app/index.d.ts",
       "generatedSha256": "991abb152d9a933fe56af548b6107855013e26b7b9c39f410a47b491859d2aad",
-      "published": false,
+      "published": true,
       "sourceSha256": "d67fd8e9a20965cffe3bd866d6f3d4f1d1376cd5dbadc682d828db56cd0a2db5",
       "updatedAt": "2026-11-08T20:07:28.684Z"
     },
