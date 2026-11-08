@@ -3,7 +3,7 @@
   "dependencies": {
     "commander": "15.0.0",
     "json-schema-to-typescript": "16.0.0",
-    "semver": "7.8.5",
+    "semver": "7.8.6",
     "typescript": "6.0.3"
   },
   "description": "SchemaStore schema updater",
