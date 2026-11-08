@@ -209,7 +209,7 @@ When touching generation logic (`src/updater.ts`), publishing logic (`src/publis
 
 ## Post-Processing Pipeline for Generated Declarations
 
-After `compileFromFile` produces a `.d.ts` string, one post-processing step runs before writing to disk:
+After `compile` produces a `.d.ts` string, one post-processing step runs before writing to disk:
 
 1. **`deduplicateGeneratedTypes`** — `json-schema-to-typescript` sometimes emits `TypeName`, `TypeName1` … `TypeNameN` for the same sub-schema used multiple times (see [issue #1402](https://github.com/ffflorian/schemastore-updater/issues/1402)). This function removes the numbered duplicates and replaces all references with the base name.
    - Uses the TypeScript compiler API (`ts.createSourceFile`) to parse type alias **and** interface declarations and compare their bodies.
@@ -218,7 +218,17 @@ After `compileFromFile` produces a `.d.ts` string, one post-processing step runs
    - Duplicates are merged into `TypeName` when its body is identical, otherwise into the lowest numbered variant of the family. The latter covers `CoreRule1` ... `CoreRule8`, which are identical to each other but not to `CoreRule`.
    - Renaming runs to a fixed point, because declarations that only differed in references to just-merged types become duplicates themselves.
 
-Pipeline order: `deduplicateGeneratedTypes(await compileFromFile(...))`.
+Pipeline order: `deduplicateGeneratedTypes(await compile(nestCombinatorsBesideTypeArrays(schema), ...))`.
+
+### Union complexity (TS2590)
+
+`json-schema-to-typescript` 16.0.0 parses a schema with a `type` array once per listed type (`UNION` case in its `parser.js`), and every copy keeps the sibling `anyOf` / `oneOf`. Nested inside each other (and combined with large string enums and `minItems` tuples) this multiplies the output until TypeScript rejects it with `TS2590: Expression produces a union type that is too complex to represent`. `stylelintrc` (`unitRule` and similar) hit this, and `package` inherited it through its `$ref` to `stylelintrc.json`.
+
+This is fixed on the **schema** side, before generation, not by post-processing the generated types:
+
+- **`nestCombinatorsBesideTypeArrays`** moves `anyOf` / `oneOf` that sit next to a `type` array into `allOf: [{anyOf: [...]}]` / `allOf: [{oneOf: [...]}]`. JSON Schema keywords are conjunctive, so this keeps the exact meaning, but the generator parses the combinator once instead of once per type (`stylelintrc`: 86225 -> 3351 lines, no diagnostics).
+- The root schema is read and transformed in `updateSchemas()` and passed to `compile` (with `cwd` set to the schema's directory, matching `compileFromFile`). Referenced schemas get the same transform through a custom JSON parser in `$refOptions.parse.json`.
+- Do not reintroduce a generated-type simplification pass (deduplicating `T & T` / `T | T`, factoring shared intersection members) for this, do not cap recursion depth (the cause is not recursion), and do not pin `json-schema-to-typescript` back to 15.x.
 
 ### Index signature compatibility (TS2411)
 

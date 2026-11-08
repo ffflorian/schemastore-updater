@@ -1,4 +1,4 @@
-import {compileFromFile} from 'json-schema-to-typescript';
+import {compile} from 'json-schema-to-typescript';
 import {execFile} from 'node:child_process';
 import {access, mkdir, readdir, readFile, rename, rm, stat, writeFile} from 'node:fs/promises';
 import path from 'node:path';
@@ -113,13 +113,27 @@ export async function updateSchemas(options: CliOptions): Promise<UpdateStats> {
 
     try {
       const generatedCode = deduplicateGeneratedTypes(
-        await compileFromFile(schemaFilePath, {
-          bannerComment: '/* eslint-disable */',
-          strictIndexSignatures: true,
-          style: {
-            singleQuote: true,
-          },
-        })
+        await compile(
+          nestCombinatorsBesideTypeArrays(JSON.parse(sourceContent.toString('utf-8'))),
+          schemaFilePath.replace(/\.json$/i, ''),
+          {
+            // Referenced schemas (e.g. `package` -> `stylelintrc`) need the same treatment
+            $refOptions: {
+              parse: {
+                json: {
+                  parse: ({data}: {data: Buffer | string}) =>
+                    nestCombinatorsBesideTypeArrays(JSON.parse(data.toString())),
+                },
+              },
+            },
+            bannerComment: '/* eslint-disable */',
+            cwd: path.dirname(schemaFilePath),
+            strictIndexSignatures: true,
+            style: {
+              singleQuote: true,
+            },
+          }
+        )
       );
 
       await mkdir(packageDirPath, {recursive: true});
@@ -508,6 +522,38 @@ async function loadLockFile(lockFilePath: string): Promise<SchemaLockFile> {
     generatedAt: parsed.generatedAt,
     version: 1,
   };
+}
+
+// `json-schema-to-typescript` parses a schema once per entry of its `type` array and each copy
+// keeps the sibling `anyOf` / `oneOf`, so nested combinators make the output grow until TypeScript
+// rejects it with TS2590. Inside `allOf` they mean the same, but are parsed only once.
+function nestCombinatorsBesideTypeArrays<T>(schema: T): T {
+  if (Array.isArray(schema)) {
+    for (const item of schema) {
+      nestCombinatorsBesideTypeArrays(item);
+    }
+    return schema;
+  }
+
+  if (!schema || typeof schema !== 'object') {
+    return schema;
+  }
+
+  const node = schema as Record<string, unknown>;
+  for (const value of Object.values(node)) {
+    nestCombinatorsBesideTypeArrays(value);
+  }
+
+  if (Array.isArray(node.type)) {
+    for (const keyword of ['anyOf', 'oneOf']) {
+      if (Array.isArray(node[keyword])) {
+        node.allOf = [...(Array.isArray(node.allOf) ? node.allOf : []), {[keyword]: node[keyword]}];
+        delete node[keyword];
+      }
+    }
+  }
+
+  return schema;
 }
 
 function parseNumberedTypeName(name: string): {baseName: string; suffix: number} | undefined {

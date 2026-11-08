@@ -243,7 +243,7 @@ describe('updateSchemas', () => {
 
     vi.resetModules();
     vi.doMock('json-schema-to-typescript', () => ({
-      compileFromFile: vi.fn(async () => '/* eslint-disable */\nexport interface Broken { value: ; }\n'),
+      compile: vi.fn(async () => '/* eslint-disable */\nexport interface Broken { value: ; }\n'),
     }));
 
     const mockedUpdater = await import('../src/updater.ts');
@@ -306,7 +306,7 @@ describe('updateSchemas', () => {
 
     vi.resetModules();
     vi.doMock('json-schema-to-typescript', () => ({
-      compileFromFile: vi.fn(async () => '/* eslint-disable */\nexport interface Broken { value: ; }\n'),
+      compile: vi.fn(async () => '/* eslint-disable */\nexport interface Broken { value: ; }\n'),
     }));
 
     const mockedUpdater = await import('../src/updater.ts');
@@ -353,6 +353,54 @@ describe('updateSchemas', () => {
     expect(generatedDts).toContain('[k: string]: string | undefined;');
   });
 
+  it('generates type arrays with sibling oneOf / anyOf without TS2590', async () => {
+    const units = Array.from({length: 30}, (_, index) => `unit${index}`);
+    const context = await createWorkspace({
+      'schema/test.json': JSON.stringify(
+        {
+          $schema: 'http://json-schema.org/draft-07/schema#',
+          properties: {
+            rule: {
+              oneOf: [
+                {type: 'null'},
+                {enum: units, type: 'string'},
+                {
+                  items: {
+                    anyOf: [
+                      {enum: units, type: 'string'},
+                      {items: {enum: units, type: 'string'}, minItems: 1, type: 'array'},
+                      {type: 'object'},
+                    ],
+                    type: ['string', 'array', 'object'],
+                  },
+                  minItems: 1,
+                  type: 'array',
+                },
+              ],
+              type: ['null', 'string', 'array'],
+            },
+          },
+          title: 'Test',
+          type: 'object',
+        },
+        null,
+        2
+      ),
+    });
+
+    const stats = await withWorkingDirectory(context.workspaceDir, () =>
+      updateSchemas({force: false, sourceDir: context.sourceDir})
+    );
+
+    expect(stats.failedSchemas).toEqual([]);
+    expect(stats.generated).toBe(1);
+
+    const generatorLog = await readFile(path.join(context.workspaceDir, 'schemagenerator.log'), 'utf-8');
+
+    expect(generatorLog).not.toContain('TS2590');
+    expect(generatorLog).toContain('No schema generation or type-check errors.');
+  });
+
   it('deduplicates identical numbered type variants in generated declarations', async () => {
     const context = await createWorkspace({
       'schema/test.json': JSON.stringify(createBasicSchema('Test'), null, 2),
@@ -360,7 +408,7 @@ describe('updateSchemas', () => {
 
     vi.resetModules();
     vi.doMock('json-schema-to-typescript', () => ({
-      compileFromFile: vi.fn(async () =>
+      compile: vi.fn(async () =>
         [
           '/* eslint-disable */',
           '',
@@ -622,7 +670,7 @@ async function generateWithCompilerOutput(compilerOutput: string): Promise<strin
 
   vi.resetModules();
   vi.doMock('json-schema-to-typescript', () => ({
-    compileFromFile: vi.fn(async () => compilerOutput),
+    compile: vi.fn(async () => compilerOutput),
   }));
 
   const mockedUpdater = await import('../src/updater.ts');
