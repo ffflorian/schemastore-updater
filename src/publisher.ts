@@ -105,7 +105,7 @@ export async function bootstrapNewPackages(options: BootstrapOptions = {}): Prom
 
     if (alreadyExists) {
       // Already exists on npm - just a pending new version, not a first-ever
-      // publish. Leave it for the normal staged-publish pipeline to handle.
+      // publish. Leave it for the normal publish pipeline to handle.
       stats.skippedAlreadyExists += 1;
       process.stdout.write('already exists\n');
       continue;
@@ -169,7 +169,7 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
     ? path.resolve(options.logFilePath)
     : path.join(projectRoot, DEFAULT_PUBLISH_LOG_FILE);
   const summaryFilePath = path.join(projectRoot, PUBLISH_SUMMARY_FILE_NAME);
-  const publishPackage = options.publishPackage ?? stagePackageDirectory;
+  const publishPackage = options.publishPackage ?? publishPackageDirectory;
   const lockFilePath = path.join(projectRoot, 'schema-lock.json');
 
   const schemasDirectoryExists = await exists(schemasDirectory);
@@ -264,8 +264,7 @@ export async function publishGeneratedPackages(options: PublishOptions = {}): Pr
 }
 
 // Grants CI's OIDC identity (see .github/workflows/publish_generated_packages.yml)
-// only `npm stage publish`, never a direct `npm publish` - every automated
-// version still needs a maintainer's 2FA approval. Disabling token-based
+// `npm publish` for this package. Disabling token-based
 // publish afterward means this package can no longer be published with a
 // leaked/long-lived npm token, only via this trusted GitHub Actions workflow
 // or an interactive `npm publish` from a maintainer's own account.
@@ -274,7 +273,7 @@ async function configureNpmTrustedPublisher(packageName: string): Promise<void> 
     'trust',
     'github',
     packageName,
-    '--allow-stage-publish',
+    '--allow-publish',
     '--repo',
     TRUSTED_PUBLISHER_REPO,
     '--file',
@@ -301,14 +300,14 @@ function createPublishSummary(stats: PublishStats): string {
     '## Publish Summary',
     '',
     `- **Attempted:** ${stats.attempted}`,
-    `- **Staged (pending 2FA approval):** ${stats.published}`,
+    `- **Published:** ${stats.published}`,
     `- **Skipped:** ${stats.skipped}`,
     `- **Failed:** ${stats.failed}`,
   ];
 
   if (stats.publishedPackages.length > 0) {
     lines.push('', `<details>`);
-    lines.push(`<summary><h3>Staged Packages (${stats.publishedPackages.length})</h3></summary>`, '');
+    lines.push(`<summary><h3>Published Packages (${stats.publishedPackages.length})</h3></summary>`, '');
     for (const packageLabel of stats.publishedPackages) {
       lines.push(`- \`${packageLabel}\``);
     }
@@ -486,30 +485,28 @@ async function spawnNpmWithInheritedStdio(args: string[], spawnOptions: {cwd?: s
   });
 }
 
-async function stagePackageDirectory(packageDirectory: string): Promise<void> {
+async function publishPackageDirectory(packageDirectory: string): Promise<void> {
   try {
-    await execFileAsync('npm', ['stage', 'publish', '--access', 'public', '--registry', NPM_REGISTRY_URL], {
+    await execFileAsync('npm', ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL], {
       cwd: packageDirectory,
       env: process.env,
     });
   } catch (error) {
-    // Falls back to a token when OIDC has no trusted publisher for this package yet.
-    // This only helps packages that already exist on npm without trust configured -
-    // `npm stage publish` cannot create a package for the first time (it 404s), so a
-    // schema's very first version must still be published manually by a maintainer
-    // before this schema can ever succeed here, staged or not.
+    // Falls back to a token when OIDC has no trusted publisher for this package yet
+    // (OIDC trusted publishing cannot create a package for the first time). The
+    // token publish is still subject to the package's and account's 2FA policy.
     const fallbackToken = process.env.NPM_TOKEN;
     if (!fallbackToken) {
       throw error;
     }
 
-    await stageWithFallbackToken(packageDirectory, fallbackToken);
+    await publishWithFallbackToken(packageDirectory, fallbackToken);
   }
 }
 
-async function stageWithFallbackToken(packageDirectory: string, npmToken: string): Promise<void> {
+async function publishWithFallbackToken(packageDirectory: string, npmToken: string): Promise<void> {
   await runNpmWithTemporaryToken(
-    ['stage', 'publish', '--access', 'public', '--registry', NPM_REGISTRY_URL],
+    ['publish', '--access', 'public', '--registry', NPM_REGISTRY_URL],
     packageDirectory,
     npmToken
   );
