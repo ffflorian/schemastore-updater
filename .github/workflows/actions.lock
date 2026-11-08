@@ -10,9 +10,9 @@ workflows:
         - 'peter-evans/create-pull-request@v8.1.1'
     '.github/workflows/force_release.yml':
         - 'actions/checkout@v7.0.1'
-        - 'ffflorian/actions@v1.30.12'
+        - 'ffflorian/actions@v1.30.13'
     '.github/workflows/git_mirror.yml':
-        - 'ffflorian/actions@v1.30.12'
+        - 'ffflorian/actions@v1.30.13'
     '.github/workflows/lint_test_publish.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-node@v7.1.0'
@@ -28,7 +28,7 @@ workflows:
         - 'peter-evans/create-pull-request@v8.1.1'
     '.github/workflows/yarn_update.yml':
         - 'actions/checkout@v7.0.1'
-        - 'ffflorian/actions@v1.30.12'
+        - 'ffflorian/actions@v1.30.13'
 dependencies:
     'actions/checkout@v6.0.2':
         ref: 'v6.0.2'
@@ -60,9 +60,9 @@ dependencies:
         commit: 'sha1-b1e3c960aead673763e5ccb22007129401a15917'
         owner_id: 101476009
         repo_id: 1083427764
-    'ffflorian/actions@v1.30.12':
-        ref: 'v1.30.12'
-        commit: 'sha1-f8070e5f9170b13093aca954db7070e8e241355a'
+    'ffflorian/actions@v1.30.13':
+        ref: 'v1.30.13'
+        commit: 'sha1-3796dc52f1fbd954f973a1147902aac38352973c'
         owner_id: 5497598
         repo_id: 1197109163
         uses:
