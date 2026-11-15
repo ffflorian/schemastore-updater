@@ -2065,10 +2065,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:15.0.0":
-  version: 15.0.0
-  resolution: "commander@npm:15.0.0"
-  checksum: 10c0/539229c171914ea1ccd45ee5f10d924289a12a684ea3a7a44147abe54003c35ed6de9ae4ad198d88c29fdf403dca0428451a388234e6dc01b6faa978fb207206
+"commander@npm:15.1.0":
+  version: 15.1.0
+  resolution: "commander@npm:15.1.0"
+  checksum: 10c0/dd1013291d3e8779c726313616fa23174abc962182d0894ac73017c55d8b1ffe4a72401d91a1173974050536576896dc5279db07d37f929dbad469a16a12c54e
   languageName: node
   linkType: hard
 
@@ -5327,7 +5327,7 @@ __metadata:
     "@semantic-release/git": "npm:11.0.1"
     "@types/node": "npm:~26"
     "@types/semver": "npm:7.8.0"
-    commander: "npm:15.0.0"
+    commander: "npm:15.1.0"
     conventional-changelog-conventionalcommits: "npm:10.4.1"
     eslint: "npm:10.14.0"
     eslint-plugin-perfectionist: "npm:5.13.0"
