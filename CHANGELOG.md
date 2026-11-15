@@ -1,3 +1,24 @@
+## [3.8.17](https://github.com/ffflorian/schemastore-updater/compare/v3.8.16...v3.8.17) (2026-11-15)
+
+### Bug Fixes
+
+* **deps:** bump commander from 15.0.0 to 15.1.0 ([#1730](https://github.com/ffflorian/schemastore-updater/issues/1730)) ([e9ca6f9](https://github.com/ffflorian/schemastore-updater/commit/e9ca6f92e89d41db4129064e5488eaf9c2f640ca))
+* **deps:** Downgrade conventional-changelog-conventionalcommits ([d49681e](https://github.com/ffflorian/schemastore-updater/commit/d49681e84160362989dc166fb0d02d393a452ccc))
+
+### Continuous Integration
+
+* **deps:** bump ffflorian/actions from 1.30.13 to 1.30.14 ([#1725](https://github.com/ffflorian/schemastore-updater/issues/1725)) [ci skip] ([90a6c95](https://github.com/ffflorian/schemastore-updater/commit/90a6c954ddd3c6fb120d981553a07c8fc9aa7e9d))
+* **deps:** bump peter-evans/create-pull-request from 8.1.1 to 8.1.3 ([#1724](https://github.com/ffflorian/schemastore-updater/issues/1724)) [ci skip] ([2ecc5e9](https://github.com/ffflorian/schemastore-updater/commit/2ecc5e9a07be7c14d913e7ed48b7d70c83cb9a37))
+
+### Miscellaneous Chores
+
+* **deps-dev:** bump @ffflorian/oxlint-config from 1.0.15 to 1.0.16 ([#1728](https://github.com/ffflorian/schemastore-updater/issues/1728)) [ci skip] ([f22ebeb](https://github.com/ffflorian/schemastore-updater/commit/f22ebeb8cd060182e23710f4c7beb3ab7a59ec66))
+* **deps-dev:** bump conventional-changelog-conventionalcommits ([#1729](https://github.com/ffflorian/schemastore-updater/issues/1729)) [ci skip] ([4b180ca](https://github.com/ffflorian/schemastore-updater/commit/4b180ca726c22b441656498901cb9b7d6c675927))
+* **deps-dev:** bump the oxc group with 2 updates ([#1726](https://github.com/ffflorian/schemastore-updater/issues/1726)) [ci skip] ([55c2117](https://github.com/ffflorian/schemastore-updater/commit/55c21176eaf9a636344770e78ae3542ebb153dc6))
+* **deps-dev:** bump vite from 8.3.5 to 8.3.7 ([#1727](https://github.com/ffflorian/schemastore-updater/issues/1727)) [ci skip] ([ca1c47b](https://github.com/ffflorian/schemastore-updater/commit/ca1c47b47c2b654f118ca6684369883779b86565))
+* **schemas:** weekly schema update ([#1669](https://github.com/ffflorian/schemastore-updater/issues/1669)) ([28d2cec](https://github.com/ffflorian/schemastore-updater/commit/28d2cec35177dd0ce1078be8d51650a54f21edbd))
+* Switch around ci skipping words in publish config ([4be6669](https://github.com/ffflorian/schemastore-updater/commit/4be66690b2f21c6e45f429a0416400592c9e1e55))
+
 ## [3.8.16](https://github.com/ffflorian/schemastore-updater/compare/v3.8.15...v3.8.16) (2026-11-08)
 
 ### Bug Fixes
