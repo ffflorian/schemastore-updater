@@ -21,6 +21,10 @@ updates:
       - dependency-name: 'typescript'
         update-types:
           - version-update:semver-major
+      # v10+ needs conventional-changelog-writer@9, semantic-release plugins still use ^8
+      - dependency-name: 'conventional-changelog-conventionalcommits'
+        update-types:
+          - version-update:semver-major
     open-pull-requests-limit: 99
     package-ecosystem: npm
     schedule:
