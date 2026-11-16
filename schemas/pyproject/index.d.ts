@@ -523,6 +523,28 @@ export type Every = 'minute' | 'hour' | 'day' | 'week' | 'month';
  */
 export type Entrypoint = string;
 /**
+ * The command to run for this worker, as a string.
+ *
+ * ```toml
+ * [tool.workers.my-background-worker]
+ * command = "python -m app.worker"
+ * ```
+ *
+ * The provider runs the command from the directory containing `pyproject.toml`.
+ *
+ * The command should keep running in the foreground until the worker is stopped.
+ *
+ * The provider runs the command using a shell compatible with POSIX `sh`. This lets you use environment variables set by the provider:
+ *
+ * ```toml
+ * [tool.workers.my-tasks-worker]
+ * command = 'celery -A app.celery worker --concurrency "$WORKER_CONCURRENCY"'
+ * ```
+ *
+ * The shell replaces `$WORKER_CONCURRENCY` with the value of that environment variable. For example, you could set `WORKER_CONCURRENCY` to `4` in your provider's settings.
+ */
+export type Command = string;
+/**
  * Items: A dotted Python name such as shop.orders, with no wildcards.
  */
 export type LibraryList = string[];
@@ -618,6 +640,99 @@ export type Warn = 'warn';
  * The lint is enabled and diagnostics have an error severity.
  */
 export type Error = 'error';
+/**
+ * ## What it does
+ *
+ * Checks for direct instantiation of protocol classes and classes with unimplemented abstract methods.
+ *
+ * ## Why is this bad?
+ *
+ * Abstract methods describe behavior that a subclass must implement before it can be instantiated.
+ * Classes using `ABCMeta` enforce this at runtime. ty also checks classes without `ABCMeta` and
+ * rejects direct instantiation of protocols.
+ *
+ * ## Examples
+ *
+ * ```python
+ * from abc import ABC, abstractmethod
+ *
+ *
+ * class Abstract(ABC):
+ *     @abstractmethod
+ *     def method(self) -> int: ...
+ *
+ *
+ * # `method` has not been implemented.
+ * Abstract()  # error
+ *
+ *
+ * class Concrete(Abstract):
+ *     def method(self) -> int:
+ *         return 42
+ *
+ *
+ * Concrete()  # OK
+ * ```
+ *
+ * ```python
+ * from typing import Protocol
+ *
+ *
+ * class HasName(Protocol):
+ *     name: str
+ *
+ *
+ * HasName()  # error
+ * ```
+ */
+export type DetectsDirectInstantiationOfAbstractClassesAndProtocols = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Checks for calls to abstract `@classmethod`s or `@staticmethod`s with "trivial bodies" when accessed
+ * on the class object itself.
+ *
+ * "Trivial bodies" are bodies that solely consist of `...`, `pass`, a docstring, and/or
+ * `raise NotImplementedError`.
+ *
+ * ## Why is this bad?
+ *
+ * An abstract method with a trivial body has no concrete implementation to execute, so calling such a
+ * method directly on the class will probably not have the desired effect.
+ *
+ * It is also unsound to call these methods directly on the class. Unlike other methods, ty permits
+ * abstract methods with trivial bodies to have non-`None` return types even though they always return
+ * `None` at runtime. This is because it is expected that these methods will always be overridden
+ * rather than being called directly. As a result of this exception to the normal rule, ty may infer an
+ * incorrect type if one of these methods is called directly, which may then mean that type errors
+ * elsewhere in your code go undetected by ty.
+ *
+ * Calling abstract classmethods or staticmethods via `type[X]` is allowed, since the actual runtime
+ * type could be a concrete subclass with an implementation.
+ *
+ * ## Example
+ *
+ * ```python
+ * from abc import ABC, abstractmethod
+ *
+ *
+ * class Foo(ABC):
+ *     @classmethod
+ *     @abstractmethod
+ *     def method(cls) -> int: ...
+ *
+ *
+ * # cannot call abstract classmethod
+ * Foo.method()  # error
+ * ```
+ *
+ * ## Rule history
+ *
+ * - v0.0.102: Renamed from `call-abstract-method`.
+ *
+ *     `call-abstract-method` remains as a compatibility alias for this rule.
+ */
+export type DetectsCallsToAbstractMethodsWithTrivialBodiesOnClassObjects = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -773,102 +888,20 @@ export type DetectsBlanketTyIgnoreComments = Ignore | Warn | Error;
 /**
  * ## What it does
  *
- * Checks for calls to abstract `@classmethod`s or `@staticmethod`s with "trivial bodies" when accessed
- * on the class object itself.
+ * Detects calls to objects where ty knows that the object is callable, but cannot determine what the
+ * signature of the callable object is.
  *
- * "Trivial bodies" are bodies that solely consist of `...`, `pass`, a docstring, and/or
- * `raise NotImplementedError`.
- *
- * ## Why is this bad?
- *
- * An abstract method with a trivial body has no concrete implementation to execute, so calling such a
- * method directly on the class will probably not have the desired effect.
- *
- * It is also unsound to call these methods directly on the class. Unlike other methods, ty permits
- * abstract methods with trivial bodies to have non-`None` return types even though they always return
- * `None` at runtime. This is because it is expected that these methods will always be overridden
- * rather than being called directly. As a result of this exception to the normal rule, ty may infer an
- * incorrect type if one of these methods is called directly, which may then mean that type errors
- * elsewhere in your code go undetected by ty.
- *
- * Calling abstract classmethods or staticmethods via `type[X]` is allowed, since the actual runtime
- * type could be a concrete subclass with an implementation.
- *
- * ## Example
- *
- * ```python
- * from abc import ABC, abstractmethod
- *
- *
- * class Foo(ABC):
- *     @classmethod
- *     @abstractmethod
- *     def method(cls) -> int: ...
- *
- *
- * # cannot call abstract classmethod
- * Foo.method()  # error
- * ```
- */
-export type DetectsCallsToAbstractMethodsWithTrivialBodiesOnClassObjects = Ignore | Warn | Error;
-/**
- * ## What it does
- *
- * Checks for calls to non-callable objects.
- *
- * This includes attempts to instantiate classes with unimplemented abstract methods, whether those
- * methods are explicitly decorated with `abstractmethod` or implicitly abstract protocol members.
+ * Specifically, this diagnostic emits errors on calls to objects inferred as having the type
+ * `Top[Callable[..., T]]`. This type represents the "infinite union" of all callable types with return
+ * type `T`.
  *
  * ## Why is this bad?
  *
- * Calling a non-callable object will raise a `TypeError` at runtime.
- *
- * Abstract methods describe behavior that a subclass must implement before it can be instantiated.
- * Classes using `ABCMeta` enforce this at runtime; the type checker also enforces it for classes
- * without `ABCMeta`.
- *
- * ## Examples
- *
- * ```python
- * # TypeError: 'int' object is not callable
- * 4()  # error
- * ```
- *
- * ```python
- * from abc import ABC, abstractmethod
- *
- *
- * class Abstract(ABC):
- *     @abstractmethod
- *     def method(self) -> int: ...
- *
- *
- * # `method` has not been implemented.
- * Abstract()  # error
- *
- *
- * class Concrete(Abstract):
- *     def method(self) -> int:
- *         return 42
- *
- *
- * Concrete()  # OK
- * ```
- */
-export type DetectsCallsToNonCallableObjects = Ignore | Warn | Error;
-/**
- * ## What it does
- *
- * Checks for calls to objects typed as `Top[Callable[..., T]]` (the infinite union of all callable
- * types with return type `T`).
- *
- * ## Why is this bad?
- *
- * When `analysis.strict-generic-narrowing` is enabled, `callable(x)` and `isinstance(x, Callable)`
- * narrow an object to `Top[Callable[..., object]]`. We know the object is callable, but we don't know
- * its precise signature. This type represents the set of all possible callable types (including, e.g.,
- * functions that take no arguments and functions that require arguments), so no specific set of
- * arguments can be guaranteed to be valid.
+ * When ty's `analysis.strict-generic-narrowing` setting is enabled, `if callable(x)` and
+ * `if isinstance(x, Callable)` will narrow `x` to `Top[Callable[..., object]]`. We know that `x` is
+ * callable, but we don't know its precise signature. `Top[Callable[..., object]]` represents the set
+ * of all possible callable types (including, e.g., functions that take no arguments and functions that
+ * require arguments), so no specific set of arguments can be guaranteed to be valid.
  *
  * ## Examples
  *
@@ -883,6 +916,12 @@ export type DetectsCallsToNonCallableObjects = Ignore | Warn | Error;
  *         # We know `x` is callable, but not what arguments it accepts
  *         x()  # error
  * ```
+ *
+ * ## Rule history
+ *
+ * - v0.0.102: Renamed from `call-top-callable` to `call-to-function-with-unknown-signature`.
+ *
+ *     `call-top-callable` remains as a compatibility alias for this rule.
  */
 export type DetectsCallsToTheTopCallableType = Ignore | Warn | Error;
 /**
@@ -993,31 +1032,6 @@ export type DetectsCyclicClassDefinitions = Ignore | Warn | Error;
  * ```
  */
 export type DetectsCyclicTypeAliasDefinitions = Ignore | Warn | Error;
-/**
- * ## What it does
- *
- * Checks for dataclass definitions where required fields are defined after fields with default values.
- *
- * ## Why is this bad?
- *
- * In dataclasses, all required fields (fields without default values) must be defined before fields
- * with default values. This is a Python requirement that will raise a `TypeError` at runtime if
- * violated.
- *
- * ## Example
- *
- * ```python
- * from dataclasses import dataclass
- *
- *
- * @dataclass
- * class Example:
- *     x: int = 1  # Field with default value
- *     # Required field after field with default
- *     y: str  # error
- * ```
- */
-export type DetectsDataclassDefinitionsWithRequiredFieldsAfterFieldsWithDefaultValues = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -1366,44 +1380,6 @@ export type DetectsDecoratorsThatReplaceAFunctionWithADynamicTypeSuchAsAny = Ign
 /**
  * ## What it does
  *
- * Detects functions with empty bodies that have a non-`None` return type annotation.
- *
- * The errors reported by this rule have the same motivation as the `invalid-return-type` rule. The
- * diagnostic exists as a separate error code to allow users to disable this rule while prototyping
- * code. While we strongly recommend enabling this rule if possible, users migrating from other type
- * checkers may also find it useful to temporarily disable this rule on some or all of their codebase
- * if they find it results in a large number of diagnostics.
- *
- * ## Why is this bad?
- *
- * A function with an empty body (containing only `...`, `pass`, or a docstring) will implicitly return
- * `None` at runtime. Returning `None` when the return type is non-`None` is unsound, and will lead to
- * ty inferring incorrect types elsewhere.
- *
- * Functions with empty bodies are permitted in certain contexts where they serve as declarations
- * rather than implementations:
- *
- * - Functions in stub files (`.pyi`)
- * - Methods in Protocol classes
- * - Abstract methods decorated with `@abstractmethod`
- * - Overload declarations decorated with `@overload`
- * - Functions in `if TYPE_CHECKING` blocks
- *
- * ## Examples
- *
- * ```python
- * def foo() -> int: ...  # error: [empty-body]
- *
- *
- * def bar() -> str:  # error: [empty-body]
- *     """A function that does nothing."""
- *     pass
- * ```
- */
-export type DetectsFunctionsWithEmptyBodiesThatHaveANonNoneReturnTypeAnnotation = Ignore | Warn | Error;
-/**
- * ## What it does
- *
  * Checks for forward annotations that contain escape characters.
  *
  * ## Why is this bad?
@@ -1528,11 +1504,11 @@ export type DetectsTyIgnoreCommentsThatReferenceUnknownRules = Ignore | Warn | E
 /**
  * ## What it does
  *
- * Checks for implicit concatenated strings in type annotation positions.
+ * Checks for [type expressions][type expression] written as two or more adjacent string literals.
  *
  * ## Why is this bad?
  *
- * Static analysis tools like ty can't analyze type annotations that use implicit concatenated strings.
+ * ty can't resolve a string annotation when a [type expression] spans multiple string literals.
  *
  * ## Examples
  *
@@ -1556,8 +1532,34 @@ export type DetectsTyIgnoreCommentsThatReferenceUnknownRules = Ignore | Warn | E
  * def test() -> "Literal[5]":
  *     return 5
  * ```
+ *
+ * Note that this rule is only applied to [type expressions][type expression] in annotations. Regions
+ * in type annotations that are interpreted as _value_ expressions -- for example, the second argument
+ * to `Annotated[]` -- are not reported by this rule:
+ *
+ * <!-- fmt:off -->
+ *
+ * ```python
+ * from typing import Annotated
+ *
+ * # the first argument to `Annotated[]` is interpreted as a type expression, so is reported
+ * count: Annotated["in" "t", "item count"]  # error
+ *
+ * # all remaining arguments to `Annotated[]` are interpreted as value expressions, so are not reported
+ * total: Annotated[int, "item " "count"]  # ok
+ * ```
+ *
+ * <!-- fmt:on -->
+ *
+ * ## Rule history
+ *
+ * - v0.0.102: Renamed from `implicit-concatenated-string-type-annotation`.
+ *
+ *     `implicit-concatenated-string-type-annotation` remains as a compatibility alias for this rule.
+ *
+ * [type expression]: https://typing.python.org/en/latest/spec/annotations.html#type-and-annotation-expressions
  */
-export type DetectsImplicitConcatenatedStringsInTypeAnnotations = Ignore | Warn | Error;
+export type DetectsTypeExpressionsWrittenAsMultipleAdjacentStringLiterals = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -1593,6 +1595,230 @@ export type DetectsUnresolvedImports = Ignore | Warn | Error;
 /**
  * ## What it does
  *
+ * Detects attribute overrides that change whether an inherited attribute is a class variable or an
+ * instance variable, expose an incompatible value type, or make a writable attribute read-only.
+ *
+ * Narrowing a mutable attribute's type is checked separately by the `incompatible-mutable-override`
+ * rule. Overrides involving properties are checked by `incompatible-property-override`.
+ *
+ * ## Why is this bad?
+ *
+ * Pure class variables and instance variables have different access and assignment behavior.
+ * Overriding one with the other violates the
+ * [Liskov Substitution Principle][liskov-substitution-principle] ("LSP"), because code that is valid
+ * for the superclass may no longer be valid for the subclass.
+ *
+ * ## Example
+ *
+ * ```python
+ * from typing import ClassVar, Final
+ *
+ *
+ * class Base:
+ *     instance_attr: int
+ *     class_attr: ClassVar[int]
+ *     name: str
+ *     count: int
+ *
+ *
+ * class Sub(Base):
+ *     instance_attr: ClassVar[int]  # error: [incompatible-attribute-override]
+ *     class_attr: int  # error: [incompatible-attribute-override]
+ *     name: bytes  # error: [incompatible-attribute-override]
+ *     count: Final[int] = 0  # error: [incompatible-attribute-override]
+ * ```
+ *
+ * Code that reads `Base.name` on an instance expects a string. Code that accepts a `Base` can also
+ * assign to `count`; making it final in the subclass removes that operation.
+ *
+ * ## Rule history
+ *
+ * - v0.0.100: Renamed from `invalid-attribute-override`.
+ *
+ *     `invalid-attribute-override` remains as a compatibility alias for this rule.
+ *
+ * [liskov-substitution-principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
+ */
+export type DetectsAttributeOverridesThatViolateInheritedTypeOrAccessRequirements = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Detects method overrides that violate the
+ * [Liskov Substitution Principle][liskov-substitution-principle] ("LSP").
+ *
+ * The LSP states that an instance of a subtype should be substitutable for an instance of its
+ * supertype. Applied to Python, this means:
+ *
+ * 1. All argument combinations a superclass method accepts must also be accepted by an overriding
+ *     subclass method.
+ * 1. The return type of an overriding subclass method must be a subtype of the return type of the
+ *     superclass method.
+ *
+ * An otherwise compatible override that renames a positional-or-keyword parameter or makes it
+ * positional-only can trigger `lost-keyword-for-regular-parameter`.
+ *
+ * ## Why is this bad?
+ *
+ * Violating the Liskov Substitution Principle will lead to many of ty's assumptions and inferences
+ * being incorrect, which will mean that it will fail to catch many possible type errors in your code.
+ *
+ * ## Example
+ *
+ * ```python
+ * class Super:
+ *     def method(self, x) -> int:
+ *         return 42
+ *
+ *
+ * class Sub(Super):
+ *     # Liskov violation: `str` is not a subtype of `int`,
+ *     # but the supertype method promises to return an `int`.
+ *     def method(self, x) -> str:  # error: [incompatible-method-override]
+ *         return "foo"
+ *
+ *
+ * def accepts_super(s: Super) -> int:
+ *     return s.method(x=42)
+ *
+ *
+ * # The result of this call is a string, but ty will infer it to be an `int`
+ * # due to the violation of the Liskov Substitution Principle.
+ * accepts_super(Sub())
+ * ```
+ *
+ * ## Common issues
+ *
+ * ### Why does ty complain about my `__eq__` method?
+ *
+ * `__eq__` and `__ne__` methods in Python are generally expected to accept arbitrary objects as their
+ * second argument, for example:
+ *
+ * ```python
+ * class A:
+ *     x: int
+ *
+ *     def __eq__(self, other: object) -> bool:
+ *         # gracefully handle an object of an unexpected type
+ *         # without raising an exception
+ *         if not isinstance(other, A):
+ *             return False
+ *         return self.x == other.x
+ * ```
+ *
+ * If `A.__eq__` here were annotated as only accepting `A` instances for its second argument, it would
+ * imply that you wouldn't be able to use `==` between instances of `A` and instances of unrelated
+ * classes without an exception possibly being raised. While some classes in Python do indeed behave
+ * this way, the strongly held convention is that it should be avoided wherever possible. As part of
+ * this check, therefore, ty enforces that `__eq__` and `__ne__` methods accept `object` as their
+ * second argument.
+ *
+ * ### Why does ty disagree with Ruff about how to write my method?
+ *
+ * Ruff has several rules that will encourage you to rename a parameter, or change its type signature,
+ * if it thinks you're falling into a certain anti-pattern. For example, Ruff's
+ * [ARG002](https://docs.astral.sh/ruff/rules/unused-method-argument/) rule recommends that an unused
+ * parameter should either be removed or renamed to start with `_`. Renaming the parameter in an
+ * override can trigger `lost-keyword-for-regular-parameter` if the base method accepts it by keyword.
+ * Removing the parameter can trigger `incompatible-method-override` if the override no longer accepts
+ * a call allowed by the base method.
+ *
+ * This can usually be resolved by adding [`@typing.override`][override] to your method definition.
+ * Ruff knows that a method decorated with `@typing.override` is intended to override a method by the
+ * same name on a superclass, and avoids reporting rules like ARG002 for such methods; it knows that
+ * the changes recommended by ARG002 would violate the Liskov Substitution Principle.
+ *
+ * Correct use of `@override` is enforced by ty's `invalid-explicit-override` rule.
+ *
+ * ## Rule history
+ *
+ * - v0.0.100: ty used to have a rule called `invalid-method-override` that covered both
+ *     `incompatible-method-override` and `lost-keyword-for-regular-parameter`.
+ *
+ *     The old `invalid-method-override` name is now an alias for `incompatible-method-override` only. If
+ *     you previously had any configuration for `invalid-method-override` specifically, you should go
+ *     through `lost-keyword-for-regular-parameter` to see if you want to configure it in the same way.
+ *
+ * [liskov-substitution-principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
+ * [override]: https://docs.python.org/3/library/typing.html#typing.override
+ */
+export type DetectsMethodDefinitionsThatViolateTheLiskovSubstitutionPrinciple = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Detects overrides that narrow the type of a writable attribute.
+ *
+ * ## Why is this bad?
+ *
+ * A subclass must accept every write allowed by the superclass. Narrowing a mutable attribute's type
+ * allows code using the superclass interface to invalidate the subclass's attribute type.
+ *
+ * ## Example
+ *
+ * ```python
+ * class Base:
+ *     value: int
+ *
+ *
+ * class Child(Base):
+ *     value: bool  # error: [incompatible-mutable-override]
+ *
+ *
+ * def reset(obj: Base) -> None:
+ *     obj.value = 42
+ *
+ *
+ * reset(Child())  # The value is no longer a bool.
+ * ```
+ *
+ * Use the same annotation in both classes, or expose a read-only property if callers do not need to
+ * write the attribute.
+ *
+ * ## Rule history
+ *
+ * - v0.0.100: Renamed from `invalid-mutable-override`.
+ *
+ *     `invalid-mutable-override` remains as a compatibility alias for this rule.
+ */
+export type DetectsOverridesThatNarrowWritableAttributeTypes = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Detects overrides that change the readable type of an inherited property incompatibly, restrict the
+ * values accepted by its setter, or remove a required write operation.
+ *
+ * ## Why is this bad?
+ *
+ * Code using the superclass interface must continue to work on subclass instances. A getter can return
+ * a more specific type, but a setter must accept every value accepted by the superclass. A writable
+ * attribute cannot be replaced by a read-only property.
+ *
+ * ## Example
+ *
+ * ```python
+ * class Base:
+ *     @property
+ *     def value(self) -> int:
+ *         return 0
+ *
+ *
+ * class Child(Base):
+ *     @property
+ *     def value(self) -> str:  # error: [incompatible-property-override]
+ *         return ""
+ * ```
+ *
+ * An override returning `bool` would be valid because `bool` is a subtype of `int`.
+ *
+ * ## Rule history
+ *
+ * - v0.0.100: Renamed from `invalid-property-type-override`.
+ *
+ *     `invalid-property-type-override` remains as a compatibility alias for this rule.
+ */
+export type DetectsIncompatibleOverridesInvolvingProperties = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
  * Checks for classes with an inconsistent [method resolution order] (MRO).
  *
  * ## Why is this bad?
@@ -1615,6 +1841,118 @@ export type DetectsUnresolvedImports = Ignore | Warn | Error;
  * [method resolution order]: https://docs.python.org/3/glossary.html#term-method-resolution-order
  */
 export type DetectsClassDefinitionsWithAnInconsistentMRO = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Checks for inconsistent use of decorators on overloaded methods. If one definition uses
+ * `@staticmethod` or `@classmethod`, every overload and the implementation, if present, must use the
+ * same decorator.
+ *
+ * ## Why is this bad?
+ *
+ * Python's runtime doesn't know about overloads, but it does have a different binding behavior for
+ * instance methods, class methods and staticmethods. Overloads therefore need to be consistent about
+ * their use of `@staticmethod` and `@classmethod` decorators.
+ *
+ * ## Example
+ *
+ * ```pyi
+ * from typing import overload
+ *
+ * class Reader:
+ *     @staticmethod
+ *     @overload
+ *     def read() -> str: ...
+ *     @overload
+ *     def read(self, size: int) -> str: ...  # error
+ * ```
+ *
+ * If `read` is an instance method, remove `@staticmethod` and add `self` to the first overload. Both
+ * overloads then account for the implicit `self` in `reader.read()` and `reader.read(10)`.
+ *
+ * ## References
+ *
+ * - [Typing specification: Invalid overload definitions](https://typing.python.org/en/latest/spec/overload.html#invalid-overload-definitions)
+ */
+export type DetectsInconsistentUseOfStaticmethodOrClassmethodOnOverloadedMethods = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Checks for overload implementations that are incompatible with one or more overloads.
+ *
+ * After decorators are applied, the implementation must accept every call allowed by the overloads.
+ * Each overload's return type must be assignable to the implementation's return type.
+ *
+ * ## Why is this bad?
+ *
+ * Callers rely on the overloads to know which arguments they can pass and what type to expect in
+ * return.
+ *
+ * ## Examples
+ *
+ * ### Incompatible parameters
+ *
+ * ```py
+ * from typing import overload
+ *
+ *
+ * @overload
+ * def read() -> str: ...  # error
+ * @overload
+ * def read(size: int) -> str: ...
+ * def read(size: int) -> str:
+ *     return "x" * size
+ * ```
+ *
+ * The first overload allows `read()`. At runtime, that call raises `TypeError` because the
+ * implementation requires a `size` argument.
+ *
+ * ### Incompatible return type
+ *
+ * ```py
+ * from typing import overload
+ *
+ *
+ * @overload
+ * def double(value: int) -> int: ...  # error
+ * @overload
+ * def double(value: str) -> str: ...
+ * def double(value: int | str) -> str:
+ *     return str(value) * 2
+ * ```
+ *
+ * The first overload promises an `int`, but `double(3)` returns the string `"33"`.
+ *
+ * ### A decorator makes the implementation uncallable
+ *
+ * ```py
+ * from collections.abc import Callable
+ * from typing import overload
+ *
+ * handlers: list[Callable[..., str]] = []
+ *
+ *
+ * def register(func: Callable[..., str]) -> None:
+ *     handlers.append(func)
+ *
+ *
+ * @overload
+ * def greet() -> str: ...
+ * @overload
+ * def greet(name: str) -> str: ...
+ * @register
+ * def greet(name: str = "world") -> str:  # error
+ *     return f"Hello, {name}!"
+ * ```
+ *
+ * `register` returns `None`, so `@register` leaves `greet` bound to `None`. Calling `greet()` raises
+ * `TypeError`.
+ *
+ * ## References
+ *
+ * - [Typing specification: Implementation consistency](https://typing.python.org/en/latest/spec/overload.html#implementation-consistency)
+ */
+export type DetectsImplementationsThatAreInconsistentWithTheirOverloads = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -1855,48 +2193,6 @@ export type InvalidAttributeAccess = Ignore | Warn | Error;
 /**
  * ## What it does
  *
- * Detects attribute overrides that change whether an inherited attribute is a class variable or an
- * instance variable, expose an incompatible value type, or make a writable attribute read-only.
- *
- * Narrowing a mutable attribute's type is checked separately by the `invalid-mutable-override` rule.
- * Overrides involving properties are checked by `invalid-property-type-override`.
- *
- * ## Why is this bad?
- *
- * Pure class variables and instance variables have different access and assignment behavior.
- * Overriding one with the other violates the
- * [Liskov Substitution Principle][liskov-substitution-principle] ("LSP"), because code that is valid
- * for the superclass may no longer be valid for the subclass.
- *
- * ## Example
- *
- * ```python
- * from typing import ClassVar, Final
- *
- *
- * class Base:
- *     instance_attr: int
- *     class_attr: ClassVar[int]
- *     name: str
- *     count: int
- *
- *
- * class Sub(Base):
- *     instance_attr: ClassVar[int]  # error: [invalid-attribute-override]
- *     class_attr: int  # error: [invalid-attribute-override]
- *     name: bytes  # error: [invalid-attribute-override]
- *     count: Final[int] = 0  # error: [invalid-attribute-override]
- * ```
- *
- * Code that reads `Base.name` on an instance expects a string. Code that accepts a `Base` can also
- * assign to `count`; making it final in the subclass removes that operation.
- *
- * [liskov-substitution-principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
- */
-export type DetectsAttributeOverridesThatViolateInheritedTypeOrAccessRequirements = Ignore | Warn | Error;
-/**
- * ## What it does
- *
  * Checks for `await` being used with types that are not [Awaitable][awaitable-abc].
  *
  * ## Why is this bad?
@@ -2001,6 +2297,37 @@ export type DetectsExpressionsUsedInWithStatementsThatDonTImplementTheContextMan
  * [explicitly not supported]: https://docs.python.org/3/howto/enum.html#dataclass-support
  */
 export type DetectsInvalidDataclassApplications = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Checks for dataclass definitions where required fields are defined after fields with default values.
+ *
+ * ## Why is this bad?
+ *
+ * In dataclasses, all required fields (fields without default values) must be defined before fields
+ * with default values. This is a Python requirement that will raise a `TypeError` at runtime if
+ * violated.
+ *
+ * ## Example
+ *
+ * ```python
+ * from dataclasses import dataclass
+ *
+ *
+ * @dataclass
+ * class Example:
+ *     x: int = 1  # Field with default value
+ *     # Required field after field with default
+ *     y: str  # error
+ * ```
+ *
+ * ## Rule history
+ *
+ * - v0.0.102: Renamed from `dataclass-field-order`.
+ *
+ *     `dataclass-field-order` remains as a compatibility alias for this rule.
+ */
+export type DetectsDataclassDefinitionsWithRequiredFieldsAfterFieldsWithDefaultValues = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -2189,6 +2516,93 @@ export type DetectsMethodsThatAreDecoratedWithOverrideButDoNotOverrideAnyMethodI
 /**
  * ## What it does
  *
+ * Checks for `return` statements where the value returned is inconsistent with the function's
+ * return-type annotation.
+ *
+ * ## Why is this bad?
+ *
+ * A caller relying on the annotated return type can receive a value of an unexpected type and fail at
+ * runtime.
+ *
+ * ## Details and Examples
+ *
+ * In a regular (non-generator) function, the value returned by a `return` statement must be assignable
+ * to the function's annotated return type:
+ *
+ * ```py
+ * def meaning_of_life() -> int:
+ *     return 42  # OK
+ *
+ *
+ * def bad() -> int:
+ *     return "not a number"  # error: [invalid-explicit-return]
+ * ```
+ *
+ * This applies in the same way to async functions:
+ *
+ * ```py
+ * async def meaning_of_life_async() -> int:
+ *     return 42  # OK
+ *
+ *
+ * async def bad_async() -> int:
+ *     return "not a number"  # error: [invalid-explicit-return]
+ * ```
+ *
+ * Note that a bare `return` statement -- without an explicit value being returned -- always returns
+ * `None`, so this can also be flagged by the rule:
+ *
+ * ```py
+ * def fallible_meaning_of_life(should_answer: bool) -> int | None:
+ *     if not should_answer:
+ *         return  # OK: the return-type annotation allows returning `None`
+ *     return 42
+ *
+ *
+ * def bad_fallible_function(coinflip: bool) -> int:
+ *     if coinflip:
+ *         # This statement returns `None`, which is not allowed by the return-type annotation:
+ *         return  # error: [invalid-explicit-return]
+ *     return 42
+ * ```
+ *
+ * For a synchronous generator function annotated with `Generator`, `GeneratorType` or similar,
+ * however, a `return` statement is only valid if it returns a value consistent with the third type
+ * parameter supplied to `Generator`/`GeneratorType`:
+ *
+ * ```python
+ * from collections.abc import Generator
+ *
+ *
+ * def gen_func(coinflip: bool) -> Generator[int, None, str]:
+ *     yield 42
+ *
+ *     if coinflip:
+ *         # this statement returns `None`, which is not assignable to the third type
+ *         # parameter (`str`) supplied to `Generator` in the return annotation
+ *         return  # error: [invalid-explicit-return]
+ *
+ *     yield 42
+ *
+ *     # and this returns a `bytes` object, which is also not assignable to `str`
+ *     return b"oops, a bytestring"  # error: [invalid-explicit-return]
+ * ```
+ *
+ * ## Rule history
+ *
+ * - v0.0.1-alpha.1: Initially added under the name `invalid-return-type`
+ *
+ * - v0.0.14: `empty-body` (since renamed as `invalid-implicit-return-in-function-with-stub-body`) was
+ *     split into a separate rule.
+ *
+ * - v0.0.102: `invalid-implicit-return` and `invalid-generator-return-type` were split into separate
+ *     rules, and the rule was renamed as `invalid-explicit-return`. `invalid-return-type` remains as a
+ *     compatibility alias for this rule.
+ */
+export type DetectsReturnStatementsWhoseValueIsIncompatibleWithTheExpectedReturnType = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
  * Checks for dataclasses with invalid frozen inheritance:
  *
  * - A frozen dataclass cannot inherit from a non-frozen dataclass.
@@ -2225,6 +2639,70 @@ export type DetectsMethodsThatAreDecoratedWithOverrideButDoNotOverrideAnyMethodI
  * ```
  */
 export type DetectsDataclassesWithInvalidFrozenNonFrozenSubclassing = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Checks whether a generator function's return annotation allows the generator object it produces.
+ *
+ * ## Why is this bad?
+ *
+ * Calling a generator function produces a generator object. A synchronous generator function's
+ * return-type annotation must be a supertype of `types.GeneratorType[Never, object, Never]`, and an
+ * asynchronous generator function's return-type annotation must be a supertype of
+ * `types.AsyncGeneratorType[Never, object]`. Other return-type annotations contradict what the
+ * function does; a caller relying on the annotated return type could receive a generator object
+ * instead of the expected type and fail at runtime.
+ *
+ * ## Examples
+ *
+ * ```python
+ * from collections.abc import Generator
+ *
+ *
+ * # error: [invalid-generator-return-type]
+ * def numbers() -> int:
+ *     yield 1
+ *
+ *
+ * # error: [invalid-generator-return-type]
+ * async def numbers() -> Generator[int]:
+ *     yield 1
+ * ```
+ *
+ * Use instead:
+ *
+ * ```py
+ * from collections.abc import AsyncGenerator, Generator
+ *
+ *
+ * def numbers() -> Generator[int]:
+ *     yield 1
+ *
+ *
+ * async def numbers() -> AsyncGenerator[int]:
+ *     yield 1
+ * ```
+ *
+ * ## See also
+ *
+ * - `invalid-explicit-return` emits errors on synchronous generator functions where the return-type
+ *     annotation is a valid supertype of `types.GeneratorType` but specific `return` statements in the
+ *     body of the generator function are not consistent with the third type parameter supplied to
+ *     `types.GeneratorType`, `collections.abc.Generator` or similar in the return-type annotation.
+ *
+ * - `invalid-implicit-return` emits errors on synchronous generator functions where a non-`None` type
+ *     is provided in the return-type annotation as the third type argument to `types.GeneratorType`,
+ *     `collections.abc.Generator` or similar, yet the function body includes code paths that
+ *     implicitly return `None`.
+ *
+ * ## Rule history
+ *
+ * - v0.0.0-alpha.5: First added to ty as part of the pre-existing `invalid-return-type` diagnostic
+ *
+ * - v0.0.102: `invalid-generator-return-type` was split out as a standalone rule from
+ *     `invalid-return-type`, and `invalid-return-type` was renamed as `invalid-explicit-return`
+ */
+export type DetectsGeneratorFunctionsWithIncompatibleReturnAnnotations = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -2337,6 +2815,165 @@ export type DetectsIgnoreCommentsThatUseInvalidSyntax = Ignore | Warn | Error;
 /**
  * ## What it does
  *
+ * Detects nonempty functions that can reach the end of their body and implicitly return `None`,
+ * despite the fact that their return-type annotations do not allow `None` to be returned.
+ *
+ * This rule only covers functions with non-empty bodies. Functions with empty "stub" bodies are
+ * covered by the separate `invalid-implicit-return-in-function-with-stub-body` rule.
+ *
+ * ## Why is this bad?
+ *
+ * When execution reaches the end of a function, Python implicitly returns `None`. If the return-type
+ * annotation does not permit `None` to be returned, a caller relying on the annotated return type can
+ * then fail at runtime.
+ *
+ * For a regular non-generator function, an implicit return is only allowed if the return-type
+ * annotation is `None` or a supertype of `None`. For a synchronous generator function annotated with
+ * `Generator[YieldType, SendType, ReturnType]` or similar, an implicit return is only allowed if
+ * `ReturnType` is `None` or a supertype of `None`.
+ *
+ * ## Examples
+ *
+ * ```python
+ * from collections.abc import Generator
+ * from hashlib import sha256
+ * from pathlib import Path
+ * from typing import BinaryIO
+ *
+ *
+ * # error: [invalid-implicit-return]
+ * def find_pyproject() -> Path:
+ *     """Search upward for pyproject.toml, returning None if no such file is found."""
+ *     cwd = Path.cwd()
+ *     for directory in (cwd, *cwd.parents):
+ *         config = directory / "pyproject.toml"
+ *         if config.is_file():
+ *             return config
+ *
+ *     # If no `pyproject.toml` file was found, we get to here, and the function implicitly
+ *     # returns `None`. The docstring states that this is intentional, so adjusting the return
+ *     # annotation is appropriate here.
+ *
+ *
+ * # error: [invalid-implicit-return]
+ * def sale_price(price_in_cents: int, *, on_sale: bool) -> int:
+ *     """If `on_sale` is `True`, return half the usual price; otherwise, return the usual price"""
+ *     if on_sale:
+ *         return price_in_cents // 2
+ *
+ *     # If `on_sale=False`, we get to here, and the function implicitly returns `None`.
+ *     # This function is missing a `return price_in_cents` statement at the end.
+ *
+ *
+ * # error: [invalid-implicit-return]
+ * def read_chunks(source: BinaryIO) -> Generator[bytes, None, str]:
+ *     """Yield chunks of bytes and return the file's SHA-256 digest when the stream ends."""
+ *     checksum = sha256()
+ *
+ *     while chunk := source.read(8192):
+ *         checksum.update(chunk)
+ *         yield chunk
+ *
+ *     # The generator implicitly returns `None` after all chunks have been yielded,
+ *     # contradicting the third type argument of the return-type annotation.
+ *     # Per the docstring, the user meant to add `return checksum.hexdigest()` at the end.
+ * ```
+ *
+ * Use instead:
+ *
+ * ```py
+ * from collections.abc import Generator
+ * from hashlib import sha256
+ * from pathlib import Path
+ * from typing import BinaryIO
+ *
+ *
+ * def find_pyproject() -> Path | None:
+ *     """Search upward for pyproject.toml, returning None if no such file is found."""
+ *     cwd = Path.cwd()
+ *     for directory in (cwd, *cwd.parents):
+ *         config = directory / "pyproject.toml"
+ *         if config.is_file():
+ *             return config
+ *
+ *
+ * def sale_price(price_in_cents: int, *, on_sale: bool) -> int:
+ *     """If `on_sale` is `True`, return half the usual price; otherwise, return the usual price"""
+ *     if on_sale:
+ *         return price_in_cents // 2
+ *     return price_in_cents
+ *
+ *
+ * def read_chunks(source: BinaryIO) -> Generator[bytes, None, str]:
+ *     """Yield chunks of bytes and return the file's SHA-256 digest when the stream ends."""
+ *     checksum = sha256()
+ *
+ *     while chunk := source.read(8192):
+ *         checksum.update(chunk)
+ *         yield chunk
+ *
+ *     return checksum.hexdigest()
+ * ```
+ *
+ * ## Rule history
+ *
+ * - v0.0.0-alpha.2: First added to ty as part of the `invalid-return-type` diagnostic (since renamed
+ *     to `invalid-explicit-return`).
+ * - v0.0.102: Split out from `invalid-return-type` as a standalone rule.
+ */
+export type DetectsNonemptyFunctionsThatCanImplicitlyReturnAnIncompatibleNone = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Detects functions with stub-like bodies whose return-type annotations exclude `None`.
+ *
+ * The errors reported by this rule have the same motivation as the `invalid-implicit-return` rule. The
+ * diagnostic exists as a separate error code to allow users to disable this rule while prototyping
+ * code. While we strongly recommend enabling this rule if possible, users migrating from other type
+ * checkers may also find it useful to temporarily disable this rule on some or all of their codebase
+ * if they find it results in a large number of diagnostics.
+ *
+ * ## Why is this bad?
+ *
+ * A function with an empty body (containing only `...`, `pass`, or a docstring) will implicitly return
+ * `None` at runtime. Returning `None` when the return type is non-`None` is unsound, and will lead to
+ * ty inferring incorrect types elsewhere.
+ *
+ * Functions with empty bodies are permitted in certain contexts where they serve as declarations
+ * rather than implementations:
+ *
+ * - Functions in stub files (`.pyi`)
+ * - Methods in Protocol classes
+ * - Abstract methods decorated with `@abstractmethod`
+ * - Overload declarations decorated with `@overload`
+ * - Functions in `if TYPE_CHECKING` blocks
+ *
+ * ## Examples
+ *
+ * ```python
+ * def foo() -> int: ...  # error: [invalid-implicit-return-in-function-with-stub-body]
+ *
+ *
+ * def bar() -> str:  # error: [invalid-implicit-return-in-function-with-stub-body]
+ *     """A function that does nothing."""
+ *     pass
+ * ```
+ *
+ * ## Rule history
+ *
+ * - v0.0.0-alpha.2: First added to ty as part of the `invalid-return-type` diagnostic (since renamed
+ *     to `invalid-explicit-return`).
+ *
+ * - v0.0.14: Split out from `invalid-return-type` as a new `empty-body` diagnostic.
+ *
+ * - v0.0.102: Renamed from `empty-body` to `invalid-implicit-return-in-function-with-stub-body`.
+ *
+ *     `empty-body` remains as a compatibility alias for this rule.
+ */
+export type DetectsFunctionsWithStubLikeBodiesWhoseReturnTypeExcludesNone = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
  * Checks for type variables from outer scopes in an explicit annotation of the `self` parameter of
  * `__init__`.
  *
@@ -2393,42 +3030,6 @@ export type DetectsIgnoreCommentsThatUseInvalidSyntax = Ignore | Warn | Error;
  * - [Typing specification: `__init__` method](https://typing.python.org/en/latest/spec/constructors.html#init-method)
  */
 export type DetectsTypeVariablesFromOuterScopesIn_Init__ReceiverAnnotations = Ignore | Warn | Error;
-/**
- * ## What it does
- *
- * Checks for subscript accesses with invalid keys and `TypedDict` construction with an unknown key.
- *
- * ## Why is this bad?
- *
- * Subscripting with an invalid key will raise a `KeyError` at runtime.
- *
- * Creating a `TypedDict` with an unknown key is likely a mistake; if the `TypedDict` is `closed=true`
- * it also violates the expectations of the type.
- *
- * ## Examples
- *
- * ```python
- * from typing import TypedDict
- * from typing_extensions import NotRequired
- *
- *
- * class Person(TypedDict):
- *     name: NotRequired[str]
- *     age: NotRequired[int]
- *
- *
- * alice = Person(name="Alice", age=30)
- * # KeyError: 'height'
- * alice["height"]  # error
- *
- * # error
- * bob: Person = {"nickname": "Bob", "age": 30}  # typo!
- *
- * # error
- * carol = Person(name="Carol", aeg=25)  # typo!
- * ```
- */
-export type DetectsInvalidSubscriptAccessesOrTypedDictLiteralKeys = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -2574,109 +3175,6 @@ export type DetectsInvalidMetaclassArguments = Ignore | Warn | Error;
 /**
  * ## What it does
  *
- * Detects method overrides that violate the
- * [Liskov Substitution Principle][liskov-substitution-principle] ("LSP").
- *
- * The LSP states that an instance of a subtype should be substitutable for an instance of its
- * supertype. Applied to Python, this means:
- *
- * 1. All argument combinations a superclass method accepts must also be accepted by an overriding
- *     subclass method.
- * 1. The return type of an overriding subclass method must be a subtype of the return type of the
- *     superclass method.
- *
- * ## Why is this bad?
- *
- * Violating the Liskov Substitution Principle will lead to many of ty's assumptions and inferences
- * being incorrect, which will mean that it will fail to catch many possible type errors in your code.
- *
- * ## Example
- *
- * ```python
- * class Super:
- *     def method(self, x) -> int:
- *         return 42
- *
- *
- * class Sub(Super):
- *     # Liskov violation: `str` is not a subtype of `int`,
- *     # but the supertype method promises to return an `int`.
- *     def method(self, x) -> str:  # error: [invalid-method-override]
- *         return "foo"
- *
- *
- * def accepts_super(s: Super) -> int:
- *     return s.method(x=42)
- *
- *
- * # The result of this call is a string, but ty will infer it to be an `int`
- * # due to the violation of the Liskov Substitution Principle.
- * accepts_super(Sub())
- *
- *
- * class Sub2(Super):
- *     # Liskov violation: the superclass method can be called with a `x=`
- *     # keyword argument, but the subclass method does not accept it.
- *     def method(self, y) -> int:  # error: [invalid-method-override]
- *         return 42
- *
- *
- * # TypeError at runtime: method() got an unexpected keyword argument 'x'
- * # ty cannot catch this error due to the violation of the Liskov Substitution Principle.
- * accepts_super(Sub2())
- * ```
- *
- * ## Common issues
- *
- * ### Why does ty complain about my `__eq__` method?
- *
- * `__eq__` and `__ne__` methods in Python are generally expected to accept arbitrary objects as their
- * second argument, for example:
- *
- * ```python
- * class A:
- *     x: int
- *
- *     def __eq__(self, other: object) -> bool:
- *         # gracefully handle an object of an unexpected type
- *         # without raising an exception
- *         if not isinstance(other, A):
- *             return False
- *         return self.x == other.x
- * ```
- *
- * If `A.__eq__` here were annotated as only accepting `A` instances for its second argument, it would
- * imply that you wouldn't be able to use `==` between instances of `A` and instances of unrelated
- * classes without an exception possibly being raised. While some classes in Python do indeed behave
- * this way, the strongly held convention is that it should be avoided wherever possible. As part of
- * this check, therefore, ty enforces that `__eq__` and `__ne__` methods accept `object` as their
- * second argument.
- *
- * ### Why does ty disagree with Ruff about how to write my method?
- *
- * Ruff has several rules that will encourage you to rename a parameter, or change its type signature,
- * if it thinks you're falling into a certain anti-pattern. For example, Ruff's
- * [ARG002](https://docs.astral.sh/ruff/rules/unused-method-argument/) rule recommends that an unused
- * parameter should either be removed or renamed to start with `_`. Applying either of these
- * suggestions can cause ty to start reporting an `invalid-method-override` error if the function in
- * question is a method on a subclass that overrides a method on a superclass, and the change would
- * cause the subclass method to no longer accept all argument combinations that the superclass method
- * accepts.
- *
- * This can usually be resolved by adding [`@typing.override`][override] to your method definition.
- * Ruff knows that a method decorated with `@typing.override` is intended to override a method by the
- * same name on a superclass, and avoids reporting rules like ARG002 for such methods; it knows that
- * the changes recommended by ARG002 would violate the Liskov Substitution Principle.
- *
- * Correct use of `@override` is enforced by ty's `invalid-explicit-override` rule.
- *
- * [liskov-substitution-principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
- * [override]: https://docs.python.org/3/library/typing.html#typing.override
- */
-export type DetectsMethodDefinitionsThatViolateTheLiskovSubstitutionPrinciple = Ignore | Warn | Error;
-/**
- * ## What it does
- *
  * Checks for imports that fail when calling a module-level `__getattr__` function.
  *
  * ## Why is this bad?
@@ -2701,38 +3199,6 @@ export type DetectsMethodDefinitionsThatViolateTheLiskovSubstitutionPrinciple = 
  * ```
  */
 export type DetectsImportsThatFailWhileCallingModuleLevel_Getattr__ = Ignore | Warn | Error;
-/**
- * ## What it does
- *
- * Detects overrides that narrow the type of a writable attribute.
- *
- * ## Why is this bad?
- *
- * A subclass must accept every write allowed by the superclass. Narrowing a mutable attribute's type
- * allows code using the superclass interface to invalidate the subclass's attribute type.
- *
- * ## Example
- *
- * ```python
- * class Base:
- *     value: int
- *
- *
- * class Child(Base):
- *     value: bool  # error: [invalid-mutable-override]
- *
- *
- * def reset(obj: Base) -> None:
- *     obj.value = 42
- *
- *
- * reset(Child())  # The value is no longer a bool.
- * ```
- *
- * Use the same annotation in both classes, or expose a read-only property if callers do not need to
- * write the attribute.
- */
-export type DetectsOverridesThatNarrowWritableAttributeTypes = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -2851,49 +3317,6 @@ export type DetectsInvalidNewTypeDefinitions = Ignore | Warn | Error;
 /**
  * ## What it does
  *
- * Checks for various invalid `@overload` usages.
- *
- * ## Why is this bad?
- *
- * The `@overload` decorator is used to define functions and methods that accepts different
- * combinations of arguments and return different types based on the arguments passed. This is mainly
- * beneficial for type checkers. But, if the `@overload` usage is invalid, the type checker may not be
- * able to provide correct type information.
- *
- * ## Examples
- *
- * ### Single overload
- *
- * ```py
- * from typing import overload
- *
- *
- * @overload
- * def foo(x: int) -> int: ...  # error
- * def foo(x: int | None) -> int | None:
- *     return x
- * ```
- *
- * ### Missing implementation
- *
- * ```py
- * from typing import overload
- *
- *
- * @overload
- * def foo() -> None: ...  # error
- * @overload
- * def foo(x: int) -> int: ...
- * ```
- *
- * ## References
- *
- * - [Python documentation: `@overload`](https://docs.python.org/3/library/typing.html#typing.overload)
- */
-export type DetectsInvalidOverloadUsages = Ignore | Warn | Error;
-/**
- * ## What it does
- *
  * Checks for default values that can't be assigned to the parameter's annotated type.
  *
  * ## Why is this bad?
@@ -2932,36 +3355,6 @@ export type DetectsDefaultValuesThatCanTBeAssignedToTheParameterSAnnotatedType =
  * - [Typing spec: ParamSpec](https://typing.python.org/en/latest/spec/generics.html#paramspec)
  */
 export type DetectsInvalidParamSpecUsage = Ignore | Warn | Error;
-/**
- * ## What it does
- *
- * Detects overrides that change the readable type of an inherited property incompatibly, restrict the
- * values accepted by its setter, or remove a required write operation.
- *
- * ## Why is this bad?
- *
- * Code using the superclass interface must continue to work on subclass instances. A getter can return
- * a more specific type, but a setter must accept every value accepted by the superclass. A writable
- * attribute cannot be replaced by a read-only property.
- *
- * ## Example
- *
- * ```python
- * class Base:
- *     @property
- *     def value(self) -> int:
- *         return 0
- *
- *
- * class Child(Base):
- *     @property
- *     def value(self) -> str:  # error: [invalid-property-type-override]
- *         return ""
- * ```
- *
- * An override returning `bool` would be valid because `bool` is a subtype of `int`.
- */
-export type DetectsIncompatibleOverridesInvolvingProperties = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -3063,27 +3456,6 @@ export type DetectsInvalidProtocolClassDefinitions = Ignore | Warn | Error;
  * - [Python documentation: Built-in Exceptions](https://docs.python.org/3/library/exceptions.html#built-in-exceptions)
  */
 export type DetectsRaiseStatementsThatRaiseInvalidExceptionsOrUseInvalidCauses = Ignore | Warn | Error;
-/**
- * ## What it does
- *
- * Detects returned values that can't be assigned to the function's annotated return type.
- *
- * Note that the special case of a function with a non-`None` return type and an empty body is handled
- * by the separate `empty-body` error code.
- *
- * ## Why is this bad?
- *
- * Returning an object of a type incompatible with the annotated return type is unsound, and will lead
- * to ty inferring incorrect types elsewhere.
- *
- * ## Examples
- *
- * ```python
- * def func() -> int:
- *     return "a"  # error: [invalid-return-type]
- * ```
- */
-export type DetectsReturnedValuesThatCanTBeAssignedToTheFunctionSAnnotatedReturnType = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -3558,6 +3930,46 @@ export type DetectsInvalidStatementsInTypedDictClassHeaders = Ignore | Warn | Er
 /**
  * ## What it does
  *
+ * Checks for invalid keys when accessing or assigning items on a `TypedDict`.
+ *
+ * This rule flags invalid keys such as a misspelled string literal or an integer. If the rejected key
+ * is a string whose value is unknown, ty reports `non-literal-typed-dict-key` instead.
+ *
+ * ## Why is this bad?
+ *
+ * Reading a missing key raises `KeyError`. Assigning to an undeclared key can silently add it to the
+ * dictionary.
+ *
+ * ## Example
+ *
+ * ```python
+ * from typing import TypedDict
+ *
+ *
+ * class Person(TypedDict):
+ *     name: str
+ *     age: int
+ *
+ *
+ * alice = Person(name="Alice", age=30)
+ *
+ * # KeyError: 'height'
+ * print(f"The height of Alice is {alice['height']}")  # error
+ * ```
+ *
+ * ## Rule history
+ *
+ * - v0.0.100: ty used to have a rule called `invalid-key` that covered `invalid-typed-dict-key`,
+ *     `unknown-typed-dict-constructor-key`, and `non-literal-typed-dict-key`.
+ *
+ *     The old `invalid-key` name is now an alias for `invalid-typed-dict-key` only. If you previously
+ *     had any configuration for `invalid-key` specifically, you should go through the other two rules
+ *     to see if you want to configure them in the same way.
+ */
+export type DetectsInvalidKeysWhenAccessingTypedDictItems = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
  * Detects statements other than annotated declarations in `TypedDict` class bodies.
  *
  * ## Why is this bad?
@@ -3696,6 +4108,53 @@ export type ReportsRuntimeChecksAgainstTypedDictClasses = Ignore | Warn | Error;
 /**
  * ## What it does
  *
+ * Detects method overrides that rename a positional-or-keyword parameter or make it positional-only.
+ *
+ * ## Why is this bad?
+ *
+ * Code that uses the base class's interface can pass the argument by keyword. The same call may raise
+ * `TypeError` on an instance of the subclass.
+ *
+ * ## Example
+ *
+ * ```python
+ * class Base:
+ *     def scale(self, factor: int) -> int:
+ *         return factor * 2
+ *
+ *
+ * class Wrong1(Base):
+ *     # error: [lost-keyword-for-regular-parameter]
+ *     def scale(self, multiplier: int) -> int:
+ *         return multiplier * 3
+ *
+ *
+ * class Wrong2(Base):
+ *     # error: [lost-keyword-for-regular-parameter]
+ *     def scale(self, factor: int, /) -> int:
+ *         return factor * 3
+ *
+ *
+ * def scale_by_two(obj: Base) -> int:
+ *     return obj.scale(factor=2)
+ *
+ *
+ * scale_by_two(Wrong1())  # Raise TypeError
+ * scale_by_two(Wrong2())  # Raise TypeError
+ * ```
+ *
+ * To fix this, rename `multiplier` to `factor` in `Wrong1.scale`, or remove the positional-only
+ * modifier `/` in `Wrong2.scale`.
+ *
+ * ## See also
+ *
+ * - `incompatible-method-override` reports other signature incompatibilities, such as a narrower
+ *     parameter type or an incompatible return type, even when the override also drops a keyword name.
+ */
+export type DetectsMethodOverridesThatDropAPositionalParameterSKeywordName = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
  * Checks for `builtins.sentinel` and `typing_extensions.Sentinel` definitions whose name argument does
  * not match the variable they are assigned to. In class scope, the name can be unqualified or include
  * the full enclosing class path.
@@ -3771,6 +4230,41 @@ export type DetectsFunctionalTypingDefinitionsWhoseDeclaredNameDoesNotMatchTheAs
 /**
  * ## What it does
  *
+ * Checks for `@final` or `@override` decorators applied to the wrong definition of an overloaded
+ * method. If the overload set has an implementation function, put the decorator on the implementation.
+ * Otherwise, e.g. in a stub file, put the decorator on the first overload.
+ *
+ * ## Why is this bad?
+ *
+ * These decorators apply to the whole method. Placing one on an individual overload suggests that only
+ * that overload is final or overrides a superclass method.
+ *
+ * ## Example
+ *
+ * ```pyi
+ * from typing_extensions import overload, override
+ *
+ * class Decoder:
+ *     def decode(self, data: bytes) -> str: ...
+ *
+ * class BatchDecoder(Decoder):
+ *     @overload
+ *     def decode(self, data: bytes) -> str: ...
+ *     @overload
+ *     @override
+ *     def decode(self, data: list[bytes]) -> list[str]: ...  # error
+ * ```
+ *
+ * Move `@override` to the first overload of `BatchDecoder.decode`.
+ *
+ * ## References
+ *
+ * - [Typing specification: Invalid overload definitions](https://typing.python.org/en/latest/spec/overload.html#invalid-overload-definitions)
+ */
+export type DetectsMisplacedFinalOrOverrideDecoratorsOnOverloadedMethods = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
  * Checks for missing required arguments in a call.
  *
  * ## Why is this bad?
@@ -3788,6 +4282,39 @@ export type DetectsFunctionalTypingDefinitionsWhoseDeclaredNameDoesNotMatchTheAs
  * ```
  */
 export type DetectsMissingRequiredArgumentsInACall = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Checks for references to attributes that ty cannot find on the object's type. For a union, this rule
+ * applies when every member lacks the attribute. If only some members lack it, ty reports
+ * `missing-union-attribute`.
+ *
+ * ## Why is this bad?
+ *
+ * Accessing an unbound attribute will raise an `AttributeError` at runtime. An unresolved attribute is
+ * not guaranteed to exist from the type alone, so this could also indicate that the object is not of
+ * the type that the user expects.
+ *
+ * ## Examples
+ *
+ * ```python
+ * class A: ...
+ *
+ *
+ * # AttributeError: 'A' object has no attribute 'foo'
+ * A().foo  # error
+ * ```
+ *
+ * ## Rule history
+ *
+ * - v0.0.100: ty used to have a rule called `unresolved-attribute` that covered both
+ *     `missing-attribute` and `missing-union-attribute`.
+ *
+ *     The old `unresolved-attribute` name is now an alias for `missing-attribute` only. If you
+ *     previously had any configuration for `unresolved-attribute` specifically, you should go through
+ *     `missing-union-attribute` to see if you want to configure it in the same way.
+ */
+export type DetectsReferencesToMissingAttributes = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -3861,6 +4388,41 @@ export type DetectsMissingRequiredArgumentsInACall = Ignore | Warn | Error;
  * Add `urllib3` to `project.dependencies` if your code imports it directly.
  */
 export type DetectsImportsOfDependenciesThatAreNotDeclaredDirectly = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Checks for overloaded functions and methods without a required implementation. An implementation can
+ * be omitted in any of the following cases:
+ *
+ * - The overloads are defined in a stub file (`.pyi`).
+ * - All overloads are defined inside `if TYPE_CHECKING` blocks.
+ * - The overloaded method is defined in a protocol.
+ * - The method is defined in an abstract base class and every overload is decorated with
+ *     `@abstractmethod`.
+ *
+ * ## Why is this bad?
+ *
+ * The `@overload` definitions describe the calls a type checker should accept. A separate
+ * implementation handles those calls at runtime. Calling an overloaded function without an
+ * implementation raises `NotImplementedError`.
+ *
+ * ## Example
+ *
+ * ```py
+ * from typing import overload
+ *
+ *
+ * @overload
+ * def foo() -> None: ...  # error
+ * @overload
+ * def foo(x: int) -> int: ...
+ * ```
+ *
+ * ## References
+ *
+ * - [Python documentation: `@overload`](https://docs.python.org/3/library/typing.html#typing.overload)
+ */
+export type DetectsOverloadedFunctionsMissingARequiredImplementation = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -4041,6 +4603,38 @@ export type DetectsMissingRequiredKeysInTypedDictConstructors = Ignore | Warn | 
 /**
  * ## What it does
  *
+ * Checks for reads or deletions of attributes that are present on some members of a union and missing
+ * from others.
+ *
+ * ## Why is this bad?
+ *
+ * Reading or deleting the attribute raises an `AttributeError` when the runtime value lacks it.
+ *
+ * ## Examples
+ *
+ * ```python
+ * def normalize(value: str | bytes) -> str:
+ *     return value.decode()  # error: [missing-union-attribute]
+ * ```
+ *
+ * Narrow the type before accessing the attribute:
+ *
+ * ```python
+ * def normalize(value: str | bytes) -> str:
+ *     if isinstance(value, bytes):
+ *         return value.decode()
+ *     return value
+ * ```
+ *
+ * ## See also
+ *
+ * - `missing-attribute` reports attributes missing from every union member and explains how to migrate
+ *     from `unresolved-attribute`.
+ */
+export type DetectsAttributeAccessesWhereSomeUnionMembersLackTheAttribute = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
  * Checks for calls to an overloaded function that do not match any of the overloads.
  *
  * ## Why is this bad?
@@ -4090,6 +4684,74 @@ export type DetectsCallsThatDoNotMatchAnyOverload = Ignore | Warn | Error;
  * - [Python data model: Customizing class creation](https://docs.python.org/3/reference/datamodel.html#customizing-class-creation)
  */
 export type DetectsClassDefinitionsThatWillFailDueToNonCallable_InitSubclass__ = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Reports attempts to subscript `TypedDict` instances with a key of type `str`.
+ *
+ * ## Why is this bad?
+ *
+ * A `TypedDict` declares a mapping type where a known set of keys may exist and each key may have a
+ * distinct value type. Given an arbitrary `str`, ty cannot check for possible `KeyError`s, and cannot
+ * infer a precise type for the subscript expression.
+ *
+ * ## Example
+ *
+ * ```python
+ * from typing import TypedDict
+ *
+ *
+ * class Movie(TypedDict):
+ *     title: str
+ *     year: int
+ *
+ *
+ * def get_field(movie: Movie, key: str) -> str | int:
+ *     return movie[key]  # error: [non-literal-typed-dict-key]
+ * ```
+ *
+ * Use instead:
+ *
+ * ```py
+ * from typing import Literal
+ *
+ *
+ * def get_known_field(movie: Movie, key: Literal["title", "year"]) -> str | int:
+ *     return movie[key]
+ * ```
+ *
+ * ## See also
+ *
+ * - `invalid-typed-dict-key` reports other invalid subscripts, such as a misspelled field name or an
+ *     integer key.
+ */
+export type DetectsNonLiteralStringKeysInTypedDictSubscripts = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
+ * Checks for calls to non-callable objects.
+ *
+ * ## Why is this bad?
+ *
+ * Calling a non-callable object will raise a `TypeError` at runtime.
+ *
+ * ## Example
+ *
+ * ```python
+ * # TypeError: 'int' object is not callable
+ * 4()  # error
+ * ```
+ *
+ * ## See also
+ *
+ * - `abstract-class-instantiation` reports attempts to instantiate a protocol class or a class with
+ *     unimplemented abstract methods.
+ *
+ * ## Rule history
+ *
+ * - v0.0.102: Renamed from `call-non-callable`, which remains as a deprecated alias for this rule.
+ */
+export type DetectsCallsToNonCallableObjects = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -5131,6 +5793,47 @@ export type DetectsTypeVariablesThatShadowTypeVariablesFromOuterScopes = Ignore 
 /**
  * ## What it does
  *
+ * Checks for functions and methods with only one `@overload` declaration.
+ *
+ * ## Why is this bad?
+ *
+ * An overload describes one of several ways to call a function. If one signature describes all valid
+ * calls, keep the implementation and remove the overload declaration. In a stub file, keep the
+ * declaration and remove the `@overload` decorator.
+ *
+ * ## Example
+ *
+ * ```py
+ * from typing import overload
+ *
+ *
+ * # This overload definition can be removed.
+ * @overload
+ * def foo(x: int) -> int: ...  # error: [single-overload]
+ * def foo(x: int) -> int:
+ *     return x
+ * ```
+ *
+ * ## References
+ *
+ * - [Typing specification: Invalid overload definitions](https://typing.python.org/en/latest/spec/overload.html#invalid-overload-definitions)
+ *
+ * ## Rule history
+ *
+ * - v0.0.102: Changed the default severity from `error` to `warn`.
+ *
+ * - v0.0.100: ty used to have a rule called `invalid-overload` that covered `single-overload`,
+ *     `missing-overload-implementation`, `inconsistent-overload-implementation`,
+ *     `inconsistent-overload-decorator`, and `misplaced-overload-decorator`.
+ *
+ *     The old `invalid-overload` rule was removed. If you previously had any configuration for
+ *     `invalid-overload` specifically, you should go through the five rules to see if you want to
+ *     configure them in the same way.
+ */
+export type DetectsFunctionsWithOnlyOneOverloadDeclaration = Ignore | Warn | Error;
+/**
+ * ## What it does
+ *
  * Makes sure that the argument of `static_assert` is statically known to be true.
  *
  * ## Why is this bad?
@@ -5567,25 +6270,52 @@ export type DetectsUnknownKeywordArgumentsInCalls = Ignore | Warn | Error;
 /**
  * ## What it does
  *
- * Checks for unresolved attributes.
+ * Reports `TypedDict` constructions where an unknown key is or may be provided.
  *
  * ## Why is this bad?
  *
- * Accessing an unbound attribute will raise an `AttributeError` at runtime. An unresolved attribute is
- * not guaranteed to exist from the type alone, so this could also indicate that the object is not of
- * the type that the user expects.
+ * An unexpected key in a constructor often means a field name was misspelled. Even an implicitly open
+ * `TypedDict` rejects an explicitly supplied key it does not declare.
  *
  * ## Examples
  *
  * ```python
- * class A: ...
+ * from typing_extensions import TypedDict, NotRequired
  *
  *
- * # AttributeError: 'A' object has no attribute 'foo'
- * A().foo  # error
+ * class Person(TypedDict):
+ *     name: str
+ *     age: NotRequired[int]
+ *
+ *
+ * # error: "Unknown key "aeg""
+ * carol = Person(name="Carol", aeg=25)  # typo!
+ *
+ *
+ * # error: "Unknown key "nickname""
+ * bob: Person = {"name": "Robert", "nickname": "Bob", "age": 30}  # unknown key!
+ * ```
+ *
+ * If a `TypedDict` is declared with `closed=True`, this rule will also flag a string key being passed
+ * to the constructor, as this might introduce an illegal extra item:
+ *
+ * ```py
+ * import json
+ * from typing_extensions import TypedDict
+ *
+ *
+ * class NotificationPatch(TypedDict, closed=True, total=False):
+ *     email: bool
+ *     sms: bool
+ *
+ *
+ * def encode_patch(channel: str, enabled: bool) -> str:
+ *     # error: "Non-literal string key may be unknown"
+ *     payload: NotificationPatch = {channel: enabled}
+ *     return json.dumps(payload)
  * ```
  */
-export type DetectsReferencesToUnresolvedAttributes = Ignore | Warn | Error;
+export type DetectsUnknownKeysWhenConstructingATypedDict = Ignore | Warn | Error;
 /**
  * ## What it does
  *
@@ -5768,8 +6498,8 @@ export type DetectsReferencesToNamesThatAreNotDefined = Ignore | Warn | Error;
  *
  * ## See also
  *
- * - `unsound-return-statement` is a similar rule that triggers on unsound `return` statements rather
- *     than unsound assignments
+ * - `unsound-return` is a similar rule that triggers on unsound `return` statements rather than
+ *     unsound assignments
  * - `unsound-yield` is a similar rule that triggers on unsound `yield` expressions rather than unsound
  *     assignments
  *
@@ -5784,7 +6514,7 @@ export type DetectsAssignmentsThatUnsoundlyAssignATypeThatIsNotASubtypeOfTheDecl
  * Detects `return` statements that unsoundly return a type that is not a [subtype] of the function's
  * annotated return type.
  *
- * This lint is a stricter version of `invalid-return-type`.
+ * This lint is a stricter version of `invalid-explicit-return`.
  *
  * ## Why is this bad?
  *
@@ -5896,6 +6626,12 @@ export type DetectsAssignmentsThatUnsoundlyAssignATypeThatIsNotASubtypeOfTheDecl
  * - `unsound-yield` is a similar rule that triggers on unsound `yield` expressions rather than unsound
  *     `return` statements
  * - `unsound-assignment` is a similar rule that triggers on unsound assignments
+ *
+ * ## Rule history
+ *
+ * - v0.0.70: Added as `unsound-return-statement`.
+ * - v0.0.102: Renamed to `unsound-return`. `unsound-return-statement` remains as a compatibility alias
+ *     for this rule.
  *
  * [ann201]: https://docs.astral.sh/ruff/rules/missing-return-type-undocumented-public-function/
  * [ann202]: https://docs.astral.sh/ruff/rules/missing-return-type-private-function/
@@ -6031,8 +6767,8 @@ export type DetectsReturnStatementsThatUnsoundlyReturnATypeThatIsNotASubtypeOfTh
  *
  * ## See also
  *
- * - `unsound-return-statement` is a similar rule that triggers on unsound `return` statements rather
- *     than unsound `yield` expressions
+ * - `unsound-return` is a similar rule that triggers on unsound `return` statements rather than
+ *     unsound `yield` expressions
  * - `unsound-assignment` is a similar rule that triggers on unsound assignments
  *
  * [ann201]: https://docs.astral.sh/ruff/rules/missing-return-type-undocumented-public-function/
@@ -8121,10 +8857,6 @@ export type TestingFramework = LegacyConfig | (ConfigOptionsPytest & ConfigOptio
 export type INIStylePytestConfigurationOptions = IniOptionsPytest & IniOptionsAsyncio;
 export type Checks = string[];
 /**
- * command as a string
- */
-export type Command = string;
-/**
  * use variables flag
  */
 export type UseVariables = boolean;
@@ -8947,6 +9679,7 @@ export interface ToolSpecificConfiguration {
   cibuildwheel?: WheelBuilder;
   fastapi?: WebFramework;
   scheduled?: ScheduledJobs;
+  workers?: BackgroundWorkers;
   inwards?: ArchitectureLinter;
   mypy?: StaticTypeChecker;
   ruff?: LinterAndFormatter;
@@ -8983,6 +9716,7 @@ export interface ToolSpecificConfiguration {
     | WheelBuilder
     | WebFramework
     | ScheduledJobs
+    | BackgroundWorkers
     | ArchitectureLinter
     | StaticTypeChecker
     | LinterAndFormatter
@@ -9502,6 +10236,44 @@ export interface ScheduledJobs {
 export interface ScheduledJob {
   every: Every;
   entrypoint: Entrypoint;
+}
+/**
+ * **Workers** lets you define your project's background programs in one place: the `pyproject.toml` file.
+ *
+ * These programs are called **workers**. They keep running to do work, like sending emails or processing files.
+ *
+ * A **provider** is a service or tool that runs your application. Providers can support this format to read your configuration and start your workers.
+ *
+ * Each worker needs a name and a **command** to run.
+ *
+ * ```toml
+ * [tool.workers.my-background-worker]
+ * command = "python -m app.worker"
+ *
+ * [tool.workers.my-tasks-worker]
+ * command = "celery -A app.celery worker"
+ *
+ * [tool.workers.some-important-reports]
+ * command = "sheppy work"
+ * ```
+ *
+ * You choose the worker names: `my-background-worker`, `my-tasks-worker`, and `some-important-reports` in this example.
+ *
+ * The provider runs each worker's command in a separate process.
+ */
+export interface BackgroundWorkers {
+  [k: string]: Worker | undefined;
+}
+/**
+ * A background worker. The table key under `[tool.workers]` is the worker's ID, a name you choose, like `my-tasks-worker` or `reports`. If you want several workers, give each one a different ID.
+ *
+ * ```toml
+ * [tool.workers.<worker-id>]
+ * command = "<command to run>"
+ * ```
+ */
+export interface Worker {
+  command: Command;
 }
 /**
  * Architecture linter for Python: layers, bounded contexts and package shapes.
@@ -11266,6 +12038,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -11896,6 +12671,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -12340,6 +13117,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -13019,9 +13797,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -13085,6 +13863,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -13228,6 +14007,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -13274,6 +14054,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -13699,6 +14480,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -14329,6 +15113,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -14773,6 +15559,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -15452,9 +16239,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -15518,6 +16305,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -15661,6 +16449,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -15707,6 +16496,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -16135,6 +16925,9 @@ export interface LinterAndFormatter {
           | 'ASYNC25'
           | 'ASYNC250'
           | 'ASYNC251'
+          | 'ASYNC4'
+          | 'ASYNC40'
+          | 'ASYNC401'
           | 'B'
           | 'B0'
           | 'B00'
@@ -16765,6 +17558,8 @@ export interface LinterAndFormatter {
           | 'PLE0117'
           | 'PLE0118'
           | 'PLE02'
+          | 'PLE021'
+          | 'PLE0211'
           | 'PLE023'
           | 'PLE0237'
           | 'PLE024'
@@ -17209,6 +18004,7 @@ export interface LinterAndFormatter {
           | 'RUF20'
           | 'RUF200'
           | 'RUF201'
+          | 'RUF202'
           | 'S'
           | 'S1'
           | 'S10'
@@ -17888,9 +18684,9 @@ export interface LinterAndFormatter {
           | 'missing-required-import'
           | 'missing-return-type-class-method'
           | 'missing-return-type-private-function'
+          | 'missing-return-type-public-function'
           | 'missing-return-type-special-method'
           | 'missing-return-type-static-method'
-          | 'missing-return-type-undocumented-public-function'
           | 'missing-section-name-colon'
           | 'missing-section-underline-after-name'
           | 'missing-space-after-todo-colon'
@@ -17954,6 +18750,7 @@ export interface LinterAndFormatter {
           | 'no-explicit-stacklevel'
           | 'no-indented-block'
           | 'no-indented-block-comment'
+          | 'no-method-argument'
           | 'no-return-argument-annotation-in-stub'
           | 'no-self-use'
           | 'no-slots-in-namedtuple-subclass'
@@ -18097,6 +18894,7 @@ export interface LinterAndFormatter {
           | 'pytest-parametrize-values-wrong-type'
           | 'pytest-patch-with-lambda'
           | 'pytest-raises-ambiguous-pattern'
+          | 'pytest-raises-exception-group'
           | 'pytest-raises-too-broad'
           | 'pytest-raises-with-multiple-statements'
           | 'pytest-raises-without-exception'
@@ -18143,6 +18941,7 @@ export interface LinterAndFormatter {
           | 'reimplemented-operator'
           | 'reimplemented-starmap'
           | 'relative-imports'
+          | 'renamed-rule'
           | 'repeated-append'
           | 'repeated-equality-comparison'
           | 'repeated-global'
@@ -18561,6 +19360,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -19191,6 +19993,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -19635,6 +20439,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -20314,9 +21119,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -20380,6 +21185,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -20523,6 +21329,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -20569,6 +21376,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -21003,6 +21811,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -21633,6 +22444,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -22077,6 +22890,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -22756,9 +23570,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -22822,6 +23636,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -22965,6 +23780,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -23011,6 +23827,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -23428,6 +24245,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -24058,6 +24878,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -24502,6 +25324,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -25181,9 +26004,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -25247,6 +26070,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -25390,6 +26214,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -25436,6 +26261,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -25853,6 +26679,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -26483,6 +27312,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -26927,6 +27758,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -27606,9 +28438,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -27672,6 +28504,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -27815,6 +28648,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -27861,6 +28695,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -28309,6 +29144,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -28939,6 +29777,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -29383,6 +30223,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -30062,9 +30903,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -30128,6 +30969,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -30271,6 +31113,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -30317,6 +31160,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -30845,6 +31689,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -31475,6 +32322,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -31919,6 +32768,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -32598,9 +33448,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -32664,6 +33514,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -32807,6 +33658,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -32853,6 +33705,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -33411,6 +34264,9 @@ export interface LinterAndFormatter {
           | 'ASYNC25'
           | 'ASYNC250'
           | 'ASYNC251'
+          | 'ASYNC4'
+          | 'ASYNC40'
+          | 'ASYNC401'
           | 'B'
           | 'B0'
           | 'B00'
@@ -34041,6 +34897,8 @@ export interface LinterAndFormatter {
           | 'PLE0117'
           | 'PLE0118'
           | 'PLE02'
+          | 'PLE021'
+          | 'PLE0211'
           | 'PLE023'
           | 'PLE0237'
           | 'PLE024'
@@ -34485,6 +35343,7 @@ export interface LinterAndFormatter {
           | 'RUF20'
           | 'RUF200'
           | 'RUF201'
+          | 'RUF202'
           | 'S'
           | 'S1'
           | 'S10'
@@ -35164,9 +36023,9 @@ export interface LinterAndFormatter {
           | 'missing-required-import'
           | 'missing-return-type-class-method'
           | 'missing-return-type-private-function'
+          | 'missing-return-type-public-function'
           | 'missing-return-type-special-method'
           | 'missing-return-type-static-method'
-          | 'missing-return-type-undocumented-public-function'
           | 'missing-section-name-colon'
           | 'missing-section-underline-after-name'
           | 'missing-space-after-todo-colon'
@@ -35230,6 +36089,7 @@ export interface LinterAndFormatter {
           | 'no-explicit-stacklevel'
           | 'no-indented-block'
           | 'no-indented-block-comment'
+          | 'no-method-argument'
           | 'no-return-argument-annotation-in-stub'
           | 'no-self-use'
           | 'no-slots-in-namedtuple-subclass'
@@ -35373,6 +36233,7 @@ export interface LinterAndFormatter {
           | 'pytest-parametrize-values-wrong-type'
           | 'pytest-patch-with-lambda'
           | 'pytest-raises-ambiguous-pattern'
+          | 'pytest-raises-exception-group'
           | 'pytest-raises-too-broad'
           | 'pytest-raises-with-multiple-statements'
           | 'pytest-raises-without-exception'
@@ -35419,6 +36280,7 @@ export interface LinterAndFormatter {
           | 'reimplemented-operator'
           | 'reimplemented-starmap'
           | 'relative-imports'
+          | 'renamed-rule'
           | 'repeated-append'
           | 'repeated-equality-comparison'
           | 'repeated-global'
@@ -35910,6 +36772,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -36540,6 +37405,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -36984,6 +37851,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -37663,9 +38531,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -37729,6 +38597,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -37872,6 +38741,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -37918,6 +38788,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -38429,6 +39300,9 @@ export interface LinterAndFormatter {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -39059,6 +39933,8 @@ export interface LinterAndFormatter {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -39503,6 +40379,7 @@ export interface LinterAndFormatter {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -40182,9 +41059,9 @@ export interface LinterAndFormatter {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -40248,6 +41125,7 @@ export interface LinterAndFormatter {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -40391,6 +41269,7 @@ export interface LinterAndFormatter {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -40437,6 +41316,7 @@ export interface LinterAndFormatter {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -42170,6 +43050,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -42800,6 +43683,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -43244,6 +44129,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -43923,9 +44809,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -43989,6 +44875,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -44132,6 +45019,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -44178,6 +45066,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -44603,6 +45492,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -45233,6 +46125,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -45677,6 +46571,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -46356,9 +47251,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -46422,6 +47317,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -46565,6 +47461,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -46611,6 +47508,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -47028,6 +47926,9 @@ export interface LintOptions {
           | 'ASYNC25'
           | 'ASYNC250'
           | 'ASYNC251'
+          | 'ASYNC4'
+          | 'ASYNC40'
+          | 'ASYNC401'
           | 'B'
           | 'B0'
           | 'B00'
@@ -47658,6 +48559,8 @@ export interface LintOptions {
           | 'PLE0117'
           | 'PLE0118'
           | 'PLE02'
+          | 'PLE021'
+          | 'PLE0211'
           | 'PLE023'
           | 'PLE0237'
           | 'PLE024'
@@ -48102,6 +49005,7 @@ export interface LintOptions {
           | 'RUF20'
           | 'RUF200'
           | 'RUF201'
+          | 'RUF202'
           | 'S'
           | 'S1'
           | 'S10'
@@ -48781,9 +49685,9 @@ export interface LintOptions {
           | 'missing-required-import'
           | 'missing-return-type-class-method'
           | 'missing-return-type-private-function'
+          | 'missing-return-type-public-function'
           | 'missing-return-type-special-method'
           | 'missing-return-type-static-method'
-          | 'missing-return-type-undocumented-public-function'
           | 'missing-section-name-colon'
           | 'missing-section-underline-after-name'
           | 'missing-space-after-todo-colon'
@@ -48847,6 +49751,7 @@ export interface LintOptions {
           | 'no-explicit-stacklevel'
           | 'no-indented-block'
           | 'no-indented-block-comment'
+          | 'no-method-argument'
           | 'no-return-argument-annotation-in-stub'
           | 'no-self-use'
           | 'no-slots-in-namedtuple-subclass'
@@ -48990,6 +49895,7 @@ export interface LintOptions {
           | 'pytest-parametrize-values-wrong-type'
           | 'pytest-patch-with-lambda'
           | 'pytest-raises-ambiguous-pattern'
+          | 'pytest-raises-exception-group'
           | 'pytest-raises-too-broad'
           | 'pytest-raises-with-multiple-statements'
           | 'pytest-raises-without-exception'
@@ -49036,6 +49942,7 @@ export interface LintOptions {
           | 'reimplemented-operator'
           | 'reimplemented-starmap'
           | 'relative-imports'
+          | 'renamed-rule'
           | 'repeated-append'
           | 'repeated-equality-comparison'
           | 'repeated-global'
@@ -49453,6 +50360,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -50083,6 +50993,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -50527,6 +51439,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -51206,9 +52119,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -51272,6 +52185,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -51415,6 +52329,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -51461,6 +52376,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -51894,6 +52810,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -52524,6 +53443,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -52968,6 +53889,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -53647,9 +54569,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -53713,6 +54635,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -53856,6 +54779,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -53902,6 +54826,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -54319,6 +55244,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -54949,6 +55877,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -55393,6 +56323,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -56072,9 +57003,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -56138,6 +57069,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -56281,6 +57213,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -56327,6 +57260,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -56743,6 +57677,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -57373,6 +58310,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -57817,6 +58756,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -58496,9 +59436,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -58562,6 +59502,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -58705,6 +59646,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -58751,6 +59693,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -59174,6 +60117,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -59804,6 +60750,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -60248,6 +61196,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -60927,9 +61876,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -60993,6 +61942,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -61136,6 +62086,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -61182,6 +62133,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -61683,6 +62635,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -62313,6 +63268,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -62757,6 +63714,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -63436,9 +64394,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -63502,6 +64460,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -63645,6 +64604,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -63691,6 +64651,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -64155,6 +65116,9 @@ export interface LintOptions {
           | 'ASYNC25'
           | 'ASYNC250'
           | 'ASYNC251'
+          | 'ASYNC4'
+          | 'ASYNC40'
+          | 'ASYNC401'
           | 'B'
           | 'B0'
           | 'B00'
@@ -64785,6 +65749,8 @@ export interface LintOptions {
           | 'PLE0117'
           | 'PLE0118'
           | 'PLE02'
+          | 'PLE021'
+          | 'PLE0211'
           | 'PLE023'
           | 'PLE0237'
           | 'PLE024'
@@ -65229,6 +66195,7 @@ export interface LintOptions {
           | 'RUF20'
           | 'RUF200'
           | 'RUF201'
+          | 'RUF202'
           | 'S'
           | 'S1'
           | 'S10'
@@ -65908,9 +66875,9 @@ export interface LintOptions {
           | 'missing-required-import'
           | 'missing-return-type-class-method'
           | 'missing-return-type-private-function'
+          | 'missing-return-type-public-function'
           | 'missing-return-type-special-method'
           | 'missing-return-type-static-method'
-          | 'missing-return-type-undocumented-public-function'
           | 'missing-section-name-colon'
           | 'missing-section-underline-after-name'
           | 'missing-space-after-todo-colon'
@@ -65974,6 +66941,7 @@ export interface LintOptions {
           | 'no-explicit-stacklevel'
           | 'no-indented-block'
           | 'no-indented-block-comment'
+          | 'no-method-argument'
           | 'no-return-argument-annotation-in-stub'
           | 'no-self-use'
           | 'no-slots-in-namedtuple-subclass'
@@ -66117,6 +67085,7 @@ export interface LintOptions {
           | 'pytest-parametrize-values-wrong-type'
           | 'pytest-patch-with-lambda'
           | 'pytest-raises-ambiguous-pattern'
+          | 'pytest-raises-exception-group'
           | 'pytest-raises-too-broad'
           | 'pytest-raises-with-multiple-statements'
           | 'pytest-raises-without-exception'
@@ -66163,6 +67132,7 @@ export interface LintOptions {
           | 'reimplemented-operator'
           | 'reimplemented-starmap'
           | 'relative-imports'
+          | 'renamed-rule'
           | 'repeated-append'
           | 'repeated-equality-comparison'
           | 'repeated-global'
@@ -66622,6 +67592,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -67252,6 +68225,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -67696,6 +68671,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -68375,9 +69351,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -68441,6 +69417,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -68584,6 +69561,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -68630,6 +69608,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -69073,6 +70052,9 @@ export interface LintOptions {
         | 'ASYNC25'
         | 'ASYNC250'
         | 'ASYNC251'
+        | 'ASYNC4'
+        | 'ASYNC40'
+        | 'ASYNC401'
         | 'B'
         | 'B0'
         | 'B00'
@@ -69703,6 +70685,8 @@ export interface LintOptions {
         | 'PLE0117'
         | 'PLE0118'
         | 'PLE02'
+        | 'PLE021'
+        | 'PLE0211'
         | 'PLE023'
         | 'PLE0237'
         | 'PLE024'
@@ -70147,6 +71131,7 @@ export interface LintOptions {
         | 'RUF20'
         | 'RUF200'
         | 'RUF201'
+        | 'RUF202'
         | 'S'
         | 'S1'
         | 'S10'
@@ -70826,9 +71811,9 @@ export interface LintOptions {
         | 'missing-required-import'
         | 'missing-return-type-class-method'
         | 'missing-return-type-private-function'
+        | 'missing-return-type-public-function'
         | 'missing-return-type-special-method'
         | 'missing-return-type-static-method'
-        | 'missing-return-type-undocumented-public-function'
         | 'missing-section-name-colon'
         | 'missing-section-underline-after-name'
         | 'missing-space-after-todo-colon'
@@ -70892,6 +71877,7 @@ export interface LintOptions {
         | 'no-explicit-stacklevel'
         | 'no-indented-block'
         | 'no-indented-block-comment'
+        | 'no-method-argument'
         | 'no-return-argument-annotation-in-stub'
         | 'no-self-use'
         | 'no-slots-in-namedtuple-subclass'
@@ -71035,6 +72021,7 @@ export interface LintOptions {
         | 'pytest-parametrize-values-wrong-type'
         | 'pytest-patch-with-lambda'
         | 'pytest-raises-ambiguous-pattern'
+        | 'pytest-raises-exception-group'
         | 'pytest-raises-too-broad'
         | 'pytest-raises-with-multiple-statements'
         | 'pytest-raises-without-exception'
@@ -71081,6 +72068,7 @@ export interface LintOptions {
         | 'reimplemented-operator'
         | 'reimplemented-starmap'
         | 'relative-imports'
+        | 'renamed-rule'
         | 'repeated-append'
         | 'repeated-equality-comparison'
         | 'repeated-global'
@@ -72167,73 +73155,75 @@ export interface OverrideOptions {
 }
 export interface Rules1 {
   'abstract-and-final-method'?: DetectsMethodsThatAreBothAbstractAndFinal;
+  'abstract-class-instantiation'?: DetectsDirectInstantiationOfAbstractClassesAndProtocols;
+  'abstract-method-call'?: DetectsCallsToAbstractMethodsWithTrivialBodiesOnClassObjects;
   'abstract-method-in-final-class'?: DetectsFinalClassesWithUnimplementedAbstractMethods;
   all?: SetTheDefaultSeverityLevelForAllRules;
   'ambiguous-protocol-member'?: DetectsProtocolClassesWithAmbiguousInterfaces;
   'assert-type-unspellable-subtype'?: DetectsFailedTypeAssertions;
   'blanket-ignore-comment'?: DetectsBlanketTyIgnoreComments;
-  'call-abstract-method'?: DetectsCallsToAbstractMethodsWithTrivialBodiesOnClassObjects;
-  'call-non-callable'?: DetectsCallsToNonCallableObjects;
-  'call-top-callable'?: DetectsCallsToTheTopCallableType;
+  'call-to-function-with-unknown-signature'?: DetectsCallsToTheTopCallableType;
   'conflicting-declarations'?: DetectsConflictingDeclarations;
   'conflicting-metaclass'?: DetectsConflictingMetaclasses;
   'cyclic-class-definition'?: DetectsCyclicClassDefinitions;
   'cyclic-type-alias-definition'?: DetectsCyclicTypeAliasDefinitions;
-  'dataclass-field-order'?: DetectsDataclassDefinitionsWithRequiredFieldsAfterFieldsWithDefaultValues;
   deprecated?: DetectsUsesOfDeprecatedItems;
   'disjoint-cast'?: DetectsCastCallsBetweenDisjointTypes;
   'division-by-zero'?: DetectsDivisionByZero;
   'duplicate-base'?: DetectsClassDefinitionsWithDuplicateBases;
   'duplicate-kw-only'?: DetectsDataclassDefinitionsWithMoreThanOneUsageOfKW_ONLY;
   'dynamic-function-decorator-return'?: DetectsDecoratorsThatReplaceAFunctionWithADynamicTypeSuchAsAny;
-  'empty-body'?: DetectsFunctionsWithEmptyBodiesThatHaveANonNoneReturnTypeAnnotation;
   'escape-character-in-forward-annotation'?: DetectsForwardTypeAnnotationsWithEscapeCharacters;
   'experimental-syntax'?: DetectsExperimentalSyntax;
   'final-on-non-method'?: DetectsFinalAppliedToNonMethodFunctions;
   'final-without-value'?: DetectsFinalDeclarationsWithoutAValue;
   'ignore-comment-unknown-rule'?: DetectsTyIgnoreCommentsThatReferenceUnknownRules;
-  'implicit-concatenated-string-type-annotation'?: DetectsImplicitConcatenatedStringsInTypeAnnotations;
+  'implicit-string-concatenation-in-annotation'?: DetectsTypeExpressionsWrittenAsMultipleAdjacentStringLiterals;
   'import-not-found'?: DetectsUnresolvedImports;
+  'incompatible-attribute-override'?: DetectsAttributeOverridesThatViolateInheritedTypeOrAccessRequirements;
+  'incompatible-method-override'?: DetectsMethodDefinitionsThatViolateTheLiskovSubstitutionPrinciple;
+  'incompatible-mutable-override'?: DetectsOverridesThatNarrowWritableAttributeTypes;
+  'incompatible-property-override'?: DetectsIncompatibleOverridesInvolvingProperties;
   'inconsistent-mro'?: DetectsClassDefinitionsWithAnInconsistentMRO;
+  'inconsistent-overload-decorator'?: DetectsInconsistentUseOfStaticmethodOrClassmethodOnOverloadedMethods;
+  'inconsistent-overload-implementation'?: DetectsImplementationsThatAreInconsistentWithTheirOverloads;
   'index-out-of-bounds'?: DetectsIndexOutOfBoundsErrors;
   'ineffective-final'?: DetectsCallsToFinalThatTypeCheckersCannotInterpret;
   'instance-layout-conflict'?: DetectsClassDefinitionsThatRaiseTypeErrorDueToInstanceLayoutConflict;
   'invalid-argument-type'?: DetectsCallArgumentsWhoseTypeIsNotAssignableToTheCorrespondingTypedParameter;
   'invalid-assignment'?: DetectsInvalidAssignments;
   'invalid-attribute-access'?: InvalidAttributeAccess;
-  'invalid-attribute-override'?: DetectsAttributeOverridesThatViolateInheritedTypeOrAccessRequirements;
   'invalid-await'?: DetectsAwaitingOnTypesThatDonTSupportIt;
   'invalid-base'?: DetectsClassBasesThatWillCauseTheClassDefinitionToRaiseAnExceptionAtRuntime;
   'invalid-context-manager'?: DetectsExpressionsUsedInWithStatementsThatDonTImplementTheContextManagerProtocol;
   'invalid-dataclass'?: DetectsInvalidDataclassApplications;
+  'invalid-dataclass-field-order'?: DetectsDataclassDefinitionsWithRequiredFieldsAfterFieldsWithDefaultValues;
   'invalid-dataclass-override'?: DetectsDataclassesWithFrozenTrueThatHaveACustom_Setattr__Or_Delattr__Implementation;
   'invalid-declaration'?: DetectsInvalidDeclarations;
   'invalid-enum-member-annotation'?: DetectsTypeAnnotationsOnEnumMembers;
   'invalid-exception-caught'?: DetectsExceptionHandlersThatCatchClassesThatDoNotInheritFromBaseException;
   'invalid-explicit-override'?: DetectsMethodsThatAreDecoratedWithOverrideButDoNotOverrideAnyMethodInASuperclass;
+  'invalid-explicit-return'?: DetectsReturnStatementsWhoseValueIsIncompatibleWithTheExpectedReturnType;
   'invalid-frozen-dataclass-subclass'?: DetectsDataclassesWithInvalidFrozenNonFrozenSubclassing;
+  'invalid-generator-return-type'?: DetectsGeneratorFunctionsWithIncompatibleReturnAnnotations;
   'invalid-generic-class'?: DetectsInvalidGenericClasses;
   'invalid-generic-enum'?: DetectsGenericEnumClasses;
   'invalid-ignore-comment'?: DetectsIgnoreCommentsThatUseInvalidSyntax;
+  'invalid-implicit-return'?: DetectsNonemptyFunctionsThatCanImplicitlyReturnAnIncompatibleNone;
+  'invalid-implicit-return-in-function-with-stub-body'?: DetectsFunctionsWithStubLikeBodiesWhoseReturnTypeExcludesNone;
   'invalid-init-type-variable'?: DetectsTypeVariablesFromOuterScopesIn_Init__ReceiverAnnotations;
-  'invalid-key'?: DetectsInvalidSubscriptAccessesOrTypedDictLiteralKeys;
   'invalid-legacy-positional-parameter'?: DetectsIncorrectUsageOfTheLegacyConventionForSpecifyingPositionalOnlyParameters;
   'invalid-legacy-type-variable'?: DetectsInvalidLegacyTypeVariables;
   'invalid-match-pattern'?: DetectInvalidMatchPatterns;
   'invalid-metaclass'?: DetectsInvalidMetaclassArguments;
-  'invalid-method-override'?: DetectsMethodDefinitionsThatViolateTheLiskovSubstitutionPrinciple;
   'invalid-module-getattr-call'?: DetectsImportsThatFailWhileCallingModuleLevel_Getattr__;
-  'invalid-mutable-override'?: DetectsOverridesThatNarrowWritableAttributeTypes;
   'invalid-named-tuple'?: DetectsInvalidNamedTupleClassDefinitions;
   'invalid-named-tuple-override'?: DetectsSubclassMembersThatOverrideInheritedNamedTupleFields;
   'invalid-newtype'?: DetectsInvalidNewTypeDefinitions;
-  'invalid-overload'?: DetectsInvalidOverloadUsages;
   'invalid-parameter-default'?: DetectsDefaultValuesThatCanTBeAssignedToTheParameterSAnnotatedType;
   'invalid-paramspec'?: DetectsInvalidParamSpecUsage;
-  'invalid-property-type-override'?: DetectsIncompatibleOverridesInvolvingProperties;
   'invalid-protocol'?: DetectsInvalidProtocolClassDefinitions;
   'invalid-raise'?: DetectsRaiseStatementsThatRaiseInvalidExceptionsOrUseInvalidCauses;
-  'invalid-return-type'?: DetectsReturnedValuesThatCanTBeAssignedToTheFunctionSAnnotatedReturnType;
   'invalid-super-argument'?: DetectsInvalidArgumentsForSuper;
   'invalid-syntax-in-forward-annotation'?: DetectsInvalidSyntaxInForwardAnnotations;
   'invalid-total-ordering'?: DetectsTotalOrderingClassesWithoutAnOrderingMethod;
@@ -72247,20 +73237,28 @@ export interface Rules1 {
   'invalid-type-variable-default'?: DetectsInvalidTypeVariableDefaults;
   'invalid-typed-dict-field'?: DetectsInvalidTypedDictFieldDeclarations;
   'invalid-typed-dict-header'?: DetectsInvalidStatementsInTypedDictClassHeaders;
+  'invalid-typed-dict-key'?: DetectsInvalidKeysWhenAccessingTypedDictItems;
   'invalid-typed-dict-statement'?: DetectsInvalidStatementsInTypedDictClassBodies;
   'invalid-yield'?: DetectsYieldExpressionsWhereTheYieldOrSendTypeIsIncompatibleWithTheAnnotatedReturnType;
   'isinstance-against-protocol'?: ReportsInvalidRuntimeChecksAgainstProtocolClasses;
   'isinstance-against-typed-dict'?: ReportsRuntimeChecksAgainstTypedDictClasses;
+  'lost-keyword-for-regular-parameter'?: DetectsMethodOverridesThatDropAPositionalParameterSKeywordName;
   'mismatched-sentinel-name'?: DetectsSentinelDefinitionsWhoseDeclaredNameDoesNotMatchTheAssignedVariable;
   'mismatched-type-name'?: DetectsFunctionalTypingDefinitionsWhoseDeclaredNameDoesNotMatchTheAssignedVariable;
+  'misplaced-overload-decorator'?: DetectsMisplacedFinalOrOverrideDecoratorsOnOverloadedMethods;
   'missing-argument'?: DetectsMissingRequiredArgumentsInACall;
+  'missing-attribute'?: DetectsReferencesToMissingAttributes;
   'missing-direct-dependency'?: DetectsImportsOfDependenciesThatAreNotDeclaredDirectly;
+  'missing-overload-implementation'?: DetectsOverloadedFunctionsMissingARequiredImplementation;
   'missing-override-decorator'?: DetectsMethodsThatOverrideASuperclassMemberWithoutAnOverrideAnnotation;
   'missing-slot'?: DetectsAssignmentsToDeclaredAttributesWithoutInstanceStorage;
   'missing-type-argument'?: DetectsGenericTypesUsedWithoutExplicitTypeParametersInTypeExpressions;
   'missing-typed-dict-key'?: DetectsMissingRequiredKeysInTypedDictConstructors;
+  'missing-union-attribute'?: DetectsAttributeAccessesWhereSomeUnionMembersLackTheAttribute;
   'no-matching-overload'?: DetectsCallsThatDoNotMatchAnyOverload;
   'non-callable-init-subclass'?: DetectsClassDefinitionsThatWillFailDueToNonCallable_InitSubclass__;
+  'non-literal-typed-dict-key'?: DetectsNonLiteralStringKeysInTypedDictSubscripts;
+  'not-callable'?: DetectsCallsToNonCallableObjects;
   'not-iterable'?: DetectsIterationOverAnObjectThatIsNotIterable;
   'not-subscriptable'?: DetectsSubscriptingObjectsThatDoNotSupportSubscripting;
   'override-of-final-method'?: DetectsOverridesOfFinalMethods;
@@ -72280,6 +73278,7 @@ export interface Rules1 {
   'redundant-final-classvar'?: DetectsRedundantCombinationsOfClassVarAndFinal;
   'renamed-rule-in-ignore-comment'?: DetectsIgnoreCommentsThatUseARuleSOldName;
   'shadowed-type-variable'?: DetectsTypeVariablesThatShadowTypeVariablesFromOuterScopes;
+  'single-overload'?: DetectsFunctionsWithOnlyOneOverloadDeclaration;
   'static-assert-error'?: FailedStaticAssertion;
   'subclass-of-dataclass-with-order'?: DetectsSubclassesOfDataclassesWithOrderTrue;
   'subclass-of-final-class'?: DetectsSubclassesOfFinalClasses;
@@ -72293,11 +73292,11 @@ export interface Rules1 {
   'unbound-type-variable'?: DetectsTypeVariablesUsedOutsideOfTheirBoundScope;
   'undefined-reveal'?: DetectsUsagesOfRevealTypeWithoutImportingIt;
   'unknown-argument'?: DetectsUnknownKeywordArgumentsInCalls;
-  'unresolved-attribute'?: DetectsReferencesToUnresolvedAttributes;
+  'unknown-typed-dict-constructor-key'?: DetectsUnknownKeysWhenConstructingATypedDict;
   'unresolved-global'?: DetectsGlobalStatementsWithNoDefinitionInTheGlobalScope;
   'unresolved-reference'?: DetectsReferencesToNamesThatAreNotDefined;
   'unsound-assignment'?: DetectsAssignmentsThatUnsoundlyAssignATypeThatIsNotASubtypeOfTheDeclaredType;
-  'unsound-return-statement'?: DetectsReturnStatementsThatUnsoundlyReturnATypeThatIsNotASubtypeOfTheFunctionSAnnotatedReturnType;
+  'unsound-return'?: DetectsReturnStatementsThatUnsoundlyReturnATypeThatIsNotASubtypeOfTheFunctionSAnnotatedReturnType;
   'unsound-yield'?: DetectsYieldExpressionsThatUnsoundlyYieldATypeThatIsNotASubtypeOfTheGeneratorSAnnotatedYieldType;
   'unsupported-base'?: DetectsClassBasesThatAreUnsupportedAsTyCouldNotFeasiblyCalculateTheClassSMRO;
   'unsupported-bool-conversion'?: DetectsBooleanConversionWhereTheObjectIncorrectlyImplements_Bool__;
@@ -72313,73 +73312,75 @@ export interface Rules1 {
     | Warn
     | Error
     | DetectsMethodsThatAreBothAbstractAndFinal
+    | DetectsDirectInstantiationOfAbstractClassesAndProtocols
+    | DetectsCallsToAbstractMethodsWithTrivialBodiesOnClassObjects
     | DetectsFinalClassesWithUnimplementedAbstractMethods
     | SetTheDefaultSeverityLevelForAllRules
     | DetectsProtocolClassesWithAmbiguousInterfaces
     | DetectsFailedTypeAssertions
     | DetectsBlanketTyIgnoreComments
-    | DetectsCallsToAbstractMethodsWithTrivialBodiesOnClassObjects
-    | DetectsCallsToNonCallableObjects
     | DetectsCallsToTheTopCallableType
     | DetectsConflictingDeclarations
     | DetectsConflictingMetaclasses
     | DetectsCyclicClassDefinitions
     | DetectsCyclicTypeAliasDefinitions
-    | DetectsDataclassDefinitionsWithRequiredFieldsAfterFieldsWithDefaultValues
     | DetectsUsesOfDeprecatedItems
     | DetectsCastCallsBetweenDisjointTypes
     | DetectsDivisionByZero
     | DetectsClassDefinitionsWithDuplicateBases
     | DetectsDataclassDefinitionsWithMoreThanOneUsageOfKW_ONLY
     | DetectsDecoratorsThatReplaceAFunctionWithADynamicTypeSuchAsAny
-    | DetectsFunctionsWithEmptyBodiesThatHaveANonNoneReturnTypeAnnotation
     | DetectsForwardTypeAnnotationsWithEscapeCharacters
     | DetectsExperimentalSyntax
     | DetectsFinalAppliedToNonMethodFunctions
     | DetectsFinalDeclarationsWithoutAValue
     | DetectsTyIgnoreCommentsThatReferenceUnknownRules
-    | DetectsImplicitConcatenatedStringsInTypeAnnotations
+    | DetectsTypeExpressionsWrittenAsMultipleAdjacentStringLiterals
     | DetectsUnresolvedImports
+    | DetectsAttributeOverridesThatViolateInheritedTypeOrAccessRequirements
+    | DetectsMethodDefinitionsThatViolateTheLiskovSubstitutionPrinciple
+    | DetectsOverridesThatNarrowWritableAttributeTypes
+    | DetectsIncompatibleOverridesInvolvingProperties
     | DetectsClassDefinitionsWithAnInconsistentMRO
+    | DetectsInconsistentUseOfStaticmethodOrClassmethodOnOverloadedMethods
+    | DetectsImplementationsThatAreInconsistentWithTheirOverloads
     | DetectsIndexOutOfBoundsErrors
     | DetectsCallsToFinalThatTypeCheckersCannotInterpret
     | DetectsClassDefinitionsThatRaiseTypeErrorDueToInstanceLayoutConflict
     | DetectsCallArgumentsWhoseTypeIsNotAssignableToTheCorrespondingTypedParameter
     | DetectsInvalidAssignments
     | InvalidAttributeAccess
-    | DetectsAttributeOverridesThatViolateInheritedTypeOrAccessRequirements
     | DetectsAwaitingOnTypesThatDonTSupportIt
     | DetectsClassBasesThatWillCauseTheClassDefinitionToRaiseAnExceptionAtRuntime
     | DetectsExpressionsUsedInWithStatementsThatDonTImplementTheContextManagerProtocol
     | DetectsInvalidDataclassApplications
+    | DetectsDataclassDefinitionsWithRequiredFieldsAfterFieldsWithDefaultValues
     | DetectsDataclassesWithFrozenTrueThatHaveACustom_Setattr__Or_Delattr__Implementation
     | DetectsInvalidDeclarations
     | DetectsTypeAnnotationsOnEnumMembers
     | DetectsExceptionHandlersThatCatchClassesThatDoNotInheritFromBaseException
     | DetectsMethodsThatAreDecoratedWithOverrideButDoNotOverrideAnyMethodInASuperclass
+    | DetectsReturnStatementsWhoseValueIsIncompatibleWithTheExpectedReturnType
     | DetectsDataclassesWithInvalidFrozenNonFrozenSubclassing
+    | DetectsGeneratorFunctionsWithIncompatibleReturnAnnotations
     | DetectsInvalidGenericClasses
     | DetectsGenericEnumClasses
     | DetectsIgnoreCommentsThatUseInvalidSyntax
+    | DetectsNonemptyFunctionsThatCanImplicitlyReturnAnIncompatibleNone
+    | DetectsFunctionsWithStubLikeBodiesWhoseReturnTypeExcludesNone
     | DetectsTypeVariablesFromOuterScopesIn_Init__ReceiverAnnotations
-    | DetectsInvalidSubscriptAccessesOrTypedDictLiteralKeys
     | DetectsIncorrectUsageOfTheLegacyConventionForSpecifyingPositionalOnlyParameters
     | DetectsInvalidLegacyTypeVariables
     | DetectInvalidMatchPatterns
     | DetectsInvalidMetaclassArguments
-    | DetectsMethodDefinitionsThatViolateTheLiskovSubstitutionPrinciple
     | DetectsImportsThatFailWhileCallingModuleLevel_Getattr__
-    | DetectsOverridesThatNarrowWritableAttributeTypes
     | DetectsInvalidNamedTupleClassDefinitions
     | DetectsSubclassMembersThatOverrideInheritedNamedTupleFields
     | DetectsInvalidNewTypeDefinitions
-    | DetectsInvalidOverloadUsages
     | DetectsDefaultValuesThatCanTBeAssignedToTheParameterSAnnotatedType
     | DetectsInvalidParamSpecUsage
-    | DetectsIncompatibleOverridesInvolvingProperties
     | DetectsInvalidProtocolClassDefinitions
     | DetectsRaiseStatementsThatRaiseInvalidExceptionsOrUseInvalidCauses
-    | DetectsReturnedValuesThatCanTBeAssignedToTheFunctionSAnnotatedReturnType
     | DetectsInvalidArgumentsForSuper
     | DetectsInvalidSyntaxInForwardAnnotations
     | DetectsTotalOrderingClassesWithoutAnOrderingMethod
@@ -72393,20 +73394,28 @@ export interface Rules1 {
     | DetectsInvalidTypeVariableDefaults
     | DetectsInvalidTypedDictFieldDeclarations
     | DetectsInvalidStatementsInTypedDictClassHeaders
+    | DetectsInvalidKeysWhenAccessingTypedDictItems
     | DetectsInvalidStatementsInTypedDictClassBodies
     | DetectsYieldExpressionsWhereTheYieldOrSendTypeIsIncompatibleWithTheAnnotatedReturnType
     | ReportsInvalidRuntimeChecksAgainstProtocolClasses
     | ReportsRuntimeChecksAgainstTypedDictClasses
+    | DetectsMethodOverridesThatDropAPositionalParameterSKeywordName
     | DetectsSentinelDefinitionsWhoseDeclaredNameDoesNotMatchTheAssignedVariable
     | DetectsFunctionalTypingDefinitionsWhoseDeclaredNameDoesNotMatchTheAssignedVariable
+    | DetectsMisplacedFinalOrOverrideDecoratorsOnOverloadedMethods
     | DetectsMissingRequiredArgumentsInACall
+    | DetectsReferencesToMissingAttributes
     | DetectsImportsOfDependenciesThatAreNotDeclaredDirectly
+    | DetectsOverloadedFunctionsMissingARequiredImplementation
     | DetectsMethodsThatOverrideASuperclassMemberWithoutAnOverrideAnnotation
     | DetectsAssignmentsToDeclaredAttributesWithoutInstanceStorage
     | DetectsGenericTypesUsedWithoutExplicitTypeParametersInTypeExpressions
     | DetectsMissingRequiredKeysInTypedDictConstructors
+    | DetectsAttributeAccessesWhereSomeUnionMembersLackTheAttribute
     | DetectsCallsThatDoNotMatchAnyOverload
     | DetectsClassDefinitionsThatWillFailDueToNonCallable_InitSubclass__
+    | DetectsNonLiteralStringKeysInTypedDictSubscripts
+    | DetectsCallsToNonCallableObjects
     | DetectsIterationOverAnObjectThatIsNotIterable
     | DetectsSubscriptingObjectsThatDoNotSupportSubscripting
     | DetectsOverridesOfFinalMethods
@@ -72426,6 +73435,7 @@ export interface Rules1 {
     | DetectsRedundantCombinationsOfClassVarAndFinal
     | DetectsIgnoreCommentsThatUseARuleSOldName
     | DetectsTypeVariablesThatShadowTypeVariablesFromOuterScopes
+    | DetectsFunctionsWithOnlyOneOverloadDeclaration
     | FailedStaticAssertion
     | DetectsSubclassesOfDataclassesWithOrderTrue
     | DetectsSubclassesOfFinalClasses
@@ -72439,7 +73449,7 @@ export interface Rules1 {
     | DetectsTypeVariablesUsedOutsideOfTheirBoundScope
     | DetectsUsagesOfRevealTypeWithoutImportingIt
     | DetectsUnknownKeywordArgumentsInCalls
-    | DetectsReferencesToUnresolvedAttributes
+    | DetectsUnknownKeysWhenConstructingATypedDict
     | DetectsGlobalStatementsWithNoDefinitionInTheGlobalScope
     | DetectsReferencesToNamesThatAreNotDefined
     | DetectsAssignmentsThatUnsoundlyAssignATypeThatIsNotASubtypeOfTheDeclaredType
@@ -72583,7 +73593,11 @@ export interface CognitiveComplexityAnalyzer {
    */
   failed?: boolean;
   /**
-   * Never report these refactoring rules, such as `C007`. Wins over `select`.
+   * Apply `exclude` to files passed explicitly as arguments, such as the file names pre-commit passes.
+   */
+  'force-exclude'?: boolean;
+  /**
+   * Never report these refactoring rules or rule groups, such as `C007` or `readability`. Wins over `select`.
    */
   ignore?: string | string[];
   /**
@@ -72620,7 +73634,7 @@ export interface CognitiveComplexityAnalyzer {
    */
   'report-ignored'?: boolean;
   /**
-   * Report only these refactoring rules, such as `C001`.
+   * Report only these refactoring rules or rule groups, such as `C001` or `complexity`.
    */
   select?: string | string[];
   /**
@@ -72651,9 +73665,17 @@ export interface DiffSection {
  */
 export interface LspSection {
   /**
+   * What the warning underlines: `name` the function name only, `function` the whole function.
+   */
+  'diagnostic-range'?: ('name' | 'function') & string;
+  /**
    * Publish a warning for every function above `max-complexity-allowed`.
    */
   diagnostics?: boolean;
+  /**
+   * Where hover answers: `signature` on the `def` lines only, `function` on any line of the function, `never` for no hover.
+   */
+  hover?: ('signature' | 'function' | 'never') & string;
   /**
    * When to show the per-function hint: `threshold` only above `max-complexity-allowed`, `always` for every function, `never` for no hint.
    */
@@ -72662,6 +73684,10 @@ export interface LspSection {
    * Also show the complexity added by each line, as `+2`. Lines that add nothing are skipped.
    */
   'per-line-hints'?: boolean;
+  /**
+   * Also publish warnings for files that are not open, from a scan of the workspace folder.
+   */
+  'workspace-diagnostics'?: boolean;
 }
 /**
  * Metadata for the project

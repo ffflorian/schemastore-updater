@@ -224,13 +224,15 @@ export interface PnpmWorkspaceSpecification {
    */
   requiredScripts?: string[];
   /**
-   * Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install.
+   * Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install. Either a mapping of os, cpu, and libc lists, or a list of exact platform tags to prepare.
    */
-  supportedArchitectures?: {
-    os?: string[];
-    cpu?: string[];
-    libc?: string[];
-  };
+  supportedArchitectures?:
+    | {
+        os?: string[];
+        cpu?: string[];
+        libc?: string[];
+      }
+    | string[];
   /**
    * A list of optional dependencies that the install should be skipped.
    */
@@ -270,9 +272,20 @@ export interface PnpmWorkspaceSpecification {
    */
   modulesDir?: string;
   /**
-   * Defines what linker should be used for installing Node packages.
+   * Defines what linker should be used for installing Node packages. loaded is an experimental linker that loads packages directly from the content-addressable store, without placing them in node_modules; it also accepts an object with type: loaded and an optional excluded list. Configuration sources replace the whole nodeLinker value: a higher-priority scalar, or an object without excluded, clears exclusions from lower-priority sources. The environment variable PNPM_CONFIG_NODE_LINKER and --config.node-linker accept the object as JSON.
    */
-  nodeLinker?: 'isolated' | 'hoisted' | 'pnp';
+  nodeLinker?:
+    | ('isolated' | 'hoisted' | 'pnp' | 'loaded')
+    | {
+        /**
+         * The linker type. Only the experimental loaded linker accepts the object form; other linker object forms are not supported yet.
+         */
+        type: 'loaded';
+        /**
+         * With nodeLinker.type: loaded, materialize these package names and their complete dependency trees in the global virtual store. Names match all installed versions and peer contexts. Packages outside these trees load directly from the store. Build approval settings still apply.
+         */
+        excluded?: string[];
+      };
   /**
    * When true, pnpm injects the generated node_modules/.package-map.json into pnpm-managed Node.js script environments by adding Node's --experimental-package-map option to NODE_OPTIONS. see https://pnpm.io/settings/node-modules#nodeexperimentalpackagemap. Deprecated since pnpm v12.13.0: use nodePackageMap.mode instead. true is the same as mode: load and false the same as mode: off; nodePackageMap wins when both are set in the same place.
    */
@@ -372,7 +385,15 @@ export interface PnpmWorkspaceSpecification {
          * With integrityTarget: tar, pnpm-lock.yaml pins the hash of every package's uncompressed tar instead of the compressed .tgz, so the lockfile no longer changes when a registry recompresses its tarballs or serves them as tars. pnpm learns a version's tar hash from the store or by downloading it once, and pnpm audit signatures ties the tar hash to the signed .tgz integrity. Added in pnpm v12.15.0.
          */
         integrityTarget?: 'tar';
+        /**
+         * The format pnpm writes pnpm-lock.yaml in. v13 is the experimental JSON-like format planned for pnpm 13: JSON indented with tabs, with a trailing comma after every entry, which is still valid YAML. It has one packages entry per package version in place of the packages and snapshots sections, so updating a peer dependency changes only the lines that record its version. pnpm reads lockfiles in both formats whatever this setting is, but pnpm versions without this setting cannot read a v13 lockfile. Added in pnpm v12.19.0.
+         */
+        format?: 'v9' | 'v13';
       };
+  /**
+   * The directory in which pnpm-lock.yaml is written, instead of the directory of pnpm-workspace.yaml. A lockfileDir that points at the default lockfile directory installs the same way as leaving it unset.
+   */
+  lockfileDir?: string;
   /**
    * When true, installation fails if the lockfile is missing or needs to be updated.
    */
@@ -490,9 +511,17 @@ export interface PnpmWorkspaceSpecification {
    */
   autoInstallPeers?: boolean;
   /**
+   * When set to true, pnpm joins conflicting peer dependency ranges with || and installs the highest version that satisfies any of them. For example, if one dependency requires react@^16.0.0 and another requires react@^17.0.0, pnpm installs the highest react@17. Only semver ranges can be joined; conflicting paths, aliases, or tags leave the peer dependency missing, and identical non-semver specifiers are preserved.
+   */
+  autoInstallPeersFromHighestMatch?: boolean;
+  /**
    * When this setting is set to true, packages with peer dependencies will be deduplicated after peers resolution.
    */
   dedupePeerDependents?: boolean;
+  /**
+   * When true, a project gets a missing optional peer dependency only if the project's own dependencies already install a version of it. The workspace root's dependencies also count if resolvePeersFromWorkspaceRoot is true; a version that only another workspace project's dependencies install does not. dedupePeerDependents keeps deduplicating everything else, and this setting has no effect when dedupePeerDependents is false, because optional peers are already resolved only from the project's own dependencies then. Changing this setting changes the lockfile. Added in pnpm v12.19.0.
+   */
+  projectScopedOptionalPeers?: boolean;
   /**
    * When true, every peer dependency of a dependency also makes the matching @types package an optional peer of it: pnpm links the project's @types package (e.g. @types/react for a peer dependency on react) next to every package that peer-depends on the library, as with any optional peer dependency. This lets TypeScript find the types of a peer dependency when the global virtual store is on. A package that already declares the @types package keeps its own declaration, and no @types package nothing in the workspace depends on is installed. Changing this setting changes the lockfile. Added in pnpm v12.12.0.
    */
@@ -751,6 +780,18 @@ export interface PnpmWorkspaceSpecification {
    * If true, pnpm will fail if no packages match the filter
    */
   failIfNoMatch?: boolean;
+  /**
+   * Glob patterns of changed files to ignore when filtering for the projects changed since a commit or branch.
+   */
+  changedFilesIgnorePattern?: string[];
+  /**
+   * Glob patterns of test files. When the changed files of a project all match them, the "changed since" filter leaves out the projects that depend on it.
+   */
+  testPattern?: string[];
+  /**
+   * When true, `{<dir>}` filter selectors use the legacy behavior: the selector names a directory and matches every project in the subtree below it. By default `{<dir>}` is matched as a glob pattern, so `{packages/*}` selects the projects one level below packages/ and a `**` reaches deeper. Only applies to user-written selectors; the workspace-root selectors pnpm generates are always matched as globs.
+   */
+  legacyDirFiltering?: boolean;
   /**
    * By default, pnpm deploy will try creating a dedicated lockfile from a shared lockfile for deployment. If this setting is set to true, the legacy deploy behavior will be used.
    */
@@ -1060,6 +1101,10 @@ export interface PnpmWorkspaceSpecification {
     [k: string]: string | undefined;
   };
   /**
+   * URL of a pnpr server for install acceleration. When set, pnpm install offloads dependency resolution to the remote server: pnpm sends its workspace manifests and registry configuration, the server resolves the dependency graph and returns the lockfile, while tarballs are downloaded directly from their registries. If the server refuses a setting the install uses, or cannot return the lockfile format pnpm reads, pnpm prints a warning and resolves locally. May also be set with the --config.pnprServer=<url> command-line option or the PNPM_CONFIG_PNPR_SERVER environment variable.
+   */
+  pnprServer?: string;
+  /**
    * When set to true, pnpm populates the virtual store without creating importer symlinks, hoisting, bin links, or running lifecycle scripts. This is useful for pre-populating a store (e.g., in Nix builds) without creating unnecessary project-level artifacts. pnpm fetch uses this mode internally.
    */
   virtualStoreOnly?: boolean;
@@ -1100,9 +1145,9 @@ export interface PnpmWorkspaceSpecification {
            */
           build?: boolean | string;
           /**
-           * pnpm may link the agent skills the package ships into the project's agent skill directories.
+           * pnpm may link the agent skills the package ships into the project's agent skill directories. true links every skill the package ships, false links none, and a list of skill names links exactly those. A skill outside the list is not offered for approval again. The list form was added in pnpm v12.18.0.
            */
-          skills?: boolean | string;
+          skills?: boolean | string | string[];
         }
       | undefined;
   };

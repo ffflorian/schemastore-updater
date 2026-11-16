@@ -1,6 +1,8 @@
 /* eslint-disable */
 
 export type Color = 'auto' | 'yes' | 'no';
+export type DiagnosticRange = 'name' | 'function';
+export type HoverScope = 'signature' | 'function' | 'never';
 export type InlayHints = 'always' | 'threshold' | 'never';
 export type OutputFormat = 'csv' | 'json' | 'gitlab' | 'sarif';
 export type Sort = 'asc' | 'desc' | 'file_name';
@@ -34,7 +36,11 @@ export interface Complexipy {
    */
   failed?: boolean;
   /**
-   * Never report these refactoring rules, such as `C007`. Wins over `select`.
+   * Apply `exclude` to files passed explicitly as arguments, such as the file names pre-commit passes.
+   */
+  'force-exclude'?: boolean;
+  /**
+   * Never report these refactoring rules or rule groups, such as `C007` or `readability`. Wins over `select`.
    */
   ignore?: string | string[];
   /**
@@ -71,7 +77,7 @@ export interface Complexipy {
    */
   'report-ignored'?: boolean;
   /**
-   * Report only these refactoring rules, such as `C001`.
+   * Report only these refactoring rules or rule groups, such as `C001` or `complexity`.
    */
   select?: string | string[];
   /**
@@ -102,9 +108,17 @@ export interface DiffSection {
  */
 export interface LspSection {
   /**
+   * What the warning underlines: `name` the function name only, `function` the whole function.
+   */
+  'diagnostic-range'?: DiagnosticRange & string;
+  /**
    * Publish a warning for every function above `max-complexity-allowed`.
    */
   diagnostics?: boolean;
+  /**
+   * Where hover answers: `signature` on the `def` lines only, `function` on any line of the function, `never` for no hover.
+   */
+  hover?: HoverScope & string;
   /**
    * When to show the per-function hint: `threshold` only above `max-complexity-allowed`, `always` for every function, `never` for no hint.
    */
@@ -113,4 +127,8 @@ export interface LspSection {
    * Also show the complexity added by each line, as `+2`. Lines that add nothing are skipped.
    */
   'per-line-hints'?: boolean;
+  /**
+   * Also publish warnings for files that are not open, from a scan of the workspace folder.
+   */
+  'workspace-diagnostics'?: boolean;
 }
