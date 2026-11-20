@@ -115,7 +115,7 @@ export interface AcmeConfiguration {
   preferredChain?: string;
   profile?: string;
   storage?: string;
-  tlsChallenge?: AcmeTLSChallenge;
+  tlsChallenge?: AcmeTLSChallenge | boolean;
 }
 export interface AcmeDNSChallenge {
   /**
