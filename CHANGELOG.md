@@ -1,3 +1,9 @@
+## [3.8.18](https://github.com/ffflorian/schemastore-updater/compare/v3.8.17...v3.8.18) (2026-11-20)
+
+### Bug Fixes
+
+* **deps:** bump undici to 7.30.2 ([754b722](https://github.com/ffflorian/schemastore-updater/commit/754b722f7917f5a63dd0fb178cda40daec0fff2b))
+
 ## [3.8.17](https://github.com/ffflorian/schemastore-updater/compare/v3.8.16...v3.8.17) (2026-11-15)
 
 ### Bug Fixes
