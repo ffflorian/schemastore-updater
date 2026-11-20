@@ -48,7 +48,7 @@ async function main(): Promise<void> {
   program
     .command('bootstrap')
     .description(
-      'Publish schema packages that have never existed on npm before (`npm stage publish` cannot create a package for the first time). Run this from a real terminal - it prompts for 2FA/passkey approval interactively and cannot complete in CI.'
+      'Publish schema packages that have never existed on npm before (OIDC trusted publishing cannot create a package for the first time). Run this from a real terminal - it prompts for 2FA/passkey approval interactively and cannot complete in CI.'
     )
     .action(() => runBootstrapCommand());
 
@@ -62,7 +62,7 @@ async function main(): Promise<void> {
 
   program
     .command('mark-published <schema>')
-    .description(`Set the published/staged flag to true for a schema entry in ${LOCK_FILE_NAME}`)
+    .description(`Set the published flag to true for a schema entry in ${LOCK_FILE_NAME}`)
     .action((schema: string) => runMarkPublishedCommand(schema));
 
   if (process.argv.length <= 2) {
@@ -142,19 +142,15 @@ async function runPublishCommand(options: PublishCommandOptions): Promise<void> 
     ...(options.logFile ? {logFilePath: options.logFile} : {}),
   });
 
-  console.info(
-    stats.dryRun
-      ? '\nDry run complete.'
-      : '\nStaging complete. Versions are pending 2FA approval on npmjs.com before they go live.'
-  );
+  console.info(stats.dryRun ? '\nDry run complete.' : '\nPublishing complete.');
   console.info(`Attempted: ${stats.attempted}`);
-  console.info(`Staged: ${stats.published}`);
+  console.info(`Published: ${stats.published}`);
   console.info(`Skipped: ${stats.skipped}`);
   console.info(`Failed: ${stats.failed}`);
   console.info(`Log file: ${stats.logFilePath}`);
 
   if (stats.publishedPackages.length > 0) {
-    console.info(`\nStaged packages:\n${stats.publishedPackages.map(label => `  - ${label}`).join('\n')}`);
+    console.info(`\nPublished packages:\n${stats.publishedPackages.map(label => `  - ${label}`).join('\n')}`);
   }
 
   if (stats.failedPackages.length > 0) {

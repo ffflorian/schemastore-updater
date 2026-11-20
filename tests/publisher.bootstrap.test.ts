@@ -91,7 +91,7 @@ describe('packageExistsOnNpm / loginToNpmWithBrowser / publishNewPackageDirector
         'trust',
         'github',
         '@schemastore/alpha',
-        '--allow-stage-publish',
+        '--allow-publish',
         '--repo',
         'ffflorian/schemastore-updater',
         '--file',
