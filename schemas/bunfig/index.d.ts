@@ -177,6 +177,14 @@ export interface BunConfiguration {
      */
     root?: string;
     /**
+     * The DOM environment for test files. A file's @vitest-environment comment overrides this setting.
+     */
+    environment?: 'happy-dom' | 'jsdom' | 'node';
+    /**
+     * Which module provides the test globals. With bun, files importing vitest use vitest globals and other files use bun:test. With vitest, every file uses vitest globals.
+     */
+    globals?: 'bun' | 'vitest';
+    /**
      * Same as the top-level `preload` field, but only applies to `bun test`
      * https://bun.sh/docs/runtime/bunfig#test-preload
      */

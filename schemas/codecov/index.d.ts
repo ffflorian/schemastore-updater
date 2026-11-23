@@ -1,8 +1,7 @@
 /* eslint-disable */
 
 export type Layout =
-  | unknown
-  | ('header' | 'footer' | 'diff' | 'file' | 'files' | 'flag' | 'flags' | 'reach' | 'sunburst' | 'uncovered');
+  unknown | ('header' | 'footer' | 'diff' | 'file' | 'files' | 'flag' | 'flags' | 'reach' | 'sunburst' | 'uncovered');
 export type Default3 = (
   | boolean
   | {
@@ -10,7 +9,7 @@ export type Default3 = (
     }
 ) & {
   target?: string | number;
-  threshold?: string;
+  threshold?: string | number;
   /**
    * @deprecated
    */
@@ -18,10 +17,10 @@ export type Default3 = (
   flags?: unknown[];
   paths?: unknown[] | string;
   branches?: unknown[];
-  if_not_found?: 'failure' | 'success';
+  if_not_found?: 'failure' | 'success' | 'error' | 'ignore';
   informational?: boolean;
   only_pulls?: boolean;
-  if_ci_failed?: 'error' | 'success';
+  if_ci_failed?: 'error' | 'success' | 'failure' | 'ignore';
   flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
   [k: string]: unknown | undefined;
 };
@@ -180,9 +179,9 @@ export interface JSONSchemaForCodecovConfigurationFiles {
           };
           project?: {
             default?: boolean | Default;
-            [k: string]: (boolean | Default1) | undefined;
+            [k: string]: boolean | Default | Default | undefined;
           };
-          patch?: Default2 | 'off' | boolean;
+          patch?: Default | 'off' | boolean;
           changes?: Default3;
         };
     [k: string]: unknown | undefined;
@@ -201,7 +200,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
   flags?:
     | Flag[]
     | {
-        [k: string]: Flag;
+        [k: string]: Flag | undefined;
       };
   /**
    * Pull request comments. See https://docs.codecov.io/docs/pull-request-comments for details.
@@ -233,7 +232,7 @@ export interface JSONSchemaForCodecovConfigurationFiles {
 }
 export interface Default {
   target?: string | number;
-  threshold?: string;
+  threshold?: string | number;
   /**
    * @deprecated
    */
@@ -241,44 +240,10 @@ export interface Default {
   flags?: unknown[];
   paths?: unknown[] | string;
   branches?: unknown[];
-  if_not_found?: 'failure' | 'success';
+  if_not_found?: 'failure' | 'success' | 'error' | 'ignore';
   informational?: boolean;
   only_pulls?: boolean;
-  if_ci_failed?: 'error' | 'success';
-  flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
-  [k: string]: unknown | undefined;
-}
-export interface Default1 {
-  target?: string | number;
-  threshold?: string;
-  /**
-   * @deprecated
-   */
-  base?: string;
-  flags?: unknown[];
-  paths?: unknown[] | string;
-  branches?: unknown[];
-  if_not_found?: 'failure' | 'success';
-  informational?: boolean;
-  only_pulls?: boolean;
-  if_ci_failed?: 'error' | 'success';
-  flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
-  [k: string]: unknown | undefined;
-}
-export interface Default2 {
-  target?: string | number;
-  threshold?: string;
-  /**
-   * @deprecated
-   */
-  base?: string;
-  flags?: unknown[];
-  paths?: unknown[] | string;
-  branches?: unknown[];
-  if_not_found?: 'failure' | 'success';
-  informational?: boolean;
-  only_pulls?: boolean;
-  if_ci_failed?: 'error' | 'success';
+  if_ci_failed?: 'error' | 'success' | 'failure' | 'ignore';
   flag_coverage_not_uploaded_behavior?: 'include' | 'exclude' | 'pass';
   [k: string]: unknown | undefined;
 }

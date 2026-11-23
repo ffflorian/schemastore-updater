@@ -54,7 +54,7 @@ export interface Version1 {
      * Log levels for specific categories.
      */
     categoryLevels?: {
-      [k: string]: ('Critical' | 'Debug' | 'Error' | 'Information' | 'None' | 'Trace' | 'Warning') | undefined;
+      [k: string]: 'Critical' | 'Debug' | 'Error' | 'Information' | 'None' | 'Trace' | 'Warning' | undefined;
     };
     [k: string]: unknown | undefined;
   };
@@ -368,6 +368,21 @@ export interface DurableTaskExtension {
    */
   maxEntityOperationBatchSize?: number;
   useTablePartitionManagement?: boolean;
+  /**
+   * The version assigned to new orchestration instances that are started without an explicit version. versionMatchStrategy compares orchestration versions against this value.
+   * https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-orchestration-versioning
+   */
+  defaultVersion?: string;
+  /**
+   * Determines which orchestrations the app processes, based on how their version compares with defaultVersion.
+   * https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-orchestration-versioning
+   */
+  versionMatchStrategy?: 'None' | 'Strict' | 'CurrentOrOlder' | string;
+  /**
+   * Determines what happens to an orchestration whose version does not satisfy versionMatchStrategy.
+   * https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-orchestration-versioning
+   */
+  versionFailureStrategy?: 'Reject' | 'Fail' | string;
 }
 /**
  * Configuration settings for Azure Cosmos DB bindings and triggers.
@@ -421,7 +436,7 @@ export interface Version2 {
        * The default level for logging. If a category level is not specified, this value is used.
        */
       default?: 'Critical' | 'Debug' | 'Error' | 'Information' | 'None' | 'Trace' | 'Warning';
-      [k: string]: ('Critical' | 'Debug' | 'Error' | 'Information' | 'None' | 'Trace' | 'Warning') | undefined;
+      [k: string]: 'Critical' | 'Debug' | 'Error' | 'Information' | 'None' | 'Trace' | 'Warning' | undefined;
     };
     /**
      * Configuration settings for Application Insights logging.

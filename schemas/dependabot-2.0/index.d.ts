@@ -123,13 +123,13 @@ export type PackageEcosystem = (
     /**
      * List of dependencies to apply cooldown. Supports wildcards (`*`).
      *
-     * @maxItems 100
+     * @maxItems 150
      */
     include?: string[];
     /**
      * List of dependencies excluded from cooldown. Supports wildcards (`*`).
      *
-     * @maxItems 100
+     * @maxItems 150
      */
     exclude?: string[];
   };
@@ -295,6 +295,7 @@ export type UpdateTypes = [
   ...('version-update:semver-major' | 'version-update:semver-minor' | 'version-update:semver-patch')[]
 ];
 export type PackageEcosystemValues =
+  | 'apm'
   | 'bazel'
   | 'bun'
   | 'bundler'

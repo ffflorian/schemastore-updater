@@ -583,66 +583,8 @@ export type Exclude = Exclude1 | WorkspaceInheritance;
  * [build script](https://doc.rust-lang.org/cargo/reference/build-scripts.html) that does not emit any `rerun-if-*` directives, then the
  * include/exclude list is used for tracking if the build script should be re-run
  * if any of those files change.
- *
- * Items: You can explicitly specify that a set of file patterns should be ignored or
- * included for the purposes of packaging. The patterns specified in the
- * `exclude` field identify a set of files that are not included, and the
- * patterns in `include` specify files that are explicitly included.
- *
- * The patterns should be [gitignore](https://git-scm.com/docs/gitignore)-style patterns. Briefly:
- *
- * - `foo` matches any file or directory with the name `foo` anywhere in the
- *   package. This is equivalent to the pattern `** /foo`.
- * - `/foo` matches any file or directory with the name `foo` only in the root of
- *   the package.
- * - `foo/` matches any *directory* with the name `foo` anywhere in the package.
- * - Common glob patterns like `*`, `?`, and `[]` are supported:
- *   - `*` matches zero or more characters except `/`.  For example, `*.html`
- *     matches any file or directory with the `.html` extension anywhere in the
- *     package.
- *   - `?` matches any character except `/`. For example, `foo?` matches `food`,
- *     but not `foo`.
- *   - `[]` allows for matching a range of characters. For example, `[ab]`
- *     matches either `a` or `b`. `[a-z]` matches letters a through z.
- * - `** /` prefix matches in any directory. For example, `** /foo/bar` matches the
- *   file or directory `bar` anywhere that is directly under directory `foo`.
- * - `/**` suffix matches everything inside. For example, `foo/**` matches all
- *   files inside directory `foo`, including all files in subdirectories below
- *   `foo`.
- * - `/** /` matches zero or more directories. For example, `a/** /b` matches
- *   `a/b`, `a/x/b`, `a/x/y/b`, and so on.
- * - `!` prefix negates a pattern. For example, a pattern of `src/**.rs` and
- *   `!foo.rs` would match all files with the `.rs` extension inside the `src`
- *   directory, except for any file named `foo.rs`.
- *
- * If git is being used for a package, the `exclude` field will be seeded with
- * the `gitignore` settings from the repository.
- *
- * ```toml
- * [package]
- * # ...
- * exclude = ["build/** /*.o", "doc/** /*.html"]
- * ```
- *
- * ```toml
- * [package]
- * # ...
- * include = ["src/** /*", "Cargo.toml"]
- * ```
- *
- * The options are mutually exclusive: setting `include` will override an
- * `exclude`. Note that `include` must be an exhaustive list of files as otherwise
- * necessary source files may not be included. The package's `Cargo.toml` is
- * automatically included.
- *
- * The include/exclude list is also used for change tracking in some situations.
- * For targets built with `rustdoc`, it is used to determine the list of files to
- * track to determine if the target should be rebuilt. If the package has a
- * [build script](https://doc.rust-lang.org/cargo/reference/build-scripts.html) that does not emit any `rerun-if-*` directives, then the
- * include/exclude list is used for tracking if the build script should be re-run
- * if any of those files change.
  */
-export type Exclude1 = string[];
+export type PackagePathPattern = string;
 /**
  * You can explicitly specify that a set of file patterns should be ignored or
  * included for the purposes of packaging. The patterns specified in the
@@ -701,8 +643,10 @@ export type Exclude1 = string[];
  * [build script](https://doc.rust-lang.org/cargo/reference/build-scripts.html) that does not emit any `rerun-if-*` directives, then the
  * include/exclude list is used for tracking if the build script should be re-run
  * if any of those files change.
- *
- * Items: You can explicitly specify that a set of file patterns should be ignored or
+ */
+export type Exclude1 = PackagePathPattern[];
+/**
+ * You can explicitly specify that a set of file patterns should be ignored or
  * included for the purposes of packaging. The patterns specified in the
  * `exclude` field identify a set of files that are not included, and the
  * patterns in `include` specify files that are explicitly included.
@@ -760,7 +704,7 @@ export type Exclude1 = string[];
  * include/exclude list is used for tracking if the build script should be re-run
  * if any of those files change.
  */
-export type Include = string[];
+export type Include = PackagePathPattern[];
 /**
  * The `publish` field can be used to prevent a package from being published to a package registry (like *crates.io*) by mistake, for instance to keep a package
  * private in a company.
@@ -801,6 +745,7 @@ export type Publish = Publish1 | WorkspaceInheritance;
  * ```
  */
 export type Publish1 = boolean | string[];
+export type PlaydateMetadataAssets = AssetsRules | AssetsList;
 /**
  * Path of files to include. Can be absolute, relative to the crate root, or/and glob.
  *
@@ -841,6 +786,10 @@ export type CommandValue = (string | CompileRun) | CommandValue[] | ShellFamilyS
  */
 export type Resolver = '1' | '2' | '3';
 export type MetaBuild = string[];
+/**
+ * The default features of the crate.
+ */
+export type DefaultFeature = string[];
 export type Dependency = SemanticVersionRequirement | DetailedDependency;
 /**
  * The [version requirement](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html) of the target dependency.
@@ -5240,10 +5189,6 @@ export type Style1 = LintLevel | DetailedLint1;
  */
 export type Suspicious1 = LintLevel | DetailedLint1;
 /**
- * The default features of the crate.
- */
-export type DefaultFeature = string[];
-/**
  * In addition to the built-in profiles, additional custom profiles can be defined.
  */
 export type Inherits = string;
@@ -5364,7 +5309,108 @@ export interface CargoToml {
   'cargo-features'?: string[];
   package?: Package;
   project?: Package;
-  workspace?: Workspace1;
+  /**
+   * [crates.io](https://crates.io) can display various badges for build status, test coverage, etc. for
+   * each crate. All badges are optional.
+   *
+   * - The badges pertaining to build status that are currently available are
+   *   Appveyor, CircleCI, Cirrus CI, GitLab, Azure DevOps, Travis CI and Bitbucket
+   *   Pipelines.
+   * - Available badges pertaining to code test coverage are Codecov and Coveralls.
+   * - There are also maintenance-related badges based on isitmaintained.com
+   *   which state the issue resolution time, percent of open issues, and future
+   *   maintenance intentions.
+   *
+   * Most badge specifications require a `repository` key. It is expected to be in
+   * `user/repo` format.
+   *
+   * ```toml
+   * [badges]
+   *
+   * # Appveyor: `repository` is required. `branch` is optional; default is `master`
+   * # `service` is optional; valid values are `github` (default), `bitbucket`, and
+   * # `gitlab`; `id` is optional; you can specify the appveyor project id if you
+   * # want to use that instead. `project_name` is optional; use when the repository
+   * # name differs from the appveyor project name.
+   * appveyor = { repository = "...", branch = "master", service = "github" }
+   *
+   * # Circle CI: `repository` is required. `branch` is optional; default is `master`
+   * circle-ci = { repository = "...", branch = "master" }
+   *
+   * # Cirrus CI: `repository` is required. `branch` is optional; default is `master`
+   * cirrus-ci = { repository = "...", branch = "master" }
+   *
+   * # GitLab: `repository` is required. `branch` is optional; default is `master`
+   * gitlab = { repository = "...", branch = "master" }
+   *
+   * # Azure DevOps: `project` is required. `pipeline` is required. `build` is optional; default is `1`
+   * # Note: project = `organization/project`, pipeline = `name_of_pipeline`, build = `definitionId`
+   * azure-devops = { project = "...", pipeline = "...", build="2" }
+   *
+   * # Travis CI: `repository` in format "<user>/<project>" is required.
+   * # `branch` is optional; default is `master`
+   * travis-ci = { repository = "...", branch = "master" }
+   *
+   * # Bitbucket Pipelines: `repository` is required. `branch` is required
+   * bitbucket-pipelines = { repository = "...", branch = "master" }
+   *
+   * # Codecov: `repository` is required. `branch` is optional; default is `master`
+   * # `service` is optional; valid values are `github` (default), `bitbucket`, and
+   * # `gitlab`.
+   * codecov = { repository = "...", branch = "master", service = "github" }
+   *
+   * # Coveralls: `repository` is required. `branch` is optional; default is `master`
+   * # `service` is optional; valid values are `github` (default) and `bitbucket`.
+   * coveralls = { repository = "...", branch = "master", service = "github" }
+   *
+   * # Is it maintained resolution time: `repository` is required.
+   * is-it-maintained-issue-resolution = { repository = "..." }
+   *
+   * # Is it maintained percentage of open issues: `repository` is required.
+   * is-it-maintained-open-issues = { repository = "..." }
+   *
+   * # Maintenance: `status` is required. Available options are:
+   * # - `actively-developed`: New features are being added and bugs are being fixed.
+   * # - `passively-maintained`: There are no plans for new features, but the maintainer intends to
+   * #   respond to issues that get filed.
+   * # - `as-is`: The crate is feature complete, the maintainer does not intend to continue working on
+   * #   it or providing support, but it works for the purposes it was designed for.
+   * # - `experimental`: The author wants to share it with the community but is not intending to meet
+   * #   anyone's particular use case.
+   * # - `looking-for-maintainer`: The current maintainer would like to transfer the crate to someone
+   * #   else.
+   * # - `deprecated`: The maintainer does not recommend using this crate (the description of the crate
+   * #   can describe why, there could be a better solution available or there could be problems with
+   * #   the crate that the author does not want to fix).
+   * # - `none`: Displays no badge on crates.io, since the maintainer has not chosen to specify
+   * #   their intentions, potential crate users will need to investigate on their own.
+   * maintenance = { status = "..." }
+   * ```
+   */
+  badges?: {
+    [k: string]:
+      | {
+          [k: string]: string | undefined;
+        }
+      | undefined;
+  };
+  /**
+   * Cargo supports features to allow expression of:
+   *
+   * * conditional compilation options (usable through `cfg` attributes);
+   * * optional dependencies, which enhance a package, but are not required; and
+   * * clusters of optional dependencies, such as `postgres-all`, that would include the
+   *   `postgres` package, the `postgres-macros` package, and possibly other packages
+   *   (such as development-time mocking libraries, debugging tools, etc.).
+   *
+   * A feature of a package is either an optional dependency, or a set of other
+   * features.
+   *
+   */
+  features?: {
+    default?: DefaultFeature;
+    [k: string]: string[] | DefaultFeature | undefined;
+  };
   lib?: Target;
   /**
    * Binary targets are executable programs that can be run after being compiled.
@@ -5470,64 +5516,8 @@ export interface CargoToml {
    * > [Criterion](https://crates.io/crates/criterion).
    */
   bench?: Target[];
-  /**
-   * Cargo is configured to look for dependencies on [crates.io](https://crates.io) by default. Only
-   * the name and a version string are required in this case. In [the cargo
-   * guide](https://doc.rust-lang.org/cargo/guide/index.html), we specified a dependency on the `time` crate:
-   *
-   * ```toml
-   * [dependencies]
-   * time = "0.1.12"
-   * ```
-   *
-   * The string `"0.1.12"` is a [semver](https://github.com/steveklabnik/semver#requirements) version requirement. Since this
-   * string does not have any operators in it, it is interpreted the same way as
-   * if we had specified `"^0.1.12"`, which is called a caret requirement.
-   *
-   * A dependency can also be defined by a table with additional options:
-   *
-   * ```toml
-   * [dependencies]
-   * time = { path = "../time", version = "0.1.12" }
-   * ```
-   */
-  dependencies?: {
-    [k: string]: Dependency | undefined;
-  };
-  /**
-   * The format of `[dev-dependencies]` is equivalent to `[dependencies]`:
-   *
-   * ```toml
-   * [dev-dependencies]
-   * tempdir = "0.3"
-   * ```
-   *
-   * Dev-dependencies are not used when compiling
-   * a package for building, but are used for compiling tests, examples, and
-   * benchmarks.
-   *
-   * These dependencies are *not* propagated to other packages which depend on this
-   * package.
-   *
-   * You can also have target-specific development dependencies by using
-   * `dev-dependencies` in the target section header instead of `dependencies`. For
-   * example:
-   *
-   * ```toml
-   * [target.'cfg(unix)'.dev-dependencies]
-   * mio = "0.0.1"
-   * ```
-   *
-   * > **Note**: When a package is published, only dev-dependencies that specify a
-   * > `version` will be included in the published crate. For most use cases,
-   * > dev-dependencies are not needed when published, though some users (like OS
-   * > packagers) may want to run tests within a crate, so providing a `version` if
-   * > possible can still be beneficial.
-   *
-   */
-  'dev-dependencies'?: {
-    [k: string]: Dependency | undefined;
-  };
+  dependencies?: DependencyTable;
+  'dev-dependencies'?: DevDependencyTable;
   /**
    * @deprecated
    * [dev_dependencies] is deprecated. Use [dev-dependencies] instead.
@@ -5535,27 +5525,7 @@ export interface CargoToml {
   dev_dependencies?: {
     [k: string]: Dependency | undefined;
   };
-  /**
-   * You can depend on other Cargo-based crates for use in your build scripts.
-   * Dependencies are declared through the `build-dependencies` section of the
-   * manifest:
-   *
-   * ```toml
-   * [build-dependencies]
-   * cc = "1.0.3"
-   * ```
-   *
-   * The build script **does not** have access to the dependencies listed
-   * in the `dependencies` or `dev-dependencies` section. Build
-   * dependencies will likewise not be available to the package itself
-   * unless listed under the `dependencies` section as well. A package
-   * itself and its build script are built separately, so their
-   * dependencies need not coincide. Cargo is kept simpler and cleaner by
-   * using independent dependencies for independent purposes.
-   */
-  'build-dependencies'?: {
-    [k: string]: Dependency | undefined;
-  };
+  'build-dependencies'?: BuildDependencyTable;
   /**
    * @deprecated
    * [build_dependencies] is deprecated. Use [build-dependencies] instead.
@@ -5565,108 +5535,6 @@ export interface CargoToml {
   };
   target?: {
     [k: string]: Platform | undefined;
-  };
-  /**
-   * [crates.io](https://crates.io) can display various badges for build status, test coverage, etc. for
-   * each crate. All badges are optional.
-   *
-   * - The badges pertaining to build status that are currently available are
-   *   Appveyor, CircleCI, Cirrus CI, GitLab, Azure DevOps, Travis CI and Bitbucket
-   *   Pipelines.
-   * - Available badges pertaining to code test coverage are Codecov and Coveralls.
-   * - There are also maintenance-related badges based on isitmaintained.com
-   *   which state the issue resolution time, percent of open issues, and future
-   *   maintenance intentions.
-   *
-   * Most badge specifications require a `repository` key. It is expected to be in
-   * `user/repo` format.
-   *
-   * ```toml
-   * [badges]
-   *
-   * # Appveyor: `repository` is required. `branch` is optional; default is `master`
-   * # `service` is optional; valid values are `github` (default), `bitbucket`, and
-   * # `gitlab`; `id` is optional; you can specify the appveyor project id if you
-   * # want to use that instead. `project_name` is optional; use when the repository
-   * # name differs from the appveyor project name.
-   * appveyor = { repository = "...", branch = "master", service = "github" }
-   *
-   * # Circle CI: `repository` is required. `branch` is optional; default is `master`
-   * circle-ci = { repository = "...", branch = "master" }
-   *
-   * # Cirrus CI: `repository` is required. `branch` is optional; default is `master`
-   * cirrus-ci = { repository = "...", branch = "master" }
-   *
-   * # GitLab: `repository` is required. `branch` is optional; default is `master`
-   * gitlab = { repository = "...", branch = "master" }
-   *
-   * # Azure DevOps: `project` is required. `pipeline` is required. `build` is optional; default is `1`
-   * # Note: project = `organization/project`, pipeline = `name_of_pipeline`, build = `definitionId`
-   * azure-devops = { project = "...", pipeline = "...", build="2" }
-   *
-   * # Travis CI: `repository` in format "<user>/<project>" is required.
-   * # `branch` is optional; default is `master`
-   * travis-ci = { repository = "...", branch = "master" }
-   *
-   * # Bitbucket Pipelines: `repository` is required. `branch` is required
-   * bitbucket-pipelines = { repository = "...", branch = "master" }
-   *
-   * # Codecov: `repository` is required. `branch` is optional; default is `master`
-   * # `service` is optional; valid values are `github` (default), `bitbucket`, and
-   * # `gitlab`.
-   * codecov = { repository = "...", branch = "master", service = "github" }
-   *
-   * # Coveralls: `repository` is required. `branch` is optional; default is `master`
-   * # `service` is optional; valid values are `github` (default) and `bitbucket`.
-   * coveralls = { repository = "...", branch = "master", service = "github" }
-   *
-   * # Is it maintained resolution time: `repository` is required.
-   * is-it-maintained-issue-resolution = { repository = "..." }
-   *
-   * # Is it maintained percentage of open issues: `repository` is required.
-   * is-it-maintained-open-issues = { repository = "..." }
-   *
-   * # Maintenance: `status` is required. Available options are:
-   * # - `actively-developed`: New features are being added and bugs are being fixed.
-   * # - `passively-maintained`: There are no plans for new features, but the maintainer intends to
-   * #   respond to issues that get filed.
-   * # - `as-is`: The crate is feature complete, the maintainer does not intend to continue working on
-   * #   it or providing support, but it works for the purposes it was designed for.
-   * # - `experimental`: The author wants to share it with the community but is not intending to meet
-   * #   anyone's particular use case.
-   * # - `looking-for-maintainer`: The current maintainer would like to transfer the crate to someone
-   * #   else.
-   * # - `deprecated`: The maintainer does not recommend using this crate (the description of the crate
-   * #   can describe why, there could be a better solution available or there could be problems with
-   * #   the crate that the author does not want to fix).
-   * # - `none`: Displays no badge on crates.io, since the maintainer has not chosen to specify
-   * #   their intentions, potential crate users will need to investigate on their own.
-   * maintenance = { status = "..." }
-   * ```
-   */
-  badges?: {
-    [k: string]:
-      | {
-          [k: string]: string | undefined;
-        }
-      | undefined;
-  };
-  /**
-   * Cargo supports features to allow expression of:
-   *
-   * * conditional compilation options (usable through `cfg` attributes);
-   * * optional dependencies, which enhance a package, but are not required; and
-   * * clusters of optional dependencies, such as `postgres-all`, that would include the
-   *   `postgres` package, the `postgres-macros` package, and possibly other packages
-   *   (such as development-time mocking libraries, debugging tools, etc.).
-   *
-   * A feature of a package is either an optional dependency, or a set of other
-   * features.
-   *
-   */
-  features?: {
-    default?: DefaultFeature;
-    [k: string]: string[] | DefaultFeature | undefined;
   };
   /**
    * Override the default level of lints from different tools by assigning them to a new level in a table.
@@ -5679,6 +5547,16 @@ export interface CargoToml {
          */
         workspace: boolean;
       };
+  /**
+   * Hints for compiling this package. Cargo warns about and ignores unknown hints or hint values.
+   */
+  hints?: {
+    'min-opt-level'?: unknown;
+    'mostly-unused'?: unknown;
+    [k: string]: unknown | undefined;
+  };
+  workspace?: Workspace1;
+  profile?: Profiles;
   /**
    * The `[patch]` section of `Cargo.toml` can be used to override dependencies
    * with other copies. The syntax is similar to the
@@ -5695,10 +5573,7 @@ export interface CargoToml {
       | OverrideTheDependencyOnCratesIo
       | undefined;
   };
-  replace?: {
-    [k: string]: Dependency | undefined;
-  };
-  profile?: Profiles;
+  replace?: HiddenDependencyTable;
 }
 /**
  * The only field required by Cargo is [`name`](https://doc.rust-lang.org/cargo/reference/manifest.html#the-name-field).
@@ -6016,8 +5891,8 @@ export interface PlaydatePackageMetadata {
    * The string displayed on the content warning screen can only be so long before it will be truncated with an "…" character. Be sure to keep this in mind when designing your `content-warning` and `content-warning2` text.
    */
   'content-warning2'?: string;
-  assets?: AssetsRules | AssetsList;
-  'dev-assets'?: AssetsRules | AssetsList;
+  assets?: PlaydateMetadataAssets;
+  'dev-assets'?: PlaydateMetadataAssets;
   options?: Configuration;
   support?: {
     [k: string]: unknown | undefined;
@@ -6160,222 +6035,166 @@ export interface OsSpecific {
    */
   win?: (string | CompileRun) | CommandValue[] | ShellFamilySpecific;
 }
+export interface Target {
+  /**
+   * The `bench` field indicates whether or not the target is benchmarked by
+   * default by [`cargo bench`](https://doc.rust-lang.org/cargo/commands/cargo-bench.html). The default is `true` for lib, bins, and
+   * benchmarks.
+   */
+  bench?: boolean;
+  /**
+   * The `crate-type` field defines the [crate types](https://doc.rust-lang.org/reference/linkage.html) that will be generated by the
+   * target. It is an array of strings, allowing you to specify multiple crate
+   * types for a single target. This can only be specified for libraries and
+   * examples. Binaries, tests, and benchmarks are always the "bin" crate type.
+   *
+   * The available options are `bin`, `lib`, `rlib`, `dylib`, `cdylib`,
+   * `staticlib`, and `proc-macro`. You can read more about the different crate
+   * types in the [Rust Reference Manual](https://doc.rust-lang.org/reference/linkage.html).
+   *
+   * Items: The `crate-type` field defines the [crate types](https://doc.rust-lang.org/reference/linkage.html) that will be generated by the
+   * target. It is an array of strings, allowing you to specify multiple crate
+   * types for a single target. This can only be specified for libraries and
+   * examples. Binaries, tests, and benchmarks are always the "bin" crate type.
+   *
+   * The available options are `bin`, `lib`, `rlib`, `dylib`, `cdylib`,
+   * `staticlib`, and `proc-macro`. You can read more about the different crate
+   * types in the [Rust Reference Manual](https://doc.rust-lang.org/reference/linkage.html).
+   */
+  'crate-type'?: ('bin' | 'lib' | 'rlib' | 'dylib' | 'cdylib' | 'staticlib' | 'proc-macro')[];
+  crate_type?: string[];
+  /**
+   * The `doc` field indicates whether or not the target is included in the
+   * documentation generated by [`cargo doc`](https://doc.rust-lang.org/cargo/commands/cargo-doc.html) by default. The default is `true` for
+   * libraries and binaries.
+   *
+   * > **Note**: The binary will be skipped if its name is the same as the lib
+   * > target.
+   */
+  doc?: boolean;
+  /**
+   * The `doctest` field indicates whether or not [documentation examples](https://doc.rust-lang.org/rustdoc/documentation-tests.html) are
+   * tested by default by [`cargo test`](https://doc.rust-lang.org/cargo/commands/cargo-test.html). This is only relevant for libraries, it
+   * has no effect on other sections. The default is `true` for the library.
+   *
+   */
+  doctest?: boolean;
+  edition?: Edition1;
+  /**
+   * The `harness` field indicates that the [`--test` flag](https://doc.rust-lang.org/rustc/command-line-arguments.html#option-test) will be passed to
+   * `rustc` which will automatically include the libtest library which is the
+   * driver for collecting and running tests marked with the [`#[test]` attribute](https://doc.rust-lang.org/reference/attributes/testing.html#the-test-attribute) or benchmarks with the `#[bench]` attribute. The
+   * default is `true` for all targets.
+   *
+   * If set to `false`, then you are responsible for defining a `main()` function
+   * to run tests and benchmarks.
+   *
+   * Tests have the [`cfg(test)` conditional expression](https://doc.rust-lang.org/reference/conditional-compilation.html#test) enabled whether
+   * or not the harness is enabled.
+   */
+  harness?: boolean;
+  /**
+   * The `name` field specifies the name of the target, which corresponds to the
+   * filename of the artifact that will be generated. For a library, this is the
+   * crate name that dependencies will use to reference it.
+   *
+   * For the `[lib]` and the default binary (`src/main.rs`), this defaults to the
+   * name of the package, with any dashes replaced with underscores. For other
+   * [auto discovered](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#target-auto-discovery) targets, it defaults to the
+   * directory or file name.
+   *
+   * This is required for all targets except `[lib]`.
+   */
+  name?: string;
+  /**
+   * The `path` field specifies where the source for the crate is located, relative
+   * to the `Cargo.toml` file.
+   *
+   * If not specified, the [inferred path](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#target-auto-discovery) is used based on
+   * the target name.
+   */
+  path?: string;
+  plugin?: boolean;
+  /**
+   * The `proc-macro` field indicates that the library is a [procedural macro](https://doc.rust-lang.org/book/ch19-06-macros.html)
+   * ([reference](https://doc.rust-lang.org/reference/procedural-macros.html)). This is only valid for the `[lib]`
+   * target.
+   */
+  'proc-macro'?: boolean;
+  proc_macro?: boolean;
+  /**
+   * The `required-features` field specifies which [features](https://doc.rust-lang.org/cargo/reference/features.html) the target needs in
+   * order to be built. If any of the required features are not enabled, the
+   * target will be skipped. This is only relevant for the `[[bin]]`, `[[bench]]`,
+   * `[[test]]`, and `[[example]]` sections, it has no effect on `[lib]`.
+   *
+   * ```toml
+   * [features]
+   * # ...
+   * postgres = []
+   * sqlite = []
+   * tools = []
+   *
+   * [[bin]]
+   * name = "my-pg-tool"
+   * required-features = ["postgres", "tools"]
+   * ```
+   *
+   *
+   * Items: The `required-features` field specifies which [features](https://doc.rust-lang.org/cargo/reference/features.html) the target needs in
+   * order to be built. If any of the required features are not enabled, the
+   * target will be skipped. This is only relevant for the `[[bin]]`, `[[bench]]`,
+   * `[[test]]`, and `[[example]]` sections, it has no effect on `[lib]`.
+   *
+   * ```toml
+   * [features]
+   * # ...
+   * postgres = []
+   * sqlite = []
+   * tools = []
+   *
+   * [[bin]]
+   * name = "my-pg-tool"
+   * required-features = ["postgres", "tools"]
+   * ```
+   *
+   */
+  'required-features'?: string[];
+  /**
+   * The `test` field indicates whether or not the target is tested by default by
+   * [`cargo test`](https://doc.rust-lang.org/cargo/commands/cargo-test.html). The default is `true` for lib, bins, and tests.
+   *
+   * > **Note**: Examples are built by [`cargo test`](https://doc.rust-lang.org/cargo/commands/cargo-test.html) by default to ensure they
+   * > continue to compile, but they are not *tested* by default. Setting `test =
+   * > true` for an example will also build it as a test and run any
+   * > [`#[test]`](https://doc.rust-lang.org/reference/attributes/testing.html#the-test-attribute) functions defined in the example.
+   */
+  test?: boolean;
+  [k: string]: unknown | undefined;
+}
 /**
- * The `[workspace]` table in `Cargo.toml` defines which packages are members of
- * the workspace:
+ * Cargo is configured to look for dependencies on [crates.io](https://crates.io) by default. Only
+ * the name and a version string are required in this case. In [the cargo
+ * guide](https://doc.rust-lang.org/cargo/guide/index.html), we specified a dependency on the `time` crate:
  *
  * ```toml
- * [workspace]
- * members = ["member1", "path/to/member2", "crates/*"]
- * exclude = ["crates/foo", "path/to/other"]
+ * [dependencies]
+ * time = "0.1.12"
  * ```
  *
- * An empty `[workspace]` table can be used with a `[package]` to conveniently
- * create a workspace with the package and all of its path dependencies.
+ * The string `"0.1.12"` is a [semver](https://github.com/steveklabnik/semver#requirements) version requirement. Since this
+ * string does not have any operators in it, it is interpreted the same way as
+ * if we had specified `"^0.1.12"`, which is called a caret requirement.
  *
- * All [`path` dependencies](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#specifying-path-dependencies) residing in the workspace directory automatically
- * become members. Additional members can be listed with the `members` key, which
- * should be an array of strings containing directories with `Cargo.toml` files.
+ * A dependency can also be defined by a table with additional options:
  *
- * The `members` list also supports [globs](https://docs.rs/glob/0.3.0/glob/struct.Pattern.html) to match multiple paths, using
- * typical filename glob patterns like `*` and `?`.
- *
- * The `exclude` key can be used to prevent paths from being included in a
- * workspace. This can be useful if some path dependencies aren't desired to be
- * in the workspace at all, or using a glob pattern and you want to remove a
- * directory.
- *
- * An empty `[workspace]` table can be used with a `[package]` to conveniently
- * create a workspace with the package and all of its path dependencies.
+ * ```toml
+ * [dependencies]
+ * time = { path = "../time", version = "0.1.12" }
+ * ```
  */
-export interface Workspace1 {
-  /**
-   * The `workspace.package` table is where you define keys that can be
-   * inherited by members of a workspace. These keys can be inherited by
-   * defining them in the member package with `{key}.workspace = true`.
-   *
-   * Keys that are supported:
-   *
-   * |                |                 |
-   * |----------------|-----------------|
-   * | `authors`      | `categories`    |
-   * | `description`  | `documentation` |
-   * | `edition`      | `exclude`       |
-   * | `homepage`     | `include`       |
-   * | `keywords`     | `license`       |
-   * | `license-file` | `publish`       |
-   * | `readme`       | `repository`    |
-   * | `rust-version` | `version`       |
-   *
-   * - `license-file` and `readme` are relative to the workspace root
-   * - `include` and `exclude` are relative to your package root
-   *
-   * Example:
-   * ```toml
-   * # [PROJECT_DIR]/Cargo.toml
-   * [workspace]
-   * members = ["bar"]
-   *
-   * [workspace.package]
-   * version = "1.2.3"
-   * authors = ["Nice Folks"]
-   * description = "A short description of my package"
-   * documentation = "https://example.com/bar"
-   * ```
-   *
-   * ```toml
-   * # [PROJECT_DIR]/bar/Cargo.toml
-   * [package]
-   * name = "bar"
-   * version.workspace = true
-   * authors.workspace = true
-   * description.workspace = true
-   * documentation.workspace = true
-   * ```
-   */
-  package?: {
-    version?: SemanticVersion1;
-    authors?: Authors1;
-    edition?: Edition1;
-    'rust-version'?: RustVersion1;
-    description?: Description1;
-    documentation?: Documentation1;
-    readme?: Readme1;
-    homepage?: Homepage1;
-    repository?: Repository1;
-    license?: License1;
-    'license-file'?: LicenseFile1;
-    keywords?: Keywords1;
-    categories?: Categories1;
-    exclude?: Exclude1;
-    include?: Include;
-    publish?: Publish1;
-    [k: string]: unknown | undefined;
-  };
-  resolver?: Resolver;
-  /**
-   * All [`path` dependencies] residing in the workspace directory automatically
-   * become members. Additional members can be listed with the `members` key, which
-   * should be an array of strings containing directories with `Cargo.toml` files.
-   *
-   * The `members` list also supports [globs] to match multiple paths, using
-   * typical filename glob patterns like `*` and `?`.
-   *
-   * Items: All [`path` dependencies] residing in the workspace directory automatically
-   * become members. Additional members can be listed with the `members` key, which
-   * should be an array of strings containing directories with `Cargo.toml` files.
-   *
-   * The `members` list also supports [globs] to match multiple paths, using
-   * typical filename glob patterns like `*` and `?`.
-   */
-  members?: string[];
-  /**
-   * The `exclude` key can be used to prevent paths from being included in a
-   * workspace. This can be useful if some path dependencies aren't desired to be
-   * in the workspace at all, or using a glob pattern and you want to remove a
-   * directory.
-   *
-   * Items: The `exclude` key can be used to prevent paths from being included in a
-   * workspace. This can be useful if some path dependencies aren't desired to be
-   * in the workspace at all, or using a glob pattern and you want to remove a
-   * directory.
-   */
-  exclude?: string[];
-  /**
-   * The optional `default-members` key can be specified to set the members to
-   * operate on when in the workspace root and the package selection flags are not
-   * used:
-   *
-   * ```toml
-   * [workspace]
-   * members = ["path/to/member1", "path/to/member2", "path/to/member3/*"]
-   * default-members = ["path/to/member2", "path/to/member3/foo"]
-   * ```
-   *
-   * When specified, `default-members` must expand to a subset of `members`.
-   *
-   * Items: The optional `default-members` key can be specified to set the members to
-   * operate on when in the workspace root and the package selection flags are not
-   * used:
-   *
-   * ```toml
-   * [workspace]
-   * members = ["path/to/member1", "path/to/member2", "path/to/member3/*"]
-   * default-members = ["path/to/member2", "path/to/member3/foo"]
-   * ```
-   *
-   * When specified, `default-members` must expand to a subset of `members`.
-   */
-  'default-members'?: string[];
-  /**
-   * The `workspace.dependencies` table is where you define dependencies to be
-   * inherited by members of a workspace.
-   *
-   * Specifying a workspace dependency is similar to [package dependencies](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html) except:
-   * - Dependencies from this table cannot be declared as `optional`
-   * - [`features`][features] declared in this table are additive with the `features` from `[dependencies]`
-   *
-   * You can then [inherit the workspace dependency as a package dependency](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#inheriting-a-dependency-from-a-workspace)
-   *
-   * Example:
-   * ```toml
-   * # [PROJECT_DIR]/Cargo.toml
-   * [workspace]
-   * members = ["bar"]
-   *
-   * [workspace.dependencies]
-   * cc = "1.0.73"
-   * rand = "0.8.5"
-   * regex = { version = "1.6.0", default-features = false, features = ["std"] }
-   * ```
-   *
-   * ```toml
-   * # [PROJECT_DIR]/bar/Cargo.toml
-   * [package]
-   * name = "bar"
-   * version = "0.2.0"
-   *
-   * [dependencies]
-   * regex = { workspace = true, features = ["unicode"] }
-   *
-   * [build-dependencies]
-   * cc.workspace = true
-   *
-   * [dev-dependencies]
-   * rand.workspace = true
-   * ```
-   */
-  dependencies?: {
-    [k: string]: Dependency | undefined;
-  };
-  lints?: Lints;
-  /**
-   * The `workspace.metadata` table is ignored by Cargo and will not be warned
-   * about. This section can be used for tools that would like to store workspace
-   * configuration in `Cargo.toml`. For example:
-   *
-   * ```toml
-   * [workspace]
-   * members = ["member1", "member2"]
-   *
-   * [workspace.metadata.webcontents]
-   * root = "path/to/webproject"
-   * tool = ["npm", "run", "build"]
-   * # ...
-   * ```
-   *
-   * There is a similar set of tables at the package level at
-   * `package.metadata`. While cargo does not specify a
-   * format for the content of either of these tables, it is suggested that
-   * external tools may wish to use them in a consistent fashion, such as referring
-   * to the data in `workspace.metadata` if data is missing from `package.metadata`,
-   * if that makes sense for the tool in question.
-   *
-   */
-  metadata?: {
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: unknown | undefined;
+export interface DependencyTable {
+  [k: string]: Dependency | undefined;
 }
 export interface DetailedDependency1 {
   /**
@@ -6548,8 +6367,71 @@ export interface DetailedDependency1 {
   'registry-index'?: string;
 }
 /**
- * The `workspace.lints` table is where you define lint configuration to be inherited by members of a workspace.
+ * The format of `[dev-dependencies]` is equivalent to `[dependencies]`:
+ *
+ * ```toml
+ * [dev-dependencies]
+ * tempdir = "0.3"
+ * ```
+ *
+ * Dev-dependencies are not used when compiling
+ * a package for building, but are used for compiling tests, examples, and
+ * benchmarks.
+ *
+ * These dependencies are *not* propagated to other packages which depend on this
+ * package.
+ *
+ * You can also have target-specific development dependencies by using
+ * `dev-dependencies` in the target section header instead of `dependencies`. For
+ * example:
+ *
+ * ```toml
+ * [target.'cfg(unix)'.dev-dependencies]
+ * mio = "0.0.1"
+ * ```
+ *
+ * > **Note**: When a package is published, only dev-dependencies that specify a
+ * > `version` will be included in the published crate. For most use cases,
+ * > dev-dependencies are not needed when published, though some users (like OS
+ * > packagers) may want to run tests within a crate, so providing a `version` if
+ * > possible can still be beneficial.
+ *
  */
+export interface DevDependencyTable {
+  [k: string]: Dependency | undefined;
+}
+/**
+ * You can depend on other Cargo-based crates for use in your build scripts.
+ * Dependencies are declared through the `build-dependencies` section of the
+ * manifest:
+ *
+ * ```toml
+ * [build-dependencies]
+ * cc = "1.0.3"
+ * ```
+ *
+ * The build script **does not** have access to the dependencies listed
+ * in the `dependencies` or `dev-dependencies` section. Build
+ * dependencies will likewise not be available to the package itself
+ * unless listed under the `dependencies` section as well. A package
+ * itself and its build script are built separately, so their
+ * dependencies need not coincide. Cargo is kept simpler and cleaner by
+ * using independent dependencies for independent purposes.
+ */
+export interface BuildDependencyTable {
+  [k: string]: Dependency | undefined;
+}
+export interface Platform {
+  dependencies?: DependencyTable;
+  'dev-dependencies'?: DevDependencyTable;
+  dev_dependencies?: HiddenDependencyTable;
+  'build-dependencies'?: BuildDependencyTable;
+  build_dependencies?: HiddenDependencyTable;
+  [k: string]: unknown | undefined;
+}
+export interface HiddenDependencyTable {
+  [k: string]: Dependency | undefined;
+}
 export interface Lints {
   rust?: RustCompilerLints;
   rustdoc?: RustdocLints;
@@ -8816,233 +8698,222 @@ export interface CargoLints {
     | Suspicious1
     | undefined;
 }
-export interface Target {
+/**
+ * The `[workspace]` table in `Cargo.toml` defines which packages are members of
+ * the workspace:
+ *
+ * ```toml
+ * [workspace]
+ * members = ["member1", "path/to/member2", "crates/*"]
+ * exclude = ["crates/foo", "path/to/other"]
+ * ```
+ *
+ * An empty `[workspace]` table can be used with a `[package]` to conveniently
+ * create a workspace with the package and all of its path dependencies.
+ *
+ * All [`path` dependencies](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#specifying-path-dependencies) residing in the workspace directory automatically
+ * become members. Additional members can be listed with the `members` key, which
+ * should be an array of strings containing directories with `Cargo.toml` files.
+ *
+ * The `members` list also supports [globs](https://docs.rs/glob/0.3.0/glob/struct.Pattern.html) to match multiple paths, using
+ * typical filename glob patterns like `*` and `?`.
+ *
+ * The `exclude` key can be used to prevent paths from being included in a
+ * workspace. This can be useful if some path dependencies aren't desired to be
+ * in the workspace at all, or using a glob pattern and you want to remove a
+ * directory.
+ *
+ * An empty `[workspace]` table can be used with a `[package]` to conveniently
+ * create a workspace with the package and all of its path dependencies.
+ */
+export interface Workspace1 {
   /**
-   * The `bench` field indicates whether or not the target is benchmarked by
-   * default by [`cargo bench`](https://doc.rust-lang.org/cargo/commands/cargo-bench.html). The default is `true` for lib, bins, and
-   * benchmarks.
-   */
-  bench?: boolean;
-  /**
-   * The `crate-type` field defines the [crate types](https://doc.rust-lang.org/reference/linkage.html) that will be generated by the
-   * target. It is an array of strings, allowing you to specify multiple crate
-   * types for a single target. This can only be specified for libraries and
-   * examples. Binaries, tests, and benchmarks are always the "bin" crate type.
+   * The `workspace.package` table is where you define keys that can be
+   * inherited by members of a workspace. These keys can be inherited by
+   * defining them in the member package with `{key}.workspace = true`.
    *
-   * The available options are `bin`, `lib`, `rlib`, `dylib`, `cdylib`,
-   * `staticlib`, and `proc-macro`. You can read more about the different crate
-   * types in the [Rust Reference Manual](https://doc.rust-lang.org/reference/linkage.html).
+   * Keys that are supported:
    *
-   * Items: The `crate-type` field defines the [crate types](https://doc.rust-lang.org/reference/linkage.html) that will be generated by the
-   * target. It is an array of strings, allowing you to specify multiple crate
-   * types for a single target. This can only be specified for libraries and
-   * examples. Binaries, tests, and benchmarks are always the "bin" crate type.
+   * |                |                 |
+   * |----------------|-----------------|
+   * | `authors`      | `categories`    |
+   * | `description`  | `documentation` |
+   * | `edition`      | `exclude`       |
+   * | `homepage`     | `include`       |
+   * | `keywords`     | `license`       |
+   * | `license-file` | `publish`       |
+   * | `readme`       | `repository`    |
+   * | `rust-version` | `version`       |
    *
-   * The available options are `bin`, `lib`, `rlib`, `dylib`, `cdylib`,
-   * `staticlib`, and `proc-macro`. You can read more about the different crate
-   * types in the [Rust Reference Manual](https://doc.rust-lang.org/reference/linkage.html).
-   */
-  'crate-type'?: ('bin' | 'lib' | 'rlib' | 'dylib' | 'cdylib' | 'staticlib' | 'proc-macro')[];
-  crate_type?: string[];
-  /**
-   * The `doc` field indicates whether or not the target is included in the
-   * documentation generated by [`cargo doc`](https://doc.rust-lang.org/cargo/commands/cargo-doc.html) by default. The default is `true` for
-   * libraries and binaries.
+   * - `license-file` and `readme` are relative to the workspace root
+   * - `include` and `exclude` are relative to your package root
    *
-   * > **Note**: The binary will be skipped if its name is the same as the lib
-   * > target.
-   */
-  doc?: boolean;
-  /**
-   * The `doctest` field indicates whether or not [documentation examples](https://doc.rust-lang.org/rustdoc/documentation-tests.html) are
-   * tested by default by [`cargo test`](https://doc.rust-lang.org/cargo/commands/cargo-test.html). This is only relevant for libraries, it
-   * has no effect on other sections. The default is `true` for the library.
-   *
-   */
-  doctest?: boolean;
-  edition?: Edition1;
-  /**
-   * The `harness` field indicates that the [`--test` flag](https://doc.rust-lang.org/rustc/command-line-arguments.html#option-test) will be passed to
-   * `rustc` which will automatically include the libtest library which is the
-   * driver for collecting and running tests marked with the [`#[test]` attribute](https://doc.rust-lang.org/reference/attributes/testing.html#the-test-attribute) or benchmarks with the `#[bench]` attribute. The
-   * default is `true` for all targets.
-   *
-   * If set to `false`, then you are responsible for defining a `main()` function
-   * to run tests and benchmarks.
-   *
-   * Tests have the [`cfg(test)` conditional expression](https://doc.rust-lang.org/reference/conditional-compilation.html#test) enabled whether
-   * or not the harness is enabled.
-   */
-  harness?: boolean;
-  /**
-   * The `name` field specifies the name of the target, which corresponds to the
-   * filename of the artifact that will be generated. For a library, this is the
-   * crate name that dependencies will use to reference it.
-   *
-   * For the `[lib]` and the default binary (`src/main.rs`), this defaults to the
-   * name of the package, with any dashes replaced with underscores. For other
-   * [auto discovered](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#target-auto-discovery) targets, it defaults to the
-   * directory or file name.
-   *
-   * This is required for all targets except `[lib]`.
-   */
-  name?: string;
-  /**
-   * The `path` field specifies where the source for the crate is located, relative
-   * to the `Cargo.toml` file.
-   *
-   * If not specified, the [inferred path](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#target-auto-discovery) is used based on
-   * the target name.
-   */
-  path?: string;
-  plugin?: boolean;
-  /**
-   * The `proc-macro` field indicates that the library is a [procedural macro](https://doc.rust-lang.org/book/ch19-06-macros.html)
-   * ([reference](https://doc.rust-lang.org/reference/procedural-macros.html)). This is only valid for the `[lib]`
-   * target.
-   */
-  'proc-macro'?: boolean;
-  proc_macro?: boolean;
-  /**
-   * The `required-features` field specifies which [features](https://doc.rust-lang.org/cargo/reference/features.html) the target needs in
-   * order to be built. If any of the required features are not enabled, the
-   * target will be skipped. This is only relevant for the `[[bin]]`, `[[bench]]`,
-   * `[[test]]`, and `[[example]]` sections, it has no effect on `[lib]`.
-   *
+   * Example:
    * ```toml
-   * [features]
-   * # ...
-   * postgres = []
-   * sqlite = []
-   * tools = []
+   * # [PROJECT_DIR]/Cargo.toml
+   * [workspace]
+   * members = ["bar"]
    *
-   * [[bin]]
-   * name = "my-pg-tool"
-   * required-features = ["postgres", "tools"]
+   * [workspace.package]
+   * version = "1.2.3"
+   * authors = ["Nice Folks"]
+   * description = "A short description of my package"
+   * documentation = "https://example.com/bar"
    * ```
    *
+   * ```toml
+   * # [PROJECT_DIR]/bar/Cargo.toml
+   * [package]
+   * name = "bar"
+   * version.workspace = true
+   * authors.workspace = true
+   * description.workspace = true
+   * documentation.workspace = true
+   * ```
+   */
+  package?: {
+    version?: SemanticVersion1;
+    authors?: Authors1;
+    edition?: Edition1;
+    'rust-version'?: RustVersion1;
+    description?: Description1;
+    documentation?: Documentation1;
+    readme?: Readme1;
+    homepage?: Homepage1;
+    repository?: Repository1;
+    license?: License1;
+    'license-file'?: LicenseFile1;
+    keywords?: Keywords1;
+    categories?: Categories1;
+    exclude?: Exclude1;
+    include?: Include;
+    publish?: Publish1;
+    [k: string]: unknown | undefined;
+  };
+  resolver?: Resolver;
+  /**
+   * All [`path` dependencies] residing in the workspace directory automatically
+   * become members. Additional members can be listed with the `members` key, which
+   * should be an array of strings containing directories with `Cargo.toml` files.
    *
-   * Items: The `required-features` field specifies which [features](https://doc.rust-lang.org/cargo/reference/features.html) the target needs in
-   * order to be built. If any of the required features are not enabled, the
-   * target will be skipped. This is only relevant for the `[[bin]]`, `[[bench]]`,
-   * `[[test]]`, and `[[example]]` sections, it has no effect on `[lib]`.
+   * The `members` list also supports [globs] to match multiple paths, using
+   * typical filename glob patterns like `*` and `?`.
+   *
+   * Items: All [`path` dependencies] residing in the workspace directory automatically
+   * become members. Additional members can be listed with the `members` key, which
+   * should be an array of strings containing directories with `Cargo.toml` files.
+   *
+   * The `members` list also supports [globs] to match multiple paths, using
+   * typical filename glob patterns like `*` and `?`.
+   */
+  members?: string[];
+  /**
+   * The `exclude` key can be used to prevent paths from being included in a
+   * workspace. This can be useful if some path dependencies aren't desired to be
+   * in the workspace at all, or using a glob pattern and you want to remove a
+   * directory.
+   *
+   * Items: The `exclude` key can be used to prevent paths from being included in a
+   * workspace. This can be useful if some path dependencies aren't desired to be
+   * in the workspace at all, or using a glob pattern and you want to remove a
+   * directory.
+   */
+  exclude?: string[];
+  /**
+   * The optional `default-members` key can be specified to set the members to
+   * operate on when in the workspace root and the package selection flags are not
+   * used:
    *
    * ```toml
-   * [features]
-   * # ...
-   * postgres = []
-   * sqlite = []
-   * tools = []
-   *
-   * [[bin]]
-   * name = "my-pg-tool"
-   * required-features = ["postgres", "tools"]
+   * [workspace]
+   * members = ["path/to/member1", "path/to/member2", "path/to/member3/*"]
+   * default-members = ["path/to/member2", "path/to/member3/foo"]
    * ```
    *
-   */
-  'required-features'?: string[];
-  /**
-   * The `test` field indicates whether or not the target is tested by default by
-   * [`cargo test`](https://doc.rust-lang.org/cargo/commands/cargo-test.html). The default is `true` for lib, bins, and tests.
+   * When specified, `default-members` must expand to a subset of `members`.
    *
-   * > **Note**: Examples are built by [`cargo test`](https://doc.rust-lang.org/cargo/commands/cargo-test.html) by default to ensure they
-   * > continue to compile, but they are not *tested* by default. Setting `test =
-   * > true` for an example will also build it as a test and run any
-   * > [`#[test]`](https://doc.rust-lang.org/reference/attributes/testing.html#the-test-attribute) functions defined in the example.
-   */
-  test?: boolean;
-  [k: string]: unknown | undefined;
-}
-export interface Platform {
-  /**
-   * Cargo is configured to look for dependencies on [crates.io](https://crates.io) by default. Only
-   * the name and a version string are required in this case. In [the cargo
-   * guide](https://doc.rust-lang.org/cargo/guide/index.html), we specified a dependency on the `time` crate:
+   * Items: The optional `default-members` key can be specified to set the members to
+   * operate on when in the workspace root and the package selection flags are not
+   * used:
    *
    * ```toml
+   * [workspace]
+   * members = ["path/to/member1", "path/to/member2", "path/to/member3/*"]
+   * default-members = ["path/to/member2", "path/to/member3/foo"]
+   * ```
+   *
+   * When specified, `default-members` must expand to a subset of `members`.
+   */
+  'default-members'?: string[];
+  /**
+   * The `workspace.dependencies` table is where you define dependencies to be
+   * inherited by members of a workspace.
+   *
+   * Specifying a workspace dependency is similar to [package dependencies](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html) except:
+   * - Dependencies from this table cannot be declared as `optional`
+   * - [`features`][features] declared in this table are additive with the `features` from `[dependencies]`
+   *
+   * You can then [inherit the workspace dependency as a package dependency](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#inheriting-a-dependency-from-a-workspace)
+   *
+   * Example:
+   * ```toml
+   * # [PROJECT_DIR]/Cargo.toml
+   * [workspace]
+   * members = ["bar"]
+   *
+   * [workspace.dependencies]
+   * cc = "1.0.73"
+   * rand = "0.8.5"
+   * regex = { version = "1.6.0", default-features = false, features = ["std"] }
+   * ```
+   *
+   * ```toml
+   * # [PROJECT_DIR]/bar/Cargo.toml
+   * [package]
+   * name = "bar"
+   * version = "0.2.0"
+   *
    * [dependencies]
-   * time = "0.1.12"
-   * ```
+   * regex = { workspace = true, features = ["unicode"] }
    *
-   * The string `"0.1.12"` is a [semver](https://github.com/steveklabnik/semver#requirements) version requirement. Since this
-   * string does not have any operators in it, it is interpreted the same way as
-   * if we had specified `"^0.1.12"`, which is called a caret requirement.
+   * [build-dependencies]
+   * cc.workspace = true
    *
-   * A dependency can also be defined by a table with additional options:
-   *
-   * ```toml
-   * [dependencies]
-   * time = { path = "../time", version = "0.1.12" }
+   * [dev-dependencies]
+   * rand.workspace = true
    * ```
    */
   dependencies?: {
     [k: string]: Dependency | undefined;
   };
+  lints?: Lints;
   /**
-   * The format of `[dev-dependencies]` is equivalent to `[dependencies]`:
+   * The `workspace.metadata` table is ignored by Cargo and will not be warned
+   * about. This section can be used for tools that would like to store workspace
+   * configuration in `Cargo.toml`. For example:
    *
    * ```toml
-   * [dev-dependencies]
-   * tempdir = "0.3"
+   * [workspace]
+   * members = ["member1", "member2"]
+   *
+   * [workspace.metadata.webcontents]
+   * root = "path/to/webproject"
+   * tool = ["npm", "run", "build"]
+   * # ...
    * ```
    *
-   * Dev-dependencies are not used when compiling
-   * a package for building, but are used for compiling tests, examples, and
-   * benchmarks.
-   *
-   * These dependencies are *not* propagated to other packages which depend on this
-   * package.
-   *
-   * You can also have target-specific development dependencies by using
-   * `dev-dependencies` in the target section header instead of `dependencies`. For
-   * example:
-   *
-   * ```toml
-   * [target.'cfg(unix)'.dev-dependencies]
-   * mio = "0.0.1"
-   * ```
-   *
-   * > **Note**: When a package is published, only dev-dependencies that specify a
-   * > `version` will be included in the published crate. For most use cases,
-   * > dev-dependencies are not needed when published, though some users (like OS
-   * > packagers) may want to run tests within a crate, so providing a `version` if
-   * > possible can still be beneficial.
+   * There is a similar set of tables at the package level at
+   * `package.metadata`. While cargo does not specify a
+   * format for the content of either of these tables, it is suggested that
+   * external tools may wish to use them in a consistent fashion, such as referring
+   * to the data in `workspace.metadata` if data is missing from `package.metadata`,
+   * if that makes sense for the tool in question.
    *
    */
-  'dev-dependencies'?: {
-    [k: string]: Dependency | undefined;
-  };
-  dev_dependencies?: {
-    [k: string]: Dependency | undefined;
-  };
-  /**
-   * You can depend on other Cargo-based crates for use in your build scripts.
-   * Dependencies are declared through the `build-dependencies` section of the
-   * manifest:
-   *
-   * ```toml
-   * [build-dependencies]
-   * cc = "1.0.3"
-   * ```
-   *
-   * The build script **does not** have access to the dependencies listed
-   * in the `dependencies` or `dev-dependencies` section. Build
-   * dependencies will likewise not be available to the package itself
-   * unless listed under the `dependencies` section as well. A package
-   * itself and its build script are built separately, so their
-   * dependencies need not coincide. Cargo is kept simpler and cleaner by
-   * using independent dependencies for independent purposes.
-   */
-  'build-dependencies'?: {
-    [k: string]: Dependency | undefined;
-  };
-  build_dependencies?: {
-    [k: string]: Dependency | undefined;
+  metadata?: {
+    [k: string]: unknown | undefined;
   };
   [k: string]: unknown | undefined;
-}
-export interface OverrideTheDependencyOnCratesIo {
-  [k: string]: Dependency | undefined;
 }
 /**
  * Profiles provide a way to alter the compiler settings, influencing things like optimizations and debugging symbols.
@@ -9098,4 +8969,7 @@ export interface Profile {
   package?: ProfilePackageOverrides;
   'dir-name'?: string;
   [k: string]: unknown | undefined;
+}
+export interface OverrideTheDependencyOnCratesIo {
+  [k: string]: Dependency | undefined;
 }

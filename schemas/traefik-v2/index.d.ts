@@ -65,7 +65,7 @@ export interface AcmeConfiguration {
   keyType?: string;
   preferredChain?: string;
   storage?: string;
-  tlsChallenge?: AcmeTLSChallenge;
+  tlsChallenge?: AcmeTLSChallenge | boolean;
 }
 export interface AcmeDNSChallenge {
   delayBeforeCheck?: string;

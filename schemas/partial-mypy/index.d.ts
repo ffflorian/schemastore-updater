@@ -178,13 +178,18 @@ export interface HttpsJsonSchemastoreOrgPartialMypyJson {
    */
   allow_untyped_globals?: boolean;
   /**
-   * By default, mypy won't allow a variable to be redefined with an unrelated type. This experimental flag enables the redefinition of unannotated variables with an arbitrary type. You will also need to enable `local_partial_types` (https://mypy.readthedocs.io/en/stable/config_file.html#confval-local_partial_types).
+   * @deprecated
+   * Deprecated alias for `allow_redefinition`.
    */
   allow_redefinition_new?: boolean;
   /**
-   * Allows variables to be redefined with an arbitrary type, as long as the redefinition is in the same block and nesting level as the original definition.
+   * By default, mypy won't allow a variable to be redefined with an unrelated type. This flag enables the redefinition of unannotated variables with an arbitrary type. This also requires `local_partial_types` (https://mypy.readthedocs.io/en/stable/config_file.html#confval-local_partial_types), which is enabled by default starting from mypy 2.0.
    */
   allow_redefinition?: boolean;
+  /**
+   * Allows variables to be redefined with an arbitrary type, as long as the redefinition is in the same block and nesting level as the original definition. This was the behavior of `allow_redefinition` before mypy 2.0.
+   */
+  allow_redefinition_old?: boolean;
   /**
    * Disallows inferring variable type for `None` from two assignments in different scopes. This is always implicitly enabled when using the mypy daemon (https://mypy.readthedocs.io/en/stable/mypy_daemon.html).
    */
@@ -341,6 +346,10 @@ export interface HttpsJsonSchemastoreOrgPartialMypyJson {
    * Causes mypy to generate a JUnit XML test result document with type checking results. This can make it easier to integrate mypy with continuous integration (CI) tools.
    */
   junit_xml?: string;
+  /**
+   * If `junit_xml` is set, specifies the format of the report. `global` writes a single test with all errors; `per_file` writes one test entry per file with failures.
+   */
+  junit_format?: 'global' | 'per_file';
   /**
    * Makes script `x` become module `x` instead of `__main__`. This is useful when checking multiple scripts in a single run.
    */
@@ -505,13 +514,18 @@ export interface HttpsJsonSchemastoreOrgPartialMypyJson {
      */
     allow_untyped_globals?: boolean;
     /**
-     * By default, mypy won't allow a variable to be redefined with an unrelated type. This experimental flag enables the redefinition of unannotated variables with an arbitrary type. You will also need to enable `local_partial_types` (https://mypy.readthedocs.io/en/stable/config_file.html#confval-local_partial_types).
+     * @deprecated
+     * Deprecated alias for `allow_redefinition`.
      */
     allow_redefinition_new?: boolean;
     /**
-     * Allows variables to be redefined with an arbitrary type, as long as the redefinition is in the same block and nesting level as the original definition.
+     * By default, mypy won't allow a variable to be redefined with an unrelated type. This flag enables the redefinition of unannotated variables with an arbitrary type. This also requires `local_partial_types` (https://mypy.readthedocs.io/en/stable/config_file.html#confval-local_partial_types), which is enabled by default starting from mypy 2.0.
      */
     allow_redefinition?: boolean;
+    /**
+     * Allows variables to be redefined with an arbitrary type, as long as the redefinition is in the same block and nesting level as the original definition. This was the behavior of `allow_redefinition` before mypy 2.0.
+     */
+    allow_redefinition_old?: boolean;
     /**
      * Disallows inferring variable type for `None` from two assignments in different scopes. This is always implicitly enabled when using the mypy daemon (https://mypy.readthedocs.io/en/stable/mypy_daemon.html).
      */

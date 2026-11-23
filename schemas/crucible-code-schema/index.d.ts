@@ -7,6 +7,17 @@ export interface CrucibleConfiguration {
   $schema?: string;
   $comment?: string;
   /**
+   * What crucible does about the installed coding agents it can update
+   */
+  agents?: {
+    $schema?: string;
+    $comment?: string;
+    /**
+     * Whether an update of an installed coding agent to a version the reviewed catalog lists is put to you (ask) or taken without asking (reviewed). A first install, a rollback and a removal are always asked. Read only from the configuration file in your home directory
+     */
+    update?: 'ask' | 'reviewed';
+  };
+  /**
    * What happens when the model's window fills up
    */
   compaction?: {
@@ -99,9 +110,21 @@ export interface CrucibleConfiguration {
           $schema?: string;
           $comment?: string;
           /**
+           * For a catalog agent, and required for one: the key the catalog reviewed it under, 1 to 32 lowercase letters, digits and hyphens, never a driver's word. Read only from the configuration file in your home directory
+           */
+          agent?: string;
+          /**
            * How the agent signs in: account, its own account login, with no API key from crucible's environment. Read only from the configuration file in your home directory
            */
           authentication?: 'account';
+          /**
+           * For an antigravity agent: the Google Cloud location its business sign-in is billed in, such as us-central1, written with cloudProject and only with it. One host name label of 1 to 63 lowercase letters, digits and hyphens, neither starting nor ending with a hyphen. Takes effect at the next business sign-in. Read only from the configuration file in your home directory
+           */
+          cloudLocation?: string;
+          /**
+           * For an antigravity agent: the ID of the Google Cloud project its business sign-in is billed to, written with cloudLocation and only with it. 6 to 30 lowercase letters, digits and hyphens, starting with a letter and not ending with a hyphen. Takes effect at the next business sign-in. Read only from the configuration file in your home directory
+           */
+          cloudProject?: string;
           /**
            * For a claude agent: an absolute path to the configuration directory it signs in and keeps its state under. Left off, its usual one. Read only from the configuration file in your home directory
            */
@@ -109,7 +132,7 @@ export interface CrucibleConfiguration {
           /**
            * Which agent this is, and so how crucible speaks to it. Read only from the configuration file in your home directory
            */
-          driver: 'claude' | 'antigravity';
+          driver: 'claude' | 'antigravity' | 'catalog';
           /**
            * For a claude agent: how hard it thinks before answering, chosen with /effort. Left off, the default rung of the model it is started with. Read only from the configuration file in your home directory
            */
@@ -127,7 +150,7 @@ export interface CrucibleConfiguration {
            */
           model?: string;
           /**
-           * For an antigravity agent, and required for one: an absolute path to the profile directory it signs in and keeps its state under. Read only from the configuration file in your home directory
+           * For an antigravity agent, and required for one, or a catalog agent: an absolute path to the profile directory it signs in and keeps its state under. Read only from the configuration file in your home directory
            */
           profileDir?: string;
         }
@@ -227,9 +250,21 @@ export interface CrucibleConfiguration {
      */
     color?: 'auto' | 'always' | 'never';
     /**
+     * How a diagram in an answer is drawn: written shows each diagram exactly as the model wrote it; text draws it as characters; image draws it as a picture where one can be shown and as text everywhere else
+     */
+    diagrams?: 'written' | 'text' | 'image';
+    /**
      * Which characters crucible draws with: unicode for box drawing, ascii for a font that lacks it
      */
     glyphs?: 'unicode' | 'ascii';
+    /**
+     * How pictures are drawn: auto asks the terminal at start, only where its environment names a terminal pictures were seen to draw right on and no multiplexer is in between; kitty, iterm2 or sixel uses that protocol without asking where it was seen to draw right, and text elsewhere; off draws text
+     */
+    images?: 'auto' | 'kitty' | 'iterm2' | 'sixel' | 'off';
+    /**
+     * How math in an answer is drawn: written shows each formula exactly as the model wrote it; text draws it as characters; image draws it as a picture where one can be shown and as text everywhere else
+     */
+    math?: 'written' | 'text' | 'image';
     /**
      * How many seconds a running tool call waits before it is drawn above the working row with its output and ctrl+b; one that finishes sooner is only written to the transcript, and 0 draws every call at once
      */

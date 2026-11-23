@@ -83,6 +83,11 @@ export interface Target {
    */
   'cache-to'?: string[];
   /**
+   * Specifies the frontend method to use. Frontend methods let you, for example, execute build checks only, instead of running a build. This is the same as the --call flag.
+   * Supported values include build (default), check, outline and targets.
+   */
+  call?: string;
+  /**
    * Specifies the location of the build context to use for this target. Accepts a URL or a directory path. This is the same as the build context positional argument that you pass to the build command.
    */
   context?: string;
@@ -94,6 +99,10 @@ export interface Target {
     [k: string]: string | undefined;
   };
   /**
+   * Defines a human-readable description for the target, clarifying its purpose or functionality. Shown by docker buildx bake --list=targets.
+   */
+  description?: string;
+  /**
    * Uses the string value as an inline Dockerfile for the build target.
    * The dockerfile-inline takes precedence over the dockerfile attribute. If you specify both, Bake uses the inline version.
    */
@@ -102,6 +111,16 @@ export interface Target {
    * Name of the Dockerfile to use for the build. This is the same as the --file flag for the docker build command.
    */
   dockerfile?: string;
+  /**
+   * Entitlements are permissions that the build process requires to run, for example network.host or security.insecure. The user must grant them with the --allow flag when invoking bake.
+   */
+  entitlements?: string[];
+  /**
+   * Defines custom host-to-IP mapping for the target. This has the same effect as passing a --add-host flag to the build command.
+   */
+  'extra-hosts'?: {
+    [k: string]: string | undefined;
+  };
   /**
    * A target can inherit attributes from other targets. Use inherits to reference from one target to another.
    */
@@ -134,9 +153,27 @@ export interface Target {
    */
   'no-cache'?: boolean;
   /**
+   * Specifies the network mode for the whole build request. This overrides the default network mode for all the RUN instructions in the Dockerfile. If you set it to host, you must also grant the network.host entitlement.
+   */
+  network?: 'default' | 'host' | 'none';
+  /**
    * Configuration for exporting the build output. This is the same as the --output flag.
    */
   output?: string[];
+  /**
+   * Policies to validate build sources and metadata. Each entry uses the same keys as the --policy flag for docker buildx build.
+   */
+  policy?: (
+    | string
+    | {
+        filename?: string | string[];
+        reset?: boolean;
+        disabled?: boolean;
+        strict?: boolean;
+        'log-level'?: string;
+        [k: string]: unknown | undefined;
+      }
+  )[];
   /**
    * Set target platforms for the build target. This is the same as the --platform flag.
    */
@@ -145,6 +182,18 @@ export interface Target {
    * Configures whether the builder should attempt to pull images when building the target. This is the same as the --pull flag for docker build.
    */
   pull?: boolean;
+  /**
+   * Sets cgroup resource limits for the containers that run RUN instructions during the build. These map to the equivalent docker build flags and to the --resource flag for docker buildx build.
+   */
+  resources?: {
+    memory?: string;
+    'memory-swap'?: string;
+    'cpu-shares'?: number;
+    'cpu-period'?: number;
+    'cpu-quota'?: number;
+    'cpuset-cpus'?: string;
+    'cpuset-mems'?: string;
+  };
   /**
    * Defines secrets to expose to the build target. This is the same as the --secret flag.
    */
@@ -173,6 +222,10 @@ export interface Target {
   ulimits?: Ulimit[];
 }
 export interface Group {
+  /**
+   * Defines a human-readable description for the group.
+   */
+  description?: string;
   targets: string[];
   [k: string]: unknown | undefined;
 }

@@ -106,29 +106,6 @@ export type ModuleParametersTasks = {
 /**
  * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
  */
-export type ModuleRequires = {
-  /**
-   * An MTA internal name which must match either a provided name, a resource name, or a module name within the same MTA.
-   */
-  name: string;
-  /**
-   * All required and found configuration data sets will be assembled into a JSON array and provided to the module by the lookup name as specified by the value of 'list'.
-   */
-  list?: string;
-  /**
-   * Required properties can be mapped from provided properties. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
-   */
-  properties?: {
-    [k: string]: unknown | undefined;
-  };
-  'properties-metadata'?: PropertiesMetadata;
-  parameters?: ModuleRequiresParameters;
-  'parameters-metadata'?: PropertiesMetadata1;
-  [k: string]: unknown | undefined;
-}[];
-/**
- * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
- */
 export type ModuleProvides = {
   /**
    * An MTA internal name which can used by a requiring module.
@@ -144,9 +121,9 @@ export type ModuleProvides = {
   properties?: {
     [k: string]: unknown | undefined;
   };
-  'properties-metadata'?: PropertiesMetadata2;
+  'properties-metadata'?: PropertiesMetadata;
   parameters?: ModuleProvidesParameters;
-  'parameters-metadata'?: PropertiesMetadata3;
+  'parameters-metadata'?: PropertiesMetadata;
   [k: string]: unknown | undefined;
 }[];
 /**
@@ -210,7 +187,7 @@ export interface MtaextV33 {
       properties?: {
         [k: string]: unknown | undefined;
       };
-      parameters?: ModuleRequires;
+      parameters?: ModuleRequiresParameters;
       [k: string]: unknown | undefined;
     }[];
     /**
@@ -659,24 +636,6 @@ export interface ModuleParametersCfXsa {
   [k: string]: unknown | undefined;
 }
 /**
- * Additional information about the required dependency's properties.
- */
-export interface PropertiesMetadata {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
  * Parameters can be used to influence the behavior of tools which interpret this descriptor. Parameters are not made available to the module at runtime. Provided property values can be accessed by "~{<provided-property-name>}". Such expressions can be part of an arbitrary string
  */
 export interface ModuleRequiresParameters {
@@ -699,27 +658,9 @@ export interface ModuleRequiresParameters {
   [k: string]: unknown | undefined;
 }
 /**
- * Additional information about the required dependency's parameters.
- */
-export interface PropertiesMetadata1 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
-}
-/**
  * Additional information about the provided dependency's properties.
  */
-export interface PropertiesMetadata2 {
+export interface PropertiesMetadata {
   [k: string]:
     | {
         /**
@@ -755,24 +696,6 @@ export interface ResourceConfigurationTarget {
    */
   space?: string;
   [k: string]: unknown | undefined;
-}
-/**
- * Additional information about the provided dependency's parameters.
- */
-export interface PropertiesMetadata3 {
-  [k: string]:
-    | {
-        /**
-         * Default value is true.
-         */
-        overwritable?: boolean;
-        /**
-         * Default value is false.
-         */
-        optional?: boolean;
-        [k: string]: unknown | undefined;
-      }
-    | undefined;
 }
 export interface ResourceParametersCf {
   /**
@@ -896,21 +819,7 @@ export interface ResourceParametersCfXsa {
    * [CF/XSA] The version of the provider MTA.
    */
   version?: string;
-  target?: ResourceConfigurationTarget1;
-  [k: string]: unknown | undefined;
-}
-/**
- * [CF/XSA] The name of the organization and space in which the provider MTA is deployed.
- */
-export interface ResourceConfigurationTarget1 {
-  /**
-   * [CF/XSA] The org in which the configuration will be looked for
-   */
-  org?: string;
-  /**
-   * [CF/XSA] The space in which the configuration will be looked for
-   */
-  space?: string;
+  target?: ResourceConfigurationTarget;
   [k: string]: unknown | undefined;
 }
 export interface ResourceParametersXsa {

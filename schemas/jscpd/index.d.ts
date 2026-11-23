@@ -248,18 +248,18 @@ export type Reporter =
     )
   | string;
 export type ColorPreset =
-  | 'green'
-  | 'blue'
-  | 'red'
-  | 'yellow'
-  | 'orange'
-  | 'purple'
-  | 'pink'
-  | 'grey'
-  | 'gray'
-  | 'cyan'
-  | 'black';
+  'green' | 'blue' | 'red' | 'yellow' | 'orange' | 'purple' | 'pink' | 'grey' | 'gray' | 'cyan' | 'black';
 export type ColorHex = string;
+/**
+ * skip clones between different folders of the same isolation group, e.g. [["packages/a", "packages/b"]]
+ */
+export type IsolationGroups = string[][];
+/**
+ * dead-code findings to report
+ */
+export type DeadCodeCategories = (
+  'all' | 'unused-export' | 'unused-file' | 'unused-import' | 'unused-member' | 'unused-symbol'
+)[];
 
 export interface HttpsJsonSchemastoreOrgJscpdJson {
   /**
@@ -287,7 +287,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   formatsExts?:
     | {
-        [k: string]: (string[] | string) | undefined;
+        [k: string]: string[] | string | undefined;
       }
     | string[]
     | string;
@@ -409,7 +409,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   formatsNames?:
     | {
-        [k: string]: (string[] | string) | undefined;
+        [k: string]: string[] | string | undefined;
       }
     | string[]
     | string;
@@ -445,6 +445,154 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    * show debug information and do not run detection in v4; silently ignored by v5 config compatibility handling
    */
   debug?: boolean;
+  /**
+   * detect clones across formats: semicolon-separated groups of comma-separated formats (e.g. javascript,typescript;css,scss), or the groups as an array; the preset js-ts stands for javascript,jsx,typescript,tsx
+   */
+  crossFormats?: string | (string | string[])[];
+  /**
+   * report SARIF results as error for clones with at least this many tokens; smaller clones stay warning
+   */
+  sarifErrorTokens?: number;
+  skipIsolated?: IsolationGroups;
+  /**
+   * clone baseline file (e.g. .jscpd-baseline.json): clones whose fingerprint is absent from it are reported as new; see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#baseline
+   */
+  baseline?: string;
+  /**
+   * compare against an ephemeral baseline built from a git ref's tree (e.g. origin/main): clones absent from it are reported as new
+   */
+  baselineFromRef?: string;
+  /**
+   * exit with code 1 when more than this many new clones are found; needs baseline, baselineFromRef or --changed
+   */
+  failOnNewClones?: number;
+  /**
+   * treat identifiers as equal, so clones that differ only in variable, function or type names are found; true or consistent matches only where every name stands for one name on the other side, blind lets any name match any other
+   */
+  ignoreIdentifiers?: boolean | ('blind' | 'consistent');
+  /**
+   * treat all string literals as equal and all numeric literals as equal
+   */
+  ignoreLiterals?: boolean;
+  /**
+   * skip annotations and decorators (@Name, @Name(...)) before detection
+   */
+  ignoreAnnotations?: boolean;
+  /**
+   * merge clones of one file pair separated by at most this many unmatched lines in both files into one near-miss clone, reported as similar; 0 disables
+   */
+  maxGapLines?: number;
+  /**
+   * report pairs of functions whose normalized syntax trees have at least this share of subtrees in common as similar clones
+   */
+  similarity?: number;
+  /**
+   * exit with code 1 when the scan analyzes no files
+   */
+  failOnEmpty?: boolean;
+  /**
+   * git revision range scanned by --history for the duplication and health trend (e.g. v5.0.0..HEAD); see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#history
+   */
+  history?: string;
+  /**
+   * select the commits of --history since this date (e.g. 2026-01-01)
+   */
+  historySince?: string;
+  /**
+   * keep every Nth commit of the --history series, counted from the newest
+   */
+  historyEvery?: number;
+  /**
+   * maximum number of commits in the --history series
+   */
+  historyLimit?: number;
+  /**
+   * dead-code settings; true is the short form of {"enabled": true}, which runs dead-code detection instead of clone detection; see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#in-the-config-file
+   */
+  deadCode?:
+    | boolean
+    | {
+        [k: string]: unknown | undefined;
+      };
+  /**
+   * alias for deadCode. dead-code settings; true is the short form of {"enabled": true}, which runs dead-code detection instead of clone detection; see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#in-the-config-file
+   */
+  basta?:
+    | boolean
+    | {
+        [k: string]: unknown | undefined;
+      };
+  deadCodeCategories?: DeadCodeCategories;
+  /**
+   * treat files matching these globs as dead-code entry points
+   */
+  entry?: string[];
+  /**
+   * tuning of the health score: halfLife and weight of duplication, deadCode and complexity, complexFile, and metrics from other tools; see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#health-score
+   */
+  health?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * JSON file with metrics from other tools (coverage, tests, security) to include in the health score
+   */
+  healthInput?: string;
+  /**
+   * report dead code inside test, fixture and example files
+   */
+  includeTests?: boolean;
+  /**
+   * report exports of entry-point files, which are usually a public API
+   */
+  includeEntryExports?: boolean;
+  /**
+   * report only clones of these kinds (default: all); see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#filtering-by-kind-with---kind
+   */
+  kind?: ('ast' | 'exact' | 'gap' | 'renamed' | 'semantic' | 'similar')[];
+  /**
+   * drop dead-code findings below this confidence
+   */
+  minConfidence?: number;
+  /**
+   * find semantic clones (experimental) with a code embedding model: true, or an object of semantic-clone settings; see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#semantic-clones-with---semantic-experimental
+   */
+  semantic?:
+    | boolean
+    | {
+        [k: string]: unknown | undefined;
+      };
+  /**
+   * the analyses --lsp runs in this project: clones, ast, semantic, deadCode and complexity; see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#editors-with---lsp
+   */
+  lsp?: {
+    [k: string]: unknown | undefined;
+  };
+  /**
+   * the fewest nodes a function's normalized syntax tree needs for similarity to compare it
+   */
+  minNodes?: number;
+  /**
+   * base name of the report files, without the extension
+   */
+  reportName?: string;
+  /**
+   * rules that keep the code of a module, a folder, a file or a method out of other places; see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#boundaries
+   */
+  boundaries?: {
+    [k: string]: unknown | undefined;
+  }[];
+  /**
+   * print a codebase summary: top files and folders by tokens, lines, size and complexity
+   */
+  summary?: boolean;
+  /**
+   * number of entries in each summary top list
+   */
+  summaryTop?: number;
+  /**
+   * summary sort metric
+   */
+  summaryBy?: 'complexity' | 'lines' | 'size' | 'tokens';
   /**
    * v5 kebab-case alias for minTokens. minimum size of code block in tokens to check for duplication
    */
@@ -498,7 +646,7 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   'formats-exts'?:
     | {
-        [k: string]: (string[] | string) | undefined;
+        [k: string]: string[] | string | undefined;
       }
     | string[]
     | string;
@@ -507,8 +655,86 @@ export interface HttpsJsonSchemastoreOrgJscpdJson {
    */
   'formats-names'?:
     | {
-        [k: string]: (string[] | string) | undefined;
+        [k: string]: string[] | string | undefined;
       }
     | string[]
     | string;
+  /**
+   * v5 kebab-case alias for maxGapLines. merge clones of one file pair separated by at most this many unmatched lines in both files into one near-miss clone, reported as similar; 0 disables
+   */
+  'max-gap-lines'?: number;
+  /**
+   * v5 kebab-case alias for minNodes. the fewest nodes a function's normalized syntax tree needs for similarity to compare it
+   */
+  'min-nodes'?: number;
+  /**
+   * v5 kebab-case alias for healthInput. JSON file with metrics from other tools (coverage, tests, security) to include in the health score
+   */
+  'health-input'?: string;
+  /**
+   * v5 kebab-case alias for ignoreIdentifiers. treat identifiers as equal, so clones that differ only in variable, function or type names are found; true or consistent matches only where every name stands for one name on the other side, blind lets any name match any other
+   */
+  'ignore-identifiers'?: boolean | ('blind' | 'consistent');
+  /**
+   * v5 kebab-case alias for ignoreLiterals. treat all string literals as equal and all numeric literals as equal
+   */
+  'ignore-literals'?: boolean;
+  /**
+   * v5 kebab-case alias for ignoreAnnotations. skip annotations and decorators (@Name, @Name(...)) before detection
+   */
+  'ignore-annotations'?: boolean;
+  'skip-isolated'?: IsolationGroups;
+  /**
+   * v5 kebab-case alias for crossFormats. detect clones across formats: semicolon-separated groups of comma-separated formats (e.g. javascript,typescript;css,scss), or the groups as an array; the preset js-ts stands for javascript,jsx,typescript,tsx
+   */
+  'cross-formats'?: string | (string | string[])[];
+  /**
+   * v5 kebab-case alias for sarifErrorTokens. report SARIF results as error for clones with at least this many tokens; smaller clones stay warning
+   */
+  'sarif-error-tokens'?: number;
+  /**
+   * v5 kebab-case alias for reportName. base name of the report files, without the extension
+   */
+  'report-name'?: string;
+  /**
+   * v5 kebab-case alias for failOnNewClones. exit with code 1 when more than this many new clones are found; needs baseline, baselineFromRef or --changed
+   */
+  'fail-on-new-clones'?: number;
+  /**
+   * v5 kebab-case alias for baselineFromRef. compare against an ephemeral baseline built from a git ref's tree (e.g. origin/main): clones absent from it are reported as new
+   */
+  'baseline-from-ref'?: string;
+  /**
+   * v5 kebab-case alias for historySince. select the commits of --history since this date (e.g. 2026-01-01)
+   */
+  'history-since'?: string;
+  /**
+   * v5 kebab-case alias for historyEvery. keep every Nth commit of the --history series, counted from the newest
+   */
+  'history-every'?: number;
+  /**
+   * v5 kebab-case alias for historyLimit. maximum number of commits in the --history series
+   */
+  'history-limit'?: number;
+  /**
+   * v5 kebab-case alias for deadCode. dead-code settings; true is the short form of {"enabled": true}, which runs dead-code detection instead of clone detection; see https://github.com/kucherenko/jscpd/blob/master/docs/rust.md#in-the-config-file
+   */
+  'dead-code'?:
+    | boolean
+    | {
+        [k: string]: unknown | undefined;
+      };
+  'dead-code-categories'?: DeadCodeCategories;
+  /**
+   * v5 kebab-case alias for minConfidence. drop dead-code findings below this confidence
+   */
+  'min-confidence'?: number;
+  /**
+   * v5 kebab-case alias for includeTests. report dead code inside test, fixture and example files
+   */
+  'include-tests'?: boolean;
+  /**
+   * v5 kebab-case alias for includeEntryExports. report exports of entry-point files, which are usually a public API
+   */
+  'include-entry-exports'?: boolean;
 }

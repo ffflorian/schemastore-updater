@@ -13,6 +13,14 @@ export type ArrayOfStrings = string[];
 export interface AVAConfigSchema {
   files?: ArrayOfPaths;
   ignoredByWatcher?: ArrayOfPaths;
+  /**
+   * Configures watch mode (`ava --watch`).
+   * https://github.com/avajs/ava/blob/main/docs/recipes/watch-mode.md
+   */
+  watchMode?: {
+    ignoreChanges?: ArrayOfPaths;
+    [k: string]: unknown | undefined;
+  };
   match?: ArrayOfPaths;
   /**
    * Defaults to `true` to cache compiled files under `node_modules/.cache/ava.` If `false`, files are cached in a temporary directory instead
@@ -55,16 +63,32 @@ export interface AVAConfigSchema {
    * Extensions of test files. Setting this overrides the default `["cjs", "mjs", "js"]` value, so make sure to include those extensions in the list. Experimentally you can configure how files are loaded
    */
   extensions?: ArrayOfStrings | Extensions;
-  require?: ArrayOfPaths;
+  /**
+   * Extra modules to load before test files are loaded. A single module or an array; an item can also be an array of a module followed by arguments passed to the function it exports
+   * https://github.com/avajs/ava/blob/main/docs/06-configuration.md#requiring-extra-modules
+   */
+  require?: Path | (Path | [unknown, ...unknown[]])[];
   /**
    * Timeouts in AVA behave differently than in other test frameworks. AVA resets a timer after each test, forcing tests to quit if no new test results were received within the specified timeout. This can be used to handle stalled tests. See our timeout documentation for more options
    */
   timeout?: number | string;
   nodeArguments?: ArrayOfStrings;
   /**
+   * If `false`, arguments passed to `node` when starting AVA are not forwarded to workers. This option will be removed in the next major release
+   * https://github.com/avajs/ava/blob/main/docs/06-configuration.md#forwarding-arguments-passed-to-node
+   */
+  explicitlyForwardNodeArguments?: boolean;
+  /**
    * If `false`, disable parallel builds (default: `true`)
    */
   utilizeParallelBuilds?: boolean;
+  /**
+   * Opts in to experimental features, which may change or be removed at any time, not just in a new major version
+   * https://github.com/avajs/ava/blob/main/docs/06-configuration.md#experiments
+   */
+  nonSemVerExperiments?: {
+    [k: string]: boolean | undefined;
+  };
   typescript?: Configuration;
 }
 /**
@@ -74,7 +98,11 @@ export interface EnvironmentVariables {
   [k: string]: string | undefined;
 }
 export interface Extensions {
-  [k: string]: ('commonjs' | 'module') | undefined;
+  /**
+   * This interface was referenced by `Extensions`'s JSON-Schema definition
+   * via the `patternProperty` "^(c|m)?js$".
+   */
+  [k: string]: true | 'commonjs' | 'module' | undefined;
 }
 /**
  * Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use `ts-node` to do live testing without transpiling, in which case you shouldn't use the `typescript` property
@@ -96,5 +124,5 @@ export interface Paths {
    * This interface was referenced by `Paths`'s JSON-Schema definition
    * via the `patternProperty` "/$".
    */
-  [k: string]: string;
+  [k: string]: string | undefined;
 }
