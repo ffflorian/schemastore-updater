@@ -9,16 +9,12 @@ export type ExecutorTaskOption =
   | ExecutorAuto
   | ExecutorPartial;
 export type ExecutorPartial =
-  | ExecutorPoetryPartial
-  | ExecutorSimplePartial
-  | ExecutorUvPartial
-  | ExecutorVirtualenvPartial
-  | ExecutorAutoPartial;
+  ExecutorPoetryPartial | ExecutorSimplePartial | ExecutorUvPartial | ExecutorVirtualenvPartial | ExecutorAutoPartial;
 /**
  * This interface was referenced by `TasksMap`'s JSON-Schema definition
  * via the `patternProperty` "^[^\W\d][\w:+-]*$".
  *
- * This interface was referenced by `TasksMap1`'s JSON-Schema definition
+ * This interface was referenced by `TasksMap`'s JSON-Schema definition
  * via the `patternProperty` "^[^\W\d][\w:+-]*$".
  */
 export type TaskDef =
@@ -49,8 +45,6 @@ export type ArgsOption =
       [k: string]: ArgsItemNoName | undefined;
     };
 export type ArgsItem = {
-  [k: string]: unknown | undefined;
-} & {
   /**
    * Constrain the accepted values for an argument to a fixed set.
    */
@@ -59,6 +53,11 @@ export type ArgsItem = {
    * The default value for the argument when not provided.
    */
   default?: string | number | boolean;
+  /**
+   * Literal string to expose for a false boolean argument in parameter expansion
+   * and the environment. The variable is unset when omitted.
+   */
+  false_string?: string;
   /**
    * A short description of the argument to include in the documentation of the
    * task.
@@ -87,54 +86,62 @@ export type ArgsItem = {
    */
   required?: boolean;
   /**
+   * Literal string to expose for a true boolean argument in parameter expansion
+   * and the environment. Defaults to "True" when omitted.
+   */
+  true_string?: string;
+  /**
    * The type of the argument.
    */
   type?: 'string' | 'float' | 'integer' | 'boolean';
 };
-export type ArgsItemNoName =
-  | (
-      | ({
-          [k: string]: unknown | undefined;
-        } & {
-          /**
-           * Constrain the accepted values for an argument to a fixed set.
-           */
-          choices?: string[] | number[];
-          /**
-           * The default value for the argument when not provided.
-           */
-          default?: string | number | boolean;
-          /**
-           * A short description of the argument to include in the documentation of the
-           * task.
-           */
-          help?: string;
-          /**
-           * Indicates if multiple values are allowed for the argument. If an integer is
-           * given, exactly that many values are expected.
-           */
-          multiple?: boolean | number;
-          /**
-           * A list of options to be provided along with the argument.
-           */
-          options?: string[];
-          /**
-           * Indicates if the argument is positional. If a string is provided, it is used
-           * as the dest name for the argument in argparse.
-           */
-          positional?: boolean | string;
-          /**
-           * Indicates if the argument is required.
-           */
-          required?: boolean;
-          /**
-           * The type of the argument.
-           */
-          type?: 'string' | 'float' | 'integer' | 'boolean';
-        })
-      | undefined
-    )
-  | undefined;
+export type ArgsItemNoName = {
+  /**
+   * Constrain the accepted values for an argument to a fixed set.
+   */
+  choices?: string[] | number[];
+  /**
+   * The default value for the argument when not provided.
+   */
+  default?: string | number | boolean;
+  /**
+   * Literal string to expose for a false boolean argument in parameter expansion
+   * and the environment. The variable is unset when omitted.
+   */
+  false_string?: string;
+  /**
+   * A short description of the argument to include in the documentation of the
+   * task.
+   */
+  help?: string;
+  /**
+   * Indicates if multiple values are allowed for the argument. If an integer is
+   * given, exactly that many values are expected.
+   */
+  multiple?: boolean | number;
+  /**
+   * A list of options to be provided along with the argument.
+   */
+  options?: string[];
+  /**
+   * Indicates if the argument is positional. If a string is provided, it is used
+   * as the dest name for the argument in argparse.
+   */
+  positional?: boolean | string;
+  /**
+   * Indicates if the argument is required.
+   */
+  required?: boolean;
+  /**
+   * Literal string to expose for a true boolean argument in parameter expansion
+   * and the environment. Defaults to "True" when omitted.
+   */
+  true_string?: string;
+  /**
+   * The type of the argument.
+   */
+  type?: 'string' | 'float' | 'integer' | 'boolean';
+};
 /**
  * Executes a single command as a subprocess without a shell. Supports glob
  * patterns for filesystem paths, parameter expansion of environment variable
@@ -143,8 +150,6 @@ export type ArgsItemNoName =
 export type CommandToExecute = string;
 export type EnvfileOption = string | EnvfileFull | (string | EnvfileFull)[];
 export type ScriptTask = {
-  [k: string]: unknown | undefined;
-} & {
   args?: ArgsOption;
   /**
    * Redirects the task output to a file with the given path. Supports
@@ -162,7 +167,7 @@ export type ScriptTask = {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -201,6 +206,13 @@ export type ScriptTask = {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -229,8 +241,6 @@ export type TaskDefWithCase =
       [k: string]: unknown | undefined;
     };
 export type ScriptTaskWithCase = {
-  [k: string]: unknown | undefined;
-} & {
   args?: ArgsOption;
   /**
    * Redirects the task output to a file with the given path. Supports
@@ -249,7 +259,7 @@ export type ScriptTaskWithCase = {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -288,6 +298,13 @@ export type ScriptTaskWithCase = {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -384,7 +401,7 @@ export interface PoeThePoetConfiguration {
   shell_interpreter?:
     | ('posix' | 'sh' | 'bash' | 'zsh' | 'fish' | 'pwsh' | 'powershell' | 'python')
     | ('posix' | 'sh' | 'bash' | 'zsh' | 'fish' | 'pwsh' | 'powershell' | 'python')[];
-  tasks?: TasksMap1;
+  tasks?: TasksMap;
   /**
    * Sets the default verbosity level for all commands. '-1' is quieter, '0' is
    * the default level, and '1' is more verbose. The command line arguments are
@@ -397,7 +414,7 @@ export interface PoeThePoetConfiguration {
  * A map of environment variables to be set for all tasks.
  */
 export interface EnvOption {
-  [k: string]: (string | EnvDefault) | undefined;
+  [k: string]: string | EnvDefault | undefined;
 }
 export interface EnvDefault {
   /**
@@ -487,7 +504,7 @@ export interface ExecutorAuto {
  * Define groups of tasks to be displayed together in the help output.
  */
 export interface GroupsMap {
-  [k: string]: TaskGroup;
+  [k: string]: TaskGroup | undefined;
 }
 /**
  * This interface was referenced by `GroupsMap`'s JSON-Schema definition
@@ -559,7 +576,7 @@ export interface ExecutorVirtualenvPartial {
 }
 export interface ExecutorAutoPartial {}
 export interface TasksMap {
-  [k: string]: TaskDef;
+  [k: string]: TaskDef | undefined;
 }
 export interface CmdTask {
   args?: ArgsOption;
@@ -588,7 +605,7 @@ export interface CmdTask {
    * error if there are no matches.
    */
   empty_glob?: 'pass' | 'null' | 'fail';
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -618,14 +635,18 @@ export interface CmdTask {
     [k: string]: string | undefined;
   };
   /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
+  /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
    * defaults to 0.
    */
   verbosity?: -2 | -1 | 0 | 1 | 2;
-}
-export interface EnvOption1 {
-  [k: string]: (string | EnvDefault) | undefined;
 }
 export interface ExprTask {
   args?: ArgsOption;
@@ -651,7 +672,7 @@ export interface ExprTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -690,6 +711,13 @@ export interface ExprTask {
     [k: string]: string | undefined;
   };
   /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
+  /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
    * defaults to 0.
@@ -715,7 +743,7 @@ export interface ParallelTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -738,9 +766,7 @@ export interface ParallelTask {
    * subprocess; output lines are interleaved and prefixed with the subtask
    * name by default.
    */
-  parallel: (TaskDef & {
-    [k: string]: unknown | undefined;
-  })[];
+  parallel: TaskDef[];
   /**
    * Set the prefix applied to each line of output from subtasks. By default
    * this is the task name. Set to false to disable prefixing.
@@ -764,6 +790,13 @@ export interface ParallelTask {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -789,7 +822,7 @@ export interface RefTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   /**
    * Help text to be displayed next to the task name in the documentation when
@@ -815,6 +848,13 @@ export interface RefTask {
     [k: string]: string | undefined;
   };
   /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
+  /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
    * defaults to 0.
@@ -839,7 +879,7 @@ export interface SequenceTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -856,9 +896,7 @@ export interface SequenceTask {
    * definitions, task references by name. Nested arrays are run as parallel
    * tasks.
    */
-  sequence: (TaskDef & {
-    [k: string]: unknown | undefined;
-  })[];
+  sequence: TaskDef[];
   /**
    * Allows this task to use the output of other tasks which are executed first.
    * The values are references to the names of the tasks, and the keys are
@@ -868,6 +906,13 @@ export interface SequenceTask {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -893,7 +938,7 @@ export interface ShellTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -930,6 +975,13 @@ export interface ShellTask {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -965,7 +1017,7 @@ export interface SwitchTask {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -978,9 +1030,7 @@ export interface SwitchTask {
    * The control task is executed first; its output is matched against
    * each case to select which subtask to run.
    */
-  switch: (TaskDefWithCase & {
-    [k: string]: unknown | undefined;
-  })[];
+  switch: TaskDefWithCase[];
   /**
    * Allows this task to use the output of other tasks which are executed first.
    * The values are references to the names of the tasks, and the keys are
@@ -990,6 +1040,13 @@ export interface SwitchTask {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -1025,7 +1082,7 @@ export interface CmdTaskWithCase {
    * error if there are no matches.
    */
   empty_glob?: 'pass' | 'null' | 'fail';
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -1054,6 +1111,13 @@ export interface CmdTaskWithCase {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -1086,7 +1150,7 @@ export interface ExprTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -1125,6 +1189,13 @@ export interface ExprTaskWithCase {
     [k: string]: string | undefined;
   };
   /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
+  /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
    * defaults to 0.
@@ -1151,7 +1222,7 @@ export interface ParallelTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -1174,9 +1245,7 @@ export interface ParallelTaskWithCase {
    * subprocess; output lines are interleaved and prefixed with the subtask
    * name by default.
    */
-  parallel: (TaskDef & {
-    [k: string]: unknown | undefined;
-  })[];
+  parallel: TaskDef[];
   /**
    * Set the prefix applied to each line of output from subtasks. By default
    * this is the task name. Set to false to disable prefixing.
@@ -1200,6 +1269,13 @@ export interface ParallelTaskWithCase {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -1226,7 +1302,7 @@ export interface RefTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   /**
    * Help text to be displayed next to the task name in the documentation when
@@ -1251,6 +1327,13 @@ export interface RefTaskWithCase {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -1277,7 +1360,7 @@ export interface SequenceTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -1294,9 +1377,7 @@ export interface SequenceTaskWithCase {
    * definitions, task references by name. Nested arrays are run as parallel
    * tasks.
    */
-  sequence: (TaskDef & {
-    [k: string]: unknown | undefined;
-  })[];
+  sequence: TaskDef[];
   /**
    * Allows this task to use the output of other tasks which are executed first.
    * The values are references to the names of the tasks, and the keys are
@@ -1306,6 +1387,13 @@ export interface SequenceTaskWithCase {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -1332,7 +1420,7 @@ export interface ShellTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -1369,6 +1457,13 @@ export interface ShellTaskWithCase {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -1405,7 +1500,7 @@ export interface SwitchTaskWithCase {
    * in the list is a reference to another task defined within the tasks object.
    */
   deps?: string[];
-  env?: EnvOption1;
+  env?: EnvOption;
   envfile?: EnvfileOption;
   executor?: ExecutorTaskOption;
   /**
@@ -1418,9 +1513,7 @@ export interface SwitchTaskWithCase {
    * The control task is executed first; its output is matched against
    * each case to select which subtask to run.
    */
-  switch: (TaskDefWithCase & {
-    [k: string]: unknown | undefined;
-  })[];
+  switch: TaskDefWithCase[];
   /**
    * Allows this task to use the output of other tasks which are executed first.
    * The values are references to the names of the tasks, and the keys are
@@ -1430,6 +1523,13 @@ export interface SwitchTaskWithCase {
   uses?: {
     [k: string]: string | undefined;
   };
+  /**
+   * Allows this task to use the output of other tasks which are executed first,
+   * and their output is parsed like an env file to get zero or more environment
+   * variables which will be accessible in this task.
+   * The referenced task(s) determine(s) which variables (if any) are set.
+   */
+  uses_env?: string | string[];
   /**
    * Specify the verbosity level for this task, from -2 (least verbose) to 2
    * (most verbose), overriding the project level verbosity setting, which
@@ -1449,10 +1549,4 @@ export interface IncludeScriptItem {
    * merged into the project config.
    */
   script: string;
-}
-/**
- * A mapping of task names to task definitions.
- */
-export interface TasksMap1 {
-  [k: string]: TaskDef;
 }

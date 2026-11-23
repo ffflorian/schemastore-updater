@@ -86,6 +86,7 @@ export type RuleSelector =
   | 'quoted-strings'
   | 'schema-dependent-values'
   | 'tags'
+  | 'schema'
   | 'trailing-spaces'
   | 'truthy'
   | 'unicode-line-breaks'
@@ -188,6 +189,24 @@ export type RuleEntryForTomlQuotedStringsOptions = boolean | RuleSwitch | RuleOp
 export type QuoteType = 'any' | 'single' | 'double' | 'consistent';
 export type QuotedStringsRequired = boolean | QuotedStringsRequiredMode;
 export type QuotedStringsRequiredMode = 'only-when-needed';
+/**
+ * Common rule entry shape used by TOML config.
+ */
+export type RuleEntryForSchemaOptions = boolean | RuleSwitch | RuleOptionsForSchemaOptions;
+export type SchemaAssociation = {
+  files?: string[];
+  path?: string | null;
+  url?: string | null;
+} & SchemaAssociation1;
+export type SchemaAssociation1 =
+  | {
+      path: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      url: unknown;
+      [k: string]: unknown | undefined;
+    };
 /**
  * Common rule entry shape used by TOML config.
  */
@@ -404,6 +423,10 @@ export interface FormatTable {
    */
   'property-order'?: 'preserve' | 'anchor-first' | 'tag-first';
   /**
+   * First-match scalar wrapping preferences; active only with `prose-wrap = "always"`.
+   */
+  prose?: ProseEntry[];
+  /**
    * Whether to preserve, wrap or join physical prose lines.
    */
   'prose-wrap'?: ProseWrap | null;
@@ -419,6 +442,28 @@ export interface FormatTable {
    * Collection style for sequences; `preserve` leaves each as written.
    */
   'sequence-style'?: 'preserve' | 'block' | 'flow';
+}
+export interface ProseEntry {
+  /**
+   * Literal tokens before which an existing single space may become a line break.
+   *
+   * @minItems 1
+   */
+  'break-before': [string, ...string[]];
+  /**
+   * File globs relative to the config directory; `!` excludes.
+   *
+   * @minItems 1
+   */
+  files: [string, ...string[]];
+  /**
+   * `JSONPath` subset: `$`, `.name`, `['name']`, `[*]`, `.*`.
+   */
+  path: string;
+  /**
+   * Regex matches in decoded scalar content are opaque to wrapping.
+   */
+  'protected-patterns'?: string[];
 }
 /**
  * The `[lint]` table.
@@ -495,6 +540,7 @@ export interface RulesTable {
   'new-lines'?: RuleEntryForNewLinesOptions | null;
   'octal-values'?: RuleEntryForOctalValuesOptions | null;
   'quoted-strings'?: RuleEntryForTomlQuotedStringsOptions | null;
+  schema?: RuleEntryForSchemaOptions | null;
   'schema-dependent-values'?: RuleEntryForSchemaDependentValuesOptions | null;
   tags?: RuleEntryForTagsOptions | null;
   'trailing-spaces'?: RuleEntryForNoOptions | null;
@@ -507,6 +553,7 @@ export interface RulesTable {
  * Common rule fields plus rule-specific options.
  */
 export interface RuleOptionsForTomlAnchorsOptions {
+  'forbid-aliases'?: boolean | null;
   'forbid-ambiguous-anchor-alias-names'?: boolean | null;
   'forbid-anchors-and-aliases'?: boolean | null;
   'forbid-duplicated-anchors'?: boolean | null;
@@ -718,11 +765,25 @@ export interface RuleOptionsForTomlQuotedStringsOptions {
   'check-keys'?: boolean | null;
   'extra-allowed'?: string[] | null;
   'extra-required'?: string[] | null;
+  'extra-required-flow'?: string[] | null;
   ignore?: StringOrVec | null;
   'ignore-from-file'?: StringOrVec | null;
   level?: RuleLevel | null;
   'quote-type'?: QuoteType | null;
   required?: QuotedStringsRequired | null;
+}
+/**
+ * Common rule fields plus rule-specific options.
+ */
+export interface RuleOptionsForSchemaOptions {
+  directives?: boolean | null;
+  ignore?: StringOrVec | null;
+  'ignore-from-file'?: StringOrVec | null;
+  level?: RuleLevel | null;
+  pins?: {
+    [k: string]: string | undefined;
+  } | null;
+  schemas?: SchemaAssociation[] | null;
 }
 /**
  * Common rule fields plus rule-specific options.

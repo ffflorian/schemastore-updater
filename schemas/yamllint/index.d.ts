@@ -233,9 +233,9 @@ export type Rule20 = {
   [k: string]: unknown | undefined;
 };
 /**
- * quote-type defines allowed quotes: single, double or any (default).
+ * quote-type defines allowed quotes: single, double, consistent or any (default). consistent requires all quoted strings in a document to use the same quote type as the first one.
  */
-export type QuoteType = 'single' | 'double' | 'any';
+export type QuoteType = 'single' | 'double' | 'consistent' | 'any';
 /**
  * required defines whether using quotes in string values is required (true, default) or not (false), or only allowed when really needed (only-when-needed).
  */

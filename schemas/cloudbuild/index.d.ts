@@ -4,6 +4,50 @@
  * If set to true, automatically map all subsistutions and make them available as environment variables in a single step. If set to false, ignore substitutions for that step. Can be used for a build step or for an entire build.
  */
 export type AutomapSubstitutions = boolean;
+/**
+ * Allows you to upload non-container Go modules to Go repositories in Artifact Registry.
+ */
+export type GoModules = {
+  /**
+   * The name of your Go repository in Artifact Registry.
+   */
+  repositoryName: string;
+  /**
+   * The location for your repository in Artifact Registry.
+   */
+  repositoryLocation: string;
+  /**
+   * The ID of the Google Cloud project that contains your Artifact Registry Go repository.
+   */
+  repositoryProjectId?: string;
+  /**
+   * @deprecated
+   * DEPRECATED. Use repositoryProjectId, the spelling used by the build config file reference.
+   * The ID of the Google Cloud project that contains your Artifact Registry Go repository.
+   */
+  repositoryProject_id?: string;
+  /**
+   * The path to the go.mod file in the build's workspace.
+   */
+  sourcePath: string;
+  /**
+   * The local directory that contains the Go module to upload. It is recommended to use an absolute path for the value.
+   */
+  modulePath: string;
+  /**
+   * The version of the Go module.
+   */
+  moduleVersion: string;
+} & GoModules1;
+export type GoModules1 =
+  | {
+      repositoryProjectId: unknown;
+      [k: string]: unknown | undefined;
+    }
+  | {
+      repositoryProject_id: unknown;
+      [k: string]: unknown | undefined;
+    };
 
 /**
  * A build resource in the Cloud Build API.
@@ -41,6 +85,40 @@ export interface GoogleCloudBuildBuildConfigFile {
    * Secrets to decrypt using Cloud Key Management Service.
    */
   secrets?: Secret[];
+  /**
+   * Secrets to make available to build steps, from Secret Manager or inline Cloud KMS-encrypted values. Using Cloud KMS keys here is not recommended because it exposes sensitive data in the build config file.
+   * https://cloud.google.com/build/docs/build-config-file-schema
+   */
+  availableSecrets?: {
+    /**
+     * Secret Manager secrets to make available as environment variables.
+     */
+    secretManager?: {
+      /**
+       * Resource name of the Secret Manager version, for example projects/PROJECT_ID/secrets/SECRET_NAME/versions/latest.
+       */
+      versionName: string;
+      /**
+       * Environment variable name to associate with the secret. It must be listed in the secretEnv of the steps that use it.
+       */
+      env: string;
+    }[];
+    /**
+     * Cloud KMS-encrypted values to decrypt and make available as environment variables.
+     */
+    inline?: {
+      /**
+       * Resource name of the Cloud KMS key used to decrypt the values.
+       */
+      kmsKeyName?: string;
+      /**
+       * Map of environment variable name to its encrypted value.
+       */
+      envMap?: {
+        [k: string]: string | undefined;
+      };
+    }[];
+  };
   /**
    * Use this field to specify the IAM service account to use at build time.
    */
@@ -116,6 +194,24 @@ export interface BuildStep {
    * If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a volume for that path is specified. If the build specifies a RepoSource with dir and a step with a dir, which specifies an absolute path, the RepoSource dir is ignored for the step's execution.
    */
   dir?: string;
+  /**
+   * Results of the step, such as attestations, that are attached to the build.
+   * https://cloud.google.com/build/docs/build-config-file-schema
+   */
+  results?: {
+    /**
+     * The name of the result.
+     */
+    name?: string;
+    /**
+     * The name of the attestation.
+     */
+    attestationContent?: string;
+    /**
+     * The type of the attestation.
+     */
+    attestationType?: string;
+  }[];
 }
 /**
  * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution.
@@ -170,7 +266,8 @@ export interface BuildOptions {
   /**
    * Configure Cloud Build to create a default logs bucket within your own project in the same region as your build.
    */
-  defaultLogsBucketBehavior?: 'DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED' | 'REGIONAL_USER_OWNED_BUCKET';
+  defaultLogsBucketBehavior?:
+    'DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED' | 'REGIONAL_USER_OWNED_BUCKET' | 'LEGACY_BUCKET';
   /**
    * Requested verifiability options.
    */
@@ -199,6 +296,21 @@ export interface BuildOptions {
    * Requested hash for SourceProvenance.
    */
   sourceProvenanceHash?: ('NONE' | 'SHA256' | 'MD5')[];
+  /**
+   * Enables the mapping of specified build log fields to LogEntry fields when the build log is sent to Cloud Logging.
+   * https://cloud.google.com/build/docs/build-config-file-schema
+   */
+  enableStructuredLogging?: boolean;
+  /**
+   * Name of the Pub/Sub topic that build status updates are published to. Defaults to cloud-builds.
+   * https://cloud.google.com/build/docs/build-config-file-schema
+   */
+  pubsubTopic?: string;
+  /**
+   * The worker release channel (for example regular) or a specific version (for example 2026.09) to run the build on.
+   * https://cloud.google.com/build/docs/build-config-file-schema
+   */
+  workerRelease?: string;
 }
 /**
  * Artifacts produced by the build that should be uploaded upon successful completion of all build steps.
@@ -221,6 +333,16 @@ export interface Artifacts {
    * Uploads your built NPM packages to supported repositories.
    */
   npmPackages?: NpmPackages[];
+  /**
+   * Allows you to upload OCI images to supported repositories in Artifact Registry.
+   * https://cloud.google.com/build/docs/build-config-file-schema
+   */
+  oci?: OciArtifacts[];
+  /**
+   * Allows you to upload files of unspecified types to Generic repositories in Artifact Registry.
+   * https://cloud.google.com/build/docs/build-config-file-schema
+   */
+  genericArtifacts?: GenericArtifacts[];
   [k: string]: unknown | undefined;
 }
 /**
@@ -238,35 +360,6 @@ export interface ArtifactObjects {
   [k: string]: unknown | undefined;
 }
 /**
- * Allows you to upload non-container Go modules to Go repositories in Artifact Registry.
- */
-export interface GoModules {
-  /**
-   * The name of your Go repository in Artifact Registry.
-   */
-  repositoryName: string;
-  /**
-   * The location for your repository in Artifact Registry.
-   */
-  repositoryLocation: string;
-  /**
-   * The ID of the Google Cloud project that contains your Artifact Registry Go repository.
-   */
-  repositoryProject_id: string;
-  /**
-   * The path to the go.mod file in the build's workspace.
-   */
-  sourcePath: string;
-  /**
-   * The local directory that contains the Go module to upload. It is recommended to use an absolute path for the value.
-   */
-  modulePath: string;
-  /**
-   * The version of the Go module.
-   */
-  moduleVersion: string;
-}
-/**
  * Allows you to upload non-container Java artifacts to Maven repositories in Artifact Registry.
  */
 export interface MavenArtifacts {
@@ -274,6 +367,10 @@ export interface MavenArtifacts {
    * Required. Name of the Artifact Registry repository to store Java artifacts.
    */
   repository: string;
+  /**
+   * The folder that contains the files to deploy, for example /workspace/target.
+   */
+  deployFolder?: string;
   /**
    * Required. The application file path.
    */
@@ -316,6 +413,36 @@ export interface NpmPackages {
    * Required. The path for the local directory containing the NPM package that you want to upload to Artifact Registry. Google recommends using an absolute path. Your packagePath value can be . to use the current working directory, but the field cannot be omitted or left empty. This directory must contain a package.json file.
    */
   packagePath: string;
+}
+/**
+ * Allows you to upload OCI images to supported repositories in Artifact Registry.
+ */
+export interface OciArtifacts {
+  /**
+   * The local directory that contains the OCI image to upload.
+   */
+  file?: string;
+  /**
+   * The Artifact Registry repository path to store the image in.
+   */
+  registryPath?: string;
+  /**
+   * Tags to apply to the uploaded image.
+   */
+  tags?: string[];
+}
+/**
+ * Allows you to upload files of unspecified types to Generic repositories in Artifact Registry.
+ */
+export interface GenericArtifacts {
+  /**
+   * The folder that contains the files to upload.
+   */
+  folder?: string;
+  /**
+   * The Artifact Registry repository path to store the files in.
+   */
+  registryPath?: string;
 }
 /**
  * Pairs a set of secret environment variables containing encrypted values with the Cloud KMS key to use to decrypt the value.

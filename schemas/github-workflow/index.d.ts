@@ -12,6 +12,7 @@ export type Event =
   | 'discussion_comment'
   | 'fork'
   | 'gollum'
+  | 'image_version'
   | 'issue_comment'
   | 'issues'
   | 'label'
@@ -97,6 +98,7 @@ export type Types6 = ([unknown, ...unknown[]] | string) &
     | 'untyped'
     | 'field_added'
     | 'field_removed'
+    | 'status_changed'
   )[];
 /**
  * Selects the types of activity that will trigger a workflow run. Most GitHub events are triggered by more than one type of activity. For example, the event for the release resource is triggered when a release is published, unpublished, created, edited, deleted, or prereleased. The types keyword enables you to narrow down activity that causes the workflow to run. When only one activity type triggers a webhook event, the types keyword is unnecessary.
@@ -181,30 +183,6 @@ export type Path = [string, ...string[]];
  * You can use an array of event types. For more information about each event and their activity types, see https://help.github.com/en/articles/events-that-trigger-workflows#webhook-events.
  */
 export type Types14 = ([unknown, ...unknown[]] | string) & ('submitted' | 'edited' | 'dismissed')[];
-/**
- * Selects the types of activity that will trigger a workflow run. Most GitHub events are triggered by more than one type of activity. For example, the event for the release resource is triggered when a release is published, unpublished, created, edited, deleted, or prereleased. The types keyword enables you to narrow down activity that causes the workflow to run. When only one activity type triggers a webhook event, the types keyword is unnecessary.
- * You can use an array of event types. For more information about each event and their activity types, see https://help.github.com/en/articles/events-that-trigger-workflows#webhook-events.
- */
-export type Types16 = ([unknown, ...unknown[]] | string) &
-  (
-    | 'assigned'
-    | 'unassigned'
-    | 'labeled'
-    | 'unlabeled'
-    | 'opened'
-    | 'edited'
-    | 'closed'
-    | 'reopened'
-    | 'synchronize'
-    | 'converted_to_draft'
-    | 'ready_for_review'
-    | 'locked'
-    | 'unlocked'
-    | 'review_requested'
-    | 'review_request_removed'
-    | 'auto_merge_enabled'
-    | 'auto_merge_disabled'
-  )[];
 /**
  * Selects the types of activity that will trigger a workflow run. Most GitHub events are triggered by more than one type of activity. For example, the event for the release resource is triggered when a release is published, unpublished, created, edited, deleted, or prereleased. The types keyword enables you to narrow down activity that causes the workflow to run. When only one activity type triggers a webhook event, the types keyword is unnecessary.
  * You can use an array of event types. For more information about each event and their activity types, see https://help.github.com/en/articles/events-that-trigger-workflows#webhook-events.
@@ -820,6 +798,23 @@ export interface HttpsJsonSchemastoreOrgGithubWorkflowJson {
           [k: string]: unknown | undefined;
         } | null;
         /**
+         * Runs your workflow when a new version of a specified image becomes available for use. Both image names and versions support glob patterns.
+         */
+        image_version?: null | {
+          /**
+           * Image names (glob patterns) that trigger the workflow.
+           *
+           * @minItems 1
+           */
+          names?: [string, ...string[]];
+          /**
+           * Image versions (glob patterns) that trigger the workflow.
+           *
+           * @minItems 1
+           */
+          versions?: [string, ...string[]];
+        };
+        /**
          * Runs your workflow anytime the issue_comment event occurs. More than one activity type triggers this event. For information about the REST API, see https://developer.github.com/v3/issues/comments/.
          */
         issue_comment?: null | {
@@ -929,7 +924,7 @@ export interface HttpsJsonSchemastoreOrgGithubWorkflowJson {
          * This event is similar to pull_request, except that it runs in the context of the base repository of the pull request, rather than in the merge commit. This means that you can more safely make your secrets available to the workflows triggered by the pull request, because only workflows defined in the commit on the base repository are run. For example, this event allows you to create workflows that label and comment on pull requests, based on the contents of the event payload.
          */
         pull_request_target?: null | {
-          types?: Types16;
+          types?: Types13;
           branches?: Branch;
           'branches-ignore'?: Branch;
           tags?: Branch;
@@ -1268,9 +1263,11 @@ export interface NormalJob {
    * When both the job and the action run in a container, you can directly reference the container by its hostname. The hostname is automatically mapped to the service name.
    * When a step does not use a container action, you must access the service using localhost and bind the ports.
    */
-  services?: {
-    [k: string]: ServiceContainer | undefined;
-  };
+  services?:
+    | {
+        [k: string]: ServiceContainer | undefined;
+      }
+    | StringContainingExpressionSyntax;
   /**
    * Concurrency ensures that only a single job or workflow using the same concurrency group will run at a time. A concurrency group can be any string or expression. The expression can use any context except for the secrets context.
    * You can also specify concurrency at the workflow level.

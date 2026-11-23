@@ -85,6 +85,10 @@ export interface PnpmWorkspaceSpecification {
     [k: string]: unknown | undefined;
   };
   /**
+   * When true, an install that resolves the whole dependency graph warns about every entry in overrides that matched no dependency. Only overrides declared in pnpm-workspace.yaml are checked; entries added by a config dependency or an updateConfig hook are not. Added in pnpm v12.23.0.
+   */
+  warnUnusedOverrides?: boolean;
+  /**
    * Used to extend the existing package definitions with additional information.
    */
   packageExtensions?: {
@@ -224,13 +228,15 @@ export interface PnpmWorkspaceSpecification {
    */
   requiredScripts?: string[];
   /**
-   * Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install.
+   * Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install. Either a mapping of os, cpu, and libc lists, or a list of exact platform tags to prepare.
    */
-  supportedArchitectures?: {
-    os?: string[];
-    cpu?: string[];
-    libc?: string[];
-  };
+  supportedArchitectures?:
+    | {
+        os?: string[];
+        cpu?: string[];
+        libc?: string[];
+      }
+    | string[];
   /**
    * A list of optional dependencies that the install should be skipped.
    */
@@ -270,9 +276,38 @@ export interface PnpmWorkspaceSpecification {
    */
   modulesDir?: string;
   /**
-   * Defines what linker should be used for installing Node packages.
+   * Defines what linker should be used for installing Node packages. Scalar values remain supported. The object form selects a linker with type and groups linker-specific options with it: isolated accepts hoist, hoisted accepts hoistingLimits, and loaded accepts excluded. Configuration sources replace the selected linker; options from a higher-priority object override the same options from lower-priority sources. PNPM_CONFIG_NODE_LINKER and --config.node-linker accept the object as JSON.
    */
-  nodeLinker?: 'isolated' | 'hoisted' | 'pnp';
+  nodeLinker?:
+    | ('isolated' | 'hoisted' | 'pnp' | 'loaded')
+    | (
+        | {
+            type: 'isolated';
+            /**
+             * true selects the defaults: public: [] and private: ['*']. false disables both. An object sets the public and private pattern lists; public patterns take precedence when both match.
+             */
+            hoist?:
+              | boolean
+              | {
+                  public?: string[];
+                  private?: string[];
+                };
+          }
+        | {
+            type: 'hoisted';
+            /**
+             * none hoists as far as possible, workspaces only as far as each workspace package, dependencies only up to each workspace package's direct dependencies.
+             */
+            hoistingLimits?: 'none' | 'workspaces' | 'dependencies';
+          }
+        | {
+            type: 'loaded';
+            /**
+             * With nodeLinker.type: loaded, materialize these package names and their complete dependency trees in the global virtual store. Names match all installed versions and peer contexts. Packages outside these trees load directly from the store. Build approval settings still apply.
+             */
+            excluded?: string[];
+          }
+      );
   /**
    * When true, pnpm injects the generated node_modules/.package-map.json into pnpm-managed Node.js script environments by adding Node's --experimental-package-map option to NODE_OPTIONS. see https://pnpm.io/settings/node-modules#nodeexperimentalpackagemap. Deprecated since pnpm v12.13.0: use nodePackageMap.mode instead. true is the same as mode: load and false the same as mode: off; nodePackageMap wins when both are set in the same place.
    */
@@ -372,7 +407,15 @@ export interface PnpmWorkspaceSpecification {
          * With integrityTarget: tar, pnpm-lock.yaml pins the hash of every package's uncompressed tar instead of the compressed .tgz, so the lockfile no longer changes when a registry recompresses its tarballs or serves them as tars. pnpm learns a version's tar hash from the store or by downloading it once, and pnpm audit signatures ties the tar hash to the signed .tgz integrity. Added in pnpm v12.15.0.
          */
         integrityTarget?: 'tar';
+        /**
+         * The format pnpm writes pnpm-lock.yaml in. v13 is the experimental JSON-like format planned for pnpm 13: JSON indented with tabs, with a trailing comma after every entry, which is still valid YAML. It has one packages entry per package version in place of the packages and snapshots sections, so updating a peer dependency changes only the lines that record its version. pnpm reads lockfiles in both formats whatever this setting is, but pnpm versions without this setting cannot read a v13 lockfile. Added in pnpm v12.19.0.
+         */
+        format?: 'v9' | 'v13';
       };
+  /**
+   * The directory in which pnpm-lock.yaml is written, instead of the directory of pnpm-workspace.yaml. A lockfileDir that points at the default lockfile directory installs the same way as leaving it unset.
+   */
+  lockfileDir?: string;
   /**
    * When true, installation fails if the lockfile is missing or needs to be updated.
    */
@@ -446,9 +489,9 @@ export interface PnpmWorkspaceSpecification {
    */
   maxsockets?: number;
   /**
-   * A comma-separated string of domain extensions that a proxy should not be used for.
+   * A comma-separated string of domain extensions that a proxy should not be used for, or a boolean. A null value leaves the setting unset. Since pnpm v12.23.0, any other type fails validation.
    */
-  noProxy?: string;
+  noProxy?: string | boolean | null;
   /**
    * Whether or not to do SSL key validation when making requests to the registry via HTTPS.
    */
@@ -490,9 +533,17 @@ export interface PnpmWorkspaceSpecification {
    */
   autoInstallPeers?: boolean;
   /**
+   * When set to true, pnpm joins conflicting peer dependency ranges with || and installs the highest version that satisfies any of them. For example, if one dependency requires react@^16.0.0 and another requires react@^17.0.0, pnpm installs the highest react@17. Only semver ranges can be joined; conflicting paths, aliases, or tags leave the peer dependency missing, and identical non-semver specifiers are preserved.
+   */
+  autoInstallPeersFromHighestMatch?: boolean;
+  /**
    * When this setting is set to true, packages with peer dependencies will be deduplicated after peers resolution.
    */
   dedupePeerDependents?: boolean;
+  /**
+   * When true, a project gets a missing optional peer dependency only if the project's own dependencies already install a version of it. The workspace root's dependencies also count if resolvePeersFromWorkspaceRoot is true; a version that only another workspace project's dependencies install does not. dedupePeerDependents keeps deduplicating everything else, and this setting has no effect when dedupePeerDependents is false, because optional peers are already resolved only from the project's own dependencies then. Changing this setting changes the lockfile. Added in pnpm v12.19.0.
+   */
+  projectScopedOptionalPeers?: boolean;
   /**
    * When true, every peer dependency of a dependency also makes the matching @types package an optional peer of it: pnpm links the project's @types package (e.g. @types/react for a peer dependency on react) next to every package that peer-depends on the library, as with any optional peer dependency. This lets TypeScript find the types of a peer dependency when the global virtual store is on. A package that already declares the @types package keeps its own declaration, and no @types package nothing in the workspace depends on is installed. Changing this setting changes the lockfile. Added in pnpm v12.12.0.
    */
@@ -752,6 +803,18 @@ export interface PnpmWorkspaceSpecification {
    */
   failIfNoMatch?: boolean;
   /**
+   * Glob patterns of changed files to ignore when filtering for the projects changed since a commit or branch.
+   */
+  changedFilesIgnorePattern?: string[];
+  /**
+   * Glob patterns of test files. When the changed files of a project all match them, the "changed since" filter leaves out the projects that depend on it.
+   */
+  testPattern?: string[];
+  /**
+   * When true, `{<dir>}` filter selectors use the legacy behavior: the selector names a directory and matches every project in the subtree below it. By default `{<dir>}` is matched as a glob pattern, so `{packages/*}` selects the projects one level below packages/ and a `**` reaches deeper. Only applies to user-written selectors; the workspace-root selectors pnpm generates are always matched as globs.
+   */
+  legacyDirFiltering?: boolean;
+  /**
    * By default, pnpm deploy will try creating a dedicated lockfile from a shared lockfile for deployment. If this setting is set to true, the legacy deploy behavior will be used.
    */
   forceLegacyDeploy?: boolean;
@@ -764,7 +827,7 @@ export interface PnpmWorkspaceSpecification {
    */
   saveTypes?: boolean;
   /**
-   * If you pnpm add a package and you don't provide a specific version, then it will install the package at the version registered under the tag from this setting.
+   * If you pnpm add a package and you don't provide a specific version, then it will install the package at the version registered under the tag from this setting. Since pnpm v12.23.0, pnpm publish also reads it from pnpm-workspace.yaml, the global config.yaml, or PNPM_CONFIG_TAG when --tag is not passed.
    */
   tag?: string;
   /**
@@ -865,13 +928,17 @@ export interface PnpmWorkspaceSpecification {
    */
   embedReadme?: boolean;
   /**
-   * The primary branch of the repository which is used for publishing the latest changes.
+   * The primary branch of the repository which is used for publishing the latest changes. Since pnpm v12.23.0, an empty value allows both master and main.
    */
   publishBranch?: string;
   /**
    * After uploading a package, wait up to this many milliseconds for the published version and its tarball to become available from the registry. If they are not available in time, the command fails. 0 disables the check. When publishing recursively, pnpm confirms that a package is available before it publishes the packages that depend on it. Added in pnpm v12.7.0.
    */
   publishWaitTimeout?: number;
+  /**
+   * Sets the default for pnpm publish --access. When set, it takes precedence over publishConfig.access. Configure it in pnpm-workspace.yaml or the global config.yaml, or with PNPM_CONFIG_ACCESS. Read from configuration since pnpm v12.23.0.
+   */
+  access?: 'public' | 'restricted';
   /**
    * Versioning settings for pnpm's native workspace release management, used by `pnpm change` and recursive `pnpm version`.
    */
@@ -884,6 +951,10 @@ export interface PnpmWorkspaceSpecification {
      * Workspace projects permanently excluded from versioning and dependent propagation.
      */
     ignore?: string[];
+    /**
+     * When false, pnpm change leaves private packages out of the packages it offers, and naming one on the command line fails. A private package can still be bumped as a dependent. Added in pnpm v12.23.0.
+     */
+    includePrivatePackages?: boolean;
     /**
      * Caps the bump that a release from the current checkout may apply, after dependent propagation and fixed-group resolution.
      */
@@ -954,13 +1025,17 @@ export interface PnpmWorkspaceSpecification {
    */
   saveExact?: boolean;
   /**
-   * minimumReleaseAge defines the minimum number of minutes that must pass after a version is published before pnpm will install it. This applies to all dependencies, including transitive ones.
+   * minimumReleaseAge defines the minimum number of minutes that must pass after a version is published before pnpm will install it. This applies to all dependencies, including transitive ones. The age is counted back from referenceTime when that setting is set.
    */
   minimumReleaseAge?: number;
   /**
    * If you set `minimumReleaseAge` but need certain dependencies to always install the newest version immediately, you can list them under `minimumReleaseAgeExclude`. The exclusion works by `package name` and applies to all versions of that package.
    */
   minimumReleaseAgeExclude?: string[];
+  /**
+   * The reference time, as an RFC 3339 timestamp, used to evaluate time-dependent settings. minimumReleaseAge and trustPolicyIgnoreAfter count back from this time during resolution and lockfile verification. When unset, pnpm uses the current time. Set it in pnpm-workspace.yaml or with PNPM_CONFIG_REFERENCE_TIME; the global config.yaml does not apply it. A value that is not a timestamp, or is more than 10 minutes in the future, fails the command. Added in pnpm v12.23.0.
+   */
+  referenceTime?: string;
   /**
    * Controls how pnpm behaves when no version of a dependency satisfies the minimumReleaseAge constraint within the requested range.
    * https://pnpm.io/settings#minimumreleaseagestrict
@@ -997,7 +1072,7 @@ export interface PnpmWorkspaceSpecification {
    */
   blockExoticSubdeps?: boolean;
   /**
-   * Allows ignoring the trust policy check for packages published more than the specified number of minutes ago. This is useful when enabling strict trust policies, as it allows older versions of packages (which may lack a process for publishing with signatures or provenance) to be installed without manual exclusion, assuming they are safe due to their age.
+   * Allows ignoring the trust policy check for packages published more than the specified number of minutes ago. This is useful when enabling strict trust policies, as it allows older versions of packages (which may lack a process for publishing with signatures or provenance) to be installed without manual exclusion, assuming they are safe due to their age. The age is counted back from referenceTime when that setting is set.
    */
   trustPolicyIgnoreAfter?: number;
   /**
@@ -1060,6 +1135,10 @@ export interface PnpmWorkspaceSpecification {
     [k: string]: string | undefined;
   };
   /**
+   * URL of a pnpr server for install acceleration. When set, pnpm install offloads dependency resolution to the remote server: pnpm sends its workspace manifests and registry configuration, the server resolves the dependency graph and returns the lockfile, while tarballs are downloaded directly from their registries. If the server refuses a setting the install uses, or cannot return the lockfile format pnpm reads, pnpm prints a warning and resolves locally. May also be set with the --config.pnprServer=<url> command-line option or the PNPM_CONFIG_PNPR_SERVER environment variable.
+   */
+  pnprServer?: string;
+  /**
    * When set to true, pnpm populates the virtual store without creating importer symlinks, hoisting, bin links, or running lifecycle scripts. This is useful for pre-populating a store (e.g., in Nix builds) without creating unnecessary project-level artifacts. pnpm fetch uses this mode internally.
    */
   virtualStoreOnly?: boolean;
@@ -1100,9 +1179,9 @@ export interface PnpmWorkspaceSpecification {
            */
           build?: boolean | string;
           /**
-           * pnpm may link the agent skills the package ships into the project's agent skill directories.
+           * pnpm may link the agent skills the package ships into the project's agent skill directories. true links every skill the package ships, false links none, and a list of skill names links exactly those. A skill outside the list is not offered for approval again. The list form was added in pnpm v12.18.0.
            */
-          skills?: boolean | string;
+          skills?: boolean | string | string[];
         }
       | undefined;
   };

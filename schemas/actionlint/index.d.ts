@@ -4,11 +4,9 @@ export type StringList = string[];
 /**
  * Configuration applied to files matched by a paths glob.
  */
-export type PathConfig =
-  | ({
-      ignore?: StringList;
-    } | null)
-  | undefined;
+export type PathConfig = {
+  ignore?: StringList;
+} | null;
 
 /**
  * Configuration for actionlint, a static checker for GitHub Actions workflow files.
